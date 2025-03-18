@@ -48,11 +48,11 @@ const Rituals = () => {
           ].map((value, index) => (
             <div 
               key={index} 
-              className="p-6 bg-white/50 backdrop-blur-sm rounded-xl border border-muted shadow-sm h-full flex flex-col"
+              className="p-6 bg-white rounded-xl border border-muted shadow-sm h-full flex flex-col items-center text-center"
             >
-              <div className="mb-3">{value.icon}</div>
-              <h3 className="text-lg font-display font-semibold mb-2">{value.title}</h3>
-              <p className="text-foreground/70 text-sm">{value.description}</p>
+              <div className="mb-4 p-2 rounded-full">{value.icon}</div>
+              <h3 className="text-xl font-display font-semibold mb-3">{value.title}</h3>
+              <p className="text-foreground/70">{value.description}</p>
             </div>
           ))}
         </div>
