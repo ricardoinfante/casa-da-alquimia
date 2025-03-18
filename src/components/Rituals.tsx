@@ -71,7 +71,7 @@ const Rituals = () => {
               title: "Feitio",
               description: "Momento sagrado de preparação da bebida onde os participantes vivenciam todo o processo tradicional de confecção da medicina. Experiência mais intensa que pode durar vários dias.",
               details: ["Duração: 2-5 dias", "Inclui: Colheita, preparo e cerimônias", "Periodicidade: Trimestral"],
-              image: "https://images.unsplash.com/photo-1575722290270-626b0208df99?q=80&w=1974"
+              image: "/lovable-uploads/5a67ceeb-384e-4503-a075-6ca5bd4f428b.png"
             },
           ].map((ritual, index) => (
             <div 
