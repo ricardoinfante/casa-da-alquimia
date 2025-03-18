@@ -62,7 +62,7 @@ const About = () => {
           <div className="lg:w-1/2 relative">
             <div className="relative z-10 rounded-2xl overflow-hidden shadow-xl">
               <img 
-                src="https://images.unsplash.com/photo-1519834054693-5e0e537f410c?q=80&w=1973" 
+                src="/lovable-uploads/ed332bd6-19b1-4080-a60a-214765a38989.png" 
                 alt="Ritual de ayahuasca na Casa da Alquimia" 
                 className="w-full aspect-[4/3] object-cover"
                 loading="lazy"
