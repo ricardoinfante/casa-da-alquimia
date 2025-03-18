@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { Moon, Sun, Sparkles } from 'lucide-react';
+import { Moon, Sun, Sparkles, Leaf, Heart } from 'lucide-react';
 
 const Rituals = () => {
   return (
@@ -25,6 +25,36 @@ const Rituals = () => {
             Conduzimos rituais tradicionais que respeitam a medicina sagrada e proporcionam experiências 
             profundas de cura, introspecção e conexão espiritual.
           </p>
+        </div>
+        
+        {/* Valores/Princípios Cards */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
+          {[
+            {
+              icon: <Leaf className="h-8 w-8 text-nature-600" />,
+              title: "Tradição",
+              description: "Rituais baseados em tradições xamânicas ancestrais"
+            },
+            {
+              icon: <Heart className="h-8 w-8 text-spirit-600" />,
+              title: "Acolhimento",
+              description: "Ambiente seguro e acolhedor para cada participante"
+            },
+            {
+              icon: <Sparkles className="h-8 w-8 text-earth-600" />,
+              title: "Transformação",
+              description: "Experiências profundas de autoconhecimento e cura"
+            }
+          ].map((value, index) => (
+            <div 
+              key={index} 
+              className="p-6 bg-white/50 backdrop-blur-sm rounded-xl border border-muted shadow-sm h-full flex flex-col"
+            >
+              <div className="mb-3">{value.icon}</div>
+              <h3 className="text-lg font-display font-semibold mb-2">{value.title}</h3>
+              <p className="text-foreground/70 text-sm">{value.description}</p>
+            </div>
+          ))}
         </div>
         
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
