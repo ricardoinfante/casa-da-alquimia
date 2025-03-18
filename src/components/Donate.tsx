@@ -7,7 +7,7 @@ const Donate = () => {
   const [isDonationModalOpen, setIsDonationModalOpen] = useState(false);
   
   return (
-    <section id="donate" className="py-20 md:py-32 bg-gradient-to-b from-background to-muted/30 relative overflow-hidden">
+    <section id="donate" className="py-12 md:py-20 bg-gradient-to-b from-background to-muted/30 relative overflow-hidden">
       {/* Decorative Elements */}
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary/20 to-transparent"></div>
       <div className="absolute -top-40 -right-40 w-80 h-80 bg-spirit-400/10 rounded-full blur-3xl"></div>

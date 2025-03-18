@@ -1,4 +1,3 @@
-
 import React, { useEffect } from 'react';
 import Navbar from '@/components/Navbar';
 import Hero from '@/components/Hero';
@@ -36,10 +35,10 @@ const Index = () => {
       <Rituals />
       
       {/* Testimonials Section */}
-      <section id="testimonials" className="py-20 md:py-32 relative overflow-hidden">
+      <section id="testimonials" className="py-12 md:py-20 relative overflow-hidden">
         <div className="absolute inset-0 bg-noise opacity-5"></div>
         <div className="section-container relative z-10">
-          <div className="text-center max-w-3xl mx-auto mb-16">
+          <div className="text-center max-w-3xl mx-auto mb-10">
             <span className="chip bg-earth-500/10 text-earth-700 mb-4">Depoimentos</span>
             <h2 className="text-3xl md:text-4xl font-display font-bold mb-6">
               Experiências transformadoras com a 
@@ -83,7 +82,7 @@ const Index = () => {
             ))}
           </div>
           
-          <div className="flex justify-center mt-16">
+          <div className="flex justify-center mt-12">
             <a 
               href="#contact"
               className="px-6 py-3 bg-foreground/5 border border-foreground/10 text-foreground rounded-full font-medium hover:bg-foreground/10 transition-colors"

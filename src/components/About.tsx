@@ -4,7 +4,7 @@ import { Heart, Leaf, Sparkles } from 'lucide-react';
 
 const About = () => {
   return (
-    <section id="about" className="py-20 md:py-32 bg-gradient-to-b from-background to-muted/50">
+    <section id="about" className="py-12 md:py-20 bg-gradient-to-b from-background to-muted/50">
       <div className="section-container">
         <div className="flex flex-col lg:flex-row gap-12 lg:gap-16 items-center">
           <div className="lg:w-1/2 space-y-6">

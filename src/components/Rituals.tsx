@@ -1,16 +1,15 @@
-
 import React from 'react';
 import { Moon, Sun, Sparkles, Leaf, Heart } from 'lucide-react';
 
 const Rituals = () => {
   return (
-    <section id="rituals" className="py-20 md:py-32 bg-gradient-to-b from-muted/50 to-background overflow-hidden">
+    <section id="rituals" className="py-12 md:py-20 bg-gradient-to-b from-muted/50 to-background overflow-hidden">
       <div className="section-container relative">
         {/* Decorative Circles */}
         <div className="absolute -top-20 -left-20 w-40 h-40 bg-spirit-400/10 rounded-full blur-3xl"></div>
         <div className="absolute -bottom-20 -right-20 w-40 h-40 bg-nature-400/10 rounded-full blur-3xl"></div>
         
-        <div className="text-center max-w-3xl mx-auto mb-16">
+        <div className="text-center max-w-3xl mx-auto mb-10">
           <span className="chip bg-spirit-500/10 text-spirit-700 inline-flex items-center gap-1 mb-4">
             <Sparkles className="h-3 w-3" />
             <span>Nossos rituais</span>
@@ -28,7 +27,7 @@ const Rituals = () => {
         </div>
         
         {/* Valores/Princípios Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
           {[
             {
               icon: <Leaf className="h-8 w-8 text-nature-600" />,
@@ -117,7 +116,7 @@ const Rituals = () => {
           ))}
         </div>
         
-        <div className="mt-16 text-center">
+        <div className="mt-12 text-center">
           <p className="text-foreground/70 mb-6 max-w-2xl mx-auto">
             Todos os rituais são conduzidos por facilitadores experientes, em ambiente apropriado 
             e com toda a preparação necessária para uma experiência segura e transformadora.
