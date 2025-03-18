@@ -28,35 +28,6 @@ const About = () => {
               de poder, nossa comunidade dedica-se a oferecer rituais seguros, respeitosos e transformadores 
               com ayahuasca, guiados pela sabedoria ancestral das tradições amazônicas.
             </p>
-            
-            <div className="pt-4 grid grid-cols-1 md:grid-cols-3 gap-6">
-              {[
-                {
-                  icon: <Leaf className="h-8 w-8 text-nature-600" />,
-                  title: "Tradição",
-                  description: "Rituais baseados em tradições xamânicas ancestrais"
-                },
-                {
-                  icon: <Heart className="h-8 w-8 text-spirit-600" />,
-                  title: "Acolhimento",
-                  description: "Ambiente seguro e acolhedor para cada participante"
-                },
-                {
-                  icon: <Sparkles className="h-8 w-8 text-earth-600" />,
-                  title: "Transformação",
-                  description: "Experiências profundas de autoconhecimento e cura"
-                }
-              ].map((item, index) => (
-                <div 
-                  key={index} 
-                  className="p-6 bg-white/50 backdrop-blur-sm rounded-xl border border-muted shadow-sm"
-                >
-                  <div className="mb-3">{item.icon}</div>
-                  <h3 className="text-lg font-display font-semibold mb-2">{item.title}</h3>
-                  <p className="text-foreground/70 text-sm">{item.description}</p>
-                </div>
-              ))}
-            </div>
           </div>
           
           <div className="lg:w-1/2 relative">
