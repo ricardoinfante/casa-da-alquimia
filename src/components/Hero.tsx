@@ -15,7 +15,7 @@ const Hero = () => {
       <div className="absolute inset-0 z-0">
         <div className="absolute inset-0 bg-gradient-to-b from-spirit-900/20 via-background/50 to-background z-10"></div>
         <div 
-          className={`w-full h-full bg-[url('https://images.unsplash.com/photo-1519681393784-d120267933ba?q=80&w=2070')] bg-cover bg-center transition-all duration-1000 ${isLoaded ? 'blur-0' : 'blur-lg'}`}
+          className={`w-full h-full bg-[url('/lovable-uploads/9bf82aef-546d-46ba-8f95-1d4766c6b47d.png')] bg-cover bg-center transition-all duration-1000 ${isLoaded ? 'blur-0' : 'blur-lg'}`}
           style={{ opacity: isLoaded ? 0.5 : 0 }}
         ></div>
       </div>
