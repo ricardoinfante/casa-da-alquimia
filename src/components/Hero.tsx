@@ -1,54 +1,40 @@
-
 import React, { useEffect, useState } from 'react';
 import { ArrowDown, Sparkles } from 'lucide-react';
 import { AspectRatio } from './ui/aspect-ratio';
-
 const Hero = () => {
   const [isLoaded, setIsLoaded] = useState(false);
   const [imageLoaded, setImageLoaded] = useState(false);
-  
   useEffect(() => {
     setIsLoaded(true);
-    
+
     // Try to preload the image with better error handling
     const img = new Image();
     img.src = '/lovable-uploads/3a1d319a-a20f-4c45-8467-53f8e8a1b900.png';
-    
     img.onload = () => {
       console.log('Image loaded successfully');
       setImageLoaded(true);
     };
-    
-    img.onerror = (e) => {
+    img.onerror = e => {
       console.error('Failed to load image, using fallback:', e);
       // Still set imageLoaded true to trigger the fallback display instead of loading state
       setImageLoaded(true);
     };
   }, []);
-  
+
   // Use a reliable background image from Unsplash as fallback
   const fallbackImage = "https://images.unsplash.com/photo-1482938289607-e9573fc25ebb";
-  
-  return (
-    <section id="hero" className="relative min-h-[90vh] flex items-center justify-center pt-20 overflow-hidden">
+  return <section id="hero" className="relative min-h-[90vh] flex items-center justify-center pt-20 overflow-hidden">
       {/* Background Image with Overlay */}
       <div className="absolute inset-0 z-0">
         <div className="absolute inset-0 bg-gradient-to-b from-spirit-900/30 via-background/40 to-background z-10"></div>
         
-        {imageLoaded ? (
-          <div 
-            className="w-full h-full transition-all duration-1000"
-            style={{ 
-              backgroundImage: `url('${fallbackImage}?auto=format&fit=crop&w=1920&q=80')`,
-              backgroundSize: 'cover',
-              backgroundPosition: 'center 30%',
-              opacity: isLoaded ? 0.95 : 0,
-              filter: isLoaded ? 'blur(0)' : 'blur(8px)',
-            }}
-          ></div>
-        ) : (
-          <div className="w-full h-full bg-gradient-to-b from-spirit-800/70 to-earth-900/80"></div>
-        )}
+        {imageLoaded ? <div className="w-full h-full transition-all duration-1000" style={{
+        backgroundImage: `url('${fallbackImage}?auto=format&fit=crop&w=1920&q=80')`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center 30%',
+        opacity: isLoaded ? 0.95 : 0,
+        filter: isLoaded ? 'blur(0)' : 'blur(8px)'
+      }}></div> : <div className="w-full h-full bg-gradient-to-b from-spirit-800/70 to-earth-900/80"></div>}
       </div>
       
       <div className="container mx-auto px-6 md:px-8 relative z-10 text-center">
@@ -65,22 +51,16 @@ const Hero = () => {
             <span className="gradient-heading">espiritual e interior</span>
           </h1>
           
-          <p className="max-w-2xl mx-auto text-lg md:text-xl text-white/90 mb-10 text-balance drop-shadow-sm font-medium">
+          <p className="max-w-2xl mx-auto text-lg md:text-xl mb-10 text-balance drop-shadow-sm font-medium text-violet-950">
             Conecte-se com sua essência através de rituais ancestrais que promovem 
             autoconhecimento, cura e expansão da consciência.
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a 
-              href="#donate" 
-              className="px-8 py-4 bg-primary text-primary-foreground rounded-full font-medium hover:bg-primary/90 transition-all duration-300 shadow-md hover:shadow-lg transform hover:-translate-y-1"
-            >
+            <a href="#donate" className="px-8 py-4 bg-primary text-primary-foreground rounded-full font-medium hover:bg-primary/90 transition-all duration-300 shadow-md hover:shadow-lg transform hover:-translate-y-1">
               Apoiar nossa missão
             </a>
-            <a 
-              href="#about" 
-              className="px-8 py-4 bg-black/30 backdrop-blur-sm border border-white/20 text-white rounded-full font-medium hover:bg-black/40 transition-all duration-300 shadow-md"
-            >
+            <a href="#about" className="px-8 py-4 bg-black/30 backdrop-blur-sm border border-white/20 text-white rounded-full font-medium hover:bg-black/40 transition-all duration-300 shadow-md">
               Conhecer mais
             </a>
           </div>
@@ -95,9 +75,9 @@ const Hero = () => {
       
       {/* Decorative Elements - Adjusted colors to match sunset theme */}
       <div className="absolute top-1/3 left-10 md:left-24 w-32 h-32 bg-earth-500/20 rounded-full blur-3xl animate-pulse-gentle"></div>
-      <div className="absolute bottom-1/3 right-10 md:right-24 w-40 h-40 bg-spirit-500/20 rounded-full blur-3xl animate-pulse-gentle" style={{ animationDelay: "1s" }}></div>
-    </section>
-  );
+      <div className="absolute bottom-1/3 right-10 md:right-24 w-40 h-40 bg-spirit-500/20 rounded-full blur-3xl animate-pulse-gentle" style={{
+      animationDelay: "1s"
+    }}></div>
+    </section>;
 };
-
 export default Hero;
