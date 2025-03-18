@@ -27,36 +27,6 @@ const Rituals = () => {
           </p>
         </div>
         
-        {/* Valores/Princípios Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
-          {[
-            {
-              icon: <Leaf className="h-8 w-8 text-nature-600" />,
-              title: "Tradição",
-              description: "Rituais baseados em tradições xamânicas ancestrais"
-            },
-            {
-              icon: <Heart className="h-8 w-8 text-spirit-600" />,
-              title: "Acolhimento",
-              description: "Ambiente seguro e acolhedor para cada participante"
-            },
-            {
-              icon: <Sparkles className="h-8 w-8 text-earth-600" />,
-              title: "Transformação",
-              description: "Experiências profundas de autoconhecimento e cura"
-            }
-          ].map((value, index) => (
-            <div 
-              key={index} 
-              className="p-6 bg-white rounded-xl border border-muted shadow-sm h-full flex flex-col items-center text-center"
-            >
-              <div className="mb-4 p-2 rounded-full">{value.icon}</div>
-              <h3 className="text-xl font-display font-semibold mb-3">{value.title}</h3>
-              <p className="text-foreground/70">{value.description}</p>
-            </div>
-          ))}
-        </div>
-        
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
           {[
             {
