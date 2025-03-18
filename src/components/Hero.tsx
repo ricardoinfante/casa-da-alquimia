@@ -9,10 +9,13 @@ const Hero = () => {
   useEffect(() => {
     setIsLoaded(true);
     
-    // Preload the image
+    // Preload the image - using the correct path
     const img = new Image();
-    img.src = '/lovable-uploads/9bf82aef-546d-46ba-8f95-1d4766c6b47d.png';
-    img.onload = () => setImageLoaded(true);
+    img.src = '/lovable-uploads/70a6d6cb-c127-4362-a4d8-ef56286cf0d2.png';
+    img.onload = () => {
+      console.log('Image loaded successfully');
+      setImageLoaded(true);
+    };
     img.onerror = (e) => console.error('Failed to load image:', e);
   }, []);
   
@@ -23,13 +26,13 @@ const Hero = () => {
         <div className="absolute inset-0 bg-gradient-to-b from-spirit-900/20 via-background/50 to-background z-10"></div>
         {imageLoaded ? (
           <div 
-            className={`w-full h-full transition-all duration-1000 ${isLoaded ? 'blur-0' : 'blur-lg'}`}
+            className="w-full h-full transition-all duration-1000"
             style={{ 
-              backgroundImage: `url('/lovable-uploads/9bf82aef-546d-46ba-8f95-1d4766c6b47d.png')`,
-              backgroundSize: '100%',
-              backgroundPosition: 'center 40%',
-              backgroundRepeat: 'no-repeat',
-              opacity: isLoaded ? 0.5 : 0 
+              backgroundImage: `url('/lovable-uploads/70a6d6cb-c127-4362-a4d8-ef56286cf0d2.png')`,
+              backgroundSize: 'cover',
+              backgroundPosition: 'center 25%', // Show more of the top portion of the image
+              opacity: isLoaded ? 0.5 : 0,
+              filter: isLoaded ? 'blur(0)' : 'blur(8px)',
             }}
           ></div>
         ) : (
