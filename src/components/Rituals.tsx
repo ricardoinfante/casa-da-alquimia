@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Moon, Sun, Sparkles, Leaf, Heart } from 'lucide-react';
 
@@ -63,7 +64,7 @@ const Rituals = () => {
               title: "Cerimônias",
               description: "Trabalhos tradicionais guiados por cantos sagrados (icaros) e conduzidos em ambiente seguro e acolhedor para uma jornada introspectiva profunda.",
               details: ["Duração: 8 horas", "Inclui: Preparação, cerimônia e integração", "Periodicidade: Lua Cheia e Lua Nova"],
-              image: "https://images.unsplash.com/photo-1532012197267-da84d127e765?q=80&w=1974"
+              image: "/lovable-uploads/744bbab1-592f-45f7-aa8c-15ac950eac6f.png"
             },
             {
               icon: <Sun className="h-8 w-8 text-earth-600" />,
