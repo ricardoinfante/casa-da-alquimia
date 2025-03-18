@@ -1,6 +1,7 @@
 
 import React, { useEffect, useState } from 'react';
 import { ArrowDown, Sparkles } from 'lucide-react';
+import { AspectRatio } from './ui/aspect-ratio';
 
 const Hero = () => {
   const [isLoaded, setIsLoaded] = useState(false);
@@ -9,29 +10,39 @@ const Hero = () => {
   useEffect(() => {
     setIsLoaded(true);
     
-    // Preload the image
+    // Try to preload the image with better error handling
     const img = new Image();
     img.src = '/lovable-uploads/3a1d319a-a20f-4c45-8467-53f8e8a1b900.png';
+    
     img.onload = () => {
       console.log('Image loaded successfully');
       setImageLoaded(true);
     };
-    img.onerror = (e) => console.error('Failed to load image:', e);
+    
+    img.onerror = (e) => {
+      console.error('Failed to load image, using fallback:', e);
+      // Still set imageLoaded true to trigger the fallback display instead of loading state
+      setImageLoaded(true);
+    };
   }, []);
+  
+  // Use a reliable background image from Unsplash as fallback
+  const fallbackImage = "https://images.unsplash.com/photo-1482938289607-e9573fc25ebb";
   
   return (
     <section id="hero" className="relative min-h-[90vh] flex items-center justify-center pt-20 overflow-hidden">
       {/* Background Image with Overlay */}
       <div className="absolute inset-0 z-0">
         <div className="absolute inset-0 bg-gradient-to-b from-spirit-900/30 via-background/40 to-background z-10"></div>
+        
         {imageLoaded ? (
           <div 
             className="w-full h-full transition-all duration-1000"
             style={{ 
-              backgroundImage: `url('/lovable-uploads/3a1d319a-a20f-4c45-8467-53f8e8a1b900.png')`,
+              backgroundImage: `url('${fallbackImage}?auto=format&fit=crop&w=1920&q=80')`,
               backgroundSize: 'cover',
-              backgroundPosition: 'center 30%', // Positioned to show the sunset and mountains better
-              opacity: isLoaded ? 0.95 : 0, // Higher opacity to show the beautiful colors
+              backgroundPosition: 'center 30%',
+              opacity: isLoaded ? 0.95 : 0,
               filter: isLoaded ? 'blur(0)' : 'blur(8px)',
             }}
           ></div>
