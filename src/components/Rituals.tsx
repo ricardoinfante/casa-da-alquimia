@@ -31,16 +31,16 @@ const Rituals = () => {
           {[
             {
               icon: <Moon className="h-8 w-8 text-spirit-600" />,
-              title: "Ritual Lunar",
-              description: "Cerimônia noturna tradicional que promove uma jornada introspectiva profunda. Guiado por cantos sagrados (icaros) e conduzido em ambiente seguro e acolhedor.",
+              title: "Cerimônias",
+              description: "Trabalhos tradicionais guiados por cantos sagrados (icaros) e conduzidos em ambiente seguro e acolhedor para uma jornada introspectiva profunda.",
               details: ["Duração: 8 horas", "Inclui: Preparação, cerimônia e integração", "Periodicidade: Lua Cheia e Lua Nova"],
               image: "https://images.unsplash.com/photo-1532012197267-da84d127e765?q=80&w=1974"
             },
             {
               icon: <Sun className="h-8 w-8 text-earth-600" />,
-              title: "Ritual Solar",
-              description: "Experiência diurna que conecta com as energias vitais e expansivas. Foco em curas físicas e emocionais, com maior clareza e leveza na jornada.",
-              details: ["Duração: 6 horas", "Inclui: Meditação, cerimônia e compartilhamento", "Periodicidade: Primeiro domingo do mês"],
+              title: "Feitio",
+              description: "Momento sagrado de preparação da bebida onde os participantes vivenciam todo o processo tradicional de confecção da medicina. Experiência mais intensa que pode durar vários dias.",
+              details: ["Duração: 2-5 dias", "Inclui: Colheita, preparo e cerimônias", "Periodicidade: Trimestral"],
               image: "https://images.unsplash.com/photo-1575722290270-626b0208df99?q=80&w=1974"
             },
           ].map((ritual, index) => (
