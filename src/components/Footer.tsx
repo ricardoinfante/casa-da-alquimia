@@ -98,18 +98,17 @@ const Footer = () => {
               <li className="flex items-start gap-3">
                 <MapPin className="h-5 w-5 text-spirit-600 mt-0.5" />
                 <span className="text-foreground/70">
-                  Estrada da Natureza, 108<br/>
-                  Alto das Montanhas, SP<br/>
-                  CEP: 12345-678
+                  Estrada da Usina, Fazenda Miraflores<br/>
+                  Cavalcante, Goiás<br/>
                 </span>
               </li>
               <li className="flex items-center gap-3">
                 <Phone className="h-5 w-5 text-spirit-600" />
                 <a 
-                  href="tel:+5511998765432" 
+                  href="tel:+5562965389022" 
                   className="text-foreground/70 hover:text-primary transition-colors link-underline"
                 >
-                  +55 (11) 99876-5432
+                  +55 (62) 9653-8902
                 </a>
               </li>
               <li className="flex items-center gap-3">
