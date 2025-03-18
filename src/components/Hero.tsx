@@ -9,9 +9,9 @@ const Hero = () => {
   useEffect(() => {
     setIsLoaded(true);
     
-    // Preload the image - using the correct path
+    // Preload the image
     const img = new Image();
-    img.src = '/lovable-uploads/70a6d6cb-c127-4362-a4d8-ef56286cf0d2.png';
+    img.src = '/lovable-uploads/0203341e-405b-4bea-860a-63cc06f1ecb2.png';
     img.onload = () => {
       console.log('Image loaded successfully');
       setImageLoaded(true);
@@ -23,15 +23,15 @@ const Hero = () => {
     <section id="hero" className="relative min-h-[90vh] flex items-center justify-center pt-20 overflow-hidden">
       {/* Background Image with Overlay */}
       <div className="absolute inset-0 z-0">
-        <div className="absolute inset-0 bg-gradient-to-b from-spirit-900/20 via-background/50 to-background z-10"></div>
+        <div className="absolute inset-0 bg-gradient-to-b from-spirit-900/50 via-background/60 to-background z-10"></div>
         {imageLoaded ? (
           <div 
             className="w-full h-full transition-all duration-1000"
             style={{ 
-              backgroundImage: `url('/lovable-uploads/70a6d6cb-c127-4362-a4d8-ef56286cf0d2.png')`,
+              backgroundImage: `url('/lovable-uploads/0203341e-405b-4bea-860a-63cc06f1ecb2.png')`,
               backgroundSize: 'cover',
-              backgroundPosition: 'center 25%', // Show more of the top portion of the image
-              opacity: isLoaded ? 0.5 : 0,
+              backgroundPosition: 'center top', // Show more of the top portion of the image
+              opacity: isLoaded ? 0.7 : 0,
               filter: isLoaded ? 'blur(0)' : 'blur(8px)',
             }}
           ></div>
@@ -83,8 +83,8 @@ const Hero = () => {
       </div>
       
       {/* Decorative Elements */}
-      <div className="absolute top-1/4 left-10 md:left-24 w-32 h-32 bg-spirit-500/10 rounded-full blur-3xl animate-pulse-gentle"></div>
-      <div className="absolute bottom-1/4 right-10 md:right-24 w-40 h-40 bg-nature-500/10 rounded-full blur-3xl animate-pulse-gentle" style={{ animationDelay: "1s" }}></div>
+      <div className="absolute top-1/4 left-10 md:left-24 w-32 h-32 bg-spirit-500/20 rounded-full blur-3xl animate-pulse-gentle"></div>
+      <div className="absolute bottom-1/4 right-10 md:right-24 w-40 h-40 bg-nature-500/20 rounded-full blur-3xl animate-pulse-gentle" style={{ animationDelay: "1s" }}></div>
     </section>
   );
 };
