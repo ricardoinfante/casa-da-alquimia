@@ -52,8 +52,8 @@ const Footer = () => {
             <h3 className="font-display font-semibold mb-4">Rituais</h3>
             <ul className="space-y-3">
               {[
-                "Ritual Lunar",
-                "Ritual Solar",
+                "Cerimônias",
+                "Feitio",
                 "Meditações Guiadas",
                 "Workshops de Integração",
                 "Retiros de Silêncio"
