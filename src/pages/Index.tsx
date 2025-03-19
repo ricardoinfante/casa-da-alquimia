@@ -1,4 +1,5 @@
-import React, { useEffect } from 'react';
+
+import React from 'react';
 import Navbar from '@/components/Navbar';
 import Hero from '@/components/Hero';
 import About from '@/components/About';
@@ -10,16 +11,6 @@ import { useScrollProgress } from '@/utils/animations';
 
 const Index = () => {
   const scrollProgress = useScrollProgress();
-  
-  useEffect(() => {
-    // Update meta tags for SEO
-    document.title = "A Casa da Alquimia - Rituais Sagrados de Ayahuasca";
-    
-    const metaDescription = document.querySelector('meta[name="description"]');
-    if (metaDescription) {
-      metaDescription.setAttribute("content", "Conheça A Casa da Alquimia, um santuário dedicado a rituais sagrados de ayahuasca para autoconhecimento, cura e expansão da consciência.");
-    }
-  }, []);
   
   return (
     <div className="relative">
