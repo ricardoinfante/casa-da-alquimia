@@ -1,1 +1,9 @@
+
 project_id = "wlyqqzauusxbykxzxtsj"
+
+[edge_functions]
+[edge_functions.create-checkout]
+verify_jwt = false
+
+[edge_functions.webhook-stripe]
+verify_jwt = false

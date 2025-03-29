@@ -2,6 +2,8 @@
 import React, { useState } from 'react';
 import { X, Check, Heart } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { supabase } from '@/integrations/supabase/client';
+import { useToast } from '@/hooks/use-toast';
 
 interface DonationModalProps {
   isOpen: boolean;
@@ -9,6 +11,7 @@ interface DonationModalProps {
 }
 
 const DonationModal: React.FC<DonationModalProps> = ({ isOpen, onClose }) => {
+  const { toast } = useToast();
   const [donationType, setDonationType] = useState<'one-time' | 'monthly'>('one-time');
   const [amount, setAmount] = useState<number | null>(null);
   const [customAmount, setCustomAmount] = useState<string>('');
@@ -18,15 +21,68 @@ const DonationModal: React.FC<DonationModalProps> = ({ isOpen, onClose }) => {
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
   const [step, setStep] = useState<1 | 2 | 3>(1);
   
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    
+    if (!finalAmount || finalAmount <= 0) {
+      toast({
+        title: "Valor inválido",
+        description: "Por favor, insira um valor válido para a doação",
+        variant: "destructive",
+      });
+      return;
+    }
+    
     setIsSubmitting(true);
     
-    // Simulate API call
-    setTimeout(() => {
+    try {
+      // First store the pending donation in Supabase
+      const { error: insertError } = await supabase
+        .from('donations')
+        .insert({
+          donor_name: name,
+          donor_email: email,
+          amount: finalAmount,
+          payment_method: paymentMethod,
+          donation_type: donationType,
+          payment_status: 'pending'
+        });
+      
+      if (insertError) {
+        throw new Error(`Erro ao registrar doação: ${insertError.message}`);
+      }
+      
+      // Call Supabase Edge Function to create a Stripe checkout session
+      const { data, error } = await supabase.functions.invoke('create-checkout', {
+        body: {
+          amount: finalAmount.toString(),
+          donorName: name,
+          donorEmail: email,
+          donationType,
+          paymentMethod
+        },
+      });
+      
+      if (error) {
+        throw new Error(`Erro ao processar pagamento: ${error.message}`);
+      }
+      
+      // Redirect to Stripe Checkout
+      if (data?.checkoutUrl) {
+        window.location.href = data.checkoutUrl;
+      } else {
+        throw new Error('URL de checkout não recebida');
+      }
+      
+    } catch (error) {
+      console.error('Erro ao processar doação:', error);
+      toast({
+        title: "Erro no processamento",
+        description: error.message || "Houve um erro ao processar sua doação. Por favor, tente novamente.",
+        variant: "destructive",
+      });
       setIsSubmitting(false);
-      setStep(3);
-    }, 1500);
+    }
   };
   
   const finalAmount = amount || (customAmount ? parseFloat(customAmount) : 0);
@@ -214,21 +270,6 @@ const DonationModal: React.FC<DonationModalProps> = ({ isOpen, onClose }) => {
                 <div className="flex rounded-lg overflow-hidden border border-muted">
                   <button
                     type="button"
-                    onClick={() => setPaymentMethod('pix')}
-                    className={cn(
-                      "flex-1 py-2 text-sm font-medium transition-colors flex items-center justify-center gap-2",
-                      paymentMethod === 'pix' 
-                        ? "bg-primary text-primary-foreground" 
-                        : "bg-muted text-foreground/70 hover:bg-muted/80"
-                    )}
-                  >
-                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M11.6666 2L14.6666 5L5.33329 14.3333L1.99996 14.6667L2.33329 11.3333L11.6666 2Z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                    </svg>
-                    Pix
-                  </button>
-                  <button
-                    type="button"
                     onClick={() => setPaymentMethod('credit-card')}
                     className={cn(
                       "flex-1 py-2 text-sm font-medium transition-colors flex items-center justify-center gap-2",
@@ -246,62 +287,9 @@ const DonationModal: React.FC<DonationModalProps> = ({ isOpen, onClose }) => {
                 </div>
               </div>
               
-              {paymentMethod === 'pix' && (
-                <div className="bg-muted/30 rounded-lg p-4 border border-muted">
-                  <p className="text-sm text-foreground/80 text-center mb-2">
-                    Ao clicar em "Finalizar doação", você receberá um QR Code Pix para pagamento
-                  </p>
-                  <div className="flex items-center gap-2 text-xs text-foreground/60 justify-center">
-                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M8 14C11.3137 14 14 11.3137 14 8C14 4.68629 11.3137 2 8 2C4.68629 2 2 4.68629 2 8C2 11.3137 4.68629 14 8 14Z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                      <path d="M7.5 7.5H8V11H8.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                      <circle cx="8" cy="5.5" r="0.5" fill="currentColor"/>
-                    </svg>
-                    Pagamento processado com segurança
-                  </div>
-                </div>
-              )}
-              
-              {paymentMethod === 'credit-card' && (
-                <>
-                  <div>
-                    <label htmlFor="card" className="block text-sm font-medium text-foreground/80 mb-1">
-                      Número do cartão
-                    </label>
-                    <input
-                      id="card"
-                      type="text"
-                      placeholder="0000 0000 0000 0000"
-                      className="w-full px-3 py-2 rounded-lg border border-muted bg-muted/30 focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary transition-all"
-                    />
-                  </div>
-                  
-                  <div className="grid grid-cols-2 gap-4">
-                    <div>
-                      <label htmlFor="expiry" className="block text-sm font-medium text-foreground/80 mb-1">
-                        Validade
-                      </label>
-                      <input
-                        id="expiry"
-                        type="text"
-                        placeholder="MM/AA"
-                        className="w-full px-3 py-2 rounded-lg border border-muted bg-muted/30 focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary transition-all"
-                      />
-                    </div>
-                    <div>
-                      <label htmlFor="cvv" className="block text-sm font-medium text-foreground/80 mb-1">
-                        CVV
-                      </label>
-                      <input
-                        id="cvv"
-                        type="text"
-                        placeholder="123"
-                        className="w-full px-3 py-2 rounded-lg border border-muted bg-muted/30 focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary transition-all"
-                      />
-                    </div>
-                  </div>
-                </>
-              )}
+              <p className="text-sm text-foreground/80 text-center my-2">
+                Ao clicar em "Finalizar doação", você será redirecionado para a página segura do Stripe para completar o pagamento.
+              </p>
               
               <button
                 type="submit"
@@ -328,10 +316,10 @@ const DonationModal: React.FC<DonationModalProps> = ({ isOpen, onClose }) => {
               
               <div className="flex items-center gap-2 text-xs text-foreground/60 justify-center">
                 <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M12 7H4V9H12V7Z" fill="currentColor"/>
                   <path d="M12.6667 3.33331H3.33333C2.59695 3.33331 2 3.93027 2 4.66665V11.3333C2 12.0697 2.59695 12.6666 3.33333 12.6666H12.6667C13.403 12.6666 14 12.0697 14 11.3333V4.66665C14 3.93027 13.403 3.33331 12.6667 3.33331Z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                  <path d="M12 7H4V9H12V7Z" fill="currentColor"/>
                 </svg>
-                Todas as transações são seguras e criptografadas
+                Todas as transações são seguras e processadas pelo Stripe
               </div>
             </form>
           </div>
