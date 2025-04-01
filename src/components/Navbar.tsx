@@ -1,7 +1,6 @@
-
 import React, { useState, useEffect } from 'react';
 import { cn } from '@/lib/utils';
-import { Menu, X, Moon, Sun, Leaf } from 'lucide-react';
+import { Menu, X, Moon, Sun } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 const Navbar = () => {
@@ -31,7 +30,11 @@ const Navbar = () => {
           to="/" 
           className="flex items-center gap-2 font-display text-lg md:text-xl"
         >
-          <Leaf className="h-5 w-5 text-[#264F7D]" />
+          <img 
+            src="/lovable-uploads/ddb33374-a35f-48fc-8626-649408abcc43.png" 
+            alt="A Casa da Alquimia Logo" 
+            className="h-6 w-auto"
+          />
           <span className="text-balance">A Casa da Alquimia</span>
         </Link>
         
@@ -73,7 +76,6 @@ const Navbar = () => {
         </button>
       </div>
       
-      {/* Mobile Menu */}
       <div
         className={cn(
           "fixed inset-0 z-40 bg-background/95 backdrop-blur transition-all duration-300 flex flex-col p-6",
