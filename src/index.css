@@ -140,7 +140,7 @@
   }
   
   .earth-gradient {
-    @apply bg-gradient-to-r from-[#708C5A] to-[#708C5A]/80;
+    @apply bg-gradient-to-r from-[#DAC751] to-[#DAC751]/80;
   }
 }
 

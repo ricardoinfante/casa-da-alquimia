@@ -30,7 +30,9 @@ const Index = () => {
         <div className="absolute inset-0 bg-noise opacity-5"></div>
         <div className="section-container relative z-10">
           <div className="text-center max-w-3xl mx-auto mb-10">
-            <span className="chip mb-4">Depoimentos</span>
+            <span className="chip inline-flex items-center gap-1 mb-4">
+              <span>Depoimentos</span>
+            </span>
             <h2 className="text-3xl md:text-4xl font-display font-bold mb-6">
               Experiências transformadoras com a 
               <span className="gradient-heading ml-2">medicina sagrada</span>

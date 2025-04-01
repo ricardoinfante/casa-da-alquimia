@@ -1,136 +1,144 @@
 
 import React, { useState } from 'react';
-import { Heart, Sparkles, ArrowRight } from 'lucide-react';
+import { Heart } from 'lucide-react';
 import DonationModal from './DonationModal';
 
 const Donate = () => {
-  const [isDonationModalOpen, setIsDonationModalOpen] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
   
   return (
-    <section id="donate" className="py-12 md:py-20 bg-gradient-to-b from-background to-muted/30 relative overflow-hidden">
-      {/* Decorative Elements */}
-      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary/20 to-transparent"></div>
-      <div className="absolute -top-40 -right-40 w-80 h-80 bg-spirit-400/10 rounded-full blur-3xl"></div>
-      <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-earth-400/10 rounded-full blur-3xl"></div>
+    <section id="donate" className="py-16 md:py-24 relative overflow-hidden">
+      <div className="absolute inset-0 bg-gradient-to-r from-[#CDE9EC]/40 to-[#CDE9EC]/20"></div>
+      <div className="absolute inset-0 bg-noise opacity-5"></div>
       
-      <div className="section-container relative">
-        <div className="max-w-4xl mx-auto">
-          <div className="bg-white/70 backdrop-blur-md rounded-2xl shadow-xl overflow-hidden border border-muted relative z-10">
-            <div className="p-8 md:p-12">
-              <div className="flex flex-col md:flex-row gap-12 items-center">
-                <div className="md:w-3/5 space-y-6">
-                  <div className="inline-flex items-center gap-1 chip bg-spirit-500/10 text-spirit-700">
-                    <Heart className="h-3 w-3" />
-                    <span>Apoie nossa missão</span>
-                  </div>
-                  
-                  <h2 className="text-3xl md:text-4xl font-display font-bold">
-                    Sua doação torna possível
-                    <span className="gradient-heading ml-2">nossa jornada espiritual</span>
-                  </h2>
-                  
-                  <p className="text-foreground/80 text-lg">
-                    Ao contribuir com A Casa da Alquimia, você ajuda a preservar as tradições 
-                    ancestrais e permite que pessoas de todos os caminhos tenham acesso 
-                    a experiências transformadoras.
-                  </p>
-                  
-                  <div className="space-y-4 pt-2">
-                    {[
-                      "Manutenção e ampliação do espaço sagrado",
-                      "Cultivo sustentável das plantas medicinais",
-                      "Bolsas para pessoas sem condições financeiras",
-                      "Pesquisa e documentação das tradições ancestrais"
-                    ].map((item, index) => (
-                      <div key={index} className="flex items-start gap-3">
-                        <div className="mt-1 p-1 rounded-full bg-nature-500/10">
-                          <Check className="h-3 w-3 text-nature-700" />
-                        </div>
-                        <span className="text-foreground/80">{item}</span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-                
-                <div className="md:w-2/5 bg-gradient-to-br from-spirit-50 to-white p-6 rounded-xl border border-spirit-100">
-                  <h3 className="text-xl font-display font-semibold text-center mb-6">
-                    Escolha como você deseja contribuir
-                  </h3>
-                  
-                  <div className="space-y-4">
-                    <button
-                      onClick={() => setIsDonationModalOpen(true)}
-                      className="w-full flex items-center justify-between py-4 px-6 bg-primary text-primary-foreground rounded-lg font-medium hover:bg-primary/90 transition-all duration-300 shadow-sm hover:shadow hover:-translate-y-0.5"
-                    >
-                      <span className="flex items-center gap-2">
-                        <Heart className="h-5 w-5" />
-                        Fazer uma doação única
-                      </span>
-                      <ArrowRight className="h-4 w-4" />
-                    </button>
-                    
-                    <button
-                      onClick={() => setIsDonationModalOpen(true)}
-                      className="w-full flex items-center justify-between py-4 px-6 bg-white border border-primary/20 text-primary rounded-lg font-medium hover:bg-primary/5 transition-all duration-300"
-                    >
-                      <span className="flex items-center gap-2">
-                        <Sparkles className="h-5 w-5" />
-                        Tornar-se doador mensal
-                      </span>
-                      <ArrowRight className="h-4 w-4" />
-                    </button>
-                  </div>
-                  
-                  <div className="mt-6 text-center text-foreground/60 text-sm">
-                    Todas as doações são processadas com segurança
-                  </div>
-                </div>
-              </div>
+      <div className="section-container relative z-10">
+        <div className="text-center max-w-3xl mx-auto mb-12">
+          <span className="chip inline-flex items-center gap-1 mb-4">
+            <Heart className="h-3 w-3 text-[#120F52]" />
+            <span>Apoie nossa missão</span>
+          </span>
+          
+          <h2 className="text-3xl md:text-4xl font-display font-bold mb-6">
+            Contribua para a 
+            <span className="gradient-heading ml-2">preservação da medicina</span>
+          </h2>
+          
+          <p className="text-foreground/80 text-lg max-w-2xl mx-auto">
+            Sua contribuição ajuda a manter nosso espaço sagrado, apoiar comunidades indígenas e preservar
+            o conhecimento ancestral sobre as plantas de poder.
+          </p>
+        </div>
+        
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+          <div className="p-6 md:p-8 bg-white/70 backdrop-blur-sm rounded-xl border border-muted shadow-sm flex flex-col justify-between h-full">
+            <div>
+              <h3 className="text-xl font-display font-semibold mb-4">Apoio Mensal</h3>
+              <p className="text-foreground/70 mb-6">
+                Torne-se um apoiador recorrente da nossa comunidade e ajude a manter o espaço sagrado.
+              </p>
+              <ul className="space-y-2 mb-8">
+                <li className="flex items-start">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#264F7D] mt-2 mr-2"></span>
+                  <span className="text-foreground/70">Acesso a conteúdo exclusivo</span>
+                </li>
+                <li className="flex items-start">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#264F7D] mt-2 mr-2"></span>
+                  <span className="text-foreground/70">Convites para eventos especiais</span>
+                </li>
+                <li className="flex items-start">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#264F7D] mt-2 mr-2"></span>
+                  <span className="text-foreground/70">10% de desconto em nossas cerimônias</span>
+                </li>
+              </ul>
             </div>
+            <button 
+              onClick={() => setIsModalOpen(true)} 
+              className="w-full px-6 py-3 bg-[#264F7D] text-white rounded-full font-medium hover:bg-[#264F7D]/90 transition-all"
+            >
+              Contribuir mensalmente
+            </button>
           </div>
           
-          <div className="mt-16 text-center max-w-2xl mx-auto space-y-4">
-            <h3 className="text-2xl font-display font-semibold">
-              Outras formas de contribuir
-            </h3>
+          <div className="p-6 md:p-8 bg-white/90 backdrop-blur-sm rounded-xl border border-[#264F7D]/20 shadow-md flex flex-col justify-between h-full relative overflow-hidden">
+            <div className="absolute -right-12 -top-12 w-24 h-24 bg-[#264F7D]/10 rounded-full blur-xl"></div>
+            <div className="absolute -left-12 -bottom-12 w-24 h-24 bg-[#708C5A]/10 rounded-full blur-xl"></div>
             
-            <p className="text-foreground/80">
-              Além de doações financeiras, você também pode contribuir com seu tempo, 
-              habilidades ou materiais para nossos rituais e atividades.
-            </p>
+            <div className="relative z-10">
+              <div className="bg-[#DAC751] text-[#100B0D] text-xs font-bold uppercase tracking-wider py-1 px-3 rounded-full inline-block mb-4">
+                Mais popular
+              </div>
+              
+              <h3 className="text-xl font-display font-semibold mb-4">Apoio único</h3>
+              <p className="text-foreground/70 mb-6">
+                Faça uma contribuição única para apoiar nossos projetos e a manutenção do espaço.
+              </p>
+              <ul className="space-y-2 mb-8">
+                <li className="flex items-start">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#264F7D] mt-2 mr-2"></span>
+                  <span className="text-foreground/70">Certificado de agradecimento</span>
+                </li>
+                <li className="flex items-start">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#264F7D] mt-2 mr-2"></span>
+                  <span className="text-foreground/70">Menção especial em nosso espaço</span>
+                </li>
+                <li className="flex items-start">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#264F7D] mt-2 mr-2"></span>
+                  <span className="text-foreground/70">Convite para próxima cerimônia</span>
+                </li>
+              </ul>
+            </div>
             
-            <a 
-              href="#contact"
-              className="inline-flex items-center gap-2 text-primary hover:text-primary/80 transition-colors link-underline font-medium"
+            <button 
+              onClick={() => setIsModalOpen(true)} 
+              className="w-full px-6 py-3 bg-[#264F7D] text-white rounded-full font-medium hover:bg-[#264F7D]/90 transition-all relative z-10"
             >
-              Saiba mais sobre voluntariado
-              <ArrowRight className="h-4 w-4" />
-            </a>
+              Fazer uma doação
+            </button>
           </div>
+          
+          <div className="p-6 md:p-8 bg-white/70 backdrop-blur-sm rounded-xl border border-muted shadow-sm flex flex-col justify-between h-full">
+            <div>
+              <h3 className="text-xl font-display font-semibold mb-4">Apoio a projetos</h3>
+              <p className="text-foreground/70 mb-6">
+                Contribua para projetos específicos de preservação da medicina e apoio às comunidades.
+              </p>
+              <ul className="space-y-2 mb-8">
+                <li className="flex items-start">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#264F7D] mt-2 mr-2"></span>
+                  <span className="text-foreground/70">Relatórios de impacto do projeto</span>
+                </li>
+                <li className="flex items-start">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#264F7D] mt-2 mr-2"></span>
+                  <span className="text-foreground/70">Participação em reuniões de feedback</span>
+                </li>
+                <li className="flex items-start">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#264F7D] mt-2 mr-2"></span>
+                  <span className="text-foreground/70">Reconhecimento como parceiro</span>
+                </li>
+              </ul>
+            </div>
+            <button 
+              onClick={() => setIsModalOpen(true)} 
+              className="w-full px-6 py-3 bg-[#264F7D] text-white rounded-full font-medium hover:bg-[#264F7D]/90 transition-all"
+            >
+              Apoiar projetos
+            </button>
+          </div>
+        </div>
+        
+        <div className="bg-white/50 backdrop-blur-sm p-6 rounded-xl border border-muted shadow-sm max-w-2xl mx-auto">
+          <h3 className="text-lg font-semibold font-display mb-4 text-center">Nosso compromisso de transparência</h3>
+          <p className="text-foreground/70 text-sm text-center mb-0">
+            Todas as contribuições são direcionadas para a manutenção do nosso espaço sagrado, 
+            apoio às comunidades indígenas produtoras da medicina, e para o desenvolvimento 
+            de projetos educacionais sobre o uso responsável das plantas de poder.
+          </p>
         </div>
       </div>
       
-      <DonationModal 
-        isOpen={isDonationModalOpen} 
-        onClose={() => setIsDonationModalOpen(false)} 
-      />
+      <DonationModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
     </section>
   );
 };
-
-const Check = ({ className }: { className?: string }) => (
-  <svg 
-    xmlns="http://www.w3.org/2000/svg" 
-    viewBox="0 0 24 24" 
-    fill="none" 
-    stroke="currentColor" 
-    strokeWidth="3" 
-    strokeLinecap="round" 
-    strokeLinejoin="round" 
-    className={className}
-  >
-    <polyline points="20 6 9 17 4 12" />
-  </svg>
-);
 
 export default Donate;
