@@ -1,30 +1,13 @@
 
 import React from 'react';
 import { Youtube } from 'lucide-react';
-import SocialMediaPost from './SocialMediaPost';
-
-// Dados para vídeos do YouTube com URLs diretas para as imagens
-const youtubeVideos = [
-  {
-    id: 1,
-    thumbnailUrl: "/lovable-uploads/5a67ceeb-384e-4503-a075-6ca5bd4f428b.png",
-    title: "Cerimônia de ayahuasca - Casa da Alquimia",
-    link: "https://www.youtube.com/watch?v=OCZz6Oz-czA"
-  },
-  {
-    id: 2,
-    thumbnailUrl: "/lovable-uploads/744bbab1-592f-45f7-aa8c-15ac950eac6f.png",
-    title: "Meditação guiada - Comunhão com a natureza",
-    link: "https://www.youtube.com/watch?v=rQDyVS9mFuM"
-  },
-];
 
 interface YouTubeSectionProps {
   isVisible: boolean;
 }
 
 const YouTubeSection = ({ isVisible }: YouTubeSectionProps) => {
-  console.log('YouTube videos:', youtubeVideos);
+  const videoId = "2RpPiW68uSs";
   
   return (
     <div>
@@ -42,23 +25,20 @@ const YouTubeSection = ({ isVisible }: YouTubeSectionProps) => {
         </a>
       </div>
       
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        {youtubeVideos.map((video, index) => (
-          <SocialMediaPost
-            key={video.id}
-            imageUrl={video.thumbnailUrl}
-            link={video.link}
-            title={video.title}
-            aspectRatio="video"
-            icon={
-              <div className="w-14 h-14 rounded-full bg-white/90 flex items-center justify-center">
-                <div className="w-0 h-0 border-t-[8px] border-t-transparent border-l-[16px] border-l-[#120F52] border-b-[8px] border-b-transparent ml-1"></div>
-              </div>
-            }
-            isVisible={isVisible}
-            index={index}
-          />
-        ))}
+      <div className={`w-full ${isVisible ? 'animate-in' : 'opacity-0'}`}>
+        <div className="aspect-video w-full overflow-hidden rounded-lg shadow-md">
+          <iframe 
+            width="100%" 
+            height="100%" 
+            src={`https://www.youtube.com/embed/${videoId}?si=ZvGWZOUj_mL2PZ_A&controls=0`}
+            title="YouTube video player" 
+            frameBorder="0" 
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+            referrerPolicy="strict-origin-when-cross-origin" 
+            allowFullScreen
+            className="w-full h-full"
+          ></iframe>
+        </div>
       </div>
     </div>
   );
