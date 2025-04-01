@@ -35,7 +35,7 @@ const About = () => {
               <img 
                 src="/lovable-uploads/ac57f24e-68d6-46c2-aafc-a7107053254a.png" 
                 alt="Arte representando a alquimia espiritual" 
-                className="w-full aspect-[4/3] object-cover"
+                className="w-full h-auto object-contain"
                 loading="lazy"
               />
             </div>
