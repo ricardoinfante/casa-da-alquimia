@@ -15,7 +15,7 @@ const About = () => {
               <span className="gradient-heading ml-2 text-[#DAC751]">transformação espiritual</span>
             </h2>
             
-            <p className="text-foreground/80 text-lg leading-relaxed">A Casa da Alquimia é um farol, um espaço para as pessoas que estão chegando para meditar.</p>
+            <p className="text-foreground/80 text-lg leading-relaxed">&quot;A Casa da Alquimia é um farol, um espaço para as pessoas que estão chegando para meditar.&quot; - Jalal</p>
             
             <p className="text-foreground/80 text-lg leading-relaxed">Trabalhamos pela evolução do ser humano ― no sentido de desenvolver suas virtudes verdadeiramente morais, intelectuais e espirituais ― sem preconceitos de origem, religião, raça, gênero, idade.</p>
           </div>
