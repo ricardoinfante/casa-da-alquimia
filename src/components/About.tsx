@@ -1,10 +1,7 @@
-
 import React from 'react';
 import { Heart, Leaf, Sparkles } from 'lucide-react';
-
 const About = () => {
-  return (
-    <section id="about" className="py-12 md:py-20 bg-gradient-to-b from-background to-muted/50">
+  return <section id="about" className="py-12 md:py-20 bg-gradient-to-b from-background to-muted/50">
       <div className="section-container">
         <div className="flex flex-col lg:flex-row gap-12 lg:gap-16 items-start">
           <div className="lg:w-1/2 space-y-6">
@@ -18,26 +15,14 @@ const About = () => {
               <span className="gradient-heading ml-2 text-[#DAC751]">transformação espiritual</span>
             </h2>
             
-            <p className="text-foreground/80 text-lg leading-relaxed">
-              Nascemos do profundo desejo de criar um espaço sagrado onde as antigas tradições 
-              xamânicas pudessem ser honradas e vivenciadas no mundo contemporâneo.
-            </p>
+            <p className="text-foreground/80 text-lg leading-relaxed">A Casa da Alquimia é um farol, um espaço para as pessoas que estão chegando para meditar.</p>
             
-            <p className="text-foreground/80 text-lg leading-relaxed">
-              Fundada por buscadores espirituais com décadas de experiência em trabalhos com plantas 
-              de poder, nossa comunidade dedica-se a oferecer rituais seguros, respeitosos e transformadores 
-              com ayahuasca, guiados pela sabedoria ancestral das tradições amazônicas.
-            </p>
+            <p className="text-foreground/80 text-lg leading-relaxed">Trabalhamos pela evolução do ser humano ― no sentido de desenvolver suas virtudes verdadeiramente morais, intelectuais e espirituais ― sem preconceitos de origem, religião, raça, gênero, idade.</p>
           </div>
           
           <div className="lg:w-1/2 relative">
             <div className="relative z-10 rounded-2xl overflow-hidden shadow-xl">
-              <img 
-                src="/lovable-uploads/ac57f24e-68d6-46c2-aafc-a7107053254a.png" 
-                alt="Arte representando a alquimia espiritual" 
-                className="w-full h-auto object-contain"
-                loading="lazy"
-              />
+              <img src="/lovable-uploads/ac57f24e-68d6-46c2-aafc-a7107053254a.png" alt="Arte representando a alquimia espiritual" className="w-full h-auto object-contain" loading="lazy" />
             </div>
             
             {/* Decorative elements */}
@@ -46,8 +31,6 @@ const About = () => {
           </div>
         </div>
       </div>
-    </section>
-  );
+    </section>;
 };
-
 export default About;
