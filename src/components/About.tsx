@@ -8,14 +8,14 @@ const About = () => {
       <div className="section-container">
         <div className="flex flex-col lg:flex-row gap-12 lg:gap-16 items-center">
           <div className="lg:w-1/2 space-y-6">
-            <span className="chip inline-flex items-center gap-1">
+            <span className="chip inline-flex items-center gap-1 bg-[#708C5A] text-[#100B0D] px-3 py-1 rounded-full text-xs font-medium">
               <Leaf className="h-3 w-3" />
               <span>Nossa história</span>
             </span>
             
             <h2 className="text-3xl md:text-4xl font-display font-bold">
               A Casa da Alquimia: um santuário de 
-              <span className="gradient-heading ml-2">transformação espiritual</span>
+              <span className="gradient-heading ml-2 text-[#DAC751]">transformação espiritual</span>
             </h2>
             
             <p className="text-foreground/80 text-lg leading-relaxed">
@@ -33,8 +33,8 @@ const About = () => {
           <div className="lg:w-1/2 relative">
             <div className="relative z-10 rounded-2xl overflow-hidden shadow-xl">
               <img 
-                src="/lovable-uploads/ed332bd6-19b1-4080-a60a-214765a38989.png" 
-                alt="Ritual de ayahuasca na Casa da Alquimia" 
+                src="/lovable-uploads/ac57f24e-68d6-46c2-aafc-a7107053254a.png" 
+                alt="Arte representando a alquimia espiritual" 
                 className="w-full aspect-[4/3] object-cover"
                 loading="lazy"
               />
