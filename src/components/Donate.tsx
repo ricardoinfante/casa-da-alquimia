@@ -1,13 +1,9 @@
-
 import React, { useState } from 'react';
 import { Heart } from 'lucide-react';
 import DonationModal from './DonationModal';
-
 const Donate = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  
-  return (
-    <section id="donate" className="py-16 md:py-24 relative overflow-hidden">
+  return <section id="donate" className="py-16 md:py-24 relative overflow-hidden">
       <div className="absolute inset-0 bg-gradient-to-r from-[#CDE9EC]/40 to-[#CDE9EC]/20"></div>
       <div className="absolute inset-0 bg-noise opacity-5"></div>
       
@@ -51,10 +47,7 @@ const Donate = () => {
                 </li>
               </ul>
             </div>
-            <button 
-              onClick={() => setIsModalOpen(true)} 
-              className="w-full px-6 py-3 bg-[#264F7D] text-white rounded-full font-medium hover:bg-[#264F7D]/90 transition-all"
-            >
+            <button onClick={() => setIsModalOpen(true)} className="w-full px-6 py-3 bg-[#264F7D] text-white rounded-full font-medium hover:bg-[#264F7D]/90 transition-all">
               Contribuir mensalmente
             </button>
           </div>
@@ -88,10 +81,7 @@ const Donate = () => {
               </ul>
             </div>
             
-            <button 
-              onClick={() => setIsModalOpen(true)} 
-              className="w-full px-6 py-3 bg-[#264F7D] text-white rounded-full font-medium hover:bg-[#264F7D]/90 transition-all relative z-10"
-            >
+            <button onClick={() => setIsModalOpen(true)} className="w-full px-6 py-3 bg-[#264F7D] text-white rounded-full font-medium hover:bg-[#264F7D]/90 transition-all relative z-10">
               Fazer uma doação
             </button>
           </div>
@@ -117,10 +107,7 @@ const Donate = () => {
                 </li>
               </ul>
             </div>
-            <button 
-              onClick={() => setIsModalOpen(true)} 
-              className="w-full px-6 py-3 bg-[#264F7D] text-white rounded-full font-medium hover:bg-[#264F7D]/90 transition-all"
-            >
+            <button onClick={() => setIsModalOpen(true)} className="w-full px-6 py-3 bg-[#264F7D] text-white rounded-full font-medium hover:bg-[#264F7D]/90 transition-all">
               Apoiar projetos
             </button>
           </div>
@@ -128,17 +115,11 @@ const Donate = () => {
         
         <div className="bg-white/50 backdrop-blur-sm p-6 rounded-xl border border-muted shadow-sm max-w-2xl mx-auto">
           <h3 className="text-lg font-semibold font-display mb-4 text-center">Nosso compromisso de transparência</h3>
-          <p className="text-foreground/70 text-sm text-center mb-0">
-            Todas as contribuições são direcionadas para a manutenção do nosso espaço sagrado, 
-            apoio às comunidades indígenas produtoras da medicina, e para o desenvolvimento 
-            de projetos educacionais sobre o uso responsável das plantas de poder.
-          </p>
+          <p className="text-foreground/70 text-sm text-center mb-0">Todas as contribuições são direcionadas para a manutenção dos nossos espaços, construções e melhorias de novos serviços e apoios, cuidados com as os reinados de Chacrona e Cipó. </p>
         </div>
       </div>
       
       <DonationModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
-    </section>
-  );
+    </section>;
 };
-
 export default Donate;
