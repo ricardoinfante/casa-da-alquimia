@@ -3,42 +3,43 @@ import React, { useState, useEffect } from 'react';
 import { Instagram, Youtube, Facebook } from 'lucide-react';
 import { useIntersectionObserver } from '@/utils/animations';
 import { Skeleton } from '@/components/ui/skeleton';
+import { Button } from '@/components/ui/button';
 
-// Dados dos posts do Instagram (atualizados com imagens reais)
+// Dados dos posts do Instagram com URLs diretas de imagens
 const instagramPosts = [
   {
     id: 1,
-    imageUrl: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=300&h=300&fit=crop",
+    imageUrl: "/lovable-uploads/87b219fd-f859-454f-af75-028b033d0a5a.png",
     link: "https://www.instagram.com/p/C3lDQVvJA_P/"
   },
   {
     id: 2,
-    imageUrl: "https://images.unsplash.com/photo-1501854140801-50d01698950b?w=300&h=300&fit=crop",
+    imageUrl: "/lovable-uploads/ac57f24e-68d6-46c2-aafc-a7107053254a.png",
     link: "https://www.instagram.com/p/C3VZQN9JW0D/"
   },
   {
     id: 3,
-    imageUrl: "https://images.unsplash.com/photo-1500673922987-e212871fec22?w=300&h=300&fit=crop",
+    imageUrl: "/lovable-uploads/ddb33374-a35f-48fc-8626-649408abcc43.png",
     link: "https://www.instagram.com/p/C1mPKT6ptc0/"
   },
   {
     id: 4,
-    imageUrl: "https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=300&h=300&fit=crop",
+    imageUrl: "/lovable-uploads/ed332bd6-19b1-4080-a60a-214765a38989.png",
     link: "https://www.instagram.com/p/C1TPK1NJuCf/"
   },
 ];
 
-// Dados dos vídeos do YouTube (atualizados com imagens confiáveis)
+// Dados dos vídeos do YouTube com URLs diretas de imagens
 const youtubeVideos = [
   {
     id: 1,
-    thumbnailUrl: "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=640&h=360&fit=crop",
+    thumbnailUrl: "/lovable-uploads/5a67ceeb-384e-4503-a075-6ca5bd4f428b.png",
     title: "Cerimônia de ayahuasca - Casa da Alquimia",
     link: "https://www.youtube.com/watch?v=OCZz6Oz-czA"
   },
   {
     id: 2,
-    thumbnailUrl: "https://images.unsplash.com/photo-1470813740244-df37b8c1edcb?w=640&h=360&fit=crop",
+    thumbnailUrl: "/lovable-uploads/744bbab1-592f-45f7-aa8c-15ac950eac6f.png",
     title: "Meditação guiada - Comunhão com a natureza",
     link: "https://www.youtube.com/watch?v=rQDyVS9mFuM"
   },
@@ -55,23 +56,6 @@ const SocialMedia = () => {
     }));
   };
 
-  // Pré-carregar imagens
-  useEffect(() => {
-    // Pré-carregar imagens do Instagram
-    instagramPosts.forEach(post => {
-      const img = new Image();
-      img.src = post.imageUrl;
-      img.onload = () => handleImageLoad(`insta-${post.id}`);
-    });
-
-    // Pré-carregar imagens do YouTube
-    youtubeVideos.forEach(video => {
-      const img = new Image();
-      img.src = video.thumbnailUrl;
-      img.onload = () => handleImageLoad(`yt-${video.id}`);
-    });
-  }, []);
-  
   return (
     <section ref={ref} id="social-media" className="py-16 md:py-24 bg-lightbg/20 relative overflow-hidden">
       <div className="absolute inset-0 bg-noise opacity-5"></div>
@@ -191,33 +175,53 @@ const SocialMedia = () => {
         
         <div className="flex justify-center mt-16">
           <div className="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-6">
-            <a 
-              href="https://www.instagram.com/casadaalquimia/" 
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center justify-center gap-2 px-6 py-3 bg-[#264F7D]/10 border border-[#264F7D]/20 text-[#264F7D] rounded-full font-medium hover:bg-[#264F7D]/15 transition-colors"
+            <Button
+              asChild
+              variant="outline"
+              className="bg-[#264F7D]/10 border border-[#264F7D]/20 text-[#264F7D] hover:bg-[#264F7D]/15"
             >
-              <Instagram className="h-5 w-5" />
-              Seguir no Instagram
-            </a>
-            <a 
-              href="https://www.youtube.com/channel/UCXfwqPXGttI4Q6Xu5XBmX6g" 
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center justify-center gap-2 px-6 py-3 bg-[#264F7D]/10 border border-[#264F7D]/20 text-[#264F7D] rounded-full font-medium hover:bg-[#264F7D]/15 transition-colors"
+              <a 
+                href="https://www.instagram.com/casadaalquimia/" 
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center justify-center gap-2"
+              >
+                <Instagram className="h-5 w-5" />
+                Seguir no Instagram
+              </a>
+            </Button>
+            
+            <Button
+              asChild
+              variant="outline"
+              className="bg-[#264F7D]/10 border border-[#264F7D]/20 text-[#264F7D] hover:bg-[#264F7D]/15"
             >
-              <Youtube className="h-5 w-5" />
-              Inscreva-se no YouTube
-            </a>
-            <a 
-              href="https://www.facebook.com/casadaalquimia/" 
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center justify-center gap-2 px-6 py-3 bg-[#264F7D]/10 border border-[#264F7D]/20 text-[#264F7D] rounded-full font-medium hover:bg-[#264F7D]/15 transition-colors"
+              <a 
+                href="https://www.youtube.com/channel/UCXfwqPXGttI4Q6Xu5XBmX6g" 
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center justify-center gap-2"
+              >
+                <Youtube className="h-5 w-5" />
+                Inscreva-se no YouTube
+              </a>
+            </Button>
+            
+            <Button
+              asChild
+              variant="outline"
+              className="bg-[#264F7D]/10 border border-[#264F7D]/20 text-[#264F7D] hover:bg-[#264F7D]/15"
             >
-              <Facebook className="h-5 w-5" />
-              Seguir no Facebook
-            </a>
+              <a 
+                href="https://www.facebook.com/casadaalquimia/" 
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center justify-center gap-2"
+              >
+                <Facebook className="h-5 w-5" />
+                Seguir no Facebook
+              </a>
+            </Button>
           </div>
         </div>
       </div>
