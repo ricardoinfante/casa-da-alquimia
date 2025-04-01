@@ -5,13 +5,15 @@ import { createClient } from 'https://esm.sh/@supabase/supabase-js@2.45.0';
 
 const corsHeaders = {
   'Access-Control-Allow-Origin': '*',
-  'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type',
+  'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type, stripe-signature',
+  'Access-Control-Allow-Methods': 'POST, OPTIONS',
+  'Access-Control-Max-Age': '86400',
 };
 
 serve(async (req) => {
   // Handle CORS preflight requests
   if (req.method === 'OPTIONS') {
-    return new Response(null, { headers: corsHeaders });
+    return new Response(null, { headers: corsHeaders, status: 204 });
   }
 
   const stripe = new Stripe(Deno.env.get('STRIPE_SECRET_KEY') || '', {
@@ -29,7 +31,11 @@ serve(async (req) => {
     const signature = req.headers.get('stripe-signature');
     
     if (!signature) {
-      return new Response('Webhook Error: No Stripe signature', { status: 400 });
+      console.error('Webhook Error: No Stripe signature');
+      return new Response('Webhook Error: No Stripe signature', { 
+        headers: corsHeaders, 
+        status: 400 
+      });
     }
 
     // Get the request body as text
@@ -47,8 +53,13 @@ serve(async (req) => {
       event = JSON.parse(body);
     } catch (err) {
       console.error(`Webhook signature verification failed: ${err.message}`);
-      return new Response(`Webhook Error: ${err.message}`, { status: 400 });
+      return new Response(`Webhook Error: ${err.message}`, { 
+        headers: corsHeaders, 
+        status: 400 
+      });
     }
+
+    console.log('Processando evento do Stripe:', event.type);
 
     // Handle the event
     switch (event.type) {
@@ -57,6 +68,8 @@ serve(async (req) => {
         
         // Get session metadata
         const { donor_name, donor_email, donation_type, payment_method } = session.metadata || {};
+        
+        console.log('Dados da doação:', { donor_name, donor_email, donation_type, payment_method });
         
         // Insert donation record into Supabase
         const { data, error } = await supabaseClient
@@ -72,31 +85,32 @@ serve(async (req) => {
           });
         
         if (error) {
-          console.error('Error inserting donation record:', error);
+          console.error('Erro ao inserir registro de doação:', error);
         } else {
-          console.log('Donation record inserted successfully:', data);
+          console.log('Registro de doação inserido com sucesso:', data);
         }
         break;
         
       // Handle subscription events if needed
       case 'invoice.paid':
         // Handle subscription payment
+        console.log('Pagamento de assinatura processado');
         break;
         
       default:
-        console.log(`Unhandled event type ${event.type}`);
+        console.log(`Tipo de evento não tratado: ${event.type}`);
     }
 
     return new Response(JSON.stringify({ received: true }), { 
-      headers: { 'Content-Type': 'application/json' },
+      headers: { ...corsHeaders, 'Content-Type': 'application/json' },
       status: 200 
     });
     
   } catch (error) {
-    console.error('Error processing webhook:', error);
+    console.error('Erro ao processar webhook:', error);
     return new Response(
       JSON.stringify({ error: 'Webhook processing failed' }),
-      { status: 500 }
+      { headers: { ...corsHeaders, 'Content-Type': 'application/json' }, status: 500 }
     );
   }
 });
