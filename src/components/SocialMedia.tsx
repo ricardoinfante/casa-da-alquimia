@@ -1,13 +1,11 @@
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useIntersectionObserver } from '@/utils/animations';
 import InstagramSection from './social/InstagramSection';
 import YouTubeSection from './social/YouTubeSection';
 
 const SocialMedia = () => {
   const [ref, isVisible] = useIntersectionObserver();
-  
-  console.log('SocialMedia component rendering, isVisible:', isVisible);
   
   return (
     <section ref={ref} id="social-media" className="py-16 md:py-24 bg-lightbg/20 relative overflow-hidden">

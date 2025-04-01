@@ -1,39 +1,22 @@
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Instagram } from 'lucide-react';
-import SocialMediaPost from './SocialMediaPost';
-
-// Dados para posts do Instagram com URLs diretas para as imagens
-const instagramPosts = [
-  {
-    id: 1,
-    imageUrl: "/lovable-uploads/87b219fd-f859-454f-af75-028b033d0a5a.png",
-    link: "https://www.instagram.com/p/C3lDQVvJA_P/"
-  },
-  {
-    id: 2,
-    imageUrl: "/lovable-uploads/ac57f24e-68d6-46c2-aafc-a7107053254a.png",
-    link: "https://www.instagram.com/p/C3VZQN9JW0D/"
-  },
-  {
-    id: 3,
-    imageUrl: "/lovable-uploads/ddb33374-a35f-48fc-8626-649408abcc43.png",
-    link: "https://www.instagram.com/p/C1mPKT6ptc0/"
-  },
-  {
-    id: 4,
-    imageUrl: "/lovable-uploads/ed332bd6-19b1-4080-a60a-214765a38989.png",
-    link: "https://www.instagram.com/p/C1TPK1NJuCf/"
-  },
-];
 
 interface InstagramSectionProps {
   isVisible: boolean;
 }
 
 const InstagramSection = ({ isVisible }: InstagramSectionProps) => {
-  console.log('Instagram posts:', instagramPosts);
-  
+  useEffect(() => {
+    // Carrega o script do Elfsight se ele ainda não foi carregado
+    if (isVisible && !document.querySelector('script[src="https://static.elfsight.com/platform/platform.js"]')) {
+      const script = document.createElement('script');
+      script.src = "https://static.elfsight.com/platform/platform.js";
+      script.async = true;
+      document.body.appendChild(script);
+    }
+  }, [isVisible]);
+
   return (
     <div>
       <div className="flex items-center justify-between mb-6">
@@ -50,18 +33,12 @@ const InstagramSection = ({ isVisible }: InstagramSectionProps) => {
         </a>
       </div>
       
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-        {instagramPosts.map((post, index) => (
-          <SocialMediaPost
-            key={post.id}
-            imageUrl={post.imageUrl}
-            link={post.link}
-            aspectRatio="square"
-            icon={<Instagram className="text-white h-8 w-8" />}
-            isVisible={isVisible}
-            index={index}
-          />
-        ))}
+      <div className={`w-full ${isVisible ? 'animate-fade-in' : 'opacity-0'} min-h-[400px]`}>
+        {/* Elfsight Instagram Feed Widget */}
+        <div 
+          className="elfsight-app-2df3b6a6-94fb-48e3-b9da-42cbe0ecc8c9" 
+          data-elfsight-app-lazy
+        ></div>
       </div>
     </div>
   );
