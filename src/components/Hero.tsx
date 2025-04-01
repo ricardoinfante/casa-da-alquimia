@@ -35,7 +35,7 @@ const Hero = () => {
             style={{
               backgroundImage: `url('/lovable-uploads/87b219fd-f859-454f-af75-028b033d0a5a.png')`,
               backgroundSize: 'cover',
-              backgroundPosition: 'center 40%',
+              backgroundPosition: 'center bottom',
               opacity: isLoaded ? 0.95 : 0,
               filter: isLoaded ? 'blur(0)' : 'blur(8px)'
             }}
@@ -48,7 +48,7 @@ const Hero = () => {
       <div className="container mx-auto px-6 md:px-8 relative z-10 text-center">
         <div className={`transition-all duration-1000 delay-300 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
           <div className="flex justify-center mb-6">
-            <span className="chip bg-[#708C5A]/10 text-[#708C5A] font-display flex items-center gap-1 shadow-lg">
+            <span className="chip flex items-center gap-1 shadow-lg">
               <Sparkles className="h-3 w-3 text-[#120F52]" />
               <span>Encontre seu caminho espiritual</span>
             </span>
@@ -81,7 +81,7 @@ const Hero = () => {
         </a>
       </div>
       
-      {/* Decorative Elements - Adjusted colors to match the new theme */}
+      {/* Decorative Elements */}
       <div className="absolute top-1/3 left-10 md:left-24 w-32 h-32 bg-[#708C5A]/20 rounded-full blur-3xl animate-pulse-gentle"></div>
       <div className="absolute bottom-1/3 right-10 md:right-24 w-40 h-40 bg-[#264F7D]/20 rounded-full blur-3xl animate-pulse-gentle" style={{
       animationDelay: "1s"

@@ -8,7 +8,7 @@ const About = () => {
       <div className="section-container">
         <div className="flex flex-col lg:flex-row gap-12 lg:gap-16 items-center">
           <div className="lg:w-1/2 space-y-6">
-            <span className="chip bg-nature-500/10 text-nature-700 inline-flex items-center gap-1">
+            <span className="chip inline-flex items-center gap-1">
               <Leaf className="h-3 w-3" />
               <span>Nossa história</span>
             </span>

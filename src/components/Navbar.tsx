@@ -31,7 +31,7 @@ const Navbar = () => {
           to="/" 
           className="flex items-center gap-2 font-display text-lg md:text-xl"
         >
-          <Leaf className="h-5 w-5 text-spirit-600" />
+          <Leaf className="h-5 w-5 text-[#264F7D]" />
           <span className="text-balance">A Casa da Alquimia</span>
         </Link>
         
