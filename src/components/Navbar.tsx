@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { cn } from '@/lib/utils';
 import { Menu, X, Moon, Sun } from 'lucide-react';
@@ -31,9 +32,9 @@ const Navbar = () => {
           className="flex items-center gap-2 font-display text-lg md:text-xl"
         >
           <img 
-            src="/lovable-uploads/ddb33374-a35f-48fc-8626-649408abcc43.png" 
+            src="/lovable-uploads/80c43e92-35ac-4e66-a9bf-727ba993b5f9.png" 
             alt="A Casa da Alquimia Logo" 
-            className="h-6 w-auto"
+            className="h-12 w-auto"
           />
           <span className="text-balance">A Casa da Alquimia</span>
         </Link>
