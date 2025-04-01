@@ -63,6 +63,12 @@ export default {
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
 				},
+				// Novas cores personalizadas
+				darktext: '#100B0D',
+				highlight: '#264F7D',
+				tag: '#708C5A',
+				lightbg: '#CDE9EC',
+				iconblue: '#120F52',
 				nature: {
 					50: '#f3f8f2',
 					100: '#e7f0e4',
