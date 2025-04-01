@@ -1,7 +1,9 @@
 import React from 'react';
 import { Instagram, Facebook, Mail, MapPin, Phone } from 'lucide-react';
+
 const Footer = () => {
   const currentYear = new Date().getFullYear();
+  
   return <footer id="contact" className="bg-muted/30 border-t border-muted">
       <div className="section-container py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
@@ -14,13 +16,13 @@ const Footer = () => {
             <p className="text-foreground/70 text-sm">Trabalhamos pela evolução do ser humano ― no sentido de desenvolver suas virtudes verdadeiramente morais, intelectuais e espirituais ― sem preconceitos de origem, religião, raça, gênero, idade.</p>
             
             <div className="flex space-x-4 pt-2">
-              <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="p-2 bg-foreground/5 rounded-full text-foreground/60 hover:text-spirit-600 hover:bg-spirit-50 transition-colors" aria-label="Instagram">
+              <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="p-2 bg-foreground/5 rounded-full text-iconblue hover:text-spirit-600 hover:bg-spirit-50 transition-colors" aria-label="Instagram">
                 <Instagram className="h-5 w-5" />
               </a>
-              <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="p-2 bg-foreground/5 rounded-full text-foreground/60 hover:text-spirit-600 hover:bg-spirit-50 transition-colors" aria-label="Facebook">
+              <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="p-2 bg-foreground/5 rounded-full text-iconblue hover:text-spirit-600 hover:bg-spirit-50 transition-colors" aria-label="Facebook">
                 <Facebook className="h-5 w-5" />
               </a>
-              <a href="mailto:contato@acasadaalquimia.com.br" className="p-2 bg-foreground/5 rounded-full text-foreground/60 hover:text-spirit-600 hover:bg-spirit-50 transition-colors" aria-label="Email">
+              <a href="mailto:contato@acasadaalquimia.com.br" className="p-2 bg-foreground/5 rounded-full text-iconblue hover:text-spirit-600 hover:bg-spirit-50 transition-colors" aria-label="Email">
                 <Mail className="h-5 w-5" />
               </a>
             </div>
@@ -67,18 +69,18 @@ const Footer = () => {
             <h3 className="font-display font-semibold mb-4">Contato</h3>
             <ul className="space-y-4">
               <li className="flex items-start gap-3">
-                <MapPin className="h-5 w-5 text-spirit-600 mt-0.5" />
+                <MapPin className="h-5 w-5 text-iconblue mt-0.5" />
                 <span className="text-foreground/70">
                   Estrada da Usina, Fazenda Miraflores<br />
                   Cavalcante, Goiás<br />
                 </span>
               </li>
               <li className="flex items-center gap-3">
-                <Phone className="h-5 w-5 text-spirit-600" />
+                <Phone className="h-5 w-5 text-iconblue" />
                 <a href="tel:+5562965389022" className="text-foreground/70 hover:text-primary transition-colors link-underline">+55 (62) 99653-8902</a>
               </li>
               <li className="flex items-center gap-3">
-                <Mail className="h-5 w-5 text-spirit-600" />
+                <Mail className="h-5 w-5 text-iconblue" />
                 <a href="mailto:contato@acasadaalquimia.com.br" className="text-foreground/70 hover:text-primary transition-colors link-underline">casadaalquimia@gmail.com
               </a>
               </li>
@@ -102,4 +104,5 @@ const Footer = () => {
       <div className="bg-gradient-to-r from-spirit-500/20 via-nature-500/20 to-earth-500/20 h-1"></div>
     </footer>;
 };
+
 export default Footer;
