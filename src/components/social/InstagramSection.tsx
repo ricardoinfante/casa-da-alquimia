@@ -3,7 +3,7 @@ import React from 'react';
 import { Instagram } from 'lucide-react';
 import SocialMediaPost from './SocialMediaPost';
 
-// Data for Instagram posts with direct image URLs
+// Dados para posts do Instagram com URLs diretas para as imagens
 const instagramPosts = [
   {
     id: 1,
@@ -32,6 +32,8 @@ interface InstagramSectionProps {
 }
 
 const InstagramSection = ({ isVisible }: InstagramSectionProps) => {
+  console.log('Instagram posts:', instagramPosts);
+  
   return (
     <div>
       <div className="flex items-center justify-between mb-6">

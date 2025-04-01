@@ -3,7 +3,7 @@ import React from 'react';
 import { Youtube } from 'lucide-react';
 import SocialMediaPost from './SocialMediaPost';
 
-// Data for YouTube videos with direct image URLs
+// Dados para vídeos do YouTube com URLs diretas para as imagens
 const youtubeVideos = [
   {
     id: 1,
@@ -24,6 +24,8 @@ interface YouTubeSectionProps {
 }
 
 const YouTubeSection = ({ isVisible }: YouTubeSectionProps) => {
+  console.log('YouTube videos:', youtubeVideos);
+  
   return (
     <div>
       <div className="flex items-center justify-between mb-6">

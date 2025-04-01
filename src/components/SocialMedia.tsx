@@ -8,6 +8,8 @@ import SocialButtonsSection from './social/SocialButtonsSection';
 const SocialMedia = () => {
   const [ref, isVisible] = useIntersectionObserver();
   
+  console.log('SocialMedia component rendering, isVisible:', isVisible);
+  
   return (
     <section ref={ref} id="social-media" className="py-16 md:py-24 bg-lightbg/20 relative overflow-hidden">
       <div className="absolute inset-0 bg-noise opacity-5"></div>
