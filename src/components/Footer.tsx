@@ -11,9 +11,7 @@ const Footer = () => {
               <span>A Casa da Alquimia</span>
             </div>
             
-            <p className="text-foreground/70 text-sm">
-              Um santuário dedicado à expansão da consciência e ao autoconhecimento através de rituais sagrados com ayahuasca.
-            </p>
+            <p className="text-foreground/70 text-sm">Trabalhamos pela evolução do ser humano ― no sentido de desenvolver suas virtudes verdadeiramente morais, intelectuais e espirituais ― sem preconceitos de origem, religião, raça, gênero, idade.</p>
             
             <div className="flex space-x-4 pt-2">
               <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="p-2 bg-foreground/5 rounded-full text-foreground/60 hover:text-spirit-600 hover:bg-spirit-50 transition-colors" aria-label="Instagram">
