@@ -3,7 +3,6 @@ import React from 'react';
 import { useIntersectionObserver } from '@/utils/animations';
 import InstagramSection from './social/InstagramSection';
 import YouTubeSection from './social/YouTubeSection';
-import SocialButtonsSection from './social/SocialButtonsSection';
 
 const SocialMedia = () => {
   const [ref, isVisible] = useIntersectionObserver();
@@ -28,16 +27,13 @@ const SocialMedia = () => {
           </p>
         </div>
         
-        <div className={`space-y-16 ${isVisible ? 'animate-in' : 'opacity-0'}`}>
+        <div className="space-y-16">
           {/* Instagram Section */}
           <InstagramSection isVisible={isVisible} />
           
-          {/* YouTube Section */}
+          {/* YouTube Section with Social Buttons */}
           <YouTubeSection isVisible={isVisible} />
         </div>
-        
-        {/* Social Media Buttons */}
-        <SocialButtonsSection />
       </div>
     </section>
   );
