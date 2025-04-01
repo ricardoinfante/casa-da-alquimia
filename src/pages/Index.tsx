@@ -75,10 +75,10 @@ const Index = () => {
             ))}
           </div>
           
-          <div className="flex justify-center mt-12">
+          <div className="flex justify-center mt-16 md:mt-20">
             <a 
               href="#contact"
-              className="px-6 py-3 bg-foreground/5 border border-foreground/10 text-foreground rounded-full font-medium hover:bg-foreground/10 transition-colors"
+              className="px-6 py-3 bg-[#264F7D]/10 border border-[#264F7D]/20 text-[#264F7D] rounded-full font-medium hover:bg-[#264F7D]/15 transition-colors"
             >
               Compartilhe sua experiência
             </a>
