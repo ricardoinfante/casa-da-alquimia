@@ -1,47 +1,46 @@
 
-import React, { useState } from 'react';
-import { Instagram, Youtube } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { Instagram, Youtube, Facebook } from 'lucide-react';
 import { useIntersectionObserver } from '@/utils/animations';
 import { Skeleton } from '@/components/ui/skeleton';
-import { AspectRatio } from '@/components/ui/aspect-ratio';
 
-// Dados dos posts do Instagram (simulados)
+// Dados dos posts do Instagram (atualizados com imagens reais)
 const instagramPosts = [
   {
     id: 1,
-    imageUrl: "https://source.unsplash.com/300x300?nature,ritual",
+    imageUrl: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=300&h=300&fit=crop",
     link: "https://www.instagram.com/p/C3lDQVvJA_P/"
   },
   {
     id: 2,
-    imageUrl: "https://source.unsplash.com/300x300?meditation,spiritual",
+    imageUrl: "https://images.unsplash.com/photo-1501854140801-50d01698950b?w=300&h=300&fit=crop",
     link: "https://www.instagram.com/p/C3VZQN9JW0D/"
   },
   {
     id: 3,
-    imageUrl: "https://source.unsplash.com/300x300?ayahuasca,plant",
+    imageUrl: "https://images.unsplash.com/photo-1500673922987-e212871fec22?w=300&h=300&fit=crop",
     link: "https://www.instagram.com/p/C1mPKT6ptc0/"
   },
   {
     id: 4,
-    imageUrl: "https://source.unsplash.com/300x300?ceremony,tribal",
+    imageUrl: "https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=300&h=300&fit=crop",
     link: "https://www.instagram.com/p/C1TPK1NJuCf/"
   },
 ];
 
-// Dados dos vídeos do YouTube (simulados)
+// Dados dos vídeos do YouTube (atualizados com imagens confiáveis)
 const youtubeVideos = [
   {
     id: 1,
-    thumbnailUrl: "https://source.unsplash.com/400x225?ayahuasca,ceremony",
+    thumbnailUrl: "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=640&h=360&fit=crop",
     title: "Cerimônia de ayahuasca - Casa da Alquimia",
-    link: "https://www.youtube.com/watch?v=sample1"
+    link: "https://www.youtube.com/watch?v=OCZz6Oz-czA"
   },
   {
     id: 2,
-    thumbnailUrl: "https://source.unsplash.com/400x225?meditation,nature",
+    thumbnailUrl: "https://images.unsplash.com/photo-1470813740244-df37b8c1edcb?w=640&h=360&fit=crop",
     title: "Meditação guiada - Comunhão com a natureza",
-    link: "https://www.youtube.com/watch?v=sample2"
+    link: "https://www.youtube.com/watch?v=rQDyVS9mFuM"
   },
 ];
 
@@ -55,6 +54,23 @@ const SocialMedia = () => {
       [id]: true
     }));
   };
+
+  // Pré-carregar imagens
+  useEffect(() => {
+    // Pré-carregar imagens do Instagram
+    instagramPosts.forEach(post => {
+      const img = new Image();
+      img.src = post.imageUrl;
+      img.onload = () => handleImageLoad(`insta-${post.id}`);
+    });
+
+    // Pré-carregar imagens do YouTube
+    youtubeVideos.forEach(video => {
+      const img = new Image();
+      img.src = video.thumbnailUrl;
+      img.onload = () => handleImageLoad(`yt-${video.id}`);
+    });
+  }, []);
   
   return (
     <section ref={ref} id="social-media" className="py-16 md:py-24 bg-lightbg/20 relative overflow-hidden">
@@ -102,7 +118,9 @@ const SocialMedia = () => {
                 >
                   <div className="relative aspect-square bg-gray-100 overflow-hidden">
                     {!loadedImages[`insta-${post.id}`] && (
-                      <Skeleton className="absolute inset-0 bg-gray-200" />
+                      <div className="absolute inset-0 flex items-center justify-center">
+                        <Skeleton className="w-full h-full bg-gray-200" />
+                      </div>
                     )}
                     <img 
                       src={post.imageUrl} 
@@ -146,7 +164,9 @@ const SocialMedia = () => {
                 >
                   <div className="relative aspect-video bg-gray-100 overflow-hidden">
                     {!loadedImages[`yt-${video.id}`] && (
-                      <Skeleton className="absolute inset-0 bg-gray-200" />
+                      <div className="absolute inset-0 flex items-center justify-center">
+                        <Skeleton className="w-full h-full bg-gray-200" />
+                      </div>
                     )}
                     <img 
                       src={video.thumbnailUrl} 
@@ -188,6 +208,15 @@ const SocialMedia = () => {
             >
               <Youtube className="h-5 w-5" />
               Inscreva-se no YouTube
+            </a>
+            <a 
+              href="https://www.facebook.com/casadaalquimia/" 
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center justify-center gap-2 px-6 py-3 bg-[#264F7D]/10 border border-[#264F7D]/20 text-[#264F7D] rounded-full font-medium hover:bg-[#264F7D]/15 transition-colors"
+            >
+              <Facebook className="h-5 w-5" />
+              Seguir no Facebook
             </a>
           </div>
         </div>
