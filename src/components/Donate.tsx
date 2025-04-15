@@ -61,9 +61,7 @@ const Donate = () => {
               </div>
               
               <h3 className="text-xl font-display font-semibold mb-4">Apoio Mensal</h3>
-              <p className="text-foreground/70 mb-6">
-                Torne-se um apoiador recorrente da nossa comunidade e ajude a manter o espaço sagrado.
-              </p>
+              <p className="text-foreground/70 mb-6">Torne-se um apoiador recorrente da Casa da Alquimia e ajude a manter nosso espaço. </p>
               <ul className="space-y-2 mb-8">
                 <li className="flex items-start">
                   <span className="w-1.5 h-1.5 rounded-full bg-[#264F7D] mt-2 mr-2"></span>
