@@ -1,5 +1,6 @@
 import React from 'react';
 import { Moon, Sun, Sparkles, Leaf, Heart } from 'lucide-react';
+
 const Rituals = () => {
   return <section id="rituals" className="py-12 md:py-20 bg-gradient-to-b from-muted/50 to-background overflow-hidden">
       <div className="section-container relative">
@@ -47,8 +48,8 @@ const Rituals = () => {
           {[{
           icon: <Moon className="h-8 w-8 text-[#264F7D]" />,
           title: "Cerimônias",
-          description: "Trabalhos tradicionais guiados por cantos sagrados (icaros) e conduzidos em ambiente seguro e acolhedor para uma jornada introspectiva profunda.",
-          details: ["Duração: 8 horas", "Inclui: Preparação, cerimônia e integração", "Periodicidade: Lua Cheia e Lua Nova"],
+          description: "Trabalhos regulares conduzidos em ambiente seguro e acolhedor para uma jornada meditativa profunda.",
+          details: ["Duração: aproximadamente 8 horas", "Inclui: Preparação, cerimônia e integração", "Periodicidade: Lua Cheia e Lua Nova (normalmente)"],
           image: "/lovable-uploads/744bbab1-592f-45f7-aa8c-15ac950eac6f.png"
         }, {
           icon: <Sun className="h-8 w-8 text-[#708C5A]" />,
@@ -74,12 +75,6 @@ const Rituals = () => {
                       <span className="w-1.5 h-1.5 rounded-full bg-primary/70 mr-2"></span>
                       {detail}
                     </div>)}
-                </div>
-                
-                <div className="flex justify-between items-center">
-                  <a href="#contact" className="text-sm font-medium text-primary link-underline">
-                    Saiba mais sobre este ritual
-                  </a>
                 </div>
               </div>
             </div>)}
