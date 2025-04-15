@@ -89,9 +89,7 @@ const Donate = () => {
           <div className="p-6 md:p-8 bg-white/70 backdrop-blur-sm rounded-xl border border-muted shadow-sm flex flex-col justify-between h-full">
             <div>
               <h3 className="text-xl font-display font-semibold mb-4">Apoio a projetos</h3>
-              <p className="text-foreground/70 mb-6">
-                Contribua para projetos específicos de preservação da medicina e apoio às comunidades.
-              </p>
+              <p className="text-foreground/70 mb-6">Contribua para projetos específicos de preservação da medicina e ampliação de nossas estruturas.</p>
               <ul className="space-y-2 mb-8">
                 <li className="flex items-start">
                   <span className="w-1.5 h-1.5 rounded-full bg-[#264F7D] mt-2 mr-2"></span>
