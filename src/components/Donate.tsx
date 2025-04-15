@@ -1,13 +1,9 @@
-
 import React, { useState } from 'react';
 import { Heart } from 'lucide-react';
 import DonationModal from './DonationModal';
-
 const Donate = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  
-  return (
-    <section id="donate" className="py-16 md:py-24 relative overflow-hidden">
+  return <section id="donate" className="py-16 md:py-24 relative overflow-hidden">
       <div className="absolute inset-0 bg-gradient-to-r from-[#CDE9EC]/40 to-[#CDE9EC]/20"></div>
       <div className="absolute inset-0 bg-noise opacity-5"></div>
       
@@ -23,10 +19,7 @@ const Donate = () => {
             <span className="gradient-heading ml-2">preservação da medicina</span>
           </h2>
           
-          <p className="text-foreground/80 text-lg max-w-2xl mx-auto">
-            Sua contribuição ajuda a manter nosso espaço sagrado, apoiar comunidades indígenas e preservar
-            o conhecimento ancestral sobre as plantas de poder.
-          </p>
+          <p className="text-foreground/80 text-lg max-w-2xl mx-auto">Sua contribuição ajuda a manter nosso espaço, apoiar novas construções e a cobrir os custos da Casa da Alquimia</p>
         </div>
         
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
@@ -127,8 +120,6 @@ const Donate = () => {
       </div>
       
       <DonationModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
-    </section>
-  );
+    </section>;
 };
-
 export default Donate;
