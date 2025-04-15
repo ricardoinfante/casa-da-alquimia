@@ -1,6 +1,7 @@
 
 import React from 'react';
 import { Heart, Leaf, Sparkles } from 'lucide-react';
+
 const About = () => {
   return <section id="about" className="py-12 md:py-20 bg-gradient-to-b from-background to-muted/50">
       <div className="section-container">
@@ -12,8 +13,7 @@ const About = () => {
             </span>
             
             <h2 className="text-3xl md:text-4xl font-display font-bold">
-              A Casa da Alquimia: um santuário de 
-              <span className="gradient-heading ml-2 text-[#DAC751]">transformação espiritual</span>
+              A CASA DA ALQUIMIA: UM LUGAR PARA QUEM QUER MEDITAR
             </h2>
             
             <p className="text-foreground/80 text-lg leading-relaxed">&quot;A Casa da Alquimia é um farol, um espaço para as pessoas que estão chegando para meditar.&quot; - Jalal</p>
@@ -42,4 +42,5 @@ const About = () => {
       </div>
     </section>;
 };
+
 export default About;
