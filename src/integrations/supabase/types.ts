@@ -9,20 +9,37 @@ export type Json =
 export type Database = {
   public: {
     Tables: {
-      [_ in never]: never
-    }
-    Views: {
-      [_ in never]: never
-    }
-    Functions: {
-      [_ in never]: never
-    }
-    Enums: {
-      [_ in never]: never
-    }
-    CompositeTypes: {
-      [_ in never]: never
-    }
+      eventos: {
+        Row: {
+          id: number;
+          titulo: string;
+          data: string;
+          descricao: string;
+          tipo: 'Evento' | 'Trabalho' | 'Feitio';
+          created_at: string | null;
+        };
+        Insert: {
+          id?: number;
+          titulo: string;
+          data: string;
+          descricao: string;
+          tipo: 'Evento' | 'Trabalho' | 'Feitio';
+          created_at?: string | null;
+        };
+        Update: {
+          id?: number;
+          titulo?: string;
+          data?: string;
+          descricao?: string;
+          tipo?: 'Evento' | 'Trabalho' | 'Feitio';
+          created_at?: string | null;
+        };
+      }
+    };
+  Views: Record<string, never>;
+  Functions: Record<string, never>;
+  Enums: Record<string, never>;
+  CompositeTypes: Record<string, never>;
   }
 }
 

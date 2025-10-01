@@ -1,10 +1,11 @@
-
-import React, { useState, useEffect } from 'react';
 import { cn } from '@/lib/utils';
-import { Menu, X, Moon, Sun, Leaf } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { Leaf, X } from 'lucide-react';
+import { useEffect, useState } from 'react';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 
 const Navbar = () => {
+  const navigate = useNavigate();
+  const location = useLocation();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   
@@ -26,7 +27,7 @@ const Navbar = () => {
           : "py-5 bg-transparent"
       )}
     >
-      <div className="container mx-auto px-6 md:px-8 flex items-center justify-between">
+  <div className="container mx-auto px-6 md:px-8 flex items-center justify-between">
         <Link 
           to="/" 
           className="flex items-center gap-2 font-display text-lg md:text-xl"
@@ -35,44 +36,55 @@ const Navbar = () => {
           <span className="text-balance">A Casa da Alquimia</span>
         </Link>
         
-        <nav className="hidden md:flex items-center space-x-8">
+  <nav className="hidden md:flex items-center space-x-8">
           {[
-            { name: 'Início', href: '#hero' },
-            { name: 'Sobre', href: '#about' },
-            { name: 'Rituais', href: '#rituals' },
-            { name: 'Depoimentos', href: '#testimonials' },
-            { name: 'Contato', href: '#contact' },
+            { name: 'Início', href: '#hero', isRoute: false },
+            { name: 'Sobre', href: '#about', isRoute: false },
+            { name: 'Rituais', href: '#rituals', isRoute: false },
+            { name: 'Eventos', href: '/eventos', isRoute: true },
+            { name: 'Depoimentos', href: '#testimonials', isRoute: false },
+            { name: 'Contato', href: '#contact', isRoute: false },
           ].map((item) => (
-            <a
-              key={item.name}
-              href={item.href}
-              className="text-foreground/90 hover:text-primary transition-colors link-underline text-sm font-medium"
-            >
-              {item.name}
-            </a>
+            item.isRoute ? (
+              <button
+                key={item.name}
+                className="text-foreground/90 hover:text-primary transition-colors link-underline text-sm font-medium bg-transparent border-none outline-none cursor-pointer"
+                onClick={() => {
+                  if (location.pathname === item.href) {
+                    navigate(0); // força reload da rota
+                  } else {
+                    navigate(item.href);
+                  }
+                }}
+                type="button"
+              >
+                {item.name}
+              </button>
+            ) : (
+              <button
+                key={item.name}
+                className="text-foreground/90 hover:text-primary transition-colors link-underline text-sm font-medium bg-transparent border-none outline-none cursor-pointer"
+                onClick={() => {
+                  if (location.pathname !== '/') {
+                    navigate('/');
+                    setTimeout(() => {
+                      const el = document.querySelector(item.href);
+                      if (el) el.scrollIntoView({ behavior: 'smooth' });
+                    }, 100);
+                  } else {
+                    const el = document.querySelector(item.href);
+                    if (el) el.scrollIntoView({ behavior: 'smooth' });
+                  }
+                }}
+                type="button"
+              >
+                {item.name}
+              </button>
+            )
           ))}
-          
-          <a
-            href="#donate"
-            className="px-5 py-2 bg-primary text-primary-foreground rounded-full text-sm font-medium hover:bg-primary/90 transition-colors shadow-sm"
-          >
-            Doar
-          </a>
         </nav>
-        
-        <button
-          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-          className="md:hidden text-foreground"
-          aria-label="Toggle menu"
-        >
-          {isMobileMenuOpen ? (
-            <X className="h-6 w-6" />
-          ) : (
-            <Menu className="h-6 w-6" />
-          )}
-        </button>
       </div>
-      
+
       {/* Mobile Menu */}
       <div
         className={cn(
@@ -92,24 +104,42 @@ const Navbar = () => {
           </button>
         </div>
         
-        <nav className="flex flex-col space-y-6 items-center justify-center flex-1">
+  <nav className="flex flex-col space-y-6 items-center justify-center flex-1">
           {[
-            { name: 'Início', href: '#hero' },
-            { name: 'Sobre', href: '#about' },
-            { name: 'Rituais', href: '#rituals' },
-            { name: 'Depoimentos', href: '#testimonials' },
-            { name: 'Contato', href: '#contact' },
+            { name: 'Início', href: '#hero', isRoute: false },
+            { name: 'Sobre', href: '#about', isRoute: false },
+            { name: 'Rituais', href: '#rituals', isRoute: false },
+            { name: 'Eventos', href: '/eventos', isRoute: true },
+            { name: 'Depoimentos', href: '#testimonials', isRoute: false },
+            { name: 'Contato', href: '#contact', isRoute: false },
           ].map((item) => (
-            <a
-              key={item.name}
-              href={item.href}
-              className="text-foreground/90 hover:text-primary transition-colors text-lg font-medium"
-              onClick={() => setIsMobileMenuOpen(false)}
-            >
-              {item.name}
-            </a>
+            item.isRoute ? (
+              <button
+                key={item.name}
+                className="text-foreground/90 hover:text-primary transition-colors text-lg font-medium bg-transparent border-none outline-none cursor-pointer"
+                onClick={() => {
+                  setIsMobileMenuOpen(false);
+                  if (location.pathname === item.href) {
+                    navigate(0);
+                  } else {
+                    navigate(item.href);
+                  }
+                }}
+                type="button"
+              >
+                {item.name}
+              </button>
+            ) : (
+              <a
+                key={item.name}
+                href={item.href}
+                className="text-foreground/90 hover:text-primary transition-colors text-lg font-medium"
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                {item.name}
+              </a>
+            )
           ))}
-          
           <a
             href="#donate"
             className="mt-4 px-8 py-3 bg-primary text-primary-foreground rounded-full text-base font-medium hover:bg-primary/90 transition-colors shadow-sm"

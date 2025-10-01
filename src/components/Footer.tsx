@@ -1,6 +1,5 @@
 
-import React from 'react';
-import { Leaf, Instagram, Facebook, Mail, MapPin, Phone } from 'lucide-react';
+import { Facebook, Instagram, Leaf, Mail, MapPin, Phone } from 'lucide-react';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -21,29 +20,32 @@ const Footer = () => {
             
             <div className="flex space-x-4 pt-2">
               <a 
-                href="https://instagram.com" 
+                href="https://www.facebook.com/casadaalquimia/" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="p-2 bg-foreground/5 rounded-full text-foreground/60 hover:text-spirit-600 hover:bg-spirit-50 transition-colors"
-                aria-label="Instagram"
-              >
-                <Instagram className="h-5 w-5" />
-              </a>
-              <a 
-                href="https://facebook.com" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="p-2 bg-foreground/5 rounded-full text-foreground/60 hover:text-spirit-600 hover:bg-spirit-50 transition-colors"
+                className="p-2 bg-foreground/5 rounded-full text-green-400 hover:text-white transition-colors"
                 aria-label="Facebook"
               >
                 <Facebook className="h-5 w-5" />
               </a>
               <a 
-                href="mailto:contato@acasadaalquimia.com.br" 
-                className="p-2 bg-foreground/5 rounded-full text-foreground/60 hover:text-spirit-600 hover:bg-spirit-50 transition-colors"
-                aria-label="Email"
+                href="https://www.instagram.com/casadaalquimia/" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="p-2 bg-foreground/5 rounded-full text-green-400 hover:text-white transition-colors"
+                aria-label="Instagram"
               >
-                <Mail className="h-5 w-5" />
+                <Instagram className="h-5 w-5" />
+              </a>
+              <a 
+                href="https://www.youtube.com/@ACasadaAlquimia" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="p-2 bg-foreground/5 rounded-full text-green-400 hover:text-white transition-colors"
+                aria-label="YouTube"
+              >
+                {/* Youtube icon precisa ser importado */}
+                <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24"><path d="M23.498 6.186a2.994 2.994 0 0 0-2.107-2.12C19.228 3.5 12 3.5 12 3.5s-7.228 0-9.391.566A2.994 2.994 0 0 0 .502 6.186C0 8.36 0 12 0 12s0 3.64.502 5.814a2.994 2.994 0 0 0 2.107 2.12C4.772 20.5 12 20.5 12 20.5s7.228 0 9.391-.566a2.994 2.994 0 0 0 2.107-2.12C24 15.64 24 12 24 12s0-3.64-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
               </a>
             </div>
           </div>

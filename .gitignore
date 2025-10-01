@@ -7,6 +7,24 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
+
+# Ambiente e dependências
+node_modules/
+dist/
+dist-ssr/
+.env
+bun.lockb
+
+# Lockfiles (opcional, remova se quiser versionar)
+# package-lock.json
+# yarn.lock
+
+# Supabase temp/cache
+supabase/.temp/
+
+# Uploads temporários (remova se quiser versionar imagens definitivas)
+public/lovable-uploads/
+
 node_modules
 dist
 dist-ssr
@@ -17,6 +35,11 @@ dist-ssr
 !.vscode/extensions.json
 .idea
 .DS_Store
+
+# Arquivos temporários do sistema/editor
+*.swp
+*.tmp
+*~
 *.suo
 *.ntvs*
 *.njsproj
