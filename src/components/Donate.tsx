@@ -15,11 +15,10 @@ const Donate = () => {
           </span>
           
           <h2 className="text-3xl md:text-4xl font-display font-bold mb-6">
-            Contribua para a 
-            <span className="gradient-heading ml-2">preservação da medicina</span>
+            Sua doação torna possível nossa jornada espiritual
           </h2>
           
-          <p className="text-foreground/80 text-lg max-w-2xl mx-auto">Sua contribuição ajuda a manter nosso espaço, apoiar novas construções e a cobrir os custos da Casa da Alquimia</p>
+          <p className="text-foreground/80 text-lg max-w-2xl mx-auto">Ao contribuir com A Casa da Alquimia, você ajuda a preservar as tradições ancestrais e permite que pessoas de todos os caminhos tenham acesso a experiências transformadoras.</p>
         </div>
         
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
