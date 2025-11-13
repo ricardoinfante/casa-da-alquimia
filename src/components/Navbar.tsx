@@ -1,7 +1,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { cn } from '@/lib/utils';
-import { Menu, X, Moon, Sun } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 const Navbar = () => {
@@ -42,9 +42,10 @@ const Navbar = () => {
         <nav className="hidden md:flex items-center space-x-8">
           {[
             { name: 'Início', href: '#hero' },
-            { name: 'Sobre', href: '#about' },
-            { name: 'Rituais', href: '#rituals' },
+            { name: 'A Casa da Alquimia', href: '#about' },
+            { name: 'O que fazemos', href: '#rituals' },
             { name: 'Depoimentos', href: '#testimonials' },
+            { name: 'Galeria de fotos', href: '#instagram' },
             { name: 'Contato', href: '#contact' },
           ].map((item) => (
             <a
@@ -55,13 +56,6 @@ const Navbar = () => {
               {item.name}
             </a>
           ))}
-          
-          <a
-            href="#donate"
-            className="px-5 py-2 bg-primary text-primary-foreground rounded-full text-sm font-medium hover:bg-primary/90 transition-colors shadow-sm"
-          >
-            Doar
-          </a>
         </nav>
         
         <button
@@ -98,9 +92,10 @@ const Navbar = () => {
         <nav className="flex flex-col space-y-6 items-center justify-center flex-1">
           {[
             { name: 'Início', href: '#hero' },
-            { name: 'Sobre', href: '#about' },
-            { name: 'Rituais', href: '#rituals' },
+            { name: 'A Casa da Alquimia', href: '#about' },
+            { name: 'O que fazemos', href: '#rituals' },
             { name: 'Depoimentos', href: '#testimonials' },
+            { name: 'Galeria de fotos', href: '#instagram' },
             { name: 'Contato', href: '#contact' },
           ].map((item) => (
             <a
@@ -112,14 +107,6 @@ const Navbar = () => {
               {item.name}
             </a>
           ))}
-          
-          <a
-            href="#donate"
-            className="mt-4 px-8 py-3 bg-primary text-primary-foreground rounded-full text-base font-medium hover:bg-primary/90 transition-colors shadow-sm"
-            onClick={() => setIsMobileMenuOpen(false)}
-          >
-            Doar
-          </a>
         </nav>
       </div>
     </header>
