@@ -5,12 +5,12 @@ const Rituals = () => {
   return <section id="rituals" className="py-12 md:py-20 bg-gradient-to-b from-muted/50 to-background overflow-hidden">
       <div className="section-container relative">
         {/* Decorative Circles */}
-        <div className="absolute -top-20 -left-20 w-40 h-40 bg-[#264F7D]/10 rounded-full blur-3xl"></div>
-        <div className="absolute -bottom-20 -right-20 w-40 h-40 bg-[#708C5A]/10 rounded-full blur-3xl"></div>
+        <div className="absolute -top-20 -left-20 w-40 h-40 bg-azul-2/10 rounded-full blur-3xl"></div>
+        <div className="absolute -bottom-20 -right-20 w-40 h-40 bg-verde-3/10 rounded-full blur-3xl"></div>
         
         <div className="text-center max-w-3xl mx-auto mb-10">
           <span className="chip inline-flex items-center gap-1 mb-4">
-            <Sparkles className="h-3 w-3 text-[#120F52]" />
+            <Sparkles className="h-3 w-3 text-azul-2" />
             <span>Nossos rituais</span>
           </span>
           
@@ -26,15 +26,15 @@ const Rituals = () => {
         {/* Valores/Princípios Cards */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
           {[{
-          icon: <Leaf className="h-8 w-8 text-[#708C5A]" />,
+          icon: <Leaf className="h-8 w-8 text-verde-3" />,
           title: "Tradição",
           description: "Rituais baseados em tradições xamânicas ancestrais"
         }, {
-          icon: <Heart className="h-8 w-8 text-[#264F7D]" />,
+          icon: <Heart className="h-8 w-8 text-azul-2" />,
           title: "Acolhimento",
           description: "Ambiente seguro e acolhedor para cada participante"
         }, {
-          icon: <Sparkles className="h-8 w-8 text-[#120F52]" />,
+          icon: <Sparkles className="h-8 w-8 text-azul-2" />,
           title: "Transformação",
           description: "Experiências profundas de autoconhecimento e cura"
         }].map((value, index) => <div key={index} className="p-6 bg-white rounded-xl border border-muted shadow-sm h-full flex flex-col items-center text-center">
@@ -46,13 +46,13 @@ const Rituals = () => {
         
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
           {[{
-          icon: <Moon className="h-8 w-8 text-[#264F7D]" />,
+          icon: <Moon className="h-8 w-8 text-azul-2" />,
           title: "Cerimônias",
           description: "Trabalhos regulares conduzidos em ambiente seguro e acolhedor para uma jornada meditativa profunda.",
           details: ["Duração: aproximadamente 8 horas", "Inclui: Preparação, cerimônia e integração", "Periodicidade: Lua Cheia e Lua Nova (normalmente)"],
           image: "/lovable-uploads/744bbab1-592f-45f7-aa8c-15ac950eac6f.png"
         }, {
-          icon: <Sun className="h-8 w-8 text-[#708C5A]" />,
+          icon: <Sun className="h-8 w-8 text-verde-3" />,
           title: "Feitio",
           description: "Momento sagrado de preparação da bebida onde os participantes vivenciam todo o processo tradicional de confecção da medicina. Experiência mais intensa que pode durar vários dias.",
           details: ["Duração: 2-5 dias", "Inclui: Colheita, preparo e cerimônias", "Periodicidade: Trimestral"],

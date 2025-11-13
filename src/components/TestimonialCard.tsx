@@ -22,7 +22,7 @@ const TestimonialCard: React.FC<TestimonialCardProps> = ({
       "bg-white/60 backdrop-blur-sm rounded-xl p-6 border border-muted shadow-sm transition-all duration-300 hover:shadow-md hover:bg-white/80",
       className
     )}>
-      <div className="mb-4 text-[#264F7D]">
+      <div className="mb-4 text-azul-2">
         <svg 
           xmlns="http://www.w3.org/2000/svg" 
           width="36" 

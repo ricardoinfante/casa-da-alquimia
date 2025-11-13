@@ -7,7 +7,7 @@ const About = () => {
       <div className="section-container">
         <div className="flex flex-col lg:flex-row gap-12 lg:gap-16 items-start">
           <div className="lg:w-1/2 space-y-6">
-            <span className="chip inline-flex items-center gap-1 bg-[#708C5A] text-[#100B0D] px-3 py-1 rounded-full text-xs font-medium">
+            <span className="chip inline-flex items-center gap-1 bg-verde-3 text-[#100B0D] px-3 py-1 rounded-full text-xs font-medium">
               <Leaf className="h-3 w-3" />
               <span>Nossa história</span>
             </span>

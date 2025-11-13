@@ -4,13 +4,13 @@ import DonationModal from './DonationModal';
 const Donate = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   return <section id="donate" className="py-16 md:py-24 relative overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-to-r from-[#CDE9EC]/40 to-[#CDE9EC]/20"></div>
+      <div className="absolute inset-0 bg-gradient-to-r from-azul-1/40 to-azul-1/20"></div>
       <div className="absolute inset-0 bg-noise opacity-5"></div>
       
       <div className="section-container relative z-10">
         <div className="text-center max-w-3xl mx-auto mb-12">
           <span className="chip inline-flex items-center gap-1 mb-4">
-            <Heart className="h-3 w-3 text-[#120F52]" />
+            <Heart className="h-3 w-3 text-azul-2" />
             <span>Apoie nossa missão</span>
           </span>
           
@@ -32,28 +32,28 @@ const Donate = () => {
               </p>
               <ul className="space-y-2 mb-8">
                 <li className="flex items-start">
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#264F7D] mt-2 mr-2"></span>
+                  <span className="w-1.5 h-1.5 rounded-full bg-azul-2 mt-2 mr-2"></span>
                   <span className="text-foreground/70">Certificado de agradecimento</span>
                 </li>
                 <li className="flex items-start">
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#264F7D] mt-2 mr-2"></span>
+                  <span className="w-1.5 h-1.5 rounded-full bg-azul-2 mt-2 mr-2"></span>
                   <span className="text-foreground/70">Menção especial em nosso espaço</span>
                 </li>
                 <li className="flex items-start">
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#264F7D] mt-2 mr-2"></span>
+                  <span className="w-1.5 h-1.5 rounded-full bg-azul-2 mt-2 mr-2"></span>
                   <span className="text-foreground/70">Convite para próxima cerimônia</span>
                 </li>
               </ul>
             </div>
-            <button onClick={() => setIsModalOpen(true)} className="w-full px-6 py-3 bg-[#264F7D] text-white rounded-full font-medium hover:bg-[#264F7D]/90 transition-all">
+            <button onClick={() => setIsModalOpen(true)} className="w-full px-6 py-3 bg-azul-2 text-white rounded-full font-medium hover:bg-azul-2/90 transition-all">
               Fazer uma doação
             </button>
           </div>
           
           {/* Apoio Mensal (agora no centro com a tag mais popular) */}
-          <div className="p-6 md:p-8 bg-white/90 backdrop-blur-sm rounded-xl border border-[#264F7D]/20 shadow-md flex flex-col justify-between h-full relative overflow-hidden">
-            <div className="absolute -right-12 -top-12 w-24 h-24 bg-[#264F7D]/10 rounded-full blur-xl"></div>
-            <div className="absolute -left-12 -bottom-12 w-24 h-24 bg-[#708C5A]/10 rounded-full blur-xl"></div>
+          <div className="p-6 md:p-8 bg-white/90 backdrop-blur-sm rounded-xl border border-azul-2/20 shadow-md flex flex-col justify-between h-full relative overflow-hidden">
+            <div className="absolute -right-12 -top-12 w-24 h-24 bg-azul-2/10 rounded-full blur-xl"></div>
+            <div className="absolute -left-12 -bottom-12 w-24 h-24 bg-verde-3/10 rounded-full blur-xl"></div>
             
             <div className="relative z-10">
               <div className="bg-[#DAC751] text-[#100B0D] text-xs font-bold uppercase tracking-wider py-1 px-3 rounded-full inline-block mb-4">
@@ -64,21 +64,21 @@ const Donate = () => {
               <p className="text-foreground/70 mb-6">Torne-se um apoiador recorrente da Casa da Alquimia e ajude a manter nosso espaço. </p>
               <ul className="space-y-2 mb-8">
                 <li className="flex items-start">
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#264F7D] mt-2 mr-2"></span>
+                  <span className="w-1.5 h-1.5 rounded-full bg-azul-2 mt-2 mr-2"></span>
                   <span className="text-foreground/70">Acesso a conteúdo exclusivo</span>
                 </li>
                 <li className="flex items-start">
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#264F7D] mt-2 mr-2"></span>
+                  <span className="w-1.5 h-1.5 rounded-full bg-azul-2 mt-2 mr-2"></span>
                   <span className="text-foreground/70">Convites para eventos especiais</span>
                 </li>
                 <li className="flex items-start">
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#264F7D] mt-2 mr-2"></span>
+                  <span className="w-1.5 h-1.5 rounded-full bg-azul-2 mt-2 mr-2"></span>
                   <span className="text-foreground/70">10% de desconto em nossas cerimônias</span>
                 </li>
               </ul>
             </div>
             
-            <button onClick={() => setIsModalOpen(true)} className="w-full px-6 py-3 bg-[#264F7D] text-white rounded-full font-medium hover:bg-[#264F7D]/90 transition-all relative z-10">
+            <button onClick={() => setIsModalOpen(true)} className="w-full px-6 py-3 bg-azul-2 text-white rounded-full font-medium hover:bg-azul-2/90 transition-all relative z-10">
               Contribuir mensalmente
             </button>
           </div>
@@ -90,20 +90,20 @@ const Donate = () => {
               <p className="text-foreground/70 mb-6">Contribua para projetos específicos de preservação da medicina e ampliação de nossas estruturas.</p>
               <ul className="space-y-2 mb-8">
                 <li className="flex items-start">
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#264F7D] mt-2 mr-2"></span>
+                  <span className="w-1.5 h-1.5 rounded-full bg-azul-2 mt-2 mr-2"></span>
                   <span className="text-foreground/70">Relatórios de impacto do projeto</span>
                 </li>
                 <li className="flex items-start">
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#264F7D] mt-2 mr-2"></span>
+                  <span className="w-1.5 h-1.5 rounded-full bg-azul-2 mt-2 mr-2"></span>
                   <span className="text-foreground/70">Participação em reuniões de feedback</span>
                 </li>
                 <li className="flex items-start">
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#264F7D] mt-2 mr-2"></span>
+                  <span className="w-1.5 h-1.5 rounded-full bg-azul-2 mt-2 mr-2"></span>
                   <span className="text-foreground/70">Reconhecimento como parceiro</span>
                 </li>
               </ul>
             </div>
-            <button onClick={() => setIsModalOpen(true)} className="w-full px-6 py-3 bg-[#264F7D] text-white rounded-full font-medium hover:bg-[#264F7D]/90 transition-all">
+            <button onClick={() => setIsModalOpen(true)} className="w-full px-6 py-3 bg-azul-2 text-white rounded-full font-medium hover:bg-azul-2/90 transition-all">
               Apoiar projetos
             </button>
           </div>
