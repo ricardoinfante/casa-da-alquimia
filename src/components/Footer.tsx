@@ -9,7 +9,7 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
           <div className="space-y-4">
             <div className="flex items-center gap-2 font-display text-xl mb-2">
-              <img src="/lovable-uploads/80c43e92-35ac-4e66-a9bf-727ba993b5f9.png" alt="A Casa da Alquimia Logo" className="h-12 w-auto" />
+              <img src="/favicon.png" alt="A Casa da Alquimia Logo" className="h-12 w-auto" />
               <span>A Casa da Alquimia</span>
             </div>
             

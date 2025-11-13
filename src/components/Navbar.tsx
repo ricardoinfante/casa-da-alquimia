@@ -32,7 +32,7 @@ const Navbar = () => {
           className="flex items-center gap-2 font-display text-lg md:text-xl"
         >
           <img 
-            src="/lovable-uploads/80c43e92-35ac-4e66-a9bf-727ba993b5f9.png" 
+            src="/favicon.png" 
             alt="A Casa da Alquimia Logo" 
             className="h-12 w-auto"
           />
