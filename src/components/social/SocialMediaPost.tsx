@@ -59,7 +59,7 @@ const SocialMediaPost = ({
             <span className="text-gray-500">Imagem não disponível</span>
           </div>
         )}
-        <div className="absolute inset-0 bg-[#120F52]/0 group-hover:bg-[#120F52]/20 transition-colors duration-300 flex items-center justify-center">
+        <div className="absolute inset-0 bg-azul-2/0 group-hover:bg-azul-2/20 transition-colors duration-300 flex items-center justify-center">
           <div className="opacity-0 group-hover:opacity-100 transition-opacity">
             {icon}
           </div>

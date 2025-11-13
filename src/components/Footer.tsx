@@ -6,14 +6,14 @@ const Footer = () => {
   
   return <footer id="contact" className="bg-muted/30 border-t border-muted">
       <div className="section-container py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
           <div className="space-y-4">
             <div className="flex items-center gap-2 font-display text-xl mb-2">
-              <img src="/lovable-uploads/80c43e92-35ac-4e66-a9bf-727ba993b5f9.png" alt="A Casa da Alquimia Logo" className="h-12 w-auto" />
+              <img src="/favicon.png" alt="A Casa da Alquimia Logo" className="h-12 w-auto" />
               <span>A Casa da Alquimia</span>
             </div>
             
-            <p className="text-foreground/70 text-sm">Trabalhamos pela evolução do ser humano ― no sentido de desenvolver suas virtudes verdadeiramente morais, intelectuais e espirituais ― sem preconceitos de origem, religião, raça, gênero, idade.</p>
+            <p className="text-foreground/70 text-sm">Um santuário dedicado à expansão da consciência e ao autoconhecimento.</p>
             
             <div className="flex space-x-4 pt-2">
               <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="p-2 bg-foreground/5 rounded-full text-iconblue hover:text-spirit-600 hover:bg-spirit-50 transition-colors" aria-label="Instagram">
@@ -29,18 +29,6 @@ const Footer = () => {
           </div>
           
           <div>
-            <h3 className="font-display font-semibold mb-4">Rituais</h3>
-            <ul className="space-y-3">
-              {["Cerimônias", "Feitio", "Meditações Guiadas", "Workshops de Integração", "Retiros de Silêncio"].map((item, index) => <li key={index}>
-                  <a href="#rituals" className="text-foreground/70 hover:text-primary transition-colors link-underline">
-                    {item}
-                  </a>
-                </li>)}
-            </ul>
-          </div>
-          
-          <div>
-            <h3 className="font-display font-semibold mb-4">Links Úteis</h3>
             <ul className="space-y-3">
               {[{
               name: "Sobre Nós",

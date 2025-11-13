@@ -6,7 +6,7 @@
 
 @layer base {
   :root {
-    --background: 180 46% 93% 0.4;
+    --background: 202 38% 90% 0.4; /* Azul 1 claro */
     --foreground: 15 12% 5%;
 
     --card: 0 0% 100%;
@@ -15,24 +15,24 @@
     --popover: 0 0% 100%;
     --popover-foreground: 15 12% 5%;
 
-    --primary: 213 53% 32%;
+    --primary: 220 73% 33%; /* Azul 2 - #173D90 */
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 92 23% 45%;
-    --secondary-foreground: 15 12% 5%;
+    --secondary: 88 37% 48%; /* Verde 3 - #80A94D */
+    --secondary-foreground: 0 0% 100%;
 
-    --muted: 213 10% 95%;
+    --muted: 202 38% 95%; /* Azul 1 muito claro */
     --muted-foreground: 15 12% 40%;
 
-    --accent: 213 53% 32%;
+    --accent: 220 73% 33%; /* Azul 2 - #173D90 */
     --accent-foreground: 0 0% 100%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 213 10% 90%;
-    --input: 213 10% 90%;
-    --ring: 213 53% 32%;
+    --border: 202 38% 85%; /* Azul 1 médio */
+    --input: 202 38% 85%; /* Azul 1 médio */
+    --ring: 220 73% 33%; /* Azul 2 - #173D90 */
 
     --radius: 0.5rem;
   }
@@ -73,7 +73,7 @@
   }
   
   .chip {
-    @apply inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-[#708C5A] text-[#100B0D];
+    @apply inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-verde-3 text-[#100B0D];
   }
   
   .animate-in {
@@ -113,7 +113,7 @@
     height: 1px;
     bottom: -1px;
     left: 0;
-    @apply bg-[#264F7D];
+    @apply bg-azul-2;
     transform-origin: bottom right;
     transition: transform 0.3s ease-out;
   }
@@ -128,19 +128,19 @@
   }
   
   .gradient-heading {
-    @apply text-[#264F7D];
+    @apply text-azul-2;
   }
   
   .nature-gradient {
-    @apply bg-gradient-to-r from-[#708C5A] to-[#708C5A]/80;
+    @apply bg-gradient-to-r from-verde-3 to-verde-3/80;
   }
   
   .spirit-gradient {
-    @apply bg-gradient-to-r from-[#264F7D] to-[#264F7D]/80;
+    @apply bg-gradient-to-r from-azul-2 to-azul-2/80;
   }
   
   .earth-gradient {
-    @apply bg-gradient-to-r from-[#DAC751] to-[#DAC751]/80;
+    @apply bg-gradient-to-r from-marrom-1 to-marrom-1/80;
   }
 }
 

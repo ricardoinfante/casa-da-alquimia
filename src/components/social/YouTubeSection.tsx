@@ -12,7 +12,7 @@ const YouTubeSection = ({ isVisible }: YouTubeSectionProps) => {
     <div className="space-y-8">
       <div className="flex items-center justify-between mb-6">
         <h3 className="text-2xl font-display font-semibold flex items-center">
-          <Youtube className="h-6 w-6 mr-2 text-[#120F52]" /> YouTube
+          <Youtube className="h-6 w-6 mr-2 text-azul-2" /> YouTube
         </h3>
         <a 
           href="https://www.youtube.com/channel/UCXfwqPXGttI4Q6Xu5XBmX6g" 
@@ -46,7 +46,7 @@ const YouTubeSection = ({ isVisible }: YouTubeSectionProps) => {
         <Button
           asChild
           variant="outline"
-          className="bg-[#264F7D]/10 border border-[#264F7D]/20 text-[#264F7D] hover:bg-[#264F7D]/15"
+          className="bg-azul-2/10 border border-azul-2/20 text-azul-2 hover:bg-azul-2/15"
         >
           <a 
             href="https://www.instagram.com/casadaalquimia/" 
@@ -62,7 +62,7 @@ const YouTubeSection = ({ isVisible }: YouTubeSectionProps) => {
         <Button
           asChild
           variant="outline"
-          className="bg-[#264F7D]/10 border border-[#264F7D]/20 text-[#264F7D] hover:bg-[#264F7D]/15"
+          className="bg-azul-2/10 border border-azul-2/20 text-azul-2 hover:bg-azul-2/15"
         >
           <a 
             href="https://www.youtube.com/channel/UCXfwqPXGttI4Q6Xu5XBmX6g" 
@@ -78,7 +78,7 @@ const YouTubeSection = ({ isVisible }: YouTubeSectionProps) => {
         <Button
           asChild
           variant="outline"
-          className="bg-[#264F7D]/10 border border-[#264F7D]/20 text-[#264F7D] hover:bg-[#264F7D]/15"
+          className="bg-azul-2/10 border border-azul-2/20 text-azul-2 hover:bg-azul-2/15"
         >
           <a 
             href="https://www.facebook.com/casadaalquimia/" 

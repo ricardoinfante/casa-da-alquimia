@@ -18,10 +18,10 @@ const InstagramSection = ({ isVisible }: InstagramSectionProps) => {
   }, [isVisible]);
 
   return (
-    <div>
+    <div id="instagram">
       <div className="flex items-center justify-between mb-6">
         <h3 className="text-2xl font-display font-semibold flex items-center">
-          <Instagram className="h-6 w-6 mr-2 text-[#120F52]" /> Instagram
+          <Instagram className="h-6 w-6 mr-2 text-azul-2" /> Instagram
         </h3>
         <a 
           href="https://www.instagram.com/casadaalquimia/" 

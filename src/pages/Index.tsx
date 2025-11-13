@@ -80,7 +80,7 @@ const Index = () => {
           <div className="flex justify-center mt-16 md:mt-20">
             <a 
               href="#contact"
-              className="px-6 py-3 bg-[#264F7D]/10 border border-[#264F7D]/20 text-[#264F7D] rounded-full font-medium hover:bg-[#264F7D]/15 transition-colors"
+              className="px-6 py-3 bg-azul-2/10 border border-azul-2/20 text-azul-2 rounded-full font-medium hover:bg-azul-2/15 transition-colors"
             >
               Compartilhe sua experiência
             </a>

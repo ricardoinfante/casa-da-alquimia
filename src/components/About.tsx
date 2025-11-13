@@ -1,37 +1,29 @@
 
 import React from 'react';
-import { Heart, Leaf, Sparkles } from 'lucide-react';
+import { Leaf } from 'lucide-react';
 
 const About = () => {
   return <section id="about" className="py-12 md:py-20 bg-gradient-to-b from-background to-muted/50">
       <div className="section-container">
         <div className="flex flex-col lg:flex-row gap-12 lg:gap-16 items-start">
-          <div className="lg:w-1/2 space-y-6">
-            <span className="chip inline-flex items-center gap-1 bg-[#708C5A] text-[#100B0D] px-3 py-1 rounded-full text-xs font-medium">
+          <div className="lg:w-2/3 space-y-6">
+            <span className="chip inline-flex items-center gap-1 bg-verde-3 text-[#100B0D] px-3 py-1 rounded-full text-xs font-medium">
               <Leaf className="h-3 w-3" />
-              <span>Nossa história</span>
+              <span>A Casa da Alquimia</span>
             </span>
             
             <h2 className="text-3xl md:text-4xl font-display font-bold">
-              A CASA DA ALQUIMIA: UM LUGAR PARA QUEM QUER MEDITAR
+              UM LUGAR PARA QUEM QUER MEDITAR
             </h2>
             
-            <p className="text-foreground/80 text-lg leading-relaxed">&quot;A Casa da Alquimia é um farol, um espaço para as pessoas que estão chegando para meditar.&quot; - Jalal</p>
+            <p className="text-foreground/80 text-lg leading-relaxed font-normal">Nascemos do profundo desejo de criar um espaço de silêncio e interiorização para que o autoconhecimento se faça possível como prática de vida.</p>
             
-            <p className="text-foreground/80 text-lg leading-relaxed font-normal">A Casa da Alquimia é um espaço sagrado e transformador, guiado pelo propósito de promover a cura, o autoconhecimento e a conexão espiritual por meio da Medicina Sagrada da Ayahuasca. Como uma associação sem fins lucrativos, somos movidos pelo desejo genuíno de servir à verdade, à luz e ao bem-estar de cada ser que se une a nós nessa jornada. Nosso compromisso está alicerçado em pilares sólidos que perpassam áreas essenciais da vida, como música, meditação, terapias, yoga, reinados, culinária, permacultura, educação, retiros e artes. Acreditamos na força unificadora desses elementos, que, em harmonia, criam um ambiente propício à transformação interior e à elevação da consciência.</p>
-            
-            <div className="mt-10">
-              <p className="text-foreground/80 text-lg leading-relaxed font-normal">Na Casa da Alquimia, cada ritual é uma celebração da vida e um convite ao reencontro com a essência divina que habita em cada um de nós. Nossa missão é honrar e expandir os conhecimentos ancestrais que nos foram transmitidos, integrando práticas de cura profunda, autocuidado e crescimento espiritual. Aqui, você encontrará um espaço acolhedor, dedicado ao despertar do potencial humano e à comunhão com a Mãe Terra, em todos os seus aspectos.</p>
-            </div>
-            
-            <div className="mt-10">
-              <p className="text-foreground/80 text-lg leading-relaxed font-normal">Venha conhecer nosso trabalho e embarque em uma experiência que transcende o individual, conectando-nos ao coletivo e ao sagrado, em um caminho de amor, verdade e harmonia.</p>
-            </div>
+            <p className="text-foreground/80 text-lg leading-relaxed font-normal">Fundada por buscadores espirituais com décadas de experiência em trabalhos com plantas de poder, nossa comunidade dedica-se a proporcionar um espaço seguro para as transformações individuais acontecerem em toda a sua potencialidade. Fazemos isso por meio de ferramentas, como meditação, terapias de introspecção e de contato com a natureza e, também, por meio de rituais com ayahuasca.</p>
           </div>
           
-          <div className="lg:w-1/2 relative">
+          <div className="lg:w-1/3 relative">
             <div className="relative z-10 rounded-2xl overflow-hidden shadow-xl">
-              <img src="/lovable-uploads/ac57f24e-68d6-46c2-aafc-a7107053254a.png" alt="Arte representando a alquimia espiritual" className="w-full h-auto object-contain" loading="lazy" />
+              <img src="/lovable-uploads/ac57f24e-68d6-46c2-aafc-a7107053254a.png" alt="Arte representando a alquimia espiritual" className="w-full h-auto object-contain max-w-xs mx-auto" loading="lazy" />
             </div>
             
             {/* Decorative elements */}

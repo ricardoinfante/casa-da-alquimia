@@ -63,20 +63,36 @@ export default {
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
 				},
-				// Novas cores personalizadas
+				// Paleta de cores do projeto
+				azul: {
+					1: '#8BB6CC',
+					2: '#173D90',
+					3: '#1D3F6C',
+				},
+				verde: {
+					1: '#BED19F',
+					2: '#9CB96B',
+					3: '#80A94D',
+					4: '#507030',
+				},
+				marrom: {
+					1: '#A68943',
+					2: '#674321',
+				},
+				// Cores personalizadas (mantidas para compatibilidade)
 				darktext: '#100B0D',
-				highlight: '#264F7D',
-				tag: '#708C5A',
-				lightbg: '#CDE9EC',
-				iconblue: '#120F52',
+				highlight: '#173D90', // Azul 2
+				tag: '#80A94D', // Verde 3
+				lightbg: '#8BB6CC', // Azul 1 (claro)
+				iconblue: '#173D90', // Azul 2
 				nature: {
 					50: '#f3f8f2',
 					100: '#e7f0e4',
 					200: '#d5e4d1',
-					300: '#b9d2b3',
-					400: '#98ba90',
-					500: '#7ba070',
-					600: '#608158',
+					300: '#BED19F', // Verde 1
+					400: '#9CB96B', // Verde 2
+					500: '#80A94D', // Verde 3
+					600: '#507030', // Verde 4
 					700: '#4c6946',
 					800: '#405539',
 					900: '#364731',
@@ -84,11 +100,11 @@ export default {
 				},
 				spirit: {
 					50: '#f5f3ff',
-					100: '#ede9fe',
-					200: '#ddd6fe',
-					300: '#c4b5fd',
-					400: '#a78bfa',
-					500: '#8b5cf6',
+					100: '#e7f0e4',
+					200: '#d5e4d1',
+					300: '#8BB6CC', // Azul 1
+					400: '#1D3F6C', // Azul 3
+					500: '#173D90', // Azul 2
 					600: '#7c3aed',
 					700: '#6d28d9',
 					800: '#5b21b6',
@@ -99,9 +115,9 @@ export default {
 					50: '#faf5f0',
 					100: '#f0e6da',
 					200: '#e0cdb8',
-					300: '#cfb091',
+					300: '#A68943', // Marrom 1
 					400: '#bd8e6a',
-					500: '#b0784f',
+					500: '#674321', // Marrom 2
 					600: '#a06544',
 					700: '#84513a',
 					800: '#6c4434',

@@ -24,4 +24,4 @@ dist-ssr
 *.sw?
 
 # Recursos locais (imagens e PDFs não rastreados)
-recursos/
+/recursos/
