@@ -1,0 +1,207 @@
+# Regras do Projeto - Casa da Alquimia
+
+## Stack Tecnológica
+
+Este projeto utiliza:
+- **Vite** como build tool
+- **React 18** com TypeScript
+- **shadcn-ui** para componentes de UI
+- **Tailwind CSS** para estilização
+- **React Router DOM** para roteamento
+- **React Query (TanStack Query)** para gerenciamento de estado do servidor
+- **React Hook Form** com **Zod** para validação de formulários
+- **Supabase** como backend (autenticação, banco de dados, storage)
+- **Stripe** para pagamentos
+
+## Convenções de Código
+
+### TypeScript
+- Use TypeScript para todos os arquivos novos
+- Prefira `interface` para tipos de objetos
+- Use tipos explícitos para props de componentes
+- Evite `any` - use `unknown` quando necessário
+- O projeto tem `strictNullChecks: false` e `noImplicitAny: false` configurados
+
+### Estrutura de Arquivos
+- Componentes: `src/components/`
+- Componentes UI (shadcn): `src/components/ui/`
+- Páginas: `src/pages/`
+- Hooks customizados: `src/hooks/`
+- Utilitários: `src/lib/` e `src/utils/`
+- Integrações: `src/integrations/`
+
+### Imports e Path Aliases
+- Use o alias `@/` para imports de `src/`
+- Exemplo: `import { Button } from '@/components/ui/button'`
+- Exemplo: `import { useToast } from '@/hooks/use-toast'`
+
+### Componentes React
+
+#### Componentes Funcionais
+- Sempre use componentes funcionais com TypeScript
+- Use `export const` para componentes
+- Defina tipos explícitos para props:
+```typescript
+interface ComponentProps {
+  title: string;
+  description?: string;
+}
+
+export const Component = ({ title, description }: ComponentProps) => {
+  // ...
+}
+```
+
+#### Hooks
+- Use hooks customizados quando a lógica for reutilizável
+- Prefira `useState` e `useEffect` do React
+- Use `useQuery` do React Query para dados do servidor
+- Use `useForm` do React Hook Form para formulários
+
+### shadcn-ui
+
+#### Adicionar Componentes
+- Para adicionar novos componentes do shadcn-ui, use:
+  ```bash
+  npx shadcn-ui@latest add <component-name>
+  ```
+- Componentes já instalados estão em `src/components/ui/`
+- Sempre verifique se o componente já existe antes de adicionar
+
+#### Uso de Componentes
+- Importe componentes de `@/components/ui/`
+- Use as variantes e props conforme documentação do shadcn-ui
+- Mantenha a consistência visual usando os componentes existentes
+
+### Estilização com Tailwind CSS
+
+#### Classes Tailwind
+- Use classes utilitárias do Tailwind CSS
+- Prefira classes do Tailwind sobre CSS customizado
+- Use `cn()` de `@/lib/utils` para combinar classes condicionalmente
+- Exemplo: `cn("base-class", condition && "conditional-class")`
+
+#### Temas e Cores
+- O projeto usa CSS variables para temas (dark/light mode)
+- Cores base: `slate` (configurado no components.json)
+- Use variáveis CSS para cores: `bg-background`, `text-foreground`, etc.
+
+### Formulários
+
+#### React Hook Form + Zod
+- Use `react-hook-form` para gerenciar formulários
+- Use `zod` para validação de schemas
+- Use `@hookform/resolvers/zod` para integrar Zod com React Hook Form
+- Exemplo:
+```typescript
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { z } from 'zod';
+
+const schema = z.object({
+  email: z.string().email(),
+  password: z.string().min(8),
+});
+
+const form = useForm({
+  resolver: zodResolver(schema),
+});
+```
+
+### Roteamento
+
+#### React Router
+- Use `react-router-dom` para navegação
+- Defina rotas em `src/App.tsx` ou em um arquivo de rotas dedicado
+- Use `Link` para navegação interna
+- Use `useNavigate` para navegação programática
+
+### Integração com Supabase
+
+#### Cliente Supabase
+- Use o cliente configurado em `src/integrations/supabase/client.ts`
+- Importe: `import { supabase } from '@/integrations/supabase/client'`
+- Use tipos gerados de `src/integrations/supabase/types.ts` quando disponíveis
+
+#### Queries e Mutations
+- Use React Query para cachear e gerenciar dados do Supabase
+- Crie hooks customizados para queries reutilizáveis
+- Trate erros adequadamente
+
+### Boas Práticas
+
+#### Performance
+- Use `React.memo` para componentes pesados quando apropriado
+- Use `useMemo` e `useCallback` quando necessário
+- Lazy load de componentes grandes com `React.lazy`
+
+#### Acessibilidade
+- Use componentes do shadcn-ui que já incluem acessibilidade
+- Adicione `aria-label` quando necessário
+- Mantenha navegação por teclado funcional
+
+#### Tratamento de Erros
+- Use try/catch para operações assíncronas
+- Exiba mensagens de erro amigáveis ao usuário
+- Use toast notifications para feedback (sonner)
+
+#### Código Limpo
+- Mantenha componentes pequenos e focados
+- Extraia lógica complexa para hooks ou utilitários
+- Use nomes descritivos para variáveis e funções
+- Comente código complexo ou não óbvio
+
+### Padrões Específicos do Projeto
+
+#### Estrutura de Componentes
+```typescript
+// 1. Imports
+import { ... } from '...'
+
+// 2. Types/Interfaces
+interface Props { ... }
+
+// 3. Componente
+export const Component = ({ ... }: Props) => {
+  // 4. Hooks
+  // 5. Estados
+  // 6. Efeitos
+  // 7. Handlers
+  // 8. Render
+  return (...)
+}
+```
+
+#### Nomenclatura
+- Componentes: PascalCase (`Hero.tsx`, `Navbar.tsx`)
+- Hooks: camelCase com prefixo `use` (`use-toast.ts`, `use-mobile.tsx`)
+- Utilitários: camelCase (`utils.ts`, `animations.ts`)
+- Arquivos de componentes UI: kebab-case (`button.tsx`, `card.tsx`)
+
+### Comandos Úteis
+
+```bash
+# Desenvolvimento
+npm run dev
+
+# Build
+npm run build
+
+# Build desenvolvimento
+npm run build:dev
+
+# Lint
+npm run lint
+
+# Preview
+npm run preview
+```
+
+## Observações Importantes
+
+- **Sempre responda em português brasileiro** quando interagir com o usuário
+- Antes de criar novos componentes UI, verifique se já existem em `src/components/ui/`
+- Mantenha a consistência com o design system existente
+- Teste componentes em diferentes tamanhos de tela (responsividade)
+- Use as imagens da pasta `public/recursos/` ou `recursos/` quando necessário
+
