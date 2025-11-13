@@ -24,8 +24,8 @@ const Index = () => {
       <Navbar />
       <Hero />
       <About />
-      <SocialMedia />
       <Rituals />
+      <SocialMedia />
       
       {/* Testimonials Section */}
       <section id="testimonials" className="py-12 md:py-20 relative overflow-hidden">
