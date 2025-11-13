@@ -22,3 +22,6 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Recursos locais (imagens e PDFs não rastreados)
+recursos/
