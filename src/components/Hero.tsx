@@ -43,20 +43,10 @@ const Hero = () => {
           </div>
           
           <h1 className="font-display text-4xl md:text-6xl lg:text-7xl font-bold mb-6 tracking-tight text-[#100B0D] drop-shadow-md">
-            <span className="block">Transforme sua jornada</span>
-            <span className="text-azul-2">espiritual e interior</span>
+            Bem-vindo à Casa da Alquimia
           </h1>
           
-          <p className="max-w-2xl mx-auto text-lg md:text-xl mb-10 text-balance drop-shadow-sm font-medium text-[#100B0D]">Conecte-se com sua essência através de rituais com uso da Ayahuasca que promovem autoconhecimento, cura e expansão da consciência.</p>
-          
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a href="#donate" className="px-8 py-4 bg-azul-2 text-white rounded-full font-medium hover:bg-azul-2/90 transition-all duration-300 shadow-md hover:shadow-lg transform hover:-translate-y-1">
-              Apoiar nossa missão
-            </a>
-            <a href="#about" className="px-8 py-4 bg-[#100B0D]/30 backdrop-blur-sm border border-white/20 text-[#100B0D] rounded-full font-medium hover:bg-[#100B0D]/40 transition-all duration-300 shadow-md">
-              Conhecer mais
-            </a>
-          </div>
+          <p className="max-w-2xl mx-auto text-lg md:text-xl mb-10 text-balance drop-shadow-sm font-medium text-[#100B0D]">Conecte-se com a sua essência pela oportunidade do encontro consigo no silêncio e profundidade de rituais ancestrais</p>
         </div>
       </div>
       
