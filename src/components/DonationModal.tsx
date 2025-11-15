@@ -1,9 +1,8 @@
 
-import React, { useState } from 'react';
-import { supabase } from '@/integrations/supabase/client';
 import { useToast } from '@/hooks/use-toast';
-import { Heart, Check, X } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { Building2, Check, Copy, CreditCard, Heart, X } from 'lucide-react';
+import React, { useState } from 'react';
 
 // Component for the modal container
 const DonationModalContainer: React.FC<{
@@ -166,8 +165,8 @@ const DonationStepTwo: React.FC<{
   setName: (name: string) => void;
   email: string;
   setEmail: (email: string) => void;
-  paymentMethod: 'credit-card' | 'pix';
-  setPaymentMethod: (method: 'credit-card' | 'pix') => void;
+  paymentMethod: 'pix' | 'bank-transfer';
+  setPaymentMethod: (method: 'pix' | 'bank-transfer') => void;
   finalAmount: number;
   donationType: 'one-time' | 'monthly';
   isSubmitting: boolean;
@@ -184,6 +183,15 @@ const DonationStepTwo: React.FC<{
   isSubmitting,
   onSubmit,
 }) => {
+  const { toast } = useToast();
+
+  const copyToClipboard = (text: string, label: string) => {
+    navigator.clipboard.writeText(text);
+    toast({
+      title: "Copiado!",
+      description: `${label} copiado para a área de transferência.`,
+    });
+  };
   return (
     <div className="p-6 md:p-8">
       <div className="text-center mb-6">
@@ -226,31 +234,158 @@ const DonationStepTwo: React.FC<{
         </div>
         
         <div>
-          <span className="block text-sm font-medium text-foreground/80 mb-1">
+          <span className="block text-sm font-medium text-foreground/80 mb-2">
             Método de pagamento
           </span>
-          <div className="flex rounded-lg overflow-hidden border border-muted">
+          <div className="flex rounded-lg overflow-hidden border border-muted mb-4">
             <button
               type="button"
-              onClick={() => setPaymentMethod('credit-card')}
+              onClick={() => setPaymentMethod('pix')}
               className={cn(
-                "flex-1 py-2 text-sm font-medium transition-colors flex items-center justify-center gap-2",
-                paymentMethod === 'credit-card' 
+                "flex-1 py-3 text-sm font-medium transition-colors flex items-center justify-center gap-2",
+                paymentMethod === 'pix' 
                   ? "bg-primary text-primary-foreground" 
                   : "bg-muted text-foreground/70 hover:bg-muted/80"
               )}
             >
-              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <rect x="1.3" y="3.3" width="13.4" height="9.4" rx="1.7" stroke="currentColor" strokeWidth="1.5"/>
-                <line x1="1" y1="6.25" x2="15" y2="6.25" stroke="currentColor" strokeWidth="1.5"/>
-              </svg>
-              Cartão
+              <CreditCard className="h-4 w-4" />
+              PIX
+            </button>
+            <button
+              type="button"
+              onClick={() => setPaymentMethod('bank-transfer')}
+              className={cn(
+                "flex-1 py-3 text-sm font-medium transition-colors flex items-center justify-center gap-2",
+                paymentMethod === 'bank-transfer' 
+                  ? "bg-primary text-primary-foreground" 
+                  : "bg-muted text-foreground/70 hover:bg-muted/80"
+              )}
+            >
+              <Building2 className="h-4 w-4" />
+              Depósito
             </button>
           </div>
+
+          {/* Informações de pagamento */}
+          {paymentMethod === 'pix' && (
+            <div className="bg-muted/50 rounded-lg p-4 space-y-3 border border-muted">
+              <div className="text-center">
+                <p className="text-sm font-medium text-foreground/80 mb-2">Chave PIX</p>
+                <div className="flex items-center gap-2 bg-white dark:bg-gray-800 p-3 rounded-lg">
+                  <code className="flex-1 text-sm font-mono text-foreground break-all">
+                    30.226.247/0001-91
+                  </code>
+                  <button
+                    type="button"
+                    onClick={() => copyToClipboard('30226247000191', 'Chave PIX')}
+                    className="p-2 hover:bg-muted rounded-md transition-colors"
+                    aria-label="Copiar chave PIX"
+                  >
+                    <Copy className="h-4 w-4" />
+                  </button>
+                </div>
+                <p className="text-xs text-foreground/60 mt-2">
+                  Tipo: CNPJ • Favorecido: Casa da Alquimia
+                </p>
+              </div>
+              
+              <div className="bg-blue-50 dark:bg-blue-900/20 rounded-md p-3 border border-blue-200 dark:border-blue-800">
+                <p className="text-xs text-foreground/70">
+                  ℹ️ Após realizar o PIX de <span className="font-semibold">R$ {finalAmount.toFixed(2)}</span>, 
+                  envie o comprovante para nosso WhatsApp: 
+                  <a 
+                    href="https://wa.me/5562996538902" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="text-primary hover:underline ml-1"
+                  >
+                    (62) 99653-8902
+                  </a>
+                </p>
+              </div>
+            </div>
+          )}
+
+          {paymentMethod === 'bank-transfer' && (
+            <div className="bg-muted/50 rounded-lg p-4 space-y-3 border border-muted">
+              <div>
+                <p className="text-sm font-medium text-foreground/80 mb-3 text-center">Dados bancários</p>
+                
+                <div className="space-y-2 text-sm">
+                  <div className="flex justify-between items-center bg-white dark:bg-gray-800 p-2 rounded">
+                    <span className="text-foreground/70">Banco:</span>
+                    <span className="font-medium">Cora SCFI - 403</span>
+                  </div>
+                  
+                  <div className="flex justify-between items-center bg-white dark:bg-gray-800 p-2 rounded">
+                    <span className="text-foreground/70">Agência:</span>
+                    <div className="flex items-center gap-2">
+                      <span className="font-medium font-mono">0001</span>
+                      <button
+                        type="button"
+                        onClick={() => copyToClipboard('0001', 'Agência')}
+                        className="p-1 hover:bg-muted rounded transition-colors"
+                      >
+                        <Copy className="h-3 w-3" />
+                      </button>
+                    </div>
+                  </div>
+                  
+                  <div className="flex justify-between items-center bg-white dark:bg-gray-800 p-2 rounded">
+                    <span className="text-foreground/70">Conta:</span>
+                    <div className="flex items-center gap-2">
+                      <span className="font-medium font-mono">2123998-5</span>
+                      <button
+                        type="button"
+                        onClick={() => copyToClipboard('21239985', 'Conta')}
+                        className="p-1 hover:bg-muted rounded transition-colors"
+                      >
+                        <Copy className="h-3 w-3" />
+                      </button>
+                    </div>
+                  </div>
+                  
+                  <div className="flex justify-between items-center bg-white dark:bg-gray-800 p-2 rounded">
+                    <span className="text-foreground/70">CNPJ:</span>
+                    <div className="flex items-center gap-2">
+                      <span className="font-medium font-mono">30.226.247/0001-91</span>
+                      <button
+                        type="button"
+                        onClick={() => copyToClipboard('30226247000191', 'CNPJ')}
+                        className="p-1 hover:bg-muted rounded transition-colors"
+                      >
+                        <Copy className="h-3 w-3" />
+                      </button>
+                    </div>
+                  </div>
+                  
+                  <div className="flex justify-between items-center bg-white dark:bg-gray-800 p-2 rounded">
+                    <span className="text-foreground/70">Favorecido:</span>
+                    <span className="font-medium">Casa da Alquimia</span>
+                  </div>
+                </div>
+              </div>
+              
+              <div className="bg-blue-50 dark:bg-blue-900/20 rounded-md p-3 border border-blue-200 dark:border-blue-800">
+                <p className="text-xs text-foreground/70">
+                  ℹ️ Após realizar o depósito de <span className="font-semibold">R$ {finalAmount.toFixed(2)}</span>, 
+                  envie o comprovante para nosso WhatsApp: 
+                  <a 
+                    href="https://wa.me/5562996538902" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="text-primary hover:underline ml-1"
+                  >
+                    (62) 99653-8902
+                  </a>
+                </p>
+              </div>
+            </div>
+          )}
         </div>
         
-        <p className="text-sm text-foreground/80 text-center my-2">
-          Ao clicar em "Finalizar doação", você será redirecionado para a página segura do Stripe para completar o pagamento.
+        <p className="text-xs text-foreground/60 text-center my-3">
+          💚 Em breve teremos a opção de pagamento por cartão de crédito
         </p>
         
         <button
@@ -272,16 +407,13 @@ const DonationStepTwo: React.FC<{
               Processando...
             </>
           ) : (
-            'Finalizar doação'
+            'Confirmar doação'
           )}
         </button>
         
         <div className="flex items-center gap-2 text-xs text-foreground/60 justify-center">
-          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M12.6667 3.33331H3.33333C2.59695 3.33331 2 3.93027 2 4.66665V11.3333C2 12.0697 2.59695 12.6666 3.33333 12.6666H12.6667C13.403 12.6666 14 12.0697 14 11.3333V4.66665C14 3.93027 13.403 3.33331 12.6667 3.33331Z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-            <path d="M12 7H4V9H12V7Z" fill="currentColor"/>
-          </svg>
-          Todas as transações são seguras e processadas pelo Stripe
+          <Heart className="h-3 w-3" />
+          <span>Sua contribuição faz toda a diferença</span>
         </div>
       </form>
     </div>
@@ -293,36 +425,48 @@ const DonationStepThree: React.FC<{
   finalAmount: number;
   donationType: 'one-time' | 'monthly';
   email: string;
+  name: string;
   onClose: () => void;
 }> = ({
   finalAmount,
   donationType,
   email,
+  name,
   onClose,
 }) => {
   return (
     <div className="p-6 md:p-8 text-center">
-      <div className="mx-auto w-16 h-16 flex items-center justify-center rounded-full bg-nature-500/20 mb-6">
-        <Check className="h-8 w-8 text-nature-600" />
+      <div className="mx-auto w-16 h-16 flex items-center justify-center rounded-full bg-green-500/20 mb-6">
+        <Check className="h-8 w-8 text-green-600" />
       </div>
       
-      <h3 className="text-2xl font-display font-bold mb-2">Gratidão pela sua doação!</h3>
+      <h3 className="text-2xl font-display font-bold mb-2">Gratidão, {name}!</h3>
       <p className="text-foreground/70 mb-6">
         {donationType === 'one-time' 
-          ? `Sua contribuição de R$ ${finalAmount.toFixed(2)} ajudará a manter nossa missão viva.` 
-          : `Sua contribuição mensal de R$ ${finalAmount.toFixed(2)} nos ajudará continuamente.`
+          ? `Sua intenção de doar R$ ${finalAmount.toFixed(2)} ajudará a manter nossa missão viva.` 
+          : `Sua intenção de contribuir mensalmente com R$ ${finalAmount.toFixed(2)} nos ajudará continuamente.`
         }
       </p>
       
-      <p className="text-sm text-foreground/60 mb-8">
-        Enviamos um comprovante para {email}. Você também
-        receberá atualizações sobre como sua doação está ajudando nossa comunidade.
+      <div className="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4 mb-6 border border-blue-200 dark:border-blue-800">
+        <p className="text-sm text-foreground/70 mb-2">
+          📱 <strong>Próximos passos:</strong>
+        </p>
+        <ol className="text-sm text-left text-foreground/70 space-y-2 ml-4">
+          <li>1. Realize a transferência usando os dados fornecidos</li>
+          <li>2. Envie o comprovante pelo WhatsApp</li>
+          <li>3. Aguarde nossa confirmação</li>
+        </ol>
+      </div>
+      
+      <p className="text-xs text-foreground/60 mb-6">
+        Após confirmarmos seu pagamento, enviaremos um email de agradecimento para <strong>{email}</strong> com atualizações sobre como sua doação está ajudando nossa comunidade.
       </p>
       
       <button
         type="button"
         onClick={onClose}
-        className="px-6 py-2 bg-muted text-foreground/80 rounded-lg font-medium hover:bg-muted/80 transition-colors"
+        className="w-full py-3 bg-primary text-primary-foreground rounded-lg font-medium hover:bg-primary/90 transition-colors"
       >
         Fechar
       </button>
@@ -341,7 +485,7 @@ const DonationModal: React.FC<{
   const [customAmount, setCustomAmount] = useState<string>('');
   const [name, setName] = useState<string>('');
   const [email, setEmail] = useState<string>('');
-  const [paymentMethod, setPaymentMethod] = useState<'credit-card' | 'pix'>('credit-card');
+  const [paymentMethod, setPaymentMethod] = useState<'pix' | 'bank-transfer'>('pix');
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
   const [step, setStep] = useState<1 | 2 | 3>(1);
   
@@ -360,51 +504,47 @@ const DonationModal: React.FC<{
     setIsSubmitting(true);
     
     try {
-      // First store the pending donation in Supabase
-      const { error: insertError } = await supabase
-        .from('donations')
-        .insert({
-          donor_name: name,
-          donor_email: email,
-          amount: finalAmount,
-          payment_method: paymentMethod,
-          donation_type: donationType,
-          payment_status: 'pending'
-        });
+      // Aguardar um momento para feedback visual
+      await new Promise(resolve => setTimeout(resolve, 800));
       
-      if (insertError) {
-        throw new Error(`Erro ao registrar doação: ${insertError.message}`);
-      }
+      // Construir mensagem para WhatsApp com as informações da doação
+      const paymentMethodText = paymentMethod === 'pix' ? 'PIX' : 'Depósito Bancário';
+      const donationTypeText = donationType === 'one-time' ? 'única' : 'mensal';
       
-      // Call Supabase Edge Function to create a Stripe checkout session
-      const { data, error } = await supabase.functions.invoke('create-checkout', {
-        body: {
-          amount: finalAmount.toString(),
-          donorName: name,
-          donorEmail: email,
-          donationType,
-          paymentMethod
-        },
+      const whatsappMessage = `
+*Confirmação de Doação - Casa da Alquimia*
+
+*Nome:* ${name}
+*Email:* ${email}
+*Valor:* R$ ${finalAmount.toFixed(2)}
+*Tipo:* Doação ${donationTypeText}
+*Forma de pagamento:* ${paymentMethodText}
+
+Irei realizar a transferência e enviarei o comprovante em breve!
+      `.trim();
+
+      const encodedMessage = encodeURIComponent(whatsappMessage);
+      const whatsappURL = `https://wa.me/5562996538902?text=${encodedMessage}`;
+      
+      // Abrir WhatsApp
+      window.open(whatsappURL, '_blank', 'noopener,noreferrer');
+      
+      // Mostrar mensagem de sucesso
+      setStep(3);
+      
+      toast({
+        title: "Informações enviadas!",
+        description: "Abrimos o WhatsApp para você enviar o comprovante após a transferência.",
       });
-      
-      if (error) {
-        throw new Error(`Erro ao processar pagamento: ${error.message}`);
-      }
-      
-      // Redirect to Stripe Checkout
-      if (data?.checkoutUrl) {
-        window.location.href = data.checkoutUrl;
-      } else {
-        throw new Error('URL de checkout não recebida');
-      }
       
     } catch (error) {
       console.error('Erro ao processar doação:', error);
       toast({
         title: "Erro no processamento",
-        description: error.message || "Houve um erro ao processar sua doação. Por favor, tente novamente.",
+        description: "Houve um erro ao processar sua doação. Por favor, tente novamente.",
         variant: "destructive",
       });
+    } finally {
       setIsSubmitting(false);
     }
   };
@@ -420,7 +560,7 @@ const DonationModal: React.FC<{
       setCustomAmount('');
       setName('');
       setEmail('');
-      setPaymentMethod('credit-card');
+      setPaymentMethod('pix');
     }, 300);
   };
   
@@ -458,6 +598,7 @@ const DonationModal: React.FC<{
           finalAmount={finalAmount}
           donationType={donationType}
           email={email}
+          name={name}
           onClose={handleClose}
         />
       )}

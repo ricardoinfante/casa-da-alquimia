@@ -1,5 +1,4 @@
-import React from 'react';
-import { Instagram, Facebook, Mail, MapPin, Phone, Sparkles, Heart, ExternalLink } from 'lucide-react';
+import { ExternalLink, Facebook, Heart, Instagram, Mail, MapPin, Phone, Sparkles } from 'lucide-react';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -112,13 +111,20 @@ const Footer = () => {
               </li>
               <li className="group">
                 <a 
-                  href="tel:+5562996538902" 
-                  className="flex items-center gap-3 p-3 bg-white/40 backdrop-blur-sm rounded-xl border border-white/20 hover:border-primary/30 hover:bg-white/60 transition-all duration-300"
+                  href="https://wa.me/5562996538902?text=Olá!%20Gostaria%20de%20mais%20informações%20sobre%20a%20Casa%20da%20Alquimia"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-3 p-3 bg-white/40 dark:bg-gray-800/40 backdrop-blur-sm rounded-xl border border-white/20 hover:border-green-500/50 hover:bg-green-50/60 dark:hover:bg-green-900/20 transition-all duration-300"
                 >
-                  <Phone className="h-5 w-5 text-primary flex-shrink-0" />
-                  <span className="text-foreground/70 hover:text-primary transition-colors">
-                    +55 (62) 99653-8902
-                  </span>
+                  <Phone className="h-5 w-5 text-green-600 flex-shrink-0" />
+                  <div className="flex flex-col">
+                    <span className="text-foreground/70 dark:text-gray-300 hover:text-green-600 transition-colors font-semibold">
+                      +55 (62) 99653-8902
+                    </span>
+                    <span className="text-xs text-green-600 dark:text-green-400">
+                      Clique para WhatsApp
+                    </span>
+                  </div>
                 </a>
               </li>
               <li className="group">

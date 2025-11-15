@@ -77,16 +77,16 @@ const SpotifyPlayer: React.FC<SpotifyPlayerProps> = ({
         {!isMinimized && (
           <button
             onClick={toggleMinimize}
-            className="absolute left-4 top-1/2 transform -translate-y-1/2 p-2 bg-black/70 hover:bg-black/90 backdrop-blur-sm rounded-full transition-all text-white z-10 shadow-lg border border-white/20"
+            className="absolute left-1 sm:left-2 md:left-4 top-1/2 transform -translate-y-1/2 p-1.5 sm:p-2 bg-black/70 hover:bg-black/90 backdrop-blur-sm rounded-full transition-all text-white z-10 shadow-lg border border-white/20"
             aria-label="Minimizar player"
             title="Minimizar"
           >
-            <Minimize2 className="h-4 w-4" />
+            <Minimize2 className="h-3 w-3 sm:h-4 sm:w-4" />
           </button>
         )}
         
         {/* Iframe centralizado com max-width */}
-        <div className="w-full max-w-5xl mx-auto px-20">
+        <div className="w-full max-w-5xl mx-auto px-12 sm:px-16 md:px-20">
           <iframe
             title="Spotify Player - Casa da Alquimia"
             style={{ borderRadius: 12 }}
@@ -104,11 +104,11 @@ const SpotifyPlayer: React.FC<SpotifyPlayerProps> = ({
         {!isMinimized && (
           <button
             onClick={handleClose}
-            className="absolute right-4 top-1/2 transform -translate-y-1/2 p-2 bg-black/70 hover:bg-black/90 backdrop-blur-sm rounded-full transition-all text-white z-10 shadow-lg border border-white/20"
+            className="absolute right-1 sm:right-2 md:right-4 top-1/2 transform -translate-y-1/2 p-1.5 sm:p-2 bg-black/70 hover:bg-black/90 backdrop-blur-sm rounded-full transition-all text-white z-10 shadow-lg border border-white/20"
             aria-label="Fechar player"
             title="Fechar"
           >
-            <X className="h-4 w-4" />
+            <X className="h-3 w-3 sm:h-4 sm:w-4" />
           </button>
         )}
       </div>

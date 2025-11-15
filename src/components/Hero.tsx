@@ -82,21 +82,22 @@ const Hero = () => {
         <div className={`transition-all duration-1000 delay-300 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
           {/* Badge moderno com glassmorphism */}
           <div className="flex justify-center mb-8">
-            <span className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white/80 backdrop-blur-xl border border-white/20 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
+            <span className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white/90 dark:bg-gray-800/90 backdrop-blur-xl border border-white/20 dark:border-gray-600/50 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
               <Sparkles className="h-4 w-4 text-primary animate-pulse" />
-              <span className="text-sm font-semibold text-foreground">Encontre seu caminho espiritual</span>
+              <span className="text-sm font-semibold text-foreground dark:text-white">Encontre seu caminho espiritual</span>
             </span>
           </div>
           
-          {/* Título com gradiente */}
-          <h1 className="font-display text-5xl md:text-7xl lg:text-8xl font-bold mb-8 tracking-tight">
-            <span className="bg-gradient-to-r from-foreground via-primary to-foreground bg-clip-text text-transparent drop-shadow-2xl">
-              Bem-vindo à<br />Casa da Alquimia
+          {/* Título legível em todos os modos */}
+          <h1 className="font-display text-5xl md:text-7xl lg:text-8xl font-bold mb-8 tracking-tight text-foreground dark:text-white drop-shadow-[0_4px_12px_rgba(0,0,0,0.8)] dark:drop-shadow-[0_4px_12px_rgba(0,0,0,1)]">
+            Bem-vindo à<br />
+            <span className="text-primary dark:text-accent">
+              Casa da Alquimia
             </span>
           </h1>
           
-          {/* Subtítulo com melhor contraste */}
-          <p className="max-w-3xl mx-auto text-lg md:text-2xl mb-12 text-balance leading-relaxed font-light text-foreground/90">
+          {/* Subtítulo com sombra forte */}
+          <p className="max-w-3xl mx-auto text-lg md:text-2xl mb-12 text-balance leading-relaxed font-semibold text-foreground dark:text-white drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)] dark:drop-shadow-[0_2px_8px_rgba(0,0,0,1)]">
             Conecte-se com a sua essência pela oportunidade do encontro consigo no silêncio e profundidade de rituais ancestrais
           </p>
           
@@ -112,8 +113,10 @@ const Hero = () => {
             </a>
             
             <a 
-              href="#contact"
-              className="px-8 py-4 bg-white/90 backdrop-blur-xl text-foreground rounded-full font-semibold border-2 border-white/20 hover:border-primary/50 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 inline-flex items-center gap-2"
+              href="https://wa.me/5562996538902?text=Olá!%20Gostaria%20de%20agendar%20uma%20conversa%20sobre%20os%20rituais%20da%20Casa%20da%20Alquimia"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-8 py-4 bg-white/90 dark:bg-gray-800/90 backdrop-blur-xl text-foreground dark:text-white rounded-full font-semibold border-2 border-white/20 dark:border-gray-600/50 hover:border-primary/50 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 inline-flex items-center gap-2"
             >
               <Heart className="h-5 w-5 text-accent" />
               <span>Agendar conversa</span>
@@ -126,7 +129,7 @@ const Hero = () => {
       <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 z-20">
         <a 
           href="#about" 
-          className="flex flex-col items-center gap-2 text-foreground/60 hover:text-foreground transition-all duration-300 group"
+          className="flex flex-col items-center gap-2 text-foreground/60 dark:text-gray-300 hover:text-foreground dark:hover:text-white transition-all duration-300 group"
         >
           <span className="text-xs uppercase tracking-wider font-medium">Role para explorar</span>
           <div className="w-6 h-10 rounded-full border-2 border-current flex items-start justify-center p-2">

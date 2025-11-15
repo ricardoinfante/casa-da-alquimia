@@ -1,9 +1,8 @@
 
-import React from 'react';
 import { useIntersectionObserver } from '@/utils/animations';
+import { Share2 } from 'lucide-react';
 import InstagramSection from './social/InstagramSection';
 import YouTubeSection from './social/YouTubeSection';
-import { Share2, Sparkles } from 'lucide-react';
 
 const SocialMedia = () => {
   const [ref, isVisible] = useIntersectionObserver();

@@ -41,19 +41,25 @@ const About = () => {
           {/* Imagem grande e destacada - 5 colunas */}
           <div className="lg:col-span-5 order-2 lg:order-1">
             <div className="relative group">
-              {/* Card flutuante com glassmorphism */}
+              {/* Card com imagem limpa */}
               <div 
                 className={`relative overflow-hidden rounded-3xl shadow-2xl transition-all duration-1000 ${
                   isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
                 }`}
               >
-                <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-secondary/20 backdrop-blur-sm z-10" />
                 <img 
                   src="/lovable-uploads/ac57f24e-68d6-46c2-aafc-a7107053254a.png" 
                   alt="Arte representando a alquimia espiritual" 
                   className="w-full h-auto object-cover transform group-hover:scale-105 transition-transform duration-700" 
-                  loading="lazy" 
+                  loading="eager"
+                  onError={(e) => {
+                    console.error('Erro ao carregar imagem About');
+                    e.currentTarget.src = '/recursos/placeholder-about.jpg';
+                  }}
                 />
+                
+                {/* Gradiente sutil apenas nas bordas para profundidade */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent pointer-events-none" />
               </div>
               
               {/* Elementos decorativos 3D */}
@@ -61,7 +67,7 @@ const About = () => {
               <div className="absolute -bottom-8 -left-8 w-40 h-40 bg-primary/20 rounded-full blur-3xl animate-pulse-gentle" style={{ animationDelay: '1s' }} />
               
               {/* Badge flutuante */}
-              <div className="absolute top-6 left-6 bg-white/90 backdrop-blur-xl px-4 py-2 rounded-full shadow-lg">
+              <div className="absolute top-6 left-6 bg-white/90 dark:bg-gray-800/90 backdrop-blur-xl px-4 py-2 rounded-full shadow-lg">
                 <span className="text-sm font-semibold text-primary flex items-center gap-2">
                   <Leaf className="h-4 w-4" />
                   Espaço Sagrado
@@ -83,20 +89,21 @@ const About = () => {
                 <span>A Casa da Alquimia</span>
               </span>
               
-              {/* Título com gradiente */}
-              <h2 className="text-4xl md:text-5xl lg:text-6xl font-display font-bold mb-6 leading-tight">
-                <span className="bg-gradient-to-r from-foreground via-primary to-foreground bg-clip-text text-transparent">
-                  Um Lugar Para Quem Quer Meditar
+              {/* Título limpo e legível */}
+              <h2 className="text-4xl md:text-5xl lg:text-6xl font-display font-bold mb-6 leading-tight text-foreground dark:text-white">
+                Um Lugar Para Quem Quer{' '}
+                <span className="bg-gradient-to-r from-primary via-accent to-secondary bg-clip-text text-transparent">
+                  Meditar
                 </span>
               </h2>
               
               {/* Descrição destacada */}
-              <p className="text-xl md:text-2xl text-foreground/70 font-light leading-relaxed mb-8">
+              <p className="text-xl md:text-2xl text-foreground/80 dark:text-gray-300 font-medium leading-relaxed mb-8">
                 Nascemos do profundo desejo de criar um espaço de silêncio e interiorização para que o autoconhecimento se faça possível como prática de vida.
               </p>
               
               {/* Texto principal */}
-              <p className="text-lg text-foreground/80 leading-relaxed mb-12">
+              <p className="text-lg text-foreground/80 dark:text-gray-300 leading-relaxed mb-12">
                 Fundada por buscadores espirituais com décadas de experiência em trabalhos com plantas de poder, nossa comunidade dedica-se a proporcionar um espaço seguro para as transformações individuais acontecerem em toda a sua potencialidade. Fazemos isso por meio de ferramentas, como meditação, terapias de introspecção e de contato com a natureza e, também, por meio de rituais com ayahuasca.
               </p>
               

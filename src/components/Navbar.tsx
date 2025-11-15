@@ -92,7 +92,9 @@ const Navbar = () => {
           
           {/* CTA Button */}
           <a
-            href="#contact"
+            href="https://wa.me/5562996538902?text=Olá!%20Gostaria%20de%20agendar%20uma%20conversa%20sobre%20os%20rituais%20da%20Casa%20da%20Alquimia"
+            target="_blank"
+            rel="noopener noreferrer"
             className="ml-4 px-5 py-2.5 bg-primary text-primary-foreground rounded-full font-semibold text-sm shadow-lg hover:shadow-xl hover:shadow-primary/50 transition-all duration-300 hover:scale-105 inline-flex items-center gap-2"
           >
             <Sparkles className="h-4 w-4" />
@@ -100,98 +102,139 @@ const Navbar = () => {
           </a>
         </nav>
         
-        {/* Mobile Menu Button */}
+        {/* Mobile Menu Button - Melhorado */}
         <button
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-          className="lg:hidden p-2 hover:bg-primary/10 rounded-full transition-colors"
+          className={cn(
+            "lg:hidden p-3 rounded-xl transition-all duration-300",
+            "hover:bg-primary/10 active:scale-90",
+            "shadow-md hover:shadow-lg",
+            isMobileMenuOpen 
+              ? "bg-primary text-primary-foreground rotate-90" 
+              : "bg-white/80 text-foreground"
+          )}
           aria-label="Toggle menu"
         >
           {isMobileMenuOpen ? (
-            <X className="h-6 w-6 text-foreground" />
+            <X className="h-5 w-5" />
           ) : (
-            <Menu className="h-6 w-6 text-foreground" />
+            <Menu className="h-5 w-5" />
           )}
         </button>
       </div>
       
-      {/* Mobile Menu - Fullscreen overlay */}
-      <div
-        className={cn(
-          "fixed inset-0 z-40 lg:hidden transition-all duration-500",
-          isMobileMenuOpen 
-            ? "opacity-100 pointer-events-auto" 
-            : "opacity-0 pointer-events-none"
-        )}
-      >
-        {/* Backdrop com blur */}
+      {/* Mobile Menu - Fullscreen overlay melhorado */}
+      <div className={cn(
+        "fixed inset-0 lg:hidden transition-all duration-500 ease-in-out",
+        isMobileMenuOpen ? "z-[60] opacity-100 pointer-events-auto" : "-z-10 opacity-0 pointer-events-none"
+      )}>
+        {/* Backdrop com blur e gradiente animado */}
         <div 
-          className="absolute inset-0 bg-gradient-to-br from-background/95 via-primary/10 to-secondary/10 backdrop-blur-2xl"
+          className="absolute inset-0 bg-gradient-to-br from-background/98 via-primary/5 to-secondary/5 backdrop-blur-3xl transition-opacity duration-300"
           onClick={() => setIsMobileMenuOpen(false)}
-        />
+        >
+          {/* Efeitos de fundo decorativos */}
+          <div className="absolute top-20 left-10 w-32 h-32 bg-primary/10 rounded-full blur-3xl" />
+          <div className="absolute bottom-40 right-10 w-40 h-40 bg-secondary/10 rounded-full blur-3xl" />
+        </div>
         
-        {/* Menu Content */}
+        {/* Menu Content - Slide from right */}
         <div className={cn(
-          "relative h-full flex flex-col p-8 transition-transform duration-500",
-          isMobileMenuOpen ? "translate-y-0" : "-translate-y-full"
+          "absolute right-0 top-0 bottom-0 h-full flex flex-col",
+          "bg-white/95 dark:bg-gray-900/95 backdrop-blur-xl border-l border-white/20 shadow-2xl",
+          "w-[85vw] sm:w-80 z-10",
+          "transition-transform duration-500 ease-out",
+          isMobileMenuOpen ? "translate-x-0" : "translate-x-full"
         )}>
-          {/* Close Button */}
-          <div className="flex items-center justify-between mb-12">
+          {/* Header do menu */}
+          <div className="flex items-center justify-between p-6 border-b border-foreground/10 bg-white/50 dark:bg-gray-800/50">
             <Link 
               to="/" 
-              className="flex items-center gap-2 font-display text-xl"
+              className="flex items-center gap-2 font-display text-lg"
               onClick={() => setIsMobileMenuOpen(false)}
             >
               <img 
                 src="/favicon.png" 
                 alt="A Casa da Alquimia Logo" 
-                className="h-10 w-auto"
+                className="h-8 w-auto"
               />
+              <span className="font-semibold text-foreground dark:text-white">Menu</span>
             </Link>
             
             <button
               onClick={() => setIsMobileMenuOpen(false)}
-              className="p-2 hover:bg-primary/10 rounded-full transition-colors"
+              className="p-2 hover:bg-primary/10 rounded-full transition-all duration-300 hover:rotate-90"
               aria-label="Close menu"
             >
-              <X className="h-7 w-7 text-foreground" />
+              <X className="h-6 w-6 text-foreground dark:text-white" />
             </button>
           </div>
           
-          {/* Navigation Links */}
-          <nav className="flex flex-col space-y-2 flex-1">
+          {/* Navigation Links - Scrollable */}
+          <nav className="flex flex-col space-y-1 flex-1 overflow-y-auto p-4">
             {menuItems.map((item, index) => (
               <a
                 key={item.name}
                 href={item.href}
                 className={cn(
-                  "group p-4 rounded-2xl text-left transition-all duration-300 hover:bg-white/60 hover:shadow-lg",
-                  isMobileMenuOpen ? `opacity-100 translate-x-0` : `opacity-0 translate-x-10`
+                  "group relative p-4 rounded-xl text-left transition-all duration-300",
+                  "hover:bg-white/70 dark:hover:bg-gray-700/70 hover:shadow-md active:scale-95",
+                  activeSection === item.id && "bg-primary/10 border border-primary/20",
+                  isMobileMenuOpen ? `opacity-100 translate-x-0` : `opacity-0 translate-x-8`
                 )}
                 style={{ 
-                  transitionDelay: isMobileMenuOpen ? `${index * 50}ms` : '0ms' 
+                  transitionDelay: isMobileMenuOpen ? `${index * 70}ms` : '0ms' 
                 }}
                 onClick={() => setIsMobileMenuOpen(false)}
               >
-                <span className={cn(
-                  "text-2xl font-semibold transition-colors",
-                  activeSection === item.id ? "text-primary" : "text-foreground/80 group-hover:text-primary"
-                )}>
-                  {item.name}
-                </span>
+                <div className="flex items-center justify-between">
+                  <span className={cn(
+                    "text-xl font-semibold transition-colors",
+                    activeSection === item.id 
+                      ? "text-primary dark:text-primary" 
+                      : "text-foreground/80 dark:text-gray-200 group-hover:text-primary"
+                  )}>
+                    {item.name}
+                  </span>
+                  
+                  {/* Indicador de seção ativa */}
+                  {activeSection === item.id && (
+                    <div className="w-2 h-2 bg-primary rounded-full animate-pulse" />
+                  )}
+                </div>
+                
+                {/* Linha animada no hover */}
+                <div className="absolute bottom-0 left-4 right-4 h-0.5 bg-gradient-to-r from-transparent via-primary to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
               </a>
             ))}
           </nav>
           
-          {/* CTA no mobile */}
-          <div className="pt-6 border-t border-foreground/10">
+          {/* CTA no mobile - Sticky bottom */}
+          <div className="p-4 border-t border-foreground/10 bg-white/50 dark:bg-gray-800/50">
             <a
-              href="#contact"
-              className="flex items-center justify-center gap-2 w-full px-6 py-4 bg-primary text-primary-foreground rounded-2xl font-semibold shadow-lg hover:shadow-xl hover:shadow-primary/50 transition-all duration-300"
+              href="https://wa.me/5562996538902?text=Olá!%20Gostaria%20de%20agendar%20uma%20conversa%20sobre%20os%20rituais%20da%20Casa%20da%20Alquimia"
+              target="_blank"
+              rel="noopener noreferrer"
+              className={cn(
+                "flex items-center justify-center gap-2 w-full px-6 py-4",
+                "bg-gradient-to-r from-primary to-primary/80 text-primary-foreground",
+                "rounded-xl font-semibold shadow-lg hover:shadow-xl hover:shadow-primary/50",
+                "transition-all duration-300 active:scale-95",
+                isMobileMenuOpen ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+              )}
+              style={{ 
+                transitionDelay: isMobileMenuOpen ? '400ms' : '0ms' 
+              }}
               onClick={() => setIsMobileMenuOpen(false)}
             >
-              <Sparkles className="h-5 w-5" />
+              <Sparkles className="h-5 w-5 animate-pulse" />
               <span>Agendar Conversa</span>
             </a>
+            
+            {/* Informação adicional */}
+            <p className="text-center text-xs text-foreground/60 dark:text-gray-300 mt-3">
+              Estamos aqui para te ajudar ✨
+            </p>
           </div>
         </div>
       </div>
