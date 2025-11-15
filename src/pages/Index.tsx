@@ -1,12 +1,13 @@
 
-import React from 'react';
-import Navbar from '@/components/Navbar';
-import Hero from '@/components/Hero';
 import About from '@/components/About';
-import SocialMedia from '@/components/SocialMedia';
-import Rituals from '@/components/Rituals';
+import ContactForm from '@/components/ContactForm';
 import Donate from '@/components/Donate';
 import Footer from '@/components/Footer';
+import Hero from '@/components/Hero';
+import Navbar from '@/components/Navbar';
+import Rituals from '@/components/Rituals';
+import SocialMedia from '@/components/SocialMedia';
+import SpotifyPlayer from '@/components/SpotifyPlayer';
 import TestimonialCard from '@/components/TestimonialCard';
 import { useScrollProgress } from '@/utils/animations';
 
@@ -15,17 +16,32 @@ const Index = () => {
   
   return (
     <div className="relative">
+      {/* Skip to main content link for accessibility */}
+      <a 
+        href="#main-content" 
+        className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-primary focus:text-primary-foreground focus:rounded-md"
+      >
+        Pular para o conteúdo principal
+      </a>
+      
       {/* Progress bar */}
       <div 
         className="fixed top-0 left-0 right-0 h-1 bg-primary z-50 origin-left" 
         style={{ transform: `scaleX(${scrollProgress})` }}
+        role="progressbar"
+        aria-label="Progresso de rolagem da página"
+        aria-valuenow={Math.round(scrollProgress * 100)}
+        aria-valuemin={0}
+        aria-valuemax={100}
       ></div>
       
       <Navbar />
-      <Hero />
-      <About />
-      <Rituals />
-      <SocialMedia />
+      
+      <main id="main-content">
+        <Hero />
+        <About />
+        <Rituals />
+        <SocialMedia />
       
       {/* Testimonials Section */}
       <section id="testimonials" className="py-12 md:py-20 relative overflow-hidden">
@@ -88,8 +104,14 @@ const Index = () => {
         </div>
       </section>
       
-      <Donate />
+        <Donate />
+        <ContactForm />
+      </main>
+      
       <Footer />
+      
+      {/* Spotify Player Fixo */}
+      <SpotifyPlayer playlistId="5gK8vevkgH2nRAw1LuGdCD" />
     </div>
   );
 };

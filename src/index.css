@@ -6,35 +6,69 @@
 
 @layer base {
   :root {
-    --background: 202 38% 90% 0.4; /* Azul 1 claro */
-    --foreground: 15 12% 5%;
+    /* Cores principais - Tons terrosos e espirituais modernos */
+    --background: 45 20% 96%; /* Bege claro luminoso */
+    --foreground: 24 15% 12%; /* Marrom escuro quente */
 
     --card: 0 0% 100%;
-    --card-foreground: 15 12% 5%;
+    --card-foreground: 24 15% 12%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 15 12% 5%;
+    --popover-foreground: 24 15% 12%;
 
-    --primary: 220 73% 33%; /* Azul 2 - #173D90 */
+    --primary: 220 85% 48%; /* Azul profundo vibrante */
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 88 37% 48%; /* Verde 3 - #80A94D */
+    --secondary: 88 50% 52%; /* Verde natural vibrante */
     --secondary-foreground: 0 0% 100%;
 
-    --muted: 202 38% 95%; /* Azul 1 muito claro */
-    --muted-foreground: 15 12% 40%;
+    --muted: 45 20% 92%; /* Bege suave */
+    --muted-foreground: 24 10% 45%;
 
-    --accent: 220 73% 33%; /* Azul 2 - #173D90 */
+    --accent: 30 80% 55%; /* Laranja âmbar místico */
     --accent-foreground: 0 0% 100%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 202 38% 85%; /* Azul 1 médio */
-    --input: 202 38% 85%; /* Azul 1 médio */
-    --ring: 220 73% 33%; /* Azul 2 - #173D90 */
+    --border: 45 15% 88%;
+    --input: 45 15% 88%;
+    --ring: 220 85% 48%;
 
-    --radius: 0.5rem;
+    --radius: 0.75rem;
+    
+    /* Gradientes personalizados */
+    --gradient-primary: linear-gradient(135deg, hsl(220, 85%, 48%) 0%, hsl(240, 75%, 58%) 100%);
+    --gradient-secondary: linear-gradient(135deg, hsl(88, 50%, 52%) 0%, hsl(120, 45%, 50%) 100%);
+    --gradient-warm: linear-gradient(135deg, hsl(30, 80%, 65%) 0%, hsl(15, 75%, 55%) 100%);
+  }
+  
+  /* Modo escuro opcional */
+  .dark {
+    --background: 24 20% 8%;
+    --foreground: 45 20% 96%;
+
+    --card: 24 15% 12%;
+    --card-foreground: 45 20% 96%;
+
+    --popover: 24 15% 12%;
+    --popover-foreground: 45 20% 96%;
+
+    --primary: 220 85% 58%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 88 50% 45%;
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: 24 15% 16%;
+    --muted-foreground: 45 10% 60%;
+
+    --accent: 30 80% 60%;
+    --accent-foreground: 0 0% 100%;
+
+    --border: 24 15% 20%;
+    --input: 24 15% 20%;
+    --ring: 220 85% 58%;
   }
 
   * {
@@ -48,6 +82,7 @@
     overflow-x: hidden;
     scrollbar-color: hsl(var(--primary)) transparent;
     scrollbar-width: thin;
+    padding-bottom: 60px; /* Espaço para o player do Spotify quando minimizado */
   }
   
   ::selection {
@@ -166,6 +201,42 @@
   }
 }
 
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px) translateX(0px);
+  }
+  33% {
+    transform: translateY(-20px) translateX(10px);
+  }
+  66% {
+    transform: translateY(10px) translateX(-10px);
+  }
+}
+
+.animate-float {
+  animation: float 20s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -1000px 0;
+  }
+  100% {
+    background-position: 1000px 0;
+  }
+}
+
+.animate-shimmer {
+  animation: shimmer 3s linear infinite;
+  background: linear-gradient(
+    to right,
+    transparent 0%,
+    rgba(255, 255, 255, 0.3) 50%,
+    transparent 100%
+  );
+  background-size: 1000px 100%;
+}
+
 /* Smooth scrolling */
 html {
   scroll-behavior: smooth;
@@ -179,4 +250,46 @@ html {
 
 .loaded {
   filter: blur(0);
+}
+
+/* Screen reader only utility class */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+.sr-only:focus,
+.sr-only:active {
+  position: static;
+  width: auto;
+  height: auto;
+  overflow: visible;
+  clip: auto;
+  white-space: normal;
+}
+
+/* Focus visible styles for better keyboard navigation */
+:focus-visible {
+  outline: 2px solid hsl(var(--primary));
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Reduced motion for accessibility */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }

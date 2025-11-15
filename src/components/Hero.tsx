@@ -1,8 +1,11 @@
-import React, { useEffect, useState } from 'react';
-import { ArrowDown, Sparkles } from 'lucide-react';
+import { ArrowDown, Calendar, Heart, Sparkles } from 'lucide-react';
+import { useEffect, useState } from 'react';
+
 const Hero = () => {
   const [isLoaded, setIsLoaded] = useState(false);
   const [imageLoaded, setImageLoaded] = useState(false);
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  
   useEffect(() => {
     setIsLoaded(true);
 
@@ -15,52 +18,124 @@ const Hero = () => {
     };
     img.onerror = e => {
       console.error('Failed to load image:', e);
-      // Ainda definimos imageLoaded como true para acionar a exibição de fallback em vez do estado de carregamento
       setImageLoaded(true);
     };
   }, []);
-  return <section id="hero" className="relative min-h-[90vh] flex items-center justify-center pt-20 overflow-hidden">
-      {/* Background Image with Overlay */}
+  
+  // Parallax effect no mouse
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      const x = (e.clientX / window.innerWidth - 0.5) * 20;
+      const y = (e.clientY / window.innerHeight - 0.5) * 20;
+      setMousePosition({ x, y });
+    };
+    
+    window.addEventListener('mousemove', handleMouseMove);
+    return () => window.removeEventListener('mousemove', handleMouseMove);
+  }, []);
+  
+  return (
+    <section 
+      id="hero" 
+      className="relative min-h-screen flex items-center justify-center overflow-hidden"
+    >
+      {/* Background com parallax */}
       <div className="absolute inset-0 z-0">
-        <div className="absolute inset-0 bg-gradient-to-b from-[#100B0D]/30 via-azul-1/40 to-azul-1/60 z-10"></div>
+        {/* Gradiente overlay moderno */}
+        <div className="absolute inset-0 bg-gradient-to-br from-background via-primary/5 to-secondary/10 z-10"></div>
         
-        {imageLoaded ? <div className="w-full h-full transition-all duration-1000" style={{
-        backgroundImage: `url('/lovable-uploads/87b219fd-f859-454f-af75-028b033d0a5a.png')`,
-        backgroundSize: 'cover',
-        backgroundPosition: 'center bottom',
-        opacity: isLoaded ? 0.95 : 0,
-        filter: isLoaded ? 'blur(0)' : 'blur(8px)'
-      }}></div> : <div className="w-full h-full bg-gradient-to-b from-azul-2/70 to-verde-3/80"></div>}
+        {imageLoaded ? (
+          <div 
+            className="w-full h-full transition-all duration-1000"
+            style={{
+              backgroundImage: `url('/lovable-uploads/87b219fd-f859-454f-af75-028b033d0a5a.png')`,
+              backgroundSize: 'cover',
+              backgroundPosition: 'center',
+              opacity: isLoaded ? 0.4 : 0,
+              filter: isLoaded ? 'blur(0) grayscale(20%)' : 'blur(8px)',
+              transform: `translate(${mousePosition.x * 0.5}px, ${mousePosition.y * 0.5}px) scale(1.1)`,
+            }}
+          />
+        ) : (
+          <div className="w-full h-full bg-gradient-to-br from-primary/30 via-secondary/20 to-accent/30" />
+        )}
       </div>
       
-      <div className="container mx-auto px-6 md:px-8 relative z-10 text-center">
+      {/* Partículas flutuantes decorativas */}
+      <div className="absolute inset-0 z-[5]">
+        <div 
+          className="absolute top-1/4 left-[10%] w-64 h-64 bg-primary/20 rounded-full blur-3xl animate-float"
+          style={{ animationDelay: "0s", transform: `translate(${mousePosition.x}px, ${mousePosition.y}px)` }}
+        />
+        <div 
+          className="absolute top-1/3 right-[15%] w-80 h-80 bg-secondary/15 rounded-full blur-3xl animate-float"
+          style={{ animationDelay: "2s", transform: `translate(${-mousePosition.x}px, ${-mousePosition.y}px)` }}
+        />
+        <div 
+          className="absolute bottom-1/4 left-[20%] w-72 h-72 bg-accent/15 rounded-full blur-3xl animate-float"
+          style={{ animationDelay: "4s", transform: `translate(${mousePosition.x * 0.5}px, ${mousePosition.y * 0.5}px)` }}
+        />
+      </div>
+      
+      {/* Conteúdo principal */}
+      <div className="container mx-auto px-6 md:px-8 relative z-20 text-center">
         <div className={`transition-all duration-1000 delay-300 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-          <div className="flex justify-center mb-6">
-            <span className="chip flex items-center gap-1 shadow-lg">
-              <Sparkles className="h-3 w-3 text-azul-2" />
-              <span>Encontre seu caminho espiritual</span>
+          {/* Badge moderno com glassmorphism */}
+          <div className="flex justify-center mb-8">
+            <span className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white/80 backdrop-blur-xl border border-white/20 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
+              <Sparkles className="h-4 w-4 text-primary animate-pulse" />
+              <span className="text-sm font-semibold text-foreground">Encontre seu caminho espiritual</span>
             </span>
           </div>
           
-          <h1 className="font-display text-4xl md:text-6xl lg:text-7xl font-bold mb-6 tracking-tight text-[#100B0D] drop-shadow-md">
-            Bem-vindo à Casa da Alquimia
+          {/* Título com gradiente */}
+          <h1 className="font-display text-5xl md:text-7xl lg:text-8xl font-bold mb-8 tracking-tight">
+            <span className="bg-gradient-to-r from-foreground via-primary to-foreground bg-clip-text text-transparent drop-shadow-2xl">
+              Bem-vindo à<br />Casa da Alquimia
+            </span>
           </h1>
           
-          <p className="max-w-2xl mx-auto text-lg md:text-xl mb-10 text-balance drop-shadow-sm font-medium text-[#100B0D]">Conecte-se com a sua essência pela oportunidade do encontro consigo no silêncio e profundidade de rituais ancestrais</p>
+          {/* Subtítulo com melhor contraste */}
+          <p className="max-w-3xl mx-auto text-lg md:text-2xl mb-12 text-balance leading-relaxed font-light text-foreground/90">
+            Conecte-se com a sua essência pela oportunidade do encontro consigo no silêncio e profundidade de rituais ancestrais
+          </p>
+          
+          {/* CTAs modernos */}
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+            <a 
+              href="#rituals"
+              className="group px-8 py-4 bg-primary text-primary-foreground rounded-full font-semibold shadow-lg hover:shadow-2xl hover:shadow-primary/50 transition-all duration-300 hover:scale-105 inline-flex items-center gap-2"
+            >
+              <Calendar className="h-5 w-5" />
+              <span>Conhecer nossos rituais</span>
+              <ArrowDown className="h-4 w-4 group-hover:translate-y-1 transition-transform" />
+            </a>
+            
+            <a 
+              href="#contact"
+              className="px-8 py-4 bg-white/90 backdrop-blur-xl text-foreground rounded-full font-semibold border-2 border-white/20 hover:border-primary/50 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 inline-flex items-center gap-2"
+            >
+              <Heart className="h-5 w-5 text-accent" />
+              <span>Agendar conversa</span>
+            </a>
+          </div>
         </div>
       </div>
       
-      <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
-        <a href="#about" className="text-[#100B0D]/70 hover:text-[#100B0D] transition-colors">
-          <ArrowDown className="h-6 w-6 text-azul-2" />
+      {/* Scroll indicator moderno */}
+      <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 z-20">
+        <a 
+          href="#about" 
+          className="flex flex-col items-center gap-2 text-foreground/60 hover:text-foreground transition-all duration-300 group"
+        >
+          <span className="text-xs uppercase tracking-wider font-medium">Role para explorar</span>
+          <div className="w-6 h-10 rounded-full border-2 border-current flex items-start justify-center p-2">
+            <div className="w-1 h-2 bg-current rounded-full animate-bounce" />
+          </div>
         </a>
       </div>
-      
-      {/* Decorative Elements */}
-      <div className="absolute top-1/3 left-10 md:left-24 w-32 h-32 bg-verde-3/20 rounded-full blur-3xl animate-pulse-gentle"></div>
-      <div className="absolute bottom-1/3 right-10 md:right-24 w-40 h-40 bg-azul-2/20 rounded-full blur-3xl animate-pulse-gentle" style={{
-      animationDelay: "1s"
-    }}></div>
-    </section>;
+    </section>
+  );
 };
+
 export default Hero;
