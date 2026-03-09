@@ -4,8 +4,10 @@ import ContactForm from '@/components/ContactForm';
 import Donate from '@/components/Donate';
 import Footer from '@/components/Footer';
 import Hero from '@/components/Hero';
+import LibraryGallery from '@/components/LibraryGallery';
 import Navbar from '@/components/Navbar';
 import Rituals from '@/components/Rituals';
+import Shop from '@/components/Shop';
 import SocialMedia from '@/components/SocialMedia';
 import SpotifyPlayer from '@/components/SpotifyPlayer';
 import TestimonialCard from '@/components/TestimonialCard';
@@ -41,6 +43,8 @@ const Index = () => {
         <Hero />
         <About />
         <Rituals />
+        <LibraryGallery />
+        <Shop />
         <SocialMedia />
       
       {/* Testimonials Section */}

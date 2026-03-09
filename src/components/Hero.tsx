@@ -9,14 +9,13 @@ const Hero = () => {
   useEffect(() => {
     setIsLoaded(true);
 
-    // Carregando a nova imagem fornecida
+    // Carregando a nova imagem (logo/arte) do projeto
     const img = new Image();
-    img.src = "/lovable-uploads/87b219fd-f859-454f-af75-028b033d0a5a.png";
+    img.src = "/img/logog.jpeg"; // trocar para a nova imagem fornecida
     img.onload = () => {
-      console.log('Image loaded successfully');
       setImageLoaded(true);
     };
-    img.onerror = e => {
+    img.onerror = (e) => {
       console.error('Failed to load image:', e);
       setImageLoaded(true);
     };
@@ -84,21 +83,26 @@ const Hero = () => {
           <div className="flex justify-center mb-8">
             <span className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white/90 dark:bg-gray-800/90 backdrop-blur-xl border border-white/20 dark:border-gray-600/50 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
               <Sparkles className="h-4 w-4 text-primary animate-pulse" />
-              <span className="text-sm font-semibold text-foreground dark:text-white">Encontre seu caminho espiritual</span>
+              <span className="text-sm font-semibold text-foreground dark:text-white">Arte representando a alquimia espiritual</span>
             </span>
           </div>
           
           {/* Título legível em todos os modos */}
-          <h1 className="font-display text-5xl md:text-7xl lg:text-8xl font-bold mb-8 tracking-tight text-foreground dark:text-white drop-shadow-[0_4px_12px_rgba(0,0,0,0.8)] dark:drop-shadow-[0_4px_12px_rgba(0,0,0,1)]">
-            Bem-vindo à<br />
+          <h1 className="font-display text-5xl md:text-7xl lg:text-8xl font-bold mb-6 tracking-tight text-foreground dark:text-white drop-shadow-[0_4px_12px_rgba(0,0,0,0.8)] dark:drop-shadow-[0_4px_12px_rgba(0,0,0,1)]">
+            Espaço Sagrado<br />
             <span className="text-primary dark:text-accent">
-              Casa da Alquimia
+              A Casa da Alquimia
             </span>
           </h1>
-          
-          {/* Subtítulo com sombra forte */}
-          <p className="max-w-3xl mx-auto text-lg md:text-2xl mb-12 text-balance leading-relaxed font-semibold text-foreground dark:text-white drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)] dark:drop-shadow-[0_2px_8px_rgba(0,0,0,1)]">
-            Conecte-se com a sua essência pela oportunidade do encontro consigo no silêncio e profundidade de rituais ancestrais
+
+          <h2 className="text-xl md:text-2xl mb-6 font-semibold text-foreground/70">Um Lugar Para Quem Quer Meditar</h2>
+
+          {/* Descrição longa */}
+          <p className="max-w-3xl mx-auto text-sm md:text-base mb-8 leading-relaxed text-foreground dark:text-white">
+            Nascemos do profundo desejo de criar um espaço de silêncio e interiorização para que o autoconhecimento se faça possível como prática de vida.
+          </p>
+          <p className="max-w-3xl mx-auto text-sm md:text-base mb-12 leading-relaxed text-foreground/70">
+            Fundada por buscadores espirituais com décadas de experiência em trabalhos com plantas de poder, nossa comunidade dedica-se a proporcionar um espaço seguro para as transformações individuais acontecerem em toda a sua potencialidade. Fazemos isso por meio de ferramentas, como meditação, terapias de introspecção e de contato com a natureza e, também, por meio de rituais com ayahuasca.
           </p>
           
           {/* CTAs modernos */}
