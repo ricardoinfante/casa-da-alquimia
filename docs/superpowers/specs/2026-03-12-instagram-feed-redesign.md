@@ -34,10 +34,9 @@ Remover o player do YouTube e substituir o widget Elfsight por um feed do Instag
 
 **`InstagramSection.tsx`** — reescrito
 - Carrega o script do Behold.so de forma lazy (via `useEffect` com `isVisible`), idêntico ao comportamento atual do Elfsight
-- Script: `https://w.behold.so/widget.js` (type="module")
-- Renderiza a div `<div data-behold-id="SEU_WIDGET_ID"></div>`
-- Acima do widget: link `@casadaalquimia` alinhado à direita
-- Abaixo do widget: botão "Seguir no Instagram" centralizado com ícone do Instagram
+- Script: `https://w.behold.so/widget.js` — **obrigatório** definir `script.type = "module"` antes de anexar ao DOM; o widget usa ES module syntax e falha silenciosamente sem este atributo
+- Renderiza a div `<div data-behold-id="SEU_WIDGET_ID"></div>` **fora** de qualquer condicional de visibilidade (deve existir no DOM antes do script executar)
+- Abaixo do widget: link `@casadaalquimia` alinhado à esquerda + botão "Seguir no Instagram" alinhado à direita, na mesma linha de rodapé
 
 ---
 
@@ -51,10 +50,11 @@ Remover o player do YouTube e substituir o widget Elfsight por um feed do Instag
 
 [Feed Behold.so — grid 3×3 configurado no painel do Behold]
   ↳ min-height: 400px (evita layout shift enquanto carrega)
+  ↳ div data-behold-id renderizada incondicionalmente (sem wrapper isVisible)
 
-[Rodapé do feed]
-  [@casadaalquimia →] (link para o perfil)
-  [Seguir no Instagram] (botão secundário, centralizado)
+[Rodapé do feed — flex justify-between items-center]
+  [@casadaalquimia →] (link à esquerda)
+  [Seguir no Instagram] (botão à direita)
 ```
 
 ---
@@ -78,14 +78,19 @@ A configuração do grid (número de colunas, gap, forma das imagens) é feita n
 | `src/components/social/YouTubeSection.tsx` | Deletar |
 | `src/components/social/InstagramSection.tsx` | Reescrever |
 | `src/components/SocialMedia.tsx` | Remover YouTubeSection + simplificar layout |
+| `index.html` | Remover `<link rel="preconnect" href="https://static.elfsight.com" />`; adicionar `<link rel="preconnect" href="https://w.behold.so" />` |
 
 ---
 
 ## Comportamento de loading
 
-- O script do Behold é injetado via `useEffect` apenas quando `isVisible === true`
-- Evita carregamento desnecessário para usuários que não rolam até a seção
+- O script do Behold é injetado via `useEffect` apenas quando `isVisible === true` — evita carregamento para usuários que não rolam até a seção
+- O script **deve** ter `type="module"` definido antes de ser anexado ao DOM
+- A `<div data-behold-id="...">` é renderizada **incondicionalmente** (independente de `isVisible`) — o Behold usa um `MutationObserver` para detectar o elemento, mas há risco de race condition se o elemento não estiver no DOM quando o script executar
 - `min-height: 400px` no container do widget previne layout shift
+
+### Verificação de race condition
+Após implementar, testar em conexão rápida: o grid deve preencher corretamente. Se aparecer vazio, significa que o script executou antes do React commitar o elemento. A solução é garantir que o elemento `data-behold-id` não esteja dentro de nenhum `{isVisible && ...}` condicional.
 
 ---
 
@@ -95,6 +100,25 @@ A configuração do grid (número de colunas, gap, forma das imagens) é feita n
 - ID da seção (`id="social-media"`, `id="instagram"`)
 - Link de navegação no Navbar (`#instagram`)
 - Paleta de cores e tipografia
+
+---
+
+## Estilo do botão "Seguir no Instagram"
+
+Usar o componente `<Button>` do projeto com `variant="outline"` e as classes de cor da identidade do site:
+
+```tsx
+<Button
+  variant="outline"
+  className="border-primary/30 text-primary hover:bg-primary/10"
+  asChild
+>
+  <a href="https://www.instagram.com/casadaalquimia/" target="_blank" rel="noopener noreferrer">
+    <Instagram className="h-4 w-4 mr-2" />
+    Seguir no Instagram
+  </a>
+</Button>
+```
 
 ---
 
