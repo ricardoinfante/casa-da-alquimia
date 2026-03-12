@@ -14,7 +14,7 @@ const Navbar = () => {
       setIsScrolled(window.scrollY > 50);
       
       // Detectar seção ativa
-      const sections = ['hero', 'about', 'rituals', 'testimonials', 'instagram', 'contact'];
+      const sections = ['hero', 'about', 'rituals', 'memorias', 'testimonials', 'instagram', 'contact'];
       const current = sections.find(section => {
         const element = document.getElementById(section);
         if (element) {
@@ -34,7 +34,7 @@ const Navbar = () => {
     { name: 'Início', href: '#hero', id: 'hero' },
     { name: 'Sobre', href: '#about', id: 'about' },
     { name: 'Rituais', href: '#rituals', id: 'rituals' },
-    { name: 'Biblioteca de Memórias', href: '#biblioteca', id: 'biblioteca' },
+    { name: 'Memórias', href: '#memorias', id: 'memorias' },
     { name: 'Depoimentos', href: '#testimonials', id: 'testimonials' },
     { name: 'Galeria', href: '#instagram', id: 'instagram' },
     { name: 'Contato', href: '#contact', id: 'contact' },
