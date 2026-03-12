@@ -43,10 +43,10 @@ const Navbar = () => {
   return (
     <header 
       className={cn(
-        "fixed top-0 left-0 right-0 z-50 transition-all duration-500",
-        isScrolled 
-          ? "py-3 bg-white/80 backdrop-blur-2xl shadow-lg border-b border-white/20" 
-          : "py-5 bg-white/60 backdrop-blur-xl"
+        "fixed top-0 left-0 right-0 z-50 transition-all duration-500 bg-bg-light border-b border-terra-1/20",
+        isScrolled
+          ? "py-3"
+          : "py-5"
       )}
     >
       <div className="container mx-auto px-6 md:px-8 flex items-center justify-between">
@@ -64,9 +64,9 @@ const Navbar = () => {
                 isScrolled ? "h-10" : "h-12"
               )}
             />
-            <div className="absolute -inset-1 bg-gradient-to-r from-primary/20 to-secondary/20 rounded-full opacity-0 group-hover:opacity-100 blur transition-opacity duration-300" />
+  
           </div>
-          <span className="text-balance font-semibold bg-gradient-to-r from-foreground to-primary bg-clip-text text-transparent">
+          <span className="text-balance font-semibold text-primary-dark">
             A Casa da Alquimia
           </span>
         </Link>
@@ -94,7 +94,7 @@ const Navbar = () => {
           {/* Apoiar Button */}
           <a
             href="#donate"
-            className="ml-2 px-5 py-2.5 bg-[#1A3A6B] text-white rounded-full font-semibold text-sm shadow-lg hover:shadow-xl hover:shadow-[#1A3A6B]/50 transition-all duration-300 hover:scale-105 inline-flex items-center gap-2"
+            className="ml-2 bg-primary-dark text-white rounded-sm px-5 py-2.5 transition-colors duration-200 hover:bg-primary font-semibold text-sm inline-flex items-center gap-2"
           >
             <span>Apoiar</span>
           </a>
@@ -104,7 +104,7 @@ const Navbar = () => {
             href="https://wa.me/5562996538902?text=Ol%C3%A1!%20Gostaria%20de%20conhecer%20e%20saber%20mais%20informa%C3%A7%C3%B5es%20sobre%20os%20trabalhos%20da%20Casa%20da%20Alquimia."
             target="_blank"
             rel="noopener noreferrer"
-            className="ml-2 px-5 py-2.5 bg-primary text-primary-foreground rounded-full font-semibold text-sm shadow-lg hover:shadow-xl hover:shadow-primary/50 transition-all duration-300 hover:scale-105 inline-flex items-center gap-2"
+            className="ml-2 border border-terra-1 text-terra-1 rounded-sm px-5 py-2.5 transition-colors duration-200 hover:bg-terra-1 hover:text-white font-semibold text-sm inline-flex items-center gap-2"
           >
             <Sparkles className="h-4 w-4" />
             <span>Mais informações</span>
@@ -137,20 +137,16 @@ const Navbar = () => {
         "fixed inset-0 lg:hidden transition-all duration-500 ease-in-out",
         isMobileMenuOpen ? "z-[60] opacity-100 pointer-events-auto" : "-z-10 opacity-0 pointer-events-none"
       )}>
-        {/* Backdrop com blur e gradiente animado */}
-        <div 
-          className="absolute inset-0 bg-gradient-to-br from-background/98 via-primary/5 to-secondary/5 backdrop-blur-3xl transition-opacity duration-300"
+        {/* Backdrop */}
+        <div
+          className="absolute inset-0 bg-bg-light transition-opacity duration-300"
           onClick={() => setIsMobileMenuOpen(false)}
-        >
-          {/* Efeitos de fundo decorativos */}
-          <div className="absolute top-20 left-10 w-32 h-32 bg-primary/10 rounded-full blur-3xl" />
-          <div className="absolute bottom-40 right-10 w-40 h-40 bg-secondary/10 rounded-full blur-3xl" />
-        </div>
+        />
         
         {/* Menu Content - Slide from right */}
         <div className={cn(
           "absolute right-0 top-0 bottom-0 h-full flex flex-col",
-          "bg-white/95 dark:bg-gray-900/95 backdrop-blur-xl border-l border-white/20 shadow-2xl",
+          "bg-bg-light border-l border-terra-1/20",
           "w-[85vw] sm:w-80 z-10",
           "transition-transform duration-500 ease-out",
           isMobileMenuOpen ? "translate-x-0" : "translate-x-full"
@@ -181,7 +177,7 @@ const Navbar = () => {
           
           {/* Navigation Links - Scrollable */}
           <nav className="flex flex-col space-y-1 flex-1 overflow-y-auto p-4">
-            {menuItems.map((item, index) => (
+            {menuItems.map((item) => (
               <a
                 key={item.name}
                 href={item.href}
@@ -191,9 +187,6 @@ const Navbar = () => {
                   activeSection === item.id && "bg-primary/10 border border-primary/20",
                   isMobileMenuOpen ? `opacity-100 translate-x-0` : `opacity-0 translate-x-8`
                 )}
-                style={{ 
-                  transitionDelay: isMobileMenuOpen ? `${index * 70}ms` : '0ms' 
-                }}
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 <div className="flex items-center justify-between">
@@ -212,8 +205,6 @@ const Navbar = () => {
                   )}
                 </div>
                 
-                {/* Linha animada no hover */}
-                <div className="absolute bottom-0 left-4 right-4 h-0.5 bg-gradient-to-r from-transparent via-primary to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
               </a>
             ))}
 
@@ -225,9 +216,6 @@ const Navbar = () => {
                 "bg-[#1A3A6B] text-white hover:bg-[#1A3A6B]/90 hover:shadow-md active:scale-95",
                 isMobileMenuOpen ? "opacity-100 translate-x-0" : "opacity-0 translate-x-8"
               )}
-              style={{
-                transitionDelay: isMobileMenuOpen ? `${menuItems.length * 70}ms` : '0ms'
-              }}
               onClick={() => setIsMobileMenuOpen(false)}
             >
               <span className="text-xl font-semibold">Apoiar</span>
@@ -242,17 +230,13 @@ const Navbar = () => {
               rel="noopener noreferrer"
               className={cn(
                 "flex items-center justify-center gap-2 w-full px-6 py-4",
-                "bg-gradient-to-r from-primary to-primary/80 text-primary-foreground",
-                "rounded-xl font-semibold shadow-lg hover:shadow-xl hover:shadow-primary/50",
-                "transition-all duration-300 active:scale-95",
+                "bg-primary text-white rounded-sm transition-colors duration-200 hover:bg-primary-dark",
+                "font-semibold active:scale-95",
                 isMobileMenuOpen ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
               )}
-              style={{ 
-                transitionDelay: isMobileMenuOpen ? '400ms' : '0ms' 
-              }}
               onClick={() => setIsMobileMenuOpen(false)}
             >
-              <Sparkles className="h-5 w-5 animate-pulse" />
+              <Sparkles className="h-5 w-5" />
               <span>Quero saber mais</span>
             </a>
             
