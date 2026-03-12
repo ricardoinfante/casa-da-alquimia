@@ -58,10 +58,10 @@ const SpotifyPlayer: React.FC<SpotifyPlayerProps> = ({
     return (
       <button
         onClick={handleShow}
-        className="fixed bottom-6 right-6 z-50 p-4 bg-gradient-to-r from-[#1DB954] to-[#1ed760] text-white rounded-full shadow-2xl hover:shadow-green-500/50 transition-all duration-300 hover:scale-110 group"
+        className="fixed bottom-6 right-6 z-50 p-4 bg-[#1DB954] text-white rounded-sm transition-colors duration-200 group"
         aria-label="Abrir player de música"
       >
-        <Music className="h-6 w-6 animate-pulse" />
+        <Music className="h-6 w-6" />
         <span className="absolute -top-2 -right-2 bg-primary text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
           ♪
         </span>
@@ -77,7 +77,7 @@ const SpotifyPlayer: React.FC<SpotifyPlayerProps> = ({
         {!isMinimized && (
           <button
             onClick={toggleMinimize}
-            className="absolute left-1 sm:left-2 md:left-4 top-1/2 transform -translate-y-1/2 p-1.5 sm:p-2 bg-black/70 hover:bg-black/90 backdrop-blur-sm rounded-full transition-all text-white z-10 shadow-lg border border-white/20"
+            className="absolute left-1 sm:left-2 md:left-4 top-1/2 transform -translate-y-1/2 p-1.5 sm:p-2 bg-black/70 hover:bg-black/90 rounded-sm transition-all text-white z-10 border border-white/10"
             aria-label="Minimizar player"
             title="Minimizar"
           >
@@ -104,7 +104,7 @@ const SpotifyPlayer: React.FC<SpotifyPlayerProps> = ({
         {!isMinimized && (
           <button
             onClick={handleClose}
-            className="absolute right-1 sm:right-2 md:right-4 top-1/2 transform -translate-y-1/2 p-1.5 sm:p-2 bg-black/70 hover:bg-black/90 backdrop-blur-sm rounded-full transition-all text-white z-10 shadow-lg border border-white/20"
+            className="absolute right-1 sm:right-2 md:right-4 top-1/2 transform -translate-y-1/2 p-1.5 sm:p-2 bg-black/70 hover:bg-black/90 rounded-sm transition-all text-white z-10 border border-white/10"
             aria-label="Fechar player"
             title="Fechar"
           >
@@ -115,13 +115,13 @@ const SpotifyPlayer: React.FC<SpotifyPlayerProps> = ({
 
       {/* Barra para reabrir quando minimizado */}
       {isMinimized && (
-        <div className="bg-gradient-to-r from-[#191414] to-[#1DB954]">
+        <div className="bg-[#191414]">
           <button
             onClick={toggleMinimize}
             className="w-full py-2 px-4 hover:bg-black/20 transition-all flex items-center justify-center gap-2 text-white text-sm font-medium"
             aria-label="Expandir player"
           >
-            <Music className="h-4 w-4 animate-pulse" />
+            <Music className="h-4 w-4" />
             <span>🎵 Spotify Player - Clique para expandir</span>
             <Maximize2 className="h-4 w-4" />
           </button>

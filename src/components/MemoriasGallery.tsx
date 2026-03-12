@@ -118,7 +118,7 @@ const TheaterModal = ({ photos, initialIndex, onClose }: TheaterModalProps) => {
         {/* Prev arrow */}
         <button
           onClick={prev}
-          className="absolute left-5 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full flex items-center justify-center text-white text-xl cursor-pointer transition-colors duration-200 border border-white/15 hover:bg-white/[0.18]"
+          className="absolute left-5 top-1/2 -translate-y-1/2 w-12 h-12 rounded-sm flex items-center justify-center text-white text-xl cursor-pointer transition-colors duration-200 border border-white/15 hover:bg-white/[0.18]"
           style={{ background: 'rgba(255,255,255,0.08)' }}
           aria-label="Foto anterior"
         >
@@ -139,7 +139,7 @@ const TheaterModal = ({ photos, initialIndex, onClose }: TheaterModalProps) => {
         {/* Next arrow */}
         <button
           onClick={next}
-          className="absolute right-5 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full flex items-center justify-center text-white text-xl cursor-pointer transition-colors duration-200 border border-white/15 hover:bg-white/[0.18]"
+          className="absolute right-5 top-1/2 -translate-y-1/2 w-12 h-12 rounded-sm flex items-center justify-center text-white text-xl cursor-pointer transition-colors duration-200 border border-white/15 hover:bg-white/[0.18]"
           style={{ background: 'rgba(255,255,255,0.08)' }}
           aria-label="Próxima foto"
         >
