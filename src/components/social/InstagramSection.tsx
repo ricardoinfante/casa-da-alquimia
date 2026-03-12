@@ -4,7 +4,7 @@ import { Instagram } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 // Substitua pelo Widget ID gerado no painel do Behold.so
-const BEHOLD_WIDGET_ID = 'SEU_WIDGET_ID';
+const BEHOLD_WIDGET_ID = 'ubXDmyHpvag3yUZUWoPm';
 
 interface InstagramSectionProps {
   isVisible: boolean;
