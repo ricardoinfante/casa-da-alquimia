@@ -1,6 +1,10 @@
 
 import React, { useEffect } from 'react';
 import { Instagram } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+
+// Substitua pelo Widget ID gerado no painel do Behold.so
+const BEHOLD_WIDGET_ID = 'SEU_WIDGET_ID';
 
 interface InstagramSectionProps {
   isVisible: boolean;
@@ -8,10 +12,10 @@ interface InstagramSectionProps {
 
 const InstagramSection = ({ isVisible }: InstagramSectionProps) => {
   useEffect(() => {
-    // Carrega o script do Elfsight se ele ainda não foi carregado
-    if (isVisible && !document.querySelector('script[src="https://static.elfsight.com/platform/platform.js"]')) {
+    if (isVisible && !document.querySelector('script[src="https://w.behold.so/widget.js"]')) {
       const script = document.createElement('script');
-      script.src = "https://static.elfsight.com/platform/platform.js";
+      script.src = 'https://w.behold.so/widget.js';
+      script.type = 'module';
       script.async = true;
       document.body.appendChild(script);
     }
@@ -19,26 +23,37 @@ const InstagramSection = ({ isVisible }: InstagramSectionProps) => {
 
   return (
     <div id="instagram">
-      <div className="flex items-center justify-between mb-6">
-        <h3 className="text-2xl font-display font-semibold flex items-center">
-          <Instagram className="h-6 w-6 mr-2 text-azul-2" /> Instagram
-        </h3>
-        <a 
-          href="https://www.instagram.com/casadaalquimia/" 
-          target="_blank" 
+      {/* Widget container — renderizado incondicionalmente para o MutationObserver do Behold encontrar o elemento */}
+      <div className="min-h-[400px] w-full">
+        <div data-behold-id={BEHOLD_WIDGET_ID}></div>
+      </div>
+
+      {/* Rodapé do feed */}
+      <div className="flex items-center justify-between mt-4">
+        <a
+          href="https://www.instagram.com/casadaalquimia/"
+          target="_blank"
           rel="noopener noreferrer"
           className="text-highlight hover:text-highlight/80 flex items-center text-sm font-medium transition-colors link-underline"
         >
           @casadaalquimia <span className="ml-2">→</span>
         </a>
-      </div>
-      
-      <div className={`w-full ${isVisible ? 'animate-fade-in' : 'opacity-0'} min-h-[400px]`}>
-        {/* Elfsight Instagram Feed Widget */}
-        <div 
-          className="elfsight-app-2df3b6a6-94fb-48e3-b9da-42cbe0ecc8c9" 
-          data-elfsight-app-lazy
-        ></div>
+
+        <Button
+          asChild
+          variant="outline"
+          className="bg-azul-2/10 border border-azul-2/20 text-azul-2 hover:bg-azul-2/15"
+        >
+          <a
+            href="https://www.instagram.com/casadaalquimia/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-2"
+          >
+            <Instagram className="h-4 w-4" />
+            Seguir no Instagram
+          </a>
+        </Button>
       </div>
     </div>
   );
