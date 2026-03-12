@@ -49,7 +49,6 @@ casa-da-alquimia-v2/
 │   │   ├── Library.tsx                  # Biblioteca de mídia
 │   │   ├── LibraryGallery.tsx          # Grid da galeria
 │   │   ├── MediaGallery.tsx            # Modal de mídia
-│   │   ├── Shop.tsx                     # Loja virtual
 │   │   ├── AdminPanel.tsx               # Painel de admin
 │   │   ├── SocialMedia.tsx              # Agregador de redes
 │   │   ├── SpotifyPlayer.tsx            # Player Spotify
@@ -68,9 +67,7 @@ casa-da-alquimia-v2/
 │   │   └── supabase/                    # Supabase integration
 │   │       ├── client.ts                # Cliente Supabase
 │   │       ├── services.ts              # Serviços API
-│   │       │   ├── mediaLibraryService
-│   │       │   ├── shopService
-│   │       │   └── orderService
+│   │       │   └── mediaLibraryService
 │   │       └── types.ts                 # TypeScript types
 │   │
 │   ├── hooks/                           # Custom React Hooks

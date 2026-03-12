@@ -2,7 +2,7 @@
 
 ## 📋 Project Overview
 
-**Casa da Alquimia** is a modern web application for spiritual rituals, crystals, herbal tea, and aromatherapy products. It combines a beautiful landing page with integrated library (media gallery) and e-commerce functionalities.
+**Casa da Alquimia** is a modern web application for spiritual rituals, crystals, herbal tea, and aromatherapy products. It features a beautiful landing page with an integrated media library and gallery.
 
 - **Primary Branch**: `main` (stable)
 - **Development Branch**: `build-plesk` (current active)
@@ -29,7 +29,6 @@ src/
 │   ├── Library.tsx         # Media library/gallery
 │   ├── LibraryGallery.tsx  # Gallery grid component
 │   ├── MediaGallery.tsx    # Media modal viewer
-│   ├── Shop.tsx            # E-commerce store
 │   ├── AdminPanel.tsx      # Content management interface
 │   ├── SocialMedia.tsx     # Social feeds aggregator
 │   ├── SpotifyPlayer.tsx   # Spotify embed player
@@ -41,7 +40,7 @@ src/
 ├── integrations/
 │   └── supabase/
 │       ├── client.ts       # Supabase client initialization
-│       ├── services.ts     # API services (library, shop, orders)
+│       ├── services.ts     # API services (library)
 │       └── types.ts        # TypeScript types from Supabase schema
 ├── hooks/
 │   ├── use-toast.ts        # Toast notification hook
@@ -63,12 +62,11 @@ Order of sections rendered on the main page:
 3. About (company info)
 4. Rituals (product showcase)
 5. Library (media gallery)
-6. Shop (e-commerce)
-7. SocialMedia (Instagram/YouTube feeds)
-8. Testimonials (reviews & feedback)
-9. Donate (donation CTA)
-10. ContactForm (email contact)
-11. Footer
+6. SocialMedia (Instagram/YouTube feeds)
+7. Testimonials (reviews & feedback)
+8. Donate (donation CTA)
+9. ContactForm (email contact)
+10. Footer
 
 ---
 
@@ -116,10 +114,10 @@ Order of sections rendered on the main page:
 
 ### 1. **Navbar** (`Navbar.tsx`)
 - Sticky navigation with logo
-- Links to all page sections: Início → Sobre → Rituais → Biblioteca → Loja Virtual → Depoimentos → Galeria → Contato
+- Links to all page sections: Início → Sobre → Rituais → Biblioteca → Depoimentos → Galeria → Contato
 - Mobile responsive (hamburger menu on small screens)
 - Dark mode toggle
-- Links use hash routing (#about, #library, #shop, etc.)
+- Links use hash routing (#about, #library, etc.)
 
 ### 2. **Library** (`Library.tsx` + `LibraryGallery.tsx`)
 - Organize media in themed albums (Eventos, Trabalhos, Passeios, Meditações)
@@ -130,28 +128,18 @@ Order of sections rendered on the main page:
 - User upload CTA for sharing photos
 - Fully responsive & dark mode compatible
 
-### 3. **Shop** (`Shop.tsx`)
-- Product catalog with categories: Rituais, Cristais, Livros, Aromaterapia
-- Product cards with images, price, rating (star system)
-- Floating cart in bottom-right corner
-- Click product → details modal
-- "Add to Cart" functionality
-- Search/filter by category
-- **Status**: UI complete, payment integration pending (Stripe/Mercado Pago)
-
-### 4. **AdminPanel** (`AdminPanel.tsx`)
+### 3. **AdminPanel** (`AdminPanel.tsx`)
 - Create new library albums (name, description, cover image)
-- Create new products (name, category, price, image, details)
 - Upload images via base64 or URL
 - Form validation with error handling
 - **Security Note**: Currently no auth protection (TODO)
 
-### 5. **SocialMedia** (`SocialMedia.tsx`)
+### 4. **SocialMedia** (`SocialMedia.tsx`)
 - Instagram feed integration (`InstagramSection.tsx`)
 - YouTube channel integration (`YouTubeSection.tsx`)
 - Requires API keys for real data (or mock data in dev)
 
-### 6. **Additional Features**
+### 5. **Additional Features**
 - Spotify player embed
 - Customer testimonials carousel
 - Donation section with modal
@@ -189,55 +177,6 @@ Order of sections rendered on the main page:
 - updated_at (timestamp)
 ```
 
-#### `shop_products`
-```sql
-- id (UUID, PK)
-- name (text)
-- description (text)
-- details (text) -- Full product description
-- price (numeric)
-- stock (integer)
-- image (text) -- Main image URL
-- category (enum: 'rituais' | 'cristais' | 'livros' | 'aromaterapia')
-- rating (numeric 0-5)
-- reviews (integer)
-- created_at (timestamp)
-- updated_at (timestamp)
-```
-
-#### `shop_product_images`
-```sql
-- id (UUID, PK)
-- product_id (UUID, FK → shop_products)
-- image_url (text)
-- created_at (timestamp)
-```
-
-#### `shop_orders`
-```sql
-- id (UUID, PK)
-- user_id (UUID, FK → auth.users, optional)
-- customer_name (text)
-- customer_email (text)
-- items (JSONB) -- Cart items array
-- total (numeric)
-- status (enum: 'pending' | 'processing' | 'shipped' | 'delivered')
-- payment_status (enum: 'unpaid' | 'paid' | 'refunded')
-- stripe_payment_id (text)
-- shipping_address (text)
-- created_at (timestamp)
-- updated_at (timestamp)
-```
-
-#### `shop_reviews`
-```sql
-- id (UUID, PK)
-- product_id (UUID, FK → shop_products)
-- user_email (text)
-- rating (integer 1-5)
-- comment (text)
-- created_at (timestamp)
-```
 
 ### Storage Buckets
 
@@ -245,9 +184,6 @@ Order of sections rendered on the main page:
   - Structure: `{album-id}/{media-file}`
   - Supports: images, videos
 
-- **shop-images/** (public)
-  - Structure: `products/{product-id}/{image-file}`
-  - For product images
 
 ### Row Level Security (RLS)
 
@@ -271,22 +207,6 @@ Order of sections rendered on the main page:
 - deleteMedia(mediaId, filePath) → Promise<void>
 ```
 
-#### `shopService`
-```typescript
-- getProducts(category?) → Promise<Product[]>
-- getProductById(productId) → Promise<Product>
-- createProduct(product) → Promise<Product>
-- updateProduct(productId, updates) → Promise<Product>
-- uploadProductImage(file, productId) → Promise<ProductImage>
-- deleteProduct(productId) → Promise<void>
-```
-
-#### `orderService`
-```typescript
-- createOrder(order) → Promise<Order>
-- getUserOrders(userEmail) → Promise<Order[]>
-- updateOrderStatus(orderId, status) → Promise<Order>
-```
 
 ### Client Setup (`client.ts`)
 
@@ -452,20 +372,6 @@ npm run preview
 npm lint
 ```
 
-### Adding a New Product to Shop
-```typescript
-import { shopService } from '@/integrations/supabase/services';
-
-const newProduct = await shopService.createProduct({
-  name: 'Crystal Set',
-  description: 'Beautiful crystal collection',
-  price: 99.99,
-  category: 'cristais',
-  stock: 50,
-  image: 'https://...',
-  details: 'Full description here'
-});
-```
 
 ### Adding Media to Library
 ```typescript
@@ -719,7 +625,7 @@ import { cn } from '@/lib/utils';
 import { Toaster, useToast } from '@/hooks/use-toast';
 
 // Services
-import { shopService, mediaLibraryService, orderService } from '@/integrations/supabase/services';
+import { mediaLibraryService } from '@/integrations/supabase/services';
 
 // Icons
 import { Heart, ShoppingCart, Search } from 'lucide-react';
@@ -776,4 +682,4 @@ tree src -I 'node_modules' -L 2
 
 **Last Updated**: 2026-03-11
 **Project Status**: Feature-complete, production-ready
-**Next Priority**: Payment integration (Stripe/Mercado Pago)
+**Next Priority**: Continued feature enhancement and optimization
