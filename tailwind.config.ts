@@ -63,6 +63,15 @@ export default {
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
 				},
+				// Paleta de cores do projeto (nova — tokens adicionais, flat keys)
+				'primary-dark':	   '#1A3A6B',
+				'secondary-light': '#8FA85C',
+				'bg-agua':		     '#D4E8D8',
+				'bg-light':		     '#F0F5EC',
+				'dark':			         '#2C2C1E',
+				'terra-1':	         '#934211',
+				'terra-2':	         '#7A4900',
+				'terra-3':	         '#B5771C',
 				// Paleta de cores do projeto
 				azul: {
 					1: '#8BB6CC',
@@ -132,9 +141,14 @@ export default {
 				lato: ['Lato', 'sans-serif'],
 			},
 			borderRadius: {
-				lg: 'var(--radius)',
-				md: 'calc(var(--radius) - 2px)',
-				sm: 'calc(var(--radius) - 4px)'
+				sm: '2px',
+				DEFAULT: '4px',
+				md: '6px',
+				lg: '8px',
+				xl: '12px',
+				'2xl': '16px',
+				'3xl': '24px',
+				full: '9999px',
 			},
 			keyframes: {
 				'accordion-down': {
