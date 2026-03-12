@@ -4,7 +4,7 @@ import ContactForm from '@/components/ContactForm';
 import Donate from '@/components/Donate';
 import Footer from '@/components/Footer';
 import Hero from '@/components/Hero';
-import LibraryGallery from '@/components/LibraryGallery';
+import MemoriasGallery from '@/components/MemoriasGallery';
 import Navbar from '@/components/Navbar';
 import Rituals from '@/components/Rituals';
 import SocialMedia from '@/components/SocialMedia';
@@ -42,7 +42,7 @@ const Index = () => {
         <Hero />
         <About />
         <Rituals />
-        <LibraryGallery />
+        <MemoriasGallery />
         <SocialMedia />
       
       {/* Testimonials Section */}
