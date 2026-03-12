@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { createPortal } from 'react-dom';
+import { useEffect, useRef, useState } from 'react';
 
 type Photo = {
   id: number;
@@ -32,6 +33,143 @@ const PHOTOS: Photo[] = [
   { id: 19, src: '/img/feitio2025/WhatsApp_Image_2025-12-30_at_17.28.38.jpeg',  alt: 'Feitio — celebração' },
   { id: 20, src: '/img/feitio2025/WhatsApp_Image_2025-12-29_at_08.24.10.jpeg',  alt: 'Feitio — manhã' },
 ];
+
+type TheaterModalProps = {
+  photos: Photo[];
+  initialIndex: number;
+  onClose: () => void;
+};
+
+const TheaterModal = ({ photos, initialIndex, onClose }: TheaterModalProps) => {
+  const [current, setCurrent] = useState(initialIndex);
+  const thumbRefs = useRef<(HTMLButtonElement | null)[]>([]);
+  const touchStartX = useRef<number | null>(null);
+
+  const total = photos.length;
+  const prev = () => setCurrent((c) => (c - 1 + total) % total);
+  const next = () => setCurrent((c) => (c + 1) % total);
+
+  // Scroll lock
+  useEffect(() => {
+    document.body.style.overflow = 'hidden';
+    return () => { document.body.style.overflow = ''; };
+  }, []);
+
+  // Keyboard navigation
+  useEffect(() => {
+    const handler = (e: KeyboardEvent) => {
+      if (e.key === 'ArrowLeft')  prev();
+      if (e.key === 'ArrowRight') next();
+      if (e.key === 'Escape')     onClose();
+    };
+    window.addEventListener('keydown', handler);
+    return () => window.removeEventListener('keydown', handler);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [onClose]);
+  // Nota: `prev` e `next` usam functional setState updaters e não capturam estado stale.
+  // `onClose` é prop e está listado. Se lint reclamar de `prev`/`next`, ignorar — é seguro.
+
+  // Scroll active thumbnail into view
+  useEffect(() => {
+    thumbRefs.current[current]?.scrollIntoView({
+      behavior: 'smooth',
+      block: 'nearest',
+      inline: 'center',
+    });
+  }, [current]);
+
+  // Touch swipe
+  const handleTouchStart = (e: React.TouchEvent) => {
+    touchStartX.current = e.touches[0].clientX;
+  };
+  const handleTouchEnd = (e: React.TouchEvent) => {
+    if (touchStartX.current === null) return;
+    const delta = e.changedTouches[0].clientX - touchStartX.current;
+    if (Math.abs(delta) > 50) delta < 0 ? next() : prev();
+    touchStartX.current = null;
+  };
+
+  return (
+    <div
+      className="fixed inset-0 z-[9999] flex flex-col items-center justify-center"
+      style={{ background: 'rgba(28,28,20,0.96)' }}
+      onTouchStart={handleTouchStart}
+      onTouchEnd={handleTouchEnd}
+    >
+      {/* Click outside to close */}
+      <div className="absolute inset-0 -z-10" onClick={onClose} aria-hidden="true" />
+
+      {/* Close button */}
+      <button
+        onClick={onClose}
+        className="absolute top-5 right-6 text-white/70 hover:text-white text-3xl leading-none bg-transparent border-none cursor-pointer z-10"
+        aria-label="Fechar"
+      >
+        ✕
+      </button>
+
+      {/* Counter */}
+      <div className="absolute top-5 left-1/2 -translate-x-1/2 text-white/50 text-sm tracking-widest select-none">
+        {current + 1} de {total}
+      </div>
+
+      {/* Main image area */}
+      <div className="flex-1 flex items-center justify-center w-full relative">
+        {/* Prev arrow */}
+        <button
+          onClick={prev}
+          className="absolute left-5 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full flex items-center justify-center text-white text-xl cursor-pointer transition-colors duration-200 border border-white/15 hover:bg-white/[0.18]"
+          style={{ background: 'rgba(255,255,255,0.08)' }}
+          aria-label="Foto anterior"
+        >
+          ‹
+        </button>
+
+        {/* Photo */}
+        <img
+          src={photos[current].src}
+          alt={photos[current].alt}
+          className="rounded-[4px] object-contain"
+          style={{
+            maxHeight: 'calc(100vh - 180px)',
+            maxWidth: 'calc(100vw - 140px)',
+          }}
+        />
+
+        {/* Next arrow */}
+        <button
+          onClick={next}
+          className="absolute right-5 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full flex items-center justify-center text-white text-xl cursor-pointer transition-colors duration-200 border border-white/15 hover:bg-white/[0.18]"
+          style={{ background: 'rgba(255,255,255,0.08)' }}
+          aria-label="Próxima foto"
+        >
+          ›
+        </button>
+      </div>
+
+      {/* Thumbnail strip */}
+      <div className="flex gap-1.5 px-6 pb-5 overflow-x-auto max-w-full">
+        {photos.map((photo, i) => (
+          <button
+            key={photo.id}
+            ref={(el) => { thumbRefs.current[i] = el; }}
+            onClick={() => setCurrent(i)}
+            className="flex-shrink-0 overflow-hidden rounded-[3px] cursor-pointer bg-transparent border-0 p-0"
+            style={{
+              width: '52px',
+              height: '52px',
+              outline: i === current ? '2px solid #C9A84C' : '2px solid transparent',
+              outlineOffset: '1px',
+            }}
+            aria-label={`Ir para foto ${i + 1}`}
+          >
+            <img src={photo.src} alt={photo.alt} className="w-full h-full object-cover" />
+          </button>
+        ))}
+      </div>
+    </div>
+  );
+};
 
 const MemoriasGallery = () => {
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
@@ -70,6 +208,17 @@ const MemoriasGallery = () => {
           </div>
         ))}
       </div>
+      {/* Theater Modal */}
+      {selectedIndex !== null &&
+        createPortal(
+          <TheaterModal
+            photos={PHOTOS}
+            initialIndex={selectedIndex}
+            onClose={() => setSelectedIndex(null)}
+          />,
+          document.body
+        )
+      }
     </section>
   );
 };
