@@ -91,12 +91,20 @@ const Navbar = () => {
             </a>
           ))}
           
+          {/* Apoiar Button */}
+          <a
+            href="#donate"
+            className="ml-2 px-5 py-2.5 bg-[#1A3A6B] text-white rounded-full font-semibold text-sm shadow-lg hover:shadow-xl hover:shadow-[#1A3A6B]/50 transition-all duration-300 hover:scale-105 inline-flex items-center gap-2"
+          >
+            <span>Apoiar</span>
+          </a>
+
           {/* CTA Button */}
           <a
             href="https://wa.me/5562996538902?text=Ol%C3%A1!%20Gostaria%20de%20conhecer%20e%20saber%20mais%20informa%C3%A7%C3%B5es%20sobre%20os%20trabalhos%20da%20Casa%20da%20Alquimia."
             target="_blank"
             rel="noopener noreferrer"
-            className="ml-4 px-5 py-2.5 bg-primary text-primary-foreground rounded-full font-semibold text-sm shadow-lg hover:shadow-xl hover:shadow-primary/50 transition-all duration-300 hover:scale-105 inline-flex items-center gap-2"
+            className="ml-2 px-5 py-2.5 bg-primary text-primary-foreground rounded-full font-semibold text-sm shadow-lg hover:shadow-xl hover:shadow-primary/50 transition-all duration-300 hover:scale-105 inline-flex items-center gap-2"
           >
             <Sparkles className="h-4 w-4" />
             <span>Mais informações</span>
@@ -208,8 +216,24 @@ const Navbar = () => {
                 <div className="absolute bottom-0 left-4 right-4 h-0.5 bg-gradient-to-r from-transparent via-primary to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
               </a>
             ))}
+
+            {/* Apoiar Button */}
+            <a
+              href="#donate"
+              className={cn(
+                "group relative p-4 rounded-xl text-left transition-all duration-300",
+                "bg-[#1A3A6B] text-white hover:bg-[#1A3A6B]/90 hover:shadow-md active:scale-95",
+                isMobileMenuOpen ? "opacity-100 translate-x-0" : "opacity-0 translate-x-8"
+              )}
+              style={{
+                transitionDelay: isMobileMenuOpen ? `${menuItems.length * 70}ms` : '0ms'
+              }}
+              onClick={() => setIsMobileMenuOpen(false)}
+            >
+              <span className="text-xl font-semibold">Apoiar</span>
+            </a>
           </nav>
-          
+
           {/* CTA no mobile - Sticky bottom */}
           <div className="p-4 border-t border-foreground/10 bg-white/50 dark:bg-gray-800/50">
             <a
