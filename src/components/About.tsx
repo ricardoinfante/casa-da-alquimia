@@ -27,14 +27,8 @@ const About = () => {
     <section 
       id="about" 
       ref={sectionRef}
-      className="py-20 md:py-32 bg-gradient-to-b from-background via-muted/30 to-background relative overflow-hidden"
+      className="py-20 md:py-32 bg-bg-agua relative overflow-hidden"
     >
-      {/* Background decorativo */}
-      <div className="absolute inset-0 opacity-5">
-        <div className="absolute top-1/4 right-1/4 w-96 h-96 bg-primary rounded-full blur-3xl" />
-        <div className="absolute bottom-1/4 left-1/4 w-96 h-96 bg-secondary rounded-full blur-3xl" />
-      </div>
-      
       <div className="section-container relative z-10">
         {/* Layout assimétrico moderno */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-center">
@@ -43,14 +37,14 @@ const About = () => {
             <div className="relative group">
               {/* Card com imagem limpa */}
               <div 
-                className={`relative overflow-hidden rounded-3xl shadow-2xl transition-all duration-1000 ${
+                className={`relative overflow-hidden rounded-sm transition-all duration-1000 ${
                   isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
                 }`}
               >
                 <img 
                   src="/lovable-uploads/ac57f24e-68d6-46c2-aafc-a7107053254a.png" 
                   alt="Arte representando a alquimia espiritual" 
-                  className="w-full h-auto object-cover transform group-hover:scale-105 transition-transform duration-700" 
+                  className="w-full h-auto object-cover transform"
                   loading="eager"
                   onError={(e) => {
                     console.error('Erro ao carregar imagem About');
@@ -58,16 +52,11 @@ const About = () => {
                   }}
                 />
                 
-                {/* Gradiente sutil apenas nas bordas para profundidade */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent pointer-events-none" />
               </div>
               
-              {/* Elementos decorativos 3D */}
-              <div className="absolute -top-8 -right-8 w-32 h-32 bg-accent/30 rounded-full blur-2xl animate-pulse-gentle" />
-              <div className="absolute -bottom-8 -left-8 w-40 h-40 bg-primary/20 rounded-full blur-3xl animate-pulse-gentle" style={{ animationDelay: '1s' }} />
               
               {/* Badge flutuante */}
-              <div className="absolute top-6 left-6 bg-white/90 dark:bg-gray-800/90 backdrop-blur-xl px-4 py-2 rounded-full shadow-lg">
+              <div className="absolute top-6 left-6 bg-white border border-terra-1/20 px-4 py-2 rounded-full">
                 <span className="text-sm font-semibold text-primary flex items-center gap-2">
                   <Leaf className="h-4 w-4" />
                   Espaço Sagrado
@@ -84,15 +73,14 @@ const About = () => {
               }`}
             >
               {/* Badge moderno */}
-              <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-secondary/10 border border-secondary/20 text-secondary text-sm font-semibold mb-6">
-                <Leaf className="h-4 w-4" />
-                <span>A Casa da Alquimia</span>
+              <span className="inline-flex items-center px-3 py-1 rounded-sm text-[11px] font-bold uppercase tracking-[0.2em] bg-secondary/10 text-terra-1 mb-6">
+                Sobre Nós
               </span>
               
               {/* Título limpo e legível */}
               <h2 className="text-4xl md:text-5xl lg:text-6xl font-display font-bold mb-6 leading-tight text-foreground dark:text-white">
                 Um Lugar Para Quem Quer{' '}
-                <span className="bg-gradient-to-r from-primary via-accent to-secondary bg-clip-text text-transparent">
+                <span className="text-primary-dark">
                   Meditar
                 </span>
               </h2>
@@ -116,9 +104,9 @@ const About = () => {
                 ].map((item, index) => (
                   <div 
                     key={index}
-                    className="group p-4 rounded-2xl bg-white/50 backdrop-blur-sm border border-white/20 hover:border-primary/30 shadow-sm hover:shadow-lg transition-all duration-300 hover:scale-105"
+                    className="group p-4 rounded-2xl bg-white border border-terra-1/20 transition-colors duration-200 hover:border-terra-1/40"
                   >
-                    <item.icon className={`h-6 w-6 text-${item.color} mb-2 group-hover:scale-110 transition-transform`} />
+                    <item.icon className={`h-6 w-6 text-${item.color} mb-2`} />
                     <p className="text-sm font-semibold text-foreground">{item.label}</p>
                   </div>
                 ))}
