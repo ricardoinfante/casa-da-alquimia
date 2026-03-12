@@ -21,8 +21,8 @@ A galeria exibe até 20 fotos selecionadas em um grid masonry (estilo colagem), 
 |---------|------|
 | `src/components/MemoriasGallery.tsx` | **Criar** — componente principal |
 | `src/pages/Index.tsx` | **Editar** — trocar `<LibraryGallery />` por `<MemoriasGallery />` |
-| `src/components/Navbar.tsx` | **Editar** — link "Biblioteca de Memórias" → "Memórias" (`#memorias`) |
-| `src/components/LibraryGallery.tsx` | **Remover** do `Index.tsx` (arquivo pode ser mantido mas não importado) |
+| `src/components/Navbar.tsx` | **Editar** — link "Biblioteca de Memórias" → "Memórias" (`#memorias`), atualizar `id` de `'biblioteca'` para `'memorias'`, e adicionar `'memorias'` ao array `sections` de detecção de seção ativa |
+| `src/components/LibraryGallery.tsx` | **Deletar** o arquivo — não é mais utilizado |
 
 ### Sem novas dependências
 
@@ -91,7 +91,7 @@ MEMÓRIAS              ← uppercase, letra-espaçada, Preto Orgânico (#2C2C1E)
 ```
 
 - Background da seção: Branco Esverdeado (`#F0F5EC`)
-- Padding generoso acima e abaixo
+- Padding: `py-16 md:py-24` (acima e abaixo)
 
 ---
 
@@ -128,6 +128,38 @@ MEMÓRIAS              ← uppercase, letra-espaçada, Preto Orgânico (#2C2C1E)
 const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
 // null = fechado; número = índice da foto aberta
 ```
+
+### Scroll lock do body
+Ao abrir o theater: `document.body.style.overflow = 'hidden'`
+Ao fechar: `document.body.style.overflow = ''`
+Isso previne scroll do body atrás do overlay (especialmente no iOS).
+
+### Scroll automático do thumbnail ativo
+Usar `useRef` em cada thumbnail. Ao mudar `selectedIndex`, chamar:
+```ts
+thumbRefs.current[selectedIndex]?.scrollIntoView({
+  behavior: 'smooth',
+  block: 'nearest',
+  inline: 'center',
+});
+```
+
+### Loading e erros de imagem
+- Imagens carregam com `loading="lazy"` no grid
+- Em caso de erro (`onError`): substituir por um placeholder cinza neutro
+- No theater mode: não é necessário skeleton — a imagem carrega rapidamente pois já foi pré-carregada no grid
+
+### Swipe em mobile (theater)
+Suporte a swipe horizontal no theater via touch events:
+- `touchstart`: registrar `clientX` inicial
+- `touchend`: calcular delta; se `|delta| > 50px`, navegar para a direção
+- Sem biblioteca externa — eventos nativos do React
+
+### Nomenclatura dos arquivos de imagem
+Atenção: os arquivos em `/public/img/` usam dois padrões de nomes:
+- Com espaços: `WhatsApp Image 2026-01-05 at 18.22.56.jpeg`
+- Com underscores: `WhatsApp_Image_2026-01-05_at_18.22.56.jpeg`
+Verificar o nome exato no sistema de arquivos antes de adicionar ao array `PHOTOS`.
 
 ---
 
