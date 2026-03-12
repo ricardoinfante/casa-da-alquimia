@@ -4,8 +4,6 @@ import { useEffect, useState } from 'react';
 const Hero = () => {
   const [isLoaded, setIsLoaded] = useState(false);
   const [imageLoaded, setImageLoaded] = useState(false);
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-  
   useEffect(() => {
     setIsLoaded(true);
 
@@ -21,18 +19,6 @@ const Hero = () => {
     };
   }, []);
   
-  // Parallax effect no mouse
-  useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      const x = (e.clientX / window.innerWidth - 0.5) * 20;
-      const y = (e.clientY / window.innerHeight - 0.5) * 20;
-      setMousePosition({ x, y });
-    };
-    
-    window.addEventListener('mousemove', handleMouseMove);
-    return () => window.removeEventListener('mousemove', handleMouseMove);
-  }, []);
-  
   return (
     <section 
       id="hero" 
@@ -41,10 +27,10 @@ const Hero = () => {
       {/* Background com parallax */}
       <div className="absolute inset-0 z-0">
         {/* Gradiente overlay moderno */}
-        <div className="absolute inset-0 bg-gradient-to-br from-background via-primary/5 to-secondary/10 z-10"></div>
+        <div className="absolute inset-0 bg-bg-light/60"></div>
         
         {imageLoaded ? (
-          <div 
+          <div
             className="w-full h-full transition-all duration-1000"
             style={{
               backgroundImage: `url('/lovable-uploads/87b219fd-f859-454f-af75-028b033d0a5a.png')`,
@@ -52,64 +38,40 @@ const Hero = () => {
               backgroundPosition: 'center',
               opacity: isLoaded ? 0.4 : 0,
               filter: isLoaded ? 'blur(0) grayscale(20%)' : 'blur(8px)',
-              transform: `translate(${mousePosition.x * 0.5}px, ${mousePosition.y * 0.5}px) scale(1.1)`,
             }}
           />
         ) : (
-          <div className="w-full h-full bg-gradient-to-br from-primary/30 via-secondary/20 to-accent/30" />
+          <div className="w-full h-full bg-bg-agua" />
         )}
       </div>
       
-      {/* Partículas flutuantes decorativas */}
-      <div className="absolute inset-0 z-[5]">
-        <div 
-          className="absolute top-1/4 left-[10%] w-64 h-64 bg-primary/20 rounded-full blur-3xl animate-float"
-          style={{ animationDelay: "0s", transform: `translate(${mousePosition.x}px, ${mousePosition.y}px)` }}
-        />
-        <div 
-          className="absolute top-1/3 right-[15%] w-80 h-80 bg-secondary/15 rounded-full blur-3xl animate-float"
-          style={{ animationDelay: "2s", transform: `translate(${-mousePosition.x}px, ${-mousePosition.y}px)` }}
-        />
-        <div 
-          className="absolute bottom-1/4 left-[20%] w-72 h-72 bg-accent/15 rounded-full blur-3xl animate-float"
-          style={{ animationDelay: "4s", transform: `translate(${mousePosition.x * 0.5}px, ${mousePosition.y * 0.5}px)` }}
-        />
-      </div>
       
       {/* Conteúdo principal */}
       <div className="container mx-auto px-6 md:px-8 relative z-20 text-center">
         <div className={`transition-all duration-1000 delay-300 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
           {/* Badge moderno com glassmorphism */}
           <div className="flex justify-center mb-8">
-            <span className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white/90 dark:bg-gray-800/90 backdrop-blur-xl border border-white/20 dark:border-gray-600/50 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
-              <Sparkles className="h-4 w-4 text-primary animate-pulse" />
+            <span className="inline-flex items-center gap-2 px-3 py-1 rounded-sm bg-secondary/10 border border-terra-1/20">
+              <Sparkles className="h-4 w-4 text-primary" />
               <span className="text-sm font-semibold text-foreground dark:text-white">Arte representando a alquimia espiritual</span>
             </span>
           </div>
           
           {/* Título legível em todos os modos */}
-          <h1 className="font-display text-5xl md:text-7xl lg:text-8xl font-bold mb-6 tracking-tight text-foreground dark:text-white drop-shadow-[0_4px_12px_rgba(0,0,0,0.8)] dark:drop-shadow-[0_4px_12px_rgba(0,0,0,1)]">
+          <h1 className="font-display text-5xl md:text-7xl lg:text-8xl font-bold mb-6 tracking-tight text-foreground dark:text-white">
             Espaço Sagrado<br />
             <span className="text-primary dark:text-accent">
               A Casa da Alquimia
             </span>
           </h1>
 
-          <h2 className="text-xl md:text-2xl mb-6 font-semibold text-foreground/70">Um Lugar Para Quem Quer Meditar</h2>
-
-          {/* Descrição longa */}
-          <p className="max-w-3xl mx-auto text-sm md:text-base mb-8 leading-relaxed text-foreground dark:text-white">
-            Nascemos do profundo desejo de criar um espaço de silêncio e interiorização para que o autoconhecimento se faça possível como prática de vida.
-          </p>
-          <p className="max-w-3xl mx-auto text-sm md:text-base mb-12 leading-relaxed text-foreground/70">
-            Fundada por buscadores espirituais com décadas de experiência em trabalhos com plantas de poder, nossa comunidade dedica-se a proporcionar um espaço seguro para as transformações individuais acontecerem em toda a sua potencialidade. Fazemos isso por meio de ferramentas, como meditação, terapias de introspecção e de contato com a natureza e, também, por meio de rituais com ayahuasca.
-          </p>
+          <h2 className="text-xl md:text-2xl mb-12 font-semibold text-foreground/70">Um Lugar Para Quem Quer Meditar</h2>
           
           {/* CTAs modernos */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
             <a 
               href="#rituals"
-              className="group px-8 py-4 bg-primary text-primary-foreground rounded-full font-semibold shadow-lg hover:shadow-2xl hover:shadow-primary/50 transition-all duration-300 hover:scale-105 inline-flex items-center gap-2"
+              className="group px-8 py-4 bg-primary text-white rounded-sm font-semibold transition-colors duration-200 hover:bg-primary-dark inline-flex items-center gap-2"
             >
               <Calendar className="h-5 w-5" />
               <span>Conhecer nossos rituais</span>
@@ -120,7 +82,7 @@ const Hero = () => {
               href="https://wa.me/5562996538902?text=Ol%C3%A1!%20Gostaria%20de%20conhecer%20e%20saber%20mais%20informa%C3%A7%C3%B5es%20sobre%20os%20trabalhos%20da%20Casa%20da%20Alquimia."
               target="_blank"
               rel="noopener noreferrer"
-              className="px-8 py-4 bg-white/90 dark:bg-gray-800/90 backdrop-blur-xl text-foreground dark:text-white rounded-full font-semibold border-2 border-white/20 dark:border-gray-600/50 hover:border-primary/50 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 inline-flex items-center gap-2"
+              className="px-8 py-4 border border-terra-1 text-terra-1 rounded-sm font-semibold transition-colors duration-200 hover:bg-terra-1 hover:text-white inline-flex items-center gap-2"
             >
               <Heart className="h-5 w-5 text-accent" />
               <span>Quero saber mais</span>
@@ -137,7 +99,7 @@ const Hero = () => {
         >
           <span className="text-xs uppercase tracking-wider font-medium">Role para explorar</span>
           <div className="w-6 h-10 rounded-full border-2 border-current flex items-start justify-center p-2">
-            <div className="w-1 h-2 bg-current rounded-full animate-bounce" />
+            <div className="w-1 h-2 bg-current rounded-full" />
           </div>
         </a>
       </div>
