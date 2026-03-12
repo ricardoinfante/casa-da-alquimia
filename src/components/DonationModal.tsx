@@ -16,12 +16,12 @@ const DonationModalContainer: React.FC<{
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
       {/* Backdrop */}
       <div
-        className="absolute inset-0 bg-black/40 backdrop-blur-sm"
+        className="absolute inset-0 bg-black/40"
         onClick={onClose}
       ></div>
 
       {/* Modal */}
-      <div className="relative bg-white rounded-2xl shadow-xl max-w-md w-full max-h-[90vh] overflow-auto animate-scale-in">
+      <div className="relative bg-white rounded-sm max-w-md w-full max-h-[90vh] overflow-auto animate-scale-in">
         <button
           onClick={onClose}
           className="absolute top-4 right-4 text-foreground/60 hover:text-foreground transition-colors"

@@ -85,19 +85,19 @@ ${formData.message}
   };
 
   return (
-    <section id="contact-form" className="py-16 md:py-24 bg-gradient-to-b from-background to-muted/30 relative overflow-hidden">
+    <section id="contact-form" className="py-16 md:py-24 relative overflow-hidden">
       <div className="absolute inset-0 bg-noise opacity-5"></div>
       
       <div className="section-container relative z-10">
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-12">
             <span className="chip inline-flex items-center gap-1 mb-4">
-              <Mail className="h-3 w-3 text-azul-2" />
+              <Mail className="h-3 w-3 text-primary" />
               <span>Entre em contato</span>
             </span>
             <h2 className="text-3xl md:text-4xl font-display font-bold mb-6">
               Tem alguma dúvida?
-              <span className="gradient-heading ml-2 block md:inline">Fale conosco</span>
+              <span className="ml-2 block md:inline">Fale conosco</span>
             </h2>
             <p className="text-foreground/80 text-lg max-w-2xl mx-auto">
               Preencha o formulário abaixo e entraremos em contato o mais breve possível 
@@ -105,11 +105,11 @@ ${formData.message}
             </p>
           </div>
 
-          <form onSubmit={handleSubmit} className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 md:p-10 shadow-lg border border-muted">
+          <form onSubmit={handleSubmit} className="bg-white rounded-sm p-6 md:p-10 border border-terra-1/20">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
               <div>
                 <label htmlFor="name" className="text-sm font-medium text-foreground/80 dark:text-gray-300 mb-2 flex items-center gap-2">
-                  <User className="h-4 w-4 text-azul-2" />
+                  <User className="h-4 w-4 text-primary" />
                   Nome completo *
                 </label>
                 <input
@@ -127,7 +127,7 @@ ${formData.message}
 
               <div>
                 <label htmlFor="email" className="text-sm font-medium text-foreground/80 dark:text-gray-300 mb-2 flex items-center gap-2">
-                  <Mail className="h-4 w-4 text-azul-2" />
+                  <Mail className="h-4 w-4 text-primary" />
                   E-mail *
                 </label>
                 <input
@@ -146,7 +146,7 @@ ${formData.message}
 
             <div className="mb-6">
               <label htmlFor="phone" className="text-sm font-medium text-foreground/80 dark:text-gray-300 mb-2 flex items-center gap-2">
-                <Phone className="h-4 w-4 text-azul-2" />
+                <Phone className="h-4 w-4 text-primary" />
                 Telefone (opcional)
               </label>
               <input
@@ -162,7 +162,7 @@ ${formData.message}
 
             <div className="mb-6">
               <label htmlFor="message" className="text-sm font-medium text-foreground/80 dark:text-gray-300 mb-2 flex items-center gap-2">
-                <MessageSquare className="h-4 w-4 text-azul-2" />
+                <MessageSquare className="h-4 w-4 text-primary" />
                 Mensagem *
               </label>
               <textarea
@@ -187,12 +187,12 @@ ${formData.message}
                 type="submit"
                 disabled={isSubmitting || isSuccess}
                 className={`
-                  px-8 py-3 rounded-full font-semibold transition-all flex items-center gap-2 shadow-lg hover:shadow-xl
-                  ${isSuccess 
-                    ? 'bg-green-600 text-white' 
-                    : 'bg-green-600 text-white hover:bg-green-700'
+                  bg-primary text-white rounded-sm px-6 py-3 transition-colors duration-200 hover:bg-primary-dark font-semibold flex items-center gap-2
+                  ${isSuccess
+                    ? 'bg-green-600 text-white'
+                    : ''
                   }
-                  ${isSubmitting ? 'opacity-70 cursor-not-allowed' : 'hover:scale-105'}
+                  ${isSubmitting ? 'opacity-70 cursor-not-allowed' : ''}
                 `}
                 aria-label={isSubmitting ? "Processando mensagem" : "Enviar mensagem"}
               >
@@ -218,7 +218,7 @@ ${formData.message}
               </button>
             </div>
 
-            <div className="mt-6 p-4 bg-gradient-to-r from-green-50 to-blue-50 dark:from-green-900/20 dark:to-blue-900/20 rounded-lg border border-green-200 dark:border-green-800">
+            <div className="mt-6 p-4 bg-secondary/10 rounded-sm border border-terra-1/20">
               <div className="flex items-start gap-3">
                 <div className="flex gap-1 flex-shrink-0 mt-0.5">
                   <Mail className="h-5 w-5 text-blue-600 dark:text-blue-400" />

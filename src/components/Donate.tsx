@@ -6,11 +6,10 @@ const Donate = () => {
 
   return (
     <section id="donate" className="py-16 md:py-24 relative overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-to-r from-azul-1/40 to-azul-1/20"></div>
       <div className="absolute inset-0 bg-noise opacity-5"></div>
 
       <div className="section-container relative z-10 flex justify-center">
-        <div className="p-6 md:p-8 bg-white/70 backdrop-blur-sm rounded-xl border border-muted shadow-sm max-w-lg w-full text-center">
+        <div className="p-6 md:p-8 bg-white border border-terra-1/20 rounded-sm max-w-lg w-full text-center">
           <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#934211] mb-3">
             Apoio
           </p>
@@ -22,7 +21,7 @@ const Donate = () => {
           </p>
           <button
             onClick={() => setIsModalOpen(true)}
-            className="w-full px-6 py-3 bg-azul-2 text-white rounded-full font-medium hover:bg-azul-2/90 transition-all"
+            className="w-full bg-primary text-white rounded-sm px-6 py-3 transition-colors duration-200 hover:bg-primary-dark font-medium"
           >
             Quero apoiar
           </button>
