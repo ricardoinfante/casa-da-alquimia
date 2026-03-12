@@ -104,3 +104,27 @@ export const mediaLibraryService = {
     if (error) throw error;
   },
 };
+
+// ============ DONATIONS ============
+
+export async function saveDonation(data: {
+  donor_name: string;
+  donor_email: string;
+  amount: number;
+  payment_method: 'pix' | 'bank-transfer';
+}): Promise<void> {
+  const { error } = await supabase
+    .from('donations')
+    .insert([
+      {
+        donor_name: data.donor_name,
+        donor_email: data.donor_email,
+        amount: data.amount,
+        payment_method: data.payment_method,
+        donation_type: 'one-time',
+        payment_status: 'pending',
+      },
+    ]);
+
+  if (error) throw error;
+}
