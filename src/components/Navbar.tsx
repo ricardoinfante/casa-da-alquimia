@@ -117,7 +117,6 @@ const Navbar = () => {
           className={cn(
             "lg:hidden p-3 rounded-xl transition-all duration-300",
             "hover:bg-primary/10 active:scale-90",
-            "shadow-md hover:shadow-lg",
             isMobileMenuOpen 
               ? "bg-primary text-primary-foreground rotate-90" 
               : "bg-white/80 text-foreground"
@@ -152,7 +151,7 @@ const Navbar = () => {
           isMobileMenuOpen ? "translate-x-0" : "translate-x-full"
         )}>
           {/* Header do menu */}
-          <div className="flex items-center justify-between p-6 border-b border-foreground/10 bg-white/50 dark:bg-gray-800/50">
+          <div className="flex items-center justify-between p-6 border-b border-foreground/10 bg-bg-light">
             <Link 
               to="/" 
               className="flex items-center gap-2 font-display text-lg"
@@ -182,8 +181,8 @@ const Navbar = () => {
                 key={item.name}
                 href={item.href}
                 className={cn(
-                  "group relative p-4 rounded-xl text-left transition-all duration-300",
-                  "hover:bg-white/70 dark:hover:bg-gray-700/70 hover:shadow-md active:scale-95",
+                  "group relative p-4 rounded-sm text-left transition-all duration-300",
+                  "hover:bg-white/70 dark:hover:bg-gray-700/70 active:scale-95",
                   activeSection === item.id && "bg-primary/10 border border-primary/20",
                   isMobileMenuOpen ? `opacity-100 translate-x-0` : `opacity-0 translate-x-8`
                 )}
@@ -201,7 +200,7 @@ const Navbar = () => {
                   
                   {/* Indicador de seção ativa */}
                   {activeSection === item.id && (
-                    <div className="w-2 h-2 bg-primary rounded-full animate-pulse" />
+                    <div className="w-2 h-2 bg-primary rounded-full" />
                   )}
                 </div>
                 
@@ -212,8 +211,8 @@ const Navbar = () => {
             <a
               href="#donate"
               className={cn(
-                "group relative p-4 rounded-xl text-left transition-all duration-300",
-                "bg-[#1A3A6B] text-white hover:bg-[#1A3A6B]/90 hover:shadow-md active:scale-95",
+                "group relative p-4 rounded-sm text-left transition-all duration-300",
+                "bg-[#1A3A6B] text-white hover:bg-[#1A3A6B]/90 active:scale-95",
                 isMobileMenuOpen ? "opacity-100 translate-x-0" : "opacity-0 translate-x-8"
               )}
               onClick={() => setIsMobileMenuOpen(false)}
@@ -223,7 +222,7 @@ const Navbar = () => {
           </nav>
 
           {/* CTA no mobile - Sticky bottom */}
-          <div className="p-4 border-t border-foreground/10 bg-white/50 dark:bg-gray-800/50">
+          <div className="p-4 border-t border-foreground/10 bg-bg-light">
             <a
               href="https://wa.me/5562996538902?text=Ol%C3%A1!%20Gostaria%20de%20conhecer%20e%20saber%20mais%20informa%C3%A7%C3%B5es%20sobre%20os%20trabalhos%20da%20Casa%20da%20Alquimia."
               target="_blank"
