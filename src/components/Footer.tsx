@@ -4,7 +4,7 @@ const Footer = () => {
   const currentYear = new Date().getFullYear();
   
   return (
-    <footer id="contact" className="relative bg-dark border-t border-foreground/10">
+    <footer id="contact" className="relative bg-dark border-t border-terra-1/30">
       <div className="section-container py-20 relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
           {/* Coluna 1 - Sobre */}
@@ -133,7 +133,7 @@ const Footer = () => {
         </div>
         
         {/* Bottom bar modernizada */}
-        <div className="mt-16 pt-8 border-t border-foreground/10">
+        <div className="mt-16 pt-8 border-t border-terra-1/30">
           <div className="flex flex-col md:flex-row justify-between items-center gap-6">
             <div className="flex items-center gap-2 text-white/60 text-sm">
               <span>&copy; {currentYear} A Casa da Alquimia.</span>
