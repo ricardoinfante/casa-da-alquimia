@@ -75,7 +75,7 @@ const Footer = () => {
             <ul className="space-y-3">
               {[
                 { name: "Sobre Nós", href: "#about" },
-                { name: "Nossos Rituais", href: "#rituals" },
+                { name: "Nossas alquimias em movimento", href: "#rituals" },
                 { name: "Depoimentos", href: "#testimonials" },
                 { name: "FAQ", href: "#about" },
                 { name: "Política de Privacidade", href: "#" }

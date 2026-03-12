@@ -93,13 +93,13 @@ const Navbar = () => {
           
           {/* CTA Button */}
           <a
-            href="https://wa.me/5562996538902?text=Olá!%20Gostaria%20de%20agendar%20uma%20conversa%20sobre%20os%20rituais%20da%20Casa%20da%20Alquimia"
+            href="https://wa.me/5562996538902?text=Ol%C3%A1!%20Gostaria%20de%20conhecer%20e%20saber%20mais%20informa%C3%A7%C3%B5es%20sobre%20os%20trabalhos%20da%20Casa%20da%20Alquimia."
             target="_blank"
             rel="noopener noreferrer"
             className="ml-4 px-5 py-2.5 bg-primary text-primary-foreground rounded-full font-semibold text-sm shadow-lg hover:shadow-xl hover:shadow-primary/50 transition-all duration-300 hover:scale-105 inline-flex items-center gap-2"
           >
             <Sparkles className="h-4 w-4" />
-            <span>Agendar</span>
+            <span>Mais informações</span>
           </a>
         </nav>
         
@@ -213,7 +213,7 @@ const Navbar = () => {
           {/* CTA no mobile - Sticky bottom */}
           <div className="p-4 border-t border-foreground/10 bg-white/50 dark:bg-gray-800/50">
             <a
-              href="https://wa.me/5562996538902?text=Olá!%20Gostaria%20de%20agendar%20uma%20conversa%20sobre%20os%20rituais%20da%20Casa%20da%20Alquimia"
+              href="https://wa.me/5562996538902?text=Ol%C3%A1!%20Gostaria%20de%20conhecer%20e%20saber%20mais%20informa%C3%A7%C3%B5es%20sobre%20os%20trabalhos%20da%20Casa%20da%20Alquimia."
               target="_blank"
               rel="noopener noreferrer"
               className={cn(
@@ -229,7 +229,7 @@ const Navbar = () => {
               onClick={() => setIsMobileMenuOpen(false)}
             >
               <Sparkles className="h-5 w-5 animate-pulse" />
-              <span>Agendar Conversa</span>
+              <span>Quero saber mais</span>
             </a>
             
             {/* Informação adicional */}

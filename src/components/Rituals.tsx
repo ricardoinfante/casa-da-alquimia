@@ -20,7 +20,7 @@ const Rituals = () => {
           
           <h2 className="text-4xl md:text-5xl font-display font-bold mb-4">
             <span className="bg-gradient-to-r from-foreground via-primary to-foreground bg-clip-text text-transparent">
-              Nossos Rituais
+              Nossas alquimias em movimento
             </span>
           </h2>
           

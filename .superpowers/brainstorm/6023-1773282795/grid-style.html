@@ -1,0 +1,68 @@
+<h2>Qual estilo de grid para a galeria?</h2>
+<p class="subtitle">A "colagem de memórias" pode ter diferentes ritmos visuais — escolha o que mais combina</p>
+
+<div class="cards">
+  <div class="card" data-choice="masonry" onclick="toggleSelect(this)">
+    <div class="card-image" style="background:#1a1a2e;padding:12px;min-height:220px;display:flex;flex-direction:column;gap:6px;">
+      <!-- Masonry mockup -->
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:5px;flex:1;">
+        <div style="background:#2B4F8C;border-radius:3px;height:80px;"></div>
+        <div style="background:#5A7A3A;border-radius:3px;height:120px;grid-row:span 2;"></div>
+        <div style="background:#C9A84C;border-radius:3px;height:55px;"></div>
+        <div style="background:#8FA85C;border-radius:3px;height:95px;"></div>
+        <div style="background:#2B4F8C;border-radius:3px;height:70px;"></div>
+        <div style="background:#C9A84C;border-radius:3px;height:110px;grid-row:span 2;"></div>
+        <div style="background:#5A7A3A;border-radius:3px;height:65px;"></div>
+        <div style="background:#1A3A6B;border-radius:3px;height:85px;"></div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>Masonry (Pinterest)</h3>
+      <p>Fotos em alturas variadas, fluindo naturalmente como uma colagem orgânica. Cada foto ocupa o espaço que merece.</p>
+    </div>
+  </div>
+
+  <div class="card" data-choice="uniform" onclick="toggleSelect(this)">
+    <div class="card-image" style="background:#1a1a2e;padding:12px;min-height:220px;display:flex;flex-direction:column;gap:6px;">
+      <!-- Uniform grid mockup -->
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:5px;flex:1;">
+        <div style="background:#2B4F8C;border-radius:3px;aspect-ratio:1;"></div>
+        <div style="background:#5A7A3A;border-radius:3px;aspect-ratio:1;"></div>
+        <div style="background:#C9A84C;border-radius:3px;aspect-ratio:1;"></div>
+        <div style="background:#1A3A6B;border-radius:3px;aspect-ratio:1;"></div>
+        <div style="background:#8FA85C;border-radius:3px;aspect-ratio:1;"></div>
+        <div style="background:#2B4F8C;border-radius:3px;aspect-ratio:1;"></div>
+        <div style="background:#5A7A3A;border-radius:3px;aspect-ratio:1;"></div>
+        <div style="background:#C9A84C;border-radius:3px;aspect-ratio:1;"></div>
+        <div style="background:#1A3A6B;border-radius:3px;aspect-ratio:1;"></div>
+        <div style="background:#8FA85C;border-radius:3px;aspect-ratio:1;"></div>
+        <div style="background:#2B4F8C;border-radius:3px;aspect-ratio:1;"></div>
+        <div style="background:#5A7A3A;border-radius:3px;aspect-ratio:1;"></div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>Grade Uniforme</h3>
+      <p>Quadrados perfeitos e organizados. Visual limpo e simétrico, como um álbum de fotos clássico.</p>
+    </div>
+  </div>
+
+  <div class="card" data-choice="editorial" onclick="toggleSelect(this)">
+    <div class="card-image" style="background:#1a1a2e;padding:12px;min-height:220px;display:flex;flex-direction:column;gap:6px;">
+      <!-- Editorial/featured mockup -->
+      <div style="display:grid;grid-template-columns:2fr 1fr 1fr;grid-template-rows:auto auto auto;gap:5px;flex:1;">
+        <div style="background:#2B4F8C;border-radius:3px;grid-row:span 2;height:130px;"></div>
+        <div style="background:#C9A84C;border-radius:3px;height:60px;"></div>
+        <div style="background:#5A7A3A;border-radius:3px;height:60px;"></div>
+        <div style="background:#8FA85C;border-radius:3px;height:65px;"></div>
+        <div style="background:#1A3A6B;border-radius:3px;height:65px;"></div>
+        <div style="background:#C9A84C;border-radius:3px;height:55px;"></div>
+        <div style="background:#2B4F8C;border-radius:3px;height:55px;"></div>
+        <div style="background:#5A7A3A;border-radius:3px;height:55px;"></div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>Editorial (Destaque)</h3>
+      <p>Algumas fotos destacadas em tamanho maior, as outras menores. Hierarquia visual que guia o olhar.</p>
+    </div>
+  </div>
+</div>

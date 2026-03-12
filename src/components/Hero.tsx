@@ -117,13 +117,13 @@ const Hero = () => {
             </a>
             
             <a 
-              href="https://wa.me/5562996538902?text=Olá!%20Gostaria%20de%20agendar%20uma%20conversa%20sobre%20os%20rituais%20da%20Casa%20da%20Alquimia"
+              href="https://wa.me/5562996538902?text=Ol%C3%A1!%20Gostaria%20de%20conhecer%20e%20saber%20mais%20informa%C3%A7%C3%B5es%20sobre%20os%20trabalhos%20da%20Casa%20da%20Alquimia."
               target="_blank"
               rel="noopener noreferrer"
               className="px-8 py-4 bg-white/90 dark:bg-gray-800/90 backdrop-blur-xl text-foreground dark:text-white rounded-full font-semibold border-2 border-white/20 dark:border-gray-600/50 hover:border-primary/50 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 inline-flex items-center gap-2"
             >
               <Heart className="h-5 w-5 text-accent" />
-              <span>Agendar conversa</span>
+              <span>Quero saber mais</span>
             </a>
           </div>
         </div>
