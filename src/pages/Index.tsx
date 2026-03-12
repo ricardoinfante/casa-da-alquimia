@@ -7,7 +7,6 @@ import Hero from '@/components/Hero';
 import LibraryGallery from '@/components/LibraryGallery';
 import Navbar from '@/components/Navbar';
 import Rituals from '@/components/Rituals';
-import Shop from '@/components/Shop';
 import SocialMedia from '@/components/SocialMedia';
 import SpotifyPlayer from '@/components/SpotifyPlayer';
 import TestimonialCard from '@/components/TestimonialCard';
@@ -44,7 +43,6 @@ const Index = () => {
         <About />
         <Rituals />
         <LibraryGallery />
-        <Shop />
         <SocialMedia />
       
       {/* Testimonials Section */}

@@ -1,158 +1,196 @@
 # 🌿 Casa da Alquimia - Website Oficial
 
-Website oficial da Casa da Alquimia, um espaço sagrado em Cavalcante-GO dedicado a rituais de ayahuasca, medicina da floresta, meditação e autoconhecimento.
+Website oficial da **Casa da Alquimia**, um espaço sagrado em Cavalcante-GO dedicado a rituais de ayahuasca, medicina da floresta, meditação e autoconhecimento.
 
-## 🚀 Tecnologias
+**Status**: ✅ Pronto para Produção | **Branch Ativa**: `build-plesk` | **Ambiente**: http://localhost:8087
 
-- **React 18** - Biblioteca UI
-- **TypeScript** - Tipagem estática
-- **Vite** - Build tool e dev server
-- **Tailwind CSS** - Framework CSS utility-first
-- **shadcn/ui** - Componentes UI acessíveis
-- **React Router** - Roteamento
-- **Tanstack Query** - State management assíncrono
-- **Lucide React** - Ícones
+---
 
-## 📦 Instalação
+## 🚀 Quick Start
 
 ```bash
-# Clone o repositório
-git clone <YOUR_GIT_URL>
-
-# Entre no diretório
-cd casa-da-alquimia
-
-# Instale as dependências
+# Instalar dependências
 npm install
 
-# Inicie o servidor de desenvolvimento
+# Iniciar servidor de desenvolvimento
 npm run dev
+
+# Build para produção
+npm run build
 ```
 
-## 🛠️ Scripts Disponíveis
+## 📚 Documentação
 
-```bash
-npm run dev          # Inicia servidor de desenvolvimento (porta 8080)
-npm run build        # Build de produção
-npm run build:dev    # Build em modo desenvolvimento
-npm run preview      # Preview do build de produção
-npm run lint         # Executa linter
-```
+Toda a documentação está organizada em `/docs`:
 
-## ✨ Melhorias Implementadas (Novembro 2025)
+| Documento | Descrição |
+|-----------|-----------|
+| **[CLAUDE.md](docs/CLAUDE.md)** | 📖 Guia completo para desenvolvimento (LEIA ISTO PRIMEIRO) |
+| **[IMPLEMENTATION_SUMMARY.md](docs/IMPLEMENTATION_SUMMARY.md)** | ✅ Resumo do que foi implementado |
+| **[FIRST_STEPS.md](docs/FIRST_STEPS.md)** | 🎯 Primeiros passos para começar |
+| **[LIBRARY_SHOP_SETUP.md](docs/LIBRARY_SHOP_SETUP.md)** | 🛠️ Setup técnico de Library & Shop |
+| **[LIBRARY_SHOP_QUICK_START.md](docs/LIBRARY_SHOP_QUICK_START.md)** | ⚡ Quick start para Library & Shop |
+| **[DEPLOY.md](docs/DEPLOY.md)** | 🚀 Instruções de deploy |
+| **[PLESK-DEPLOY.md](docs/PLESK-DEPLOY.md)** | 🌐 Deploy no Plesk |
+| **[CUSTOMIZATION_GUIDE.md](docs/CUSTOMIZATION_GUIDE.md)** | 🎨 Personalização do design |
+| **[CONTRIBUTING.md](docs/CONTRIBUTING.md)** | 🤝 Como contribuir |
 
-### 🎯 SEO & Performance
+---
 
-- ✅ Meta tags otimizadas (Open Graph, Twitter Cards, Schema.org)
-- ✅ URL canônica configurada
-- ✅ Sitemap.xml e robots.txt
-- ✅ Lazy loading de componentes e rotas
-- ✅ Preconnect para recursos externos
-- ✅ Code splitting automático
+## 💻 Tech Stack
 
-### ♿ Acessibilidade
+- **React 18.3** - UI Framework
+- **TypeScript 5.5** - Type Safety
+- **Vite 5.4** - Build Tool
+- **Tailwind CSS 3.4** - Styling
+- **Shadcn/UI** - Component Library (50+ componentes)
+- **React Router 6.26** - Routing
+- **TanStack Query 5.56** - State Management
+- **Supabase** - Database & Storage
 
-- ✅ Skip-to-content link para navegação por teclado
-- ✅ ARIA labels em elementos interativos
-- ✅ Progress bar com atributos ARIA
-- ✅ Focus visible otimizado
-- ✅ Suporte a prefers-reduced-motion
-- ✅ Classes sr-only para screen readers
-
-### 🆕 Novas Funcionalidades
-
-- ✅ Formulário de contato funcional
-- ✅ Validação de campos
-- ✅ Estados de loading e sucesso
-- ✅ Toasts de feedback
-- ✅ Layout responsivo
-
-### 🔒 Segurança
-
-- ✅ Vulnerabilidades npm corrigidas
-- ✅ rel="noopener noreferrer" em links externos
-- ✅ Sanitização de inputs
+---
 
 ## 📁 Estrutura do Projeto
 
 ```
-casa-da-alquimia/
-├── public/               # Arquivos estáticos
-│   ├── favicon.png
-│   ├── robots.txt       # ✨ Novo
-│   ├── sitemap.xml      # ✨ Novo
-│   └── recursos/        # Imagens dos rituais
+casa-da-alquimia-v2/
+├── docs/                      # 📚 Documentação completa
+│   ├── CLAUDE.md
+│   ├── IMPLEMENTATION_SUMMARY.md
+│   ├── LIBRARY_SHOP_SETUP.md
+│   └── ... (outros arquivos)
+├── public/                    # Arquivos estáticos
+│   ├── favicon.ico
+│   ├── robots.txt
+│   └── sitemap.xml
 ├── src/
-│   ├── components/      # Componentes React
-│   │   ├── About.tsx
-│   │   ├── ContactForm.tsx  # ✨ Novo
-│   │   ├── Donate.tsx
-│   │   ├── DonationModal.tsx
-│   │   ├── Footer.tsx
+│   ├── components/            # Componentes React
+│   │   ├── ui/               # Shadcn UI (50+ componentes)
+│   │   ├── social/           # Instagram, YouTube sections
 │   │   ├── Hero.tsx
+│   │   ├── About.tsx
 │   │   ├── Navbar.tsx
 │   │   ├── Rituals.tsx
-│   │   ├── SocialMedia.tsx
-│   │   ├── TestimonialCard.tsx
-│   │   ├── social/      # Seções de redes sociais
-│   │   └── ui/          # Componentes shadcn/ui
-│   ├── hooks/           # Custom hooks
-│   ├── lib/             # Utilitários
-│   ├── pages/           # Páginas
-│   │   ├── Index.tsx
-│   │   └── NotFound.tsx
-│   └── utils/           # Funções auxiliares
-│       └── animations.ts
-├── index.html           # ✨ Melhorado com Schema.org
+│   │   ├── Library.tsx       # Galeria de mídia
+│   │   ├── Shop.tsx          # E-commerce
+│   │   ├── AdminPanel.tsx    # Painel administrativo
+│   │   ├── ContactForm.tsx
+│   │   ├── Footer.tsx
+│   │   └── ... (outros componentes)
+│   ├── pages/
+│   │   ├── Index.tsx         # Página principal (landing)
+│   │   └── NotFound.tsx      # 404
+│   ├── integrations/supabase/
+│   │   ├── client.ts         # Supabase client
+│   │   ├── services.ts       # API services
+│   │   └── types.ts          # TypeScript types
+│   ├── hooks/                # Custom hooks
+│   ├── utils/                # Utilitários
+│   ├── lib/                  # Bibliotecas
+│   ├── App.tsx               # Root layout
+│   ├── main.tsx              # Entrada Vite
+│   └── index.css             # Estilos globais
+├── .env.local                # Variáveis de ambiente (não commitar)
+├── vite.config.ts            # Configuração Vite
+├── tailwind.config.ts        # Configuração Tailwind
+├── tsconfig.json             # Configuração TypeScript
 └── package.json
 ```
 
-## 🎨 Paleta de Cores
+---
 
-```css
-Azul 1: #8BB6CC  /* Backgrounds claros */
-Azul 2: #173D90  /* Primary/CTA */
-Azul 3: #1D3F6C  /* Secondary */
+## 🎯 Funcionalidades Principais
 
-Verde 1: #BED19F  /* Acentos suaves */
-Verde 2: #9CB96B
-Verde 3: #80A94D  /* Tags/badges */
-Verde 4: #507030  /* Verde escuro */
+### ✅ Implementado
 
-Marrom 1: #A68943
-Marrom 2: #674321
+- **Landing Page** - Hero, About, Rituals, Testimonials
+- **Biblioteca de Mídia** - Galeria com álbuns temáticos
+- **E-commerce** - Catálogo de produtos, carrinho, pedidos
+- **Painel Admin** - Criar álbuns e produtos
+- **Integração Supabase** - Database, Auth, Storage
+- **Dark Mode** - Toggle automático de tema
+- **Responsivo** - Mobile, tablet, desktop
+- **SEO** - Meta tags, sitemap, robots.txt
+
+### 🔄 Em Progresso / TODO
+
+- **Pagamento** - Integração Stripe/Mercado Pago
+- **Autenticação Admin** - Proteção do painel administrativo
+- **Testes** - Jest + React Testing Library
+- **Analytics** - Google Analytics
+
+---
+
+## ⚙️ Configuração de Ambiente
+
+Criar `.env.local` na raiz do projeto:
+
+```env
+# Supabase
+VITE_SUPABASE_URL=https://seu-projeto.supabase.co
+VITE_SUPABASE_ANON_KEY=sua-chave-anonima
+
+# Opcional - Integrações sociais
+VITE_INSTAGRAM_TOKEN=opcional
+VITE_YOUTUBE_API_KEY=opcional
 ```
 
-## 🔄 Próximas Implementações Sugeridas
+**Nunca commitar `.env.local` no Git!**
 
-### Alta Prioridade
+---
 
-- [ ] Integração backend para formulário de contato (EmailJS/SendGrid/Supabase)
-- [ ] Sistema de pagamento real para doações (Stripe/PagSeguro)
-- [ ] Sistema de agendamento de rituais
-- [ ] Painel administrativo
+## 📦 Scripts Disponíveis
 
-### Média Prioridade
+```bash
+# Desenvolvimento
+npm run dev          # Inicia servidor (porta 8087)
 
-- [ ] Blog/Notícias
-- [ ] Galeria de fotos própria (substituir Elfsight)
-- [ ] Área de membros/comunidade
-- [ ] FAQ interativo
-- [ ] Página de política de privacidade
+# Produção
+npm run build        # Build otimizado
+npm run preview      # Preview do build
+npm run build:dev    # Build em modo dev
 
-### Baixa Prioridade
+# Qualidade
+npm run lint         # ESLint
+```
 
-- [ ] PWA (Progressive Web App)
-- [ ] Modo escuro
-- [ ] Internacionalização (i18n)
-- [ ] Analytics integrado
+---
+
+## 🔗 Links Importantes
+
+- **Repository**: https://github.com/akillez01/casa-da-alquimia
+- **Supabase**: https://supabase.com/
+- **Documentação React**: https://react.dev
+- **Tailwind CSS**: https://tailwindcss.com
+- **Shadcn/UI**: https://ui.shadcn.com
+
+---
+
+## 🎨 Paleta de Cores
+
+```
+Primária:    #173D90 (Azul)
+Secundária:  #80A94D (Verde)
+Accent:      #A68943 (Marrom)
+Background:  #F5F5F5 / #0F0F0F (Dark)
+```
+
+---
+
+## 👥 Contribuindo
+
+Veja [CONTRIBUTING.md](docs/CONTRIBUTING.md) para guidelines sobre como contribuir.
+
+---
 
 ## 📞 Contato
 
-- **Local**: Estrada da Usina, Fazenda Miraflores - Cavalcante, GO
-- **Telefone**: +55 (62) 99653-8902
 - **Email**: casadaalquimia@gmail.com
 - **Instagram**: [@casadaalquimia](https://www.instagram.com/casadaalquimia/)
+- **Telefone**: +55 (62) 99653-8902
+- **Localização**: Estrada da Usina, Fazenda Miraflores - Cavalcante, GO
+
+---
 
 ## 📄 Licença
 
@@ -160,4 +198,6 @@ Marrom 2: #674321
 
 ---
 
-Desenvolvido com ❤️ para a expansão da consciência e autoconhecimento
+**Desenvolvido com ❤️ para a expansão da consciência e autoconhecimento**
+
+*Para detalhes completos de desenvolvimento, consulte [CLAUDE.md](docs/CLAUDE.md)*
