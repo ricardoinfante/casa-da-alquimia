@@ -45,9 +45,30 @@ const MemoriasGallery = () => {
         <div className="w-16 h-0.5 bg-[#C9A84C] mx-auto mt-4" />
       </div>
 
-      {/* Grid — implementado na Task 4 */}
-      <div className="px-8 max-w-6xl mx-auto">
-        <p className="text-center text-gray-400 text-sm">Galeria em construção…</p>
+      {/* Masonry Grid */}
+      <div className="px-8 max-w-6xl mx-auto columns-2 sm:columns-3 lg:columns-4 gap-2">
+        {PHOTOS.map((photo, index) => (
+          <div
+            key={photo.id}
+            className="break-inside-avoid mb-2 overflow-hidden rounded-[4px] cursor-pointer group relative"
+            onClick={() => setSelectedIndex(index)}
+          >
+            <img
+              src={photo.src}
+              alt={photo.alt}
+              loading="lazy"
+              className="block w-full transition-transform duration-[350ms] ease-in-out group-hover:scale-[1.04] group-hover:brightness-[0.85]"
+              onError={(e) => {
+                const target = e.currentTarget;
+                target.style.display = 'none';
+                const placeholder = document.createElement('div');
+                placeholder.style.cssText = 'width:100%;aspect-ratio:1;background:#e5e7eb;border-radius:4px;';
+                target.parentElement?.appendChild(placeholder);
+              }}
+            />
+            <div className="absolute inset-0 bg-[rgba(43,79,140,0)] group-hover:bg-[rgba(43,79,140,0.18)] transition-colors duration-[350ms] rounded-[4px]" />
+          </div>
+        ))}
       </div>
     </section>
   );
