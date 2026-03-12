@@ -38,7 +38,7 @@ const SocialMediaPost = ({
       href={link}
       target="_blank"
       rel="noopener noreferrer"
-      className={`block overflow-hidden rounded-lg shadow-md hover:shadow-lg transition-all duration-300 group ${isVisible ? `animate-in animate-in-delay-${index + 1}` : 'opacity-0'}`}
+      className={`block overflow-hidden rounded-lg transition-all duration-300 group ${isVisible ? `animate-in animate-in-delay-${index + 1}` : 'opacity-0'}`}
     >
       <div className={`relative ${aspectRatio === 'square' ? 'aspect-square' : 'aspect-video'} bg-gray-100 overflow-hidden`}>
         {!imageLoaded && !imageError && (
@@ -50,7 +50,7 @@ const SocialMediaPost = ({
           <img 
             src={imageUrl} 
             alt={title || "Social media post"} 
-            className={`w-full h-full object-cover transition-transform duration-500 group-hover:scale-110 ${imageLoaded ? 'opacity-100' : 'opacity-0'}`}
+            className={`w-full h-full object-cover transition-transform duration-500 ${imageLoaded ? 'opacity-100' : 'opacity-0'}`}
             onLoad={handleImageLoad}
             onError={handleImageError}
           />
@@ -59,7 +59,7 @@ const SocialMediaPost = ({
             <span className="text-gray-500">Imagem não disponível</span>
           </div>
         )}
-        <div className="absolute inset-0 bg-azul-2/0 group-hover:bg-azul-2/20 transition-colors duration-300 flex items-center justify-center">
+        <div className="absolute inset-0 bg-primary/0 group-hover:bg-primary/20 transition-colors duration-300 flex items-center justify-center">
           <div className="opacity-0 group-hover:opacity-100 transition-opacity">
             {icon}
           </div>
@@ -67,7 +67,7 @@ const SocialMediaPost = ({
       </div>
       {title && (
         <div className="p-3">
-          <h4 className="font-medium text-darktext truncate">{title}</h4>
+          <h4 className="font-medium text-dark truncate">{title}</h4>
         </div>
       )}
     </a>
