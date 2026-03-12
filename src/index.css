@@ -7,8 +7,8 @@
 @layer base {
   :root {
     /* Cores principais - Tons terrosos e espirituais modernos */
-    --background: 45 20% 96%; /* Bege claro luminoso */
-    --foreground: 24 15% 12%; /* Marrom escuro quente */
+    --background: 93 31% 94%;       /* #F0F5EC — Branco Esverdeado */
+    --foreground: 60 19% 15%;       /* #2C2C1E — Preto Orgânico */
 
     --card: 0 0% 100%;
     --card-foreground: 24 15% 12%;
@@ -16,17 +16,17 @@
     --popover: 0 0% 100%;
     --popover-foreground: 24 15% 12%;
 
-    --primary: 220 85% 48%; /* Azul profundo vibrante */
+    --primary: 218 53% 36%;         /* #2B4F8C — Azul Cobalto */
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 88 50% 52%; /* Verde natural vibrante */
+    --secondary: 90 36% 35%;        /* #5A7A3A — Verde Musgo */
     --secondary-foreground: 0 0% 100%;
 
-    --muted: 45 20% 92%; /* Bege suave */
-    --muted-foreground: 24 10% 45%;
+    --muted: 90 14% 90%;            /* approximated from palette — no spec hex */
+    --muted-foreground: 90 10% 45%; /* approximated from palette — no spec hex */
 
-    --accent: 30 80% 55%; /* Laranja âmbar místico */
-    --accent-foreground: 0 0% 100%;
+    --accent: 44 54% 54%;           /* #C9A84C — Dourado Âmbar */
+    --accent-foreground: 60 19% 15%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
@@ -90,25 +90,21 @@
   }
   
   h1, h2, h3, h4, h5, h6 {
-    @apply font-display tracking-wide text-[#100B0D];
+    @apply font-display;
   }
   
   p, li, blockquote {
-    @apply font-lato text-[#100B0D]/90 leading-relaxed;
+    @apply font-lato text-dark/90 leading-relaxed;
   }
 }
 
 @layer components {
-  .glass {
-    @apply bg-white/70 backdrop-blur-[8px] backdrop-saturate-[180%] border border-white/20;
-  }
-  
   .section-container {
     @apply max-w-7xl mx-auto px-6 md:px-8 py-10;
   }
   
   .chip {
-    @apply inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-verde-3 text-[#100B0D];
+    @apply inline-flex items-center px-3 py-1 rounded-sm text-[11px] font-bold uppercase tracking-[0.2em] bg-secondary/10 text-terra-1;
   }
   
   .animate-in {
@@ -148,7 +144,7 @@
     height: 1px;
     bottom: -1px;
     left: 0;
-    @apply bg-azul-2;
+    @apply bg-primary;
     transform-origin: bottom right;
     transition: transform 0.3s ease-out;
   }
@@ -162,21 +158,6 @@
     text-wrap: balance;
   }
   
-  .gradient-heading {
-    @apply text-azul-2;
-  }
-  
-  .nature-gradient {
-    @apply bg-gradient-to-r from-verde-3 to-verde-3/80;
-  }
-  
-  .spirit-gradient {
-    @apply bg-gradient-to-r from-azul-2 to-azul-2/80;
-  }
-  
-  .earth-gradient {
-    @apply bg-gradient-to-r from-marrom-1 to-marrom-1/80;
-  }
 }
 
 @keyframes fadeInUp {
