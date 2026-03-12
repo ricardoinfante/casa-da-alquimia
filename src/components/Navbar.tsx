@@ -35,7 +35,6 @@ const Navbar = () => {
     { name: 'Sobre', href: '#about', id: 'about' },
     { name: 'Rituais', href: '#rituals', id: 'rituals' },
     { name: 'Biblioteca de Memórias', href: '#biblioteca', id: 'biblioteca' },
-    { name: 'Loja Virtual', href: '#shop', id: 'shop' },
     { name: 'Depoimentos', href: '#testimonials', id: 'testimonials' },
     { name: 'Galeria', href: '#instagram', id: 'instagram' },
     { name: 'Contato', href: '#contact', id: 'contact' },
