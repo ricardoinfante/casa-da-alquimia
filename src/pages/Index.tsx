@@ -46,7 +46,7 @@ const Index = () => {
         <div className="bg-bg-light"><SocialMedia /></div>
 
       {/* Testimonials Section */}
-      <section id="testimonials" className="py-12 md:py-20 relative overflow-hidden bg-bg-agua">
+      <section id="testimonials" className="py-10 md:py-14 relative overflow-hidden bg-bg-agua">
         <div className="absolute inset-0 bg-noise opacity-5"></div>
         <div className="section-container relative z-10">
           <div className="text-center max-w-3xl mx-auto mb-10">

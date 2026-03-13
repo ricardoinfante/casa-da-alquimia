@@ -345,10 +345,25 @@ const MyComponent = () => {
 ```
 
 ### Color Palette
-- Primary: Purple/Indigo (spiritual theme)
-- Secondary: Earth tones
-- Accent: Gold/Bronze (mystical feel)
-- Use Tailwind color names: `text-purple-600`, `bg-slate-900 dark:bg-slate-950`
+
+**Primárias & Secundárias**
+- Azul Cobalto `#2B4F8C` — Primário
+- Azul Profundo `#1A3A6B` — Primário Dark
+- Verde Musgo `#5A7A3A` — Secundário
+- Verde Oliva `#8FA85C` — Secundário Light
+- Verde-Água `#D4E8D8` — Background
+- Branco Esverdeado `#F0F5EC` — Background Light
+- Dourado Âmbar `#C9A84C` — Acento
+- Preto Orgânico `#2C2C1E` — Dark
+
+**Tons Terrosos**
+- Terracota `#934211` — Terroso 1 (usado em labels/eyebrows)
+- Âmbar Escuro `#7A4900` — Terroso 2
+- Ocre Dourado `#B5771C` — Terroso 3
+
+**Typography**
+- **Cinzel** (Google Fonts) — títulos, headings, display (H1 38px/700, H2 24px/600, H3 18px/400)
+- **Lato** (Google Fonts) — corpo, parágrafos e UI (body 16px/400, small 13px/300, label 11px/700 uppercase)
 
 ---
 

@@ -1,6 +1,25 @@
 import { Maximize2, Minimize2, Music, X } from 'lucide-react';
 import React, { useEffect, useState } from 'react';
 
+const MusicTooltip = () => {
+  const [visible, setVisible] = useState(false);
+  return (
+    <span
+      className="relative flex items-center"
+      onMouseEnter={() => setVisible(true)}
+      onMouseLeave={() => setVisible(false)}
+      onClick={e => e.stopPropagation()}
+    >
+      <Music className="h-4 w-4" />
+      {visible && (
+        <span className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-3 py-1.5 bg-dark text-white/50 text-xs font-light tracking-wide whitespace-nowrap rounded-sm border border-white/10 pointer-events-none z-50">
+          ouça as músicas que guiam nossas seleções.
+        </span>
+      )}
+    </span>
+  );
+};
+
 interface SpotifyPlayerProps {
   playlistId?: string;
 }
@@ -8,7 +27,7 @@ interface SpotifyPlayerProps {
 const SpotifyPlayer: React.FC<SpotifyPlayerProps> = ({ 
   playlistId = '5gK8vevkgH2nRAw1LuGdCD' 
 }) => {
-  const [isMinimized, setIsMinimized] = useState(false);
+  const [isMinimized, setIsMinimized] = useState(true);
   const [isVisible, setIsVisible] = useState(true);
   const [isMuted, setIsMuted] = useState(false);
   const [showPlayer, setShowPlayer] = useState(false);
@@ -58,7 +77,7 @@ const SpotifyPlayer: React.FC<SpotifyPlayerProps> = ({
     return (
       <button
         onClick={handleShow}
-        className="fixed bottom-6 right-6 z-50 p-4 bg-[#1DB954] text-white rounded-sm transition-colors duration-200 group"
+        className="fixed bottom-6 right-6 z-50 p-4 bg-secondary text-white rounded-sm transition-colors duration-200 hover:bg-secondary-light group"
         aria-label="Abrir player de música"
       >
         <Music className="h-6 w-6" />
@@ -72,7 +91,7 @@ const SpotifyPlayer: React.FC<SpotifyPlayerProps> = ({
   return (
     <div className="fixed bottom-0 left-0 right-0 z-40">
       {/* Player do Spotify - Controles centralizados */}
-      <div className={`relative flex items-center justify-center bg-black transition-all duration-300 ${isMinimized ? 'h-0' : 'h-[80px]'} overflow-hidden`}>
+      <div className={`relative flex items-center justify-center bg-dark transition-all duration-300 ${isMinimized ? 'h-0' : 'h-[80px]'} overflow-hidden`}>
         {/* Botão Minimizar - Esquerda */}
         {!isMinimized && (
           <button
@@ -115,14 +134,14 @@ const SpotifyPlayer: React.FC<SpotifyPlayerProps> = ({
 
       {/* Barra para reabrir quando minimizado */}
       {isMinimized && (
-        <div className="bg-[#191414]">
+        <div className="bg-dark border-t border-terra-3/20">
           <button
             onClick={toggleMinimize}
-            className="w-full py-2 px-4 hover:bg-black/20 transition-all flex items-center justify-center gap-2 text-white text-sm font-medium"
+            className="w-full py-2 px-4 hover:bg-white/5 transition-all flex items-center justify-center gap-2 text-terra-3 text-sm font-medium"
             aria-label="Expandir player"
           >
-            <Music className="h-4 w-4" />
-            <span>🎵 Spotify Player - Clique para expandir</span>
+            <MusicTooltip />
+            <span>Música — clique para expandir</span>
             <Maximize2 className="h-4 w-4" />
           </button>
         </div>

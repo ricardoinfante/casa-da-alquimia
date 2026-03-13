@@ -191,10 +191,17 @@
 ### Cores Usadas
 
 ```
-🟦 Primária:    #3B82F6 (Azul)
-🟦 Secundária:  #8B5CF6 (Roxo)
-⬜ Fundo:       #FFFFFF / #0F172A (dark)
-⬜ Texto:       #000000 / #FFFFFF (dark)
+🟦 Azul Cobalto:      #2B4F8C  (Primário)
+🟦 Azul Profundo:     #1A3A6B  (Primário Dark)
+🟢 Verde Musgo:       #5A7A3A  (Secundário)
+🟢 Verde Oliva:       #8FA85C  (Secundário Light)
+🟩 Verde-Água:        #D4E8D8  (Background)
+⬜ Branco Esverdeado: #F0F5EC  (Background Light)
+🟡 Dourado Âmbar:     #C9A84C  (Acento)
+⬛ Preto Orgânico:    #2C2C1E  (Dark)
+🟫 Terracota:         #934211  (Terroso 1 — Labels)
+🟫 Âmbar Escuro:      #7A4900  (Terroso 2)
+🟡 Ocre Dourado:      #B5771C  (Terroso 3)
 ```
 
 ### Componentes Utilizados

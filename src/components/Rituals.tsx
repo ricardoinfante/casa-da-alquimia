@@ -4,7 +4,7 @@ import { useState } from 'react';
 const Rituals = () => {
   const [hoveredCard, setHoveredCard] = useState<number | null>(null);
   
-  return <section id="rituals" className="py-20 md:py-32 bg-bg-light overflow-hidden relative">
+  return <section id="rituals" className="py-12 md:py-16 bg-bg-light overflow-hidden relative">
       
       <div className="section-container relative z-10">
         <div className="text-center max-w-3xl mx-auto mb-16">
@@ -14,7 +14,7 @@ const Rituals = () => {
           </span>
           
           <h2 className="text-4xl md:text-5xl font-display font-bold mb-4">
-            <span className="bg-gradient-to-r from-foreground via-primary to-foreground bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-dark via-terra-2 to-secondary bg-clip-text text-transparent">
               Nossas alquimias em movimento
             </span>
           </h2>
@@ -30,37 +30,40 @@ const Rituals = () => {
           title: "Cerimônias com medicina da floresta",
           description: "Rituais que buscam a introspecção por meio da meditação e da expansão da consciência. Podem acontecer no círculo de fogo ou no salão. Também contam com chamadas e algumas músicas de elevação.",
           details: ["Duração: cerca de 6 horas", "Periodicidade: entre em contato para consultar nossa agenda"],
-          image: "/recursos/cerimonias.jpeg"
+          image: "/img/rituais_card.jpg",
+          imagePosition: "center 70%"
         }, {
           icon: <FlaskConical className="h-8 w-8 text-secondary" />,
           title: "Preparo das medicinas (feitio)",
           description: "Momento sagrado no qual os participantes vivenciam todo o processo tradicional de preparação e apuração da medicina: da colheita ao engarrafamento.",
           details: ["Duração: 3-7 dias", "Inclui: Colheita, preparo e cerimônias", "Periodicidade: Semestral"],
-          image: "/recursos/feitio.jpeg"
+          image: "/img/feitio-card2.jpg"
         }, {
           icon: <Brain className="h-8 w-8 text-primary" />,
           title: "Meditações guiadas",
           description: "Momento diário de introspecção e silêncio como forma de interiorização da rotina do dia a dia e abertura do canal interno para o autoconhecimento e a meditação.",
           details: ["Duração: 1h", "Periodicidade: diariamente"],
-          image: "/recursos/meditacao.jpeg"
+          image: "/img/meditacao-guiada.jpg",
+          imagePosition: "center 70%"
         }, {
           icon: <Leaf className="h-8 w-8 text-secondary" />,
           title: "Terapia do Casulo",
           description: "Ritual de reencontro e reabastecimento de si em forma de um casulo com ervas cozidas em que o participante entra em estado meditativo",
           details: ["Duração: pelo menos 3 dias", "Inclui: colheita e preparo das ervas, cozimento e momentos de silêncio e aprofundamento no casulo"],
-          link: { text: "Conheça mais aqui", href: "#" },
-          image: "/recursos/casulo.jpeg"
+          image: "/img/casuloflores.jpg"
         }, {
           icon: <Flame className="h-8 w-8 text-primary" />,
           title: "Temazcal (tenda do suor)",
           description: "Ritual de tenda do suor com origem dos povos tradicionais da América Central, que visa purificar corpo e espírito através do contato com os elementos da natureza (terra, ar, fogo e água)",
-          details: ["Duração: 4 horas", "Inclui: tenda do suor, meditação e banho de ervas"]
+          details: ["Duração: 4 horas", "Inclui: tenda do suor, meditação e banho de ervas"],
+          image: "/img/temazcal.png"
         }, {
           icon: <Sprout className="h-8 w-8 text-secondary" />,
           title: "Vivência de permacultura e bioconstrução",
           description: "Quem participa ativamente da Casa da Alquimia, tem a oportunidade de vivenciar a prática da permacultura e da bioconstrução em processos coletivos de compartilhamento de saberes",
           details: [],
-          image: "/recursos/permacultura.jpeg"
+          image: "/img/bio-construcao.jpg",
+          imagePosition: "center 20%"
         }].map((ritual, index) => (
             <div 
               key={index} 
@@ -75,24 +78,21 @@ const Rituals = () => {
                 {/* Imagem com overlay gradiente */}
                 {ritual.image && (
                   <div className="relative h-64 overflow-hidden">
-                    <div className="absolute inset-0 bg-dark/40 z-10" />
+                    <div className="absolute inset-0 bg-terra-3/10 z-10" />
                     <img
                       src={ritual.image}
                       alt={ritual.title}
                       className="w-full h-full object-cover transition-transform duration-700 scale-100"
+                      style={ritual.imagePosition ? { objectPosition: ritual.imagePosition } : undefined}
                       loading="lazy"
                     />
                     
-                    {/* Ícone flutuante na imagem */}
-                    <div className="absolute top-4 right-4 z-20 p-3 bg-white border border-terra-1/20 rounded-sm">
-                      {ritual.icon}
-                    </div>
                   </div>
                 )}
                 
                 {/* Conteúdo do card */}
                 <div className="p-6 md:p-8 flex-1 flex flex-col">
-                  <h3 className="text-xl md:text-2xl font-display font-bold mb-3 text-foreground group-hover:text-primary transition-colors">
+                  <h3 className="text-xl md:text-2xl font-display font-bold mb-3 text-primary-dark group-hover:text-terra-2 transition-colors">
                     {ritual.title}
                   </h3>
                   
@@ -112,16 +112,6 @@ const Rituals = () => {
                     </div>
                   )}
                   
-                  {/* Link de ação */}
-                  {ritual.link && (
-                    <a
-                      href={ritual.link.href}
-                      className="inline-flex items-center gap-2 px-5 py-3 bg-primary text-primary-foreground rounded-sm font-semibold text-sm transition-colors duration-200 hover:text-primary-dark group/link"
-                    >
-                      <span>{ritual.link.text}</span>
-                      <ArrowRight className="h-4 w-4 group-hover/link:translate-x-1 transition-transform" />
-                    </a>
-                  )}
                 </div>
                 
               </div>

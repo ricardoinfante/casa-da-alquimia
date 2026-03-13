@@ -1,20 +1,20 @@
-import { ExternalLink, Facebook, Heart, Instagram, Mail, MapPin, Phone, Sparkles } from 'lucide-react';
+import { ExternalLink, Facebook, Heart, Instagram, Mail, MapPin, Phone, Sparkles, Youtube } from 'lucide-react';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
   
   return (
     <footer id="contact" className="relative bg-dark border-t border-terra-1/30">
-      <div className="section-container py-20 relative z-10">
+      <div className="section-container py-12 relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
           {/* Coluna 1 - Sobre */}
           <div className="space-y-6 lg:col-span-2">
             <div className="flex items-center gap-3 font-display text-2xl mb-4 group">
-              <div className="relative">
+              <div className="relative rounded-sm overflow-hidden bg-bg-light p-1">
                 <img
                   src="/favicon.png"
                   alt="A Casa da Alquimia Logo"
-                  className="h-14 w-auto"
+                  className="h-14 w-auto mix-blend-multiply"
                 />
               </div>
               <span className="text-white font-bold">
@@ -35,23 +35,32 @@ const Footer = () => {
                 className="group relative p-3 bg-white/10 border border-white/20 rounded-sm transition-colors duration-200 hover:bg-white/20"
                 aria-label="Instagram"
               >
-                <Instagram className="h-5 w-5 text-primary" />
+                <Instagram className="h-5 w-5 text-terra-3" />
               </a>
               <a
-                href="https://facebook.com"
+                href="https://www.facebook.com/casadaalquimia/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="group relative p-3 bg-white/10 border border-white/20 rounded-sm transition-colors duration-200 hover:bg-white/20"
                 aria-label="Facebook"
               >
-                <Facebook className="h-5 w-5 text-primary" />
+                <Facebook className="h-5 w-5 text-terra-3" />
+              </a>
+              <a
+                href="https://www.youtube.com/@ACasadaAlquimia"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group relative p-3 bg-white/10 border border-white/20 rounded-sm transition-colors duration-200 hover:bg-white/20"
+                aria-label="YouTube"
+              >
+                <Youtube className="h-5 w-5 text-terra-3" />
               </a>
               <a
                 href="mailto:casadaalquimia@gmail.com"
                 className="group relative p-3 bg-white/10 border border-white/20 rounded-sm transition-colors duration-200 hover:bg-white/20"
                 aria-label="Email"
               >
-                <Mail className="h-5 w-5 text-primary" />
+                <Mail className="h-5 w-5 text-terra-3" />
               </a>
             </div>
           </div>
@@ -59,7 +68,7 @@ const Footer = () => {
           {/* Coluna 2 - Links Rápidos */}
           <div className="space-y-6">
             <h3 className="font-display font-bold text-lg flex items-center gap-2 text-white">
-              <Sparkles className="h-5 w-5 text-primary" />
+              <Sparkles className="h-5 w-5 text-terra-3" />
               Links Rápidos
             </h3>
             <ul className="space-y-3">
@@ -73,9 +82,9 @@ const Footer = () => {
                 <li key={index}>
                   <a 
                     href={item.href} 
-                    className="text-white/70 hover:text-primary transition-all duration-300 flex items-center gap-2 group"
+                    className="text-white/70 hover:text-terra-3 transition-all duration-300 flex items-center gap-2 group"
                   >
-                    <div className="w-1 h-1 bg-primary/50 rounded-full group-hover:w-2 group-hover:h-2 transition-all" />
+                    <div className="w-1 h-1 bg-terra-3/50 rounded-full group-hover:w-2 group-hover:h-2 transition-all" />
                     <span>{item.name}</span>
                   </a>
                 </li>
@@ -86,13 +95,13 @@ const Footer = () => {
           {/* Coluna 3 - Contato */}
           <div className="space-y-6">
             <h3 className="font-display font-bold text-lg flex items-center gap-2 text-white">
-              <MapPin className="h-5 w-5 text-primary" />
+              <MapPin className="h-5 w-5 text-terra-3" />
               Contato
             </h3>
             <ul className="space-y-5">
               <li className="group">
                 <div className="flex items-start gap-3 p-3 bg-white/10 border border-white/20 rounded-sm transition-colors duration-200 hover:bg-white/15">
-                  <MapPin className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
+                  <MapPin className="h-5 w-5 text-terra-3 mt-0.5 flex-shrink-0" />
                   <span className="text-white/70 text-sm leading-relaxed">
                     Estrada da Usina, Fazenda Miraflores<br />
                     Cavalcante, Goiás
@@ -106,12 +115,12 @@ const Footer = () => {
                   rel="noopener noreferrer"
                   className="flex items-center gap-3 p-3 bg-white/10 border border-white/20 rounded-sm transition-colors duration-200 hover:bg-white/15"
                 >
-                  <Phone className="h-5 w-5 text-green-600 flex-shrink-0" />
+                  <Phone className="h-5 w-5 text-terra-3 flex-shrink-0" />
                   <div className="flex flex-col">
-                    <span className="text-white/70 dark:text-gray-300 hover:text-green-600 transition-colors font-semibold">
+                    <span className="text-white/70 hover:text-terra-3 transition-colors font-semibold">
                       +55 (62) 99653-8902
                     </span>
-                    <span className="text-xs text-green-600 dark:text-green-400">
+                    <span className="text-xs text-terra-3">
                       Clique para WhatsApp
                     </span>
                   </div>
@@ -122,8 +131,8 @@ const Footer = () => {
                   href="mailto:casadaalquimia@gmail.com" 
                   className="flex items-center gap-3 p-3 bg-white/10 border border-white/20 rounded-sm transition-colors duration-200 hover:bg-white/15"
                 >
-                  <Mail className="h-5 w-5 text-primary flex-shrink-0" />
-                  <span className="text-white/70 hover:text-primary transition-colors text-sm">
+                  <Mail className="h-5 w-5 text-terra-3 flex-shrink-0" />
+                  <span className="text-white/70 hover:text-terra-3 transition-colors text-sm">
                     casadaalquimia@gmail.com
                   </span>
                 </a>
@@ -150,7 +159,7 @@ const Footer = () => {
                 <a 
                   key={index}
                   href={item.href} 
-                  className="text-white/60 hover:text-primary transition-colors inline-flex items-center gap-1 group"
+                  className="text-white/60 hover:text-terra-3 transition-colors inline-flex items-center gap-1 group"
                 >
                   <span>{item.name}</span>
                   <ExternalLink className="h-3 w-3 opacity-0 group-hover:opacity-100 transition-opacity" />

@@ -1,6 +1,6 @@
 
 import React, { useEffect } from 'react';
-import { Instagram } from 'lucide-react';
+import { Facebook, Instagram, Youtube } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 // Substitua pelo Widget ID gerado no painel do Behold.so
@@ -29,31 +29,54 @@ const InstagramSection = ({ isVisible }: InstagramSectionProps) => {
       </div>
 
       {/* Rodapé do feed */}
-      <div className="flex items-center justify-between mt-4">
-        <a
-          href="https://www.instagram.com/casadaalquimia/"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="text-primary hover:text-primary/80 flex items-center text-sm font-medium transition-colors link-underline"
-        >
-          @casadaalquimia <span className="ml-2">→</span>
-        </a>
-
-        <Button
-          asChild
-          variant="outline"
-          className="bg-primary/10 border border-primary/20 text-primary hover:bg-primary/15"
-        >
-          <a
-            href="https://www.instagram.com/casadaalquimia/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center gap-2"
+      <div className="flex flex-wrap items-center justify-center gap-3 mt-6">
+          <Button
+            asChild
+            variant="outline"
+            className="bg-[#934211]/10 border border-[#934211]/30 text-[#934211] hover:bg-[#B5771C]/15 hover:border-[#B5771C] hover:text-[#B5771C] transition-all duration-200"
           >
-            <Instagram className="h-4 w-4" />
-            Seguir no Instagram
-          </a>
-        </Button>
+            <a
+              href="https://www.instagram.com/casadaalquimia/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2"
+            >
+              <Instagram className="h-4 w-4" />
+              Instagram
+            </a>
+          </Button>
+
+          <Button
+            asChild
+            variant="outline"
+            className="bg-[#934211]/10 border border-[#934211]/30 text-[#934211] hover:bg-[#B5771C]/15 hover:border-[#B5771C] hover:text-[#B5771C] transition-all duration-200"
+          >
+            <a
+              href="https://www.facebook.com/casadaalquimia/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2"
+            >
+              <Facebook className="h-4 w-4" />
+              Facebook
+            </a>
+          </Button>
+
+          <Button
+            asChild
+            variant="outline"
+            className="bg-[#934211]/10 border border-[#934211]/30 text-[#934211] hover:bg-[#B5771C]/15 hover:border-[#B5771C] hover:text-[#B5771C] transition-all duration-200"
+          >
+            <a
+              href="https://www.youtube.com/@ACasadaAlquimia"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2"
+            >
+              <Youtube className="h-4 w-4" />
+              Canal no YouTube
+            </a>
+          </Button>
       </div>
     </div>
   );

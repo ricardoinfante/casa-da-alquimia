@@ -5,7 +5,7 @@ const Donate = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   return (
-    <section id="donate" className="py-16 md:py-24 relative overflow-hidden">
+    <section id="donate" className="py-10 md:py-14 relative overflow-hidden">
       <div className="absolute inset-0 bg-noise opacity-5"></div>
 
       <div className="section-container relative z-10 flex justify-center">
@@ -13,7 +13,7 @@ const Donate = () => {
           <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#934211] mb-3">
             Apoio
           </p>
-          <h2 className="font-display font-bold text-[#1A3A6B] text-2xl md:text-3xl mb-4">
+          <h2 className="font-display font-bold text-terra-2 text-2xl md:text-3xl mb-4">
             Apoie a Casa da Alquimia
           </h2>
           <p className="text-foreground/70 mb-8">

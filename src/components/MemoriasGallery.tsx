@@ -7,31 +7,27 @@ type Photo = {
   alt: string;
 };
 
-// Curar as fotos desejadas aqui — máximo 20
-// ATENÇÃO: verificar o nome exato dos arquivos em /public/img/
-// /public/img/         → usa espaços:      "WhatsApp Image 2025-12-28 at 10.46.22.jpeg"
-// /public/img/feitio2025/ → usa underscores: "WhatsApp_Image_2025-12-30_at_12.25.03.jpeg"
 const PHOTOS: Photo[] = [
-  { id: 1,  src: '/img/01.jpeg',                                                alt: 'Momento na Casa da Alquimia' },
-  { id: 2,  src: '/img/06.jpeg',                                                alt: 'Ritual sagrado' },
-  { id: 3,  src: '/img/07.jpeg',                                                alt: 'Memória do feitio' },
-  { id: 4,  src: '/img/08.jpeg',                                                alt: 'Celebração coletiva' },
-  { id: 5,  src: '/img/09.jpeg',                                                alt: 'Encontro espiritual' },
-  { id: 6,  src: '/img/WhatsApp Image 2025-12-27 at 13.10.59.jpeg',             alt: 'Feitio 2025' },
-  { id: 7,  src: '/img/WhatsApp Image 2025-12-28 at 10.46.22.jpeg',             alt: 'Preparação do ritual' },
-  { id: 8,  src: '/img/WhatsApp Image 2025-12-28 at 14.16.23.jpeg',             alt: 'Momento de cura' },
-  { id: 9,  src: '/img/WhatsApp Image 2025-12-28 at 16.52.36.jpeg',             alt: 'Comunidade reunida' },
-  { id: 10, src: '/img/WhatsApp Image 2025-12-29 at 01.22.37.jpeg',             alt: 'Noite de feitio' },
-  { id: 11, src: '/img/WhatsApp Image 2025-12-30 at 12.41.30.jpeg',             alt: 'Alquimia e natureza' },
-  { id: 12, src: '/img/WhatsApp Image 2025-12-30 at 16.24.27.jpeg',             alt: 'Tarde sagrada' },
-  { id: 13, src: '/img/WhatsApp Image 2025-12-30 at 16.24.28.jpeg',             alt: 'Conexão espiritual' },
-  { id: 14, src: '/img/WhatsApp Image 2025-12-30 at 16.24.29.jpeg',             alt: 'Memória coletiva' },
-  { id: 15, src: '/img/WhatsApp Image 2025-12-30 at 16.24.30.jpeg',             alt: 'Ritual de encerramento' },
-  { id: 16, src: '/img/feitio2025/WhatsApp_Image_2025-12-30_at_12.25.03.jpeg',  alt: 'Feitio — momento especial' },
-  { id: 17, src: '/img/feitio2025/WhatsApp_Image_2025-12-30_at_16.24.27.jpeg',  alt: 'Feitio — tarde' },
-  { id: 18, src: '/img/feitio2025/WhatsApp_Image_2025-12-30_at_16.58.17.jpeg',  alt: 'Feitio — entardecer' },
-  { id: 19, src: '/img/feitio2025/WhatsApp_Image_2025-12-30_at_17.28.38.jpeg',  alt: 'Feitio — celebração' },
-  { id: 20, src: '/img/feitio2025/WhatsApp_Image_2025-12-29_at_08.24.10.jpeg',  alt: 'Feitio — manhã' },
+  { id: 1,  src: '/img/memorias/cruzeiro.jpeg',                            alt: 'Cruzeiro sagrado' },
+  { id: 2,  src: '/img/memorias/14-IMG_2803.jpg',                          alt: 'Memória da Casa da Alquimia' },
+  { id: 3,  src: '/img/memorias/IMG_1833.JPG',                             alt: 'Registro da jornada' },
+  { id: 4,  src: '/img/memorias/64-IMG_2675.jpg',                          alt: 'Ritual coletivo' },
+  { id: 5,  src: '/img/memorias/familia.jpg',                              alt: 'Família da Alquimia' },
+  { id: 6,  src: '/img/memorias/101-IMG_2594.jpg',                         alt: 'Encontro espiritual' },
+  { id: 7,  src: '/img/memorias/B31D10A1-E9C7-4071-87D0-F7D51DE7290D.jpg', alt: 'Memória especial' },
+  { id: 8,  src: '/img/memorias/131-IMG_2548.jpg',                         alt: 'Alquimia e natureza' },
+  { id: 9,  src: '/img/memorias/26-IMG_2788.jpg',                          alt: 'Momento sagrado' },
+  { id: 10, src: '/img/memorias/174-IMG_2435.jpg',                         alt: 'Medicina da floresta' },
+  { id: 11, src: '/img/memorias/105-IMG_2590.jpg',                         alt: 'Celebração comunitária' },
+  { id: 12, src: '/img/memorias/247-IMG_2171.jpg',                         alt: 'Ritual de encerramento' },
+  { id: 13, src: '/img/memorias/113-IMG_2578.jpg',                         alt: 'Conexão com a floresta' },
+  { id: 14, src: '/img/memorias/201-IMG_2357.jpg',                         alt: 'Círculo de cura' },
+  { id: 15, src: '/img/memorias/124-IMG_2560.jpg',                         alt: 'Caminho sagrado' },
+  { id: 16, src: '/img/memorias/298-IMG_2061.jpg',                         alt: 'Tarde na Casa da Alquimia' },
+  { id: 17, src: '/img/memorias/153-IMG_2500.jpg',                         alt: 'Presença e silêncio' },
+  { id: 18, src: '/img/memorias/223-IMG_2330.jpg',                         alt: 'Momento de integração' },
+  { id: 19, src: '/img/memorias/230-IMG_2298.jpg',                         alt: 'Vivência coletiva' },
+  { id: 20, src: '/img/memorias/310-IMG_2018.jpg',                         alt: 'Entardecer sagrado' },
 ];
 
 type TheaterModalProps = {
@@ -175,7 +171,7 @@ const MemoriasGallery = () => {
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
 
   return (
-    <section id="memorias" className="bg-[#F0F5EC] py-16 md:py-24">
+    <section id="memorias" className="bg-[#F0F5EC] py-10 md:py-14">
       <div className="text-center mb-10 px-6">
         <h2 className="text-3xl md:text-4xl font-display font-semibold tracking-[0.14em] uppercase text-[#2C2C1E]">
           Memórias

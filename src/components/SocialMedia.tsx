@@ -10,7 +10,7 @@ const SocialMedia = () => {
     <section
       ref={ref}
       id="social-media"
-      className="py-20 md:py-32 bg-bg-light relative overflow-hidden"
+      className="py-12 md:py-16 bg-bg-light relative overflow-hidden"
     >
 <div className="section-container relative z-10">
         {/* Header */}
@@ -21,8 +21,8 @@ const SocialMedia = () => {
               <span className="text-sm font-semibold text-foreground">Conecte-se Conosco</span>
             </span>
 
-            <h2 className="text-4xl md:text-5xl font-display font-bold mb-6 text-primary-dark">
-              Acompanhe Nossa Jornada
+            <h2 className="text-4xl md:text-5xl font-display font-bold mb-6 text-dark">
+              Acompanhe Nossa <span className="text-secondary">Jornada</span>
             </h2>
 
             <p className="text-lg md:text-xl text-foreground/70 leading-relaxed">

@@ -27,7 +27,7 @@ const About = () => {
     <section 
       id="about" 
       ref={sectionRef}
-      className="py-20 md:py-32 bg-bg-agua relative overflow-hidden"
+      className="py-12 md:py-16 bg-bg-agua relative overflow-hidden"
     >
       <div className="section-container relative z-10">
         {/* Layout assimétrico moderno */}
@@ -78,9 +78,9 @@ const About = () => {
               </span>
               
               {/* Título limpo e legível */}
-              <h2 className="text-4xl md:text-5xl lg:text-6xl font-display font-bold mb-6 leading-tight text-foreground dark:text-white">
+              <h2 className="text-4xl md:text-5xl lg:text-6xl font-display font-bold mb-6 leading-tight text-dark">
                 Um Lugar Para Quem Quer{' '}
-                <span className="text-primary-dark">
+                <span className="text-terra-2">
                   Meditar
                 </span>
               </h2>

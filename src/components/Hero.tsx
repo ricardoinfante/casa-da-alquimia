@@ -9,13 +9,14 @@ const Hero = () => {
 
     // Carregando a nova imagem (logo/arte) do projeto
     const img = new Image();
-    img.src = "/img/logog.jpeg"; // trocar para a nova imagem fornecida
+    img.src = "/img/hero_fire.webp";
     img.onload = () => {
       setImageLoaded(true);
     };
-    img.onerror = (e) => {
-      console.error('Failed to load image:', e);
-      setImageLoaded(true);
+    img.onerror = () => {
+      img.src = "/img/hero_fire.jpg";
+      img.onload = () => setImageLoaded(true);
+      img.onerror = () => setImageLoaded(true);
     };
   }, []);
   
@@ -26,23 +27,22 @@ const Hero = () => {
     >
       {/* Background com parallax */}
       <div className="absolute inset-0 z-0">
-        {/* Gradiente overlay moderno */}
-        <div className="absolute inset-0 bg-bg-light/60"></div>
-        
         {imageLoaded ? (
           <div
             className="w-full h-full transition-all duration-1000"
             style={{
-              backgroundImage: `url('/lovable-uploads/87b219fd-f859-454f-af75-028b033d0a5a.png')`,
+              backgroundImage: `url('/img/hero_fire.webp')`,
               backgroundSize: 'cover',
               backgroundPosition: 'center',
-              opacity: isLoaded ? 0.4 : 0,
-              filter: isLoaded ? 'blur(0) grayscale(20%)' : 'blur(8px)',
+              opacity: isLoaded ? 1 : 0,
+              filter: isLoaded ? 'blur(0)' : 'blur(8px)',
             }}
           />
         ) : (
-          <div className="w-full h-full bg-bg-agua" />
+          <div className="w-full h-full bg-dark" />
         )}
+        {/* Overlay escuro para legibilidade do texto */}
+        <div className="absolute inset-0 bg-dark/60"></div>
       </div>
       
       
@@ -51,56 +51,46 @@ const Hero = () => {
         <div className={`transition-all duration-1000 delay-300 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
           {/* Badge moderno com glassmorphism */}
           <div className="flex justify-center mb-8">
-            <span className="inline-flex items-center gap-2 px-3 py-1 rounded-sm bg-secondary/10 border border-terra-1/20">
-              <Sparkles className="h-4 w-4 text-primary" />
-              <span className="text-sm font-semibold text-foreground dark:text-white">Arte representando a alquimia espiritual</span>
+            <span className="inline-flex items-center gap-2 px-3 py-1 rounded-sm bg-white/10 border border-white/20">
+              <Sparkles className="h-4 w-4 text-terra-3" />
+              <span className="text-sm font-semibold text-white">Chapada dos Veadeiros, Goiás, Brasil</span>
             </span>
           </div>
-          
-          {/* Título legível em todos os modos */}
-          <h1 className="font-display text-5xl md:text-7xl lg:text-8xl font-bold mb-6 tracking-tight text-foreground dark:text-white">
-            Espaço Sagrado<br />
-            <span className="text-primary dark:text-accent">
-              A Casa da Alquimia
-            </span>
+
+          <h1 className="font-display text-5xl md:text-7xl lg:text-8xl font-bold mb-6 tracking-tight text-terra-3">
+            A Casa da Alquimia
           </h1>
 
-          <h2 className="text-xl md:text-2xl mb-12 font-semibold text-foreground/70">Um Lugar Para Quem Quer Meditar</h2>
+          <h2 className="text-xl md:text-2xl mb-12 font-semibold text-white/70">Um Lugar Para Quem Quer Meditar</h2>
           
           {/* CTAs modernos */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
             <a 
               href="#rituals"
-              className="group px-8 py-4 bg-primary text-white rounded-sm font-semibold transition-colors duration-200 hover:bg-primary-dark inline-flex items-center gap-2"
+              className="group px-8 py-4 bg-bg-light text-dark rounded-sm font-semibold transition-colors duration-200 hover:bg-secondary hover:text-white inline-flex items-center gap-2"
             >
               <Calendar className="h-5 w-5" />
               <span>Conhecer nossos rituais</span>
               <ArrowDown className="h-4 w-4 group-hover:translate-y-1 transition-transform" />
             </a>
             
-            <a 
+            <a
               href="https://wa.me/5562996538902?text=Ol%C3%A1!%20Gostaria%20de%20conhecer%20e%20saber%20mais%20informa%C3%A7%C3%B5es%20sobre%20os%20trabalhos%20da%20Casa%20da%20Alquimia."
               target="_blank"
               rel="noopener noreferrer"
-              className="px-8 py-4 border border-terra-1 text-terra-1 rounded-sm font-semibold transition-colors duration-200 hover:bg-terra-1 hover:text-white inline-flex items-center gap-2"
+              className="group px-8 py-4 bg-terra-3 border border-terra-2 text-terra-2 rounded-sm font-semibold transition-colors duration-200 hover:bg-terra-2 hover:text-white inline-flex items-center gap-2"
             >
-              <Heart className="h-5 w-5 text-accent" />
+              <Heart className="h-5 w-5 text-terra-2 group-hover:text-white transition-colors" />
               <span>Quero saber mais</span>
             </a>
           </div>
         </div>
       </div>
       
-      {/* Scroll indicator moderno */}
-      <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 z-20">
-        <a 
-          href="#about" 
-          className="flex flex-col items-center gap-2 text-foreground/60 dark:text-gray-300 hover:text-foreground dark:hover:text-white transition-all duration-300 group"
-        >
-          <span className="text-xs uppercase tracking-wider font-medium">Role para explorar</span>
-          <div className="w-6 h-10 rounded-full border-2 border-current flex items-start justify-center p-2">
-            <div className="w-1 h-2 bg-current rounded-full" />
-          </div>
+      {/* Scroll indicator */}
+      <div className="absolute bottom-10 left-1/2 -translate-x-1/2 z-20">
+        <a href="#about" aria-label="Rolar para baixo">
+          <ArrowDown className="h-6 w-6 text-white/50 hover:text-white/80 transition-colors duration-300 animate-bounce" style={{ animationDuration: '2.5s' }} />
         </a>
       </div>
     </section>
