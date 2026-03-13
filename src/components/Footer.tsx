@@ -1,96 +1,185 @@
-import React from 'react';
-import { Instagram, Facebook, Mail, MapPin, Phone } from 'lucide-react';
+import { ExternalLink, Facebook, Heart, Instagram, Mail, MapPin, Phone, Sparkles, Youtube } from 'lucide-react';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
   
-  return <footer id="contact" className="bg-muted/30 border-t border-muted">
-      <div className="section-container py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
-          <div className="space-y-4">
-            <div className="flex items-center gap-2 font-display text-xl mb-2">
-              <img src="/favicon.png" alt="A Casa da Alquimia Logo" className="h-12 w-auto" />
-              <span>A Casa da Alquimia</span>
+  return (
+    <footer id="contact" className="relative bg-dark border-t border-terra-1/30">
+      <div className="section-container py-12 relative z-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
+          {/* Coluna 1 - Sobre */}
+          <div className="space-y-6 lg:col-span-2">
+            <div className="flex items-center gap-3 font-display text-2xl mb-4 group">
+              <div className="relative rounded-sm overflow-hidden bg-bg-light p-1">
+                <img
+                  src="/favicon.png"
+                  alt="A Casa da Alquimia Logo"
+                  className="h-14 w-auto mix-blend-multiply"
+                />
+              </div>
+              <span className="text-white font-bold">
+                A Casa da Alquimia
+              </span>
             </div>
             
-            <p className="text-foreground/70 text-sm">Um santuário dedicado à expansão da consciência e ao autoconhecimento.</p>
+            <p className="text-white/70 text-base leading-relaxed max-w-md">
+              Um santuário dedicado à expansão da consciência e ao autoconhecimento através de rituais ancestrais e práticas de meditação.
+            </p>
             
-            <div className="flex space-x-4 pt-2">
-              <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="p-2 bg-foreground/5 rounded-full text-iconblue hover:text-spirit-600 hover:bg-spirit-50 transition-colors" aria-label="Instagram">
-                <Instagram className="h-5 w-5" />
+            {/* Social Links modernos */}
+            <div className="flex flex-wrap gap-3 pt-4">
+              <a
+                href="https://instagram.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group relative p-3 bg-white/10 border border-white/20 rounded-sm transition-colors duration-200 hover:bg-white/20"
+                aria-label="Instagram"
+              >
+                <Instagram className="h-5 w-5 text-terra-3" />
               </a>
-              <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="p-2 bg-foreground/5 rounded-full text-iconblue hover:text-spirit-600 hover:bg-spirit-50 transition-colors" aria-label="Facebook">
-                <Facebook className="h-5 w-5" />
+              <a
+                href="https://www.facebook.com/casadaalquimia/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group relative p-3 bg-white/10 border border-white/20 rounded-sm transition-colors duration-200 hover:bg-white/20"
+                aria-label="Facebook"
+              >
+                <Facebook className="h-5 w-5 text-terra-3" />
               </a>
-              <a href="mailto:contato@acasadaalquimia.com.br" className="p-2 bg-foreground/5 rounded-full text-iconblue hover:text-spirit-600 hover:bg-spirit-50 transition-colors" aria-label="Email">
-                <Mail className="h-5 w-5" />
+              <a
+                href="https://www.youtube.com/@ACasadaAlquimia"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group relative p-3 bg-white/10 border border-white/20 rounded-sm transition-colors duration-200 hover:bg-white/20"
+                aria-label="YouTube"
+              >
+                <Youtube className="h-5 w-5 text-terra-3" />
+              </a>
+              <a
+                href="mailto:casadaalquimia@gmail.com"
+                className="group relative p-3 bg-white/10 border border-white/20 rounded-sm transition-colors duration-200 hover:bg-white/20"
+                aria-label="Email"
+              >
+                <Mail className="h-5 w-5 text-terra-3" />
               </a>
             </div>
           </div>
           
-          <div>
+          {/* Coluna 2 - Links Rápidos */}
+          <div className="space-y-6">
+            <h3 className="font-display font-bold text-lg flex items-center gap-2 text-white">
+              <Sparkles className="h-5 w-5 text-terra-3" />
+              Links Rápidos
+            </h3>
             <ul className="space-y-3">
-              {[{
-              name: "Sobre Nós",
-              href: "#about"
-            }, {
-              name: "Ayahuasca e Segurança",
-              href: "#about"
-            }, {
-              name: "Preparação para Rituais",
-              href: "#rituals"
-            }, {
-              name: "FAQ",
-              href: "#about"
-            }, {
-              name: "Política de Privacidade",
-              href: "#"
-            }].map((item, index) => <li key={index}>
-                  <a href={item.href} className="text-foreground/70 hover:text-primary transition-colors link-underline">
-                    {item.name}
+              {[
+                { name: "Sobre Nós", href: "#about" },
+                { name: "Nossas alquimias em movimento", href: "#rituals" },
+                { name: "Depoimentos", href: "#testimonials" },
+                { name: "FAQ", href: "#about" },
+                { name: "Política de Privacidade", href: "#" }
+              ].map((item, index) => (
+                <li key={index}>
+                  <a 
+                    href={item.href} 
+                    className="text-white/70 hover:text-terra-3 transition-all duration-300 flex items-center gap-2 group"
+                  >
+                    <div className="w-1 h-1 bg-terra-3/50 rounded-full group-hover:w-2 group-hover:h-2 transition-all" />
+                    <span>{item.name}</span>
                   </a>
-                </li>)}
+                </li>
+              ))}
             </ul>
           </div>
           
-          <div>
-            <h3 className="font-display font-semibold mb-4">Contato</h3>
-            <ul className="space-y-4">
-              <li className="flex items-start gap-3">
-                <MapPin className="h-5 w-5 text-iconblue mt-0.5" />
-                <span className="text-foreground/70">
-                  Estrada da Usina, Fazenda Miraflores<br />
-                  Cavalcante, Goiás<br />
-                </span>
+          {/* Coluna 3 - Contato */}
+          <div className="space-y-6">
+            <h3 className="font-display font-bold text-lg flex items-center gap-2 text-white">
+              <MapPin className="h-5 w-5 text-terra-3" />
+              Contato
+            </h3>
+            <ul className="space-y-5">
+              <li className="group">
+                <div className="flex items-start gap-3 p-3 bg-white/10 border border-white/20 rounded-sm transition-colors duration-200 hover:bg-white/15">
+                  <MapPin className="h-5 w-5 text-terra-3 mt-0.5 flex-shrink-0" />
+                  <span className="text-white/70 text-sm leading-relaxed">
+                    Estrada da Usina, Fazenda Miraflores<br />
+                    Cavalcante, Goiás
+                  </span>
+                </div>
               </li>
-              <li className="flex items-center gap-3">
-                <Phone className="h-5 w-5 text-iconblue" />
-                <a href="tel:+5562965389022" className="text-foreground/70 hover:text-primary transition-colors link-underline">+55 (62) 99653-8902</a>
+              <li className="group">
+                <a 
+                  href="https://wa.me/5562996538902?text=Olá!%20Gostaria%20de%20mais%20informações%20sobre%20a%20Casa%20da%20Alquimia"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-3 p-3 bg-white/10 border border-white/20 rounded-sm transition-colors duration-200 hover:bg-white/15"
+                >
+                  <Phone className="h-5 w-5 text-terra-3 flex-shrink-0" />
+                  <div className="flex flex-col">
+                    <span className="text-white/70 hover:text-terra-3 transition-colors font-semibold">
+                      +55 (62) 99653-8902
+                    </span>
+                    <span className="text-xs text-terra-3">
+                      Clique para WhatsApp
+                    </span>
+                  </div>
+                </a>
               </li>
-              <li className="flex items-center gap-3">
-                <Mail className="h-5 w-5 text-iconblue" />
-                <a href="mailto:contato@acasadaalquimia.com.br" className="text-foreground/70 hover:text-primary transition-colors link-underline">casadaalquimia@gmail.com
-              </a>
+              <li className="group">
+                <a 
+                  href="mailto:casadaalquimia@gmail.com" 
+                  className="flex items-center gap-3 p-3 bg-white/10 border border-white/20 rounded-sm transition-colors duration-200 hover:bg-white/15"
+                >
+                  <Mail className="h-5 w-5 text-terra-3 flex-shrink-0" />
+                  <span className="text-white/70 hover:text-terra-3 transition-colors text-sm">
+                    casadaalquimia@gmail.com
+                  </span>
+                </a>
               </li>
             </ul>
           </div>
         </div>
         
-        <div className="mt-14 pt-8 border-t border-muted flex flex-col md:flex-row justify-between items-center">
-          <div className="text-foreground/60 text-sm mb-4 md:mb-0">
-            &copy; {currentYear} A Casa da Alquimia. Todos os direitos reservados.
+        {/* Bottom bar modernizada */}
+        <div className="mt-16 pt-8 border-t border-terra-1/30">
+          <div className="flex flex-col md:flex-row justify-between items-center gap-6">
+            <div className="flex items-center gap-2 text-white/60 text-sm">
+              <span>&copy; {currentYear} A Casa da Alquimia.</span>
+              <Heart className="h-4 w-4 text-accent inline" />
+              <span>Todos os direitos reservados.</span>
+            </div>
+            
+            <div className="flex flex-wrap justify-center gap-6 text-sm">
+              {[
+                { name: "Termos de Uso", href: "#" },
+                { name: "Privacidade", href: "#" },
+                { name: "Cookies", href: "#" }
+              ].map((item, index) => (
+                <a 
+                  key={index}
+                  href={item.href} 
+                  className="text-white/60 hover:text-terra-3 transition-colors inline-flex items-center gap-1 group"
+                >
+                  <span>{item.name}</span>
+                  <ExternalLink className="h-3 w-3 opacity-0 group-hover:opacity-100 transition-opacity" />
+                </a>
+              ))}
+            </div>
           </div>
           
-          <div className="flex flex-wrap justify-center gap-4 text-sm text-foreground/60">
-            <a href="#" className="hover:text-primary transition-colors link-underline">Termos de Uso</a>
-            <a href="#" className="hover:text-primary transition-colors link-underline">Política de Privacidade</a>
-            <a href="#" className="hover:text-primary transition-colors link-underline">Política de Cookies</a>
+          {/* Desenvolvido por */}
+          <div className="mt-6 text-center">
+            <p className="text-xs text-white/40">
+              Desenvolvido com <span className="text-accent">♥</span> para a expansão da consciência
+            </p>
           </div>
         </div>
       </div>
       
-      <div className="bg-gradient-to-r from-spirit-500/20 via-nature-500/20 to-earth-500/20 h-1"></div>
-    </footer>;
+      <div className="border-t border-terra-1/30"></div>
+    </footer>
+  );
 };
 
 export default Footer;

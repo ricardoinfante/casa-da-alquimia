@@ -63,67 +63,15 @@ export default {
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
 				},
-				// Paleta de cores do projeto
-				azul: {
-					1: '#8BB6CC',
-					2: '#173D90',
-					3: '#1D3F6C',
-				},
-				verde: {
-					1: '#BED19F',
-					2: '#9CB96B',
-					3: '#80A94D',
-					4: '#507030',
-				},
-				marrom: {
-					1: '#A68943',
-					2: '#674321',
-				},
-				// Cores personalizadas (mantidas para compatibilidade)
-				darktext: '#100B0D',
-				highlight: '#173D90', // Azul 2
-				tag: '#80A94D', // Verde 3
-				lightbg: '#8BB6CC', // Azul 1 (claro)
-				iconblue: '#173D90', // Azul 2
-				nature: {
-					50: '#f3f8f2',
-					100: '#e7f0e4',
-					200: '#d5e4d1',
-					300: '#BED19F', // Verde 1
-					400: '#9CB96B', // Verde 2
-					500: '#80A94D', // Verde 3
-					600: '#507030', // Verde 4
-					700: '#4c6946',
-					800: '#405539',
-					900: '#364731',
-					950: '#1d271b',
-				},
-				spirit: {
-					50: '#f5f3ff',
-					100: '#e7f0e4',
-					200: '#d5e4d1',
-					300: '#8BB6CC', // Azul 1
-					400: '#1D3F6C', // Azul 3
-					500: '#173D90', // Azul 2
-					600: '#7c3aed',
-					700: '#6d28d9',
-					800: '#5b21b6',
-					900: '#4c1d95',
-					950: '#2e1065',
-				},
-				earth: {
-					50: '#faf5f0',
-					100: '#f0e6da',
-					200: '#e0cdb8',
-					300: '#A68943', // Marrom 1
-					400: '#bd8e6a',
-					500: '#674321', // Marrom 2
-					600: '#a06544',
-					700: '#84513a',
-					800: '#6c4434',
-					900: '#5a3a2f',
-					950: '#301d17',
-				},
+				// Paleta de cores do projeto (nova — tokens adicionais, flat keys)
+				'primary-dark':	   '#1A3A6B',
+				'secondary-light': '#8FA85C',
+				'bg-agua':		     '#D4E8D8',
+				'bg-light':		     '#F0F5EC',
+				'dark':			         '#2C2C1E',
+				'terra-1':	         '#934211',
+				'terra-2':	         '#7A4900',
+				'terra-3':	         '#B5771C',
 			},
 			fontFamily: {
 				sans: ['Inter', 'sans-serif'],
@@ -132,9 +80,14 @@ export default {
 				lato: ['Lato', 'sans-serif'],
 			},
 			borderRadius: {
-				lg: 'var(--radius)',
-				md: 'calc(var(--radius) - 2px)',
-				sm: 'calc(var(--radius) - 4px)'
+				sm: '2px',
+				DEFAULT: '4px',
+				md: '6px',
+				lg: '8px',
+				xl: '12px',
+				'2xl': '16px',
+				'3xl': '24px',
+				full: '9999px',
 			},
 			keyframes: {
 				'accordion-down': {

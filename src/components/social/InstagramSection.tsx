@@ -1,6 +1,10 @@
 
 import React, { useEffect } from 'react';
-import { Instagram } from 'lucide-react';
+import { Facebook, Instagram, Youtube } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+
+// Substitua pelo Widget ID gerado no painel do Behold.so
+const BEHOLD_WIDGET_ID = 'ubXDmyHpvag3yUZUWoPm';
 
 interface InstagramSectionProps {
   isVisible: boolean;
@@ -8,10 +12,10 @@ interface InstagramSectionProps {
 
 const InstagramSection = ({ isVisible }: InstagramSectionProps) => {
   useEffect(() => {
-    // Carrega o script do Elfsight se ele ainda não foi carregado
-    if (isVisible && !document.querySelector('script[src="https://static.elfsight.com/platform/platform.js"]')) {
+    if (isVisible && !document.querySelector('script[src="https://w.behold.so/widget.js"]')) {
       const script = document.createElement('script');
-      script.src = "https://static.elfsight.com/platform/platform.js";
+      script.src = 'https://w.behold.so/widget.js';
+      script.type = 'module';
       script.async = true;
       document.body.appendChild(script);
     }
@@ -19,26 +23,60 @@ const InstagramSection = ({ isVisible }: InstagramSectionProps) => {
 
   return (
     <div id="instagram">
-      <div className="flex items-center justify-between mb-6">
-        <h3 className="text-2xl font-display font-semibold flex items-center">
-          <Instagram className="h-6 w-6 mr-2 text-azul-2" /> Instagram
-        </h3>
-        <a 
-          href="https://www.instagram.com/casadaalquimia/" 
-          target="_blank" 
-          rel="noopener noreferrer"
-          className="text-highlight hover:text-highlight/80 flex items-center text-sm font-medium transition-colors link-underline"
-        >
-          @casadaalquimia <span className="ml-2">→</span>
-        </a>
+      {/* Widget container — renderizado incondicionalmente para o MutationObserver do Behold encontrar o elemento */}
+      <div className="min-h-[400px] w-full">
+        <div data-behold-id={BEHOLD_WIDGET_ID}></div>
       </div>
-      
-      <div className={`w-full ${isVisible ? 'animate-fade-in' : 'opacity-0'} min-h-[400px]`}>
-        {/* Elfsight Instagram Feed Widget */}
-        <div 
-          className="elfsight-app-2df3b6a6-94fb-48e3-b9da-42cbe0ecc8c9" 
-          data-elfsight-app-lazy
-        ></div>
+
+      {/* Rodapé do feed */}
+      <div className="flex flex-wrap items-center justify-center gap-3 mt-6">
+          <Button
+            asChild
+            variant="outline"
+            className="bg-[#934211]/10 border border-[#934211]/30 text-[#934211] hover:bg-[#B5771C]/15 hover:border-[#B5771C] hover:text-[#B5771C] transition-all duration-200"
+          >
+            <a
+              href="https://www.instagram.com/casadaalquimia/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2"
+            >
+              <Instagram className="h-4 w-4" />
+              Instagram
+            </a>
+          </Button>
+
+          <Button
+            asChild
+            variant="outline"
+            className="bg-[#934211]/10 border border-[#934211]/30 text-[#934211] hover:bg-[#B5771C]/15 hover:border-[#B5771C] hover:text-[#B5771C] transition-all duration-200"
+          >
+            <a
+              href="https://www.facebook.com/casadaalquimia/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2"
+            >
+              <Facebook className="h-4 w-4" />
+              Facebook
+            </a>
+          </Button>
+
+          <Button
+            asChild
+            variant="outline"
+            className="bg-[#934211]/10 border border-[#934211]/30 text-[#934211] hover:bg-[#B5771C]/15 hover:border-[#B5771C] hover:text-[#B5771C] transition-all duration-200"
+          >
+            <a
+              href="https://www.youtube.com/@ACasadaAlquimia"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2"
+            >
+              <Youtube className="h-4 w-4" />
+              Canal no YouTube
+            </a>
+          </Button>
       </div>
     </div>
   );
