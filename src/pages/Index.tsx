@@ -57,7 +57,7 @@ const Index = () => {
               O que dizem os caminhantes
             </h2>
             <p className="text-foreground/70 text-lg">
-              Palavras de quem viveu a transformação
+              Palavras de quem vive a transformação
             </p>
           </div>
 
@@ -135,8 +135,26 @@ const Index = () => {
               </CardContent>
             </Card>
 
-            {/* Thais Mesquita — col-span-2 col-start-3, linha 3 */}
-            <Card className="md:col-span-2 md:col-start-3 bg-white border-terra-1/20 transition-all duration-300">
+            {/* Mari Sarmento — col-span-2, linha 3 esquerda */}
+            <Card className="md:col-span-2 bg-white border-terra-1/20 transition-all duration-300">
+              <CardContent className="h-full pt-6">
+                <blockquote className="grid h-full grid-rows-[auto_1fr_auto] gap-6">
+                  <div className="text-[#2B4F8C]">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V20c0 1 0 1 1 1z"></path>
+                      <path d="M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 4v3c0 1 0 1 1 1z"></path>
+                    </svg>
+                  </div>
+                  <p className="font-lato italic text-dark text-base">
+                    A Casa da Alquimia me permitiu, como em nenhum outro lugar nos últimos anos, a retomar com um passo de firmeza a minha caminhada na espiritualidade. Eu jamais imaginava a dimensão que esse passo dado teria e o quão importante essa Casa se tornaria para mim. Uma grande referência, um solo fértil, uma família de coração, pra onde eu tenho a certeza que, ainda que eu navegue em outras águas, esse é e sempre será, o meu porto seguro.
+                  </p>
+                  <cite className="text-sm font-medium not-italic text-[#2B4F8C]">— Mari Sarmento</cite>
+                </blockquote>
+              </CardContent>
+            </Card>
+
+            {/* Thais Mesquita — col-span-2, linha 3 direita */}
+            <Card className="md:col-span-2 bg-white border-terra-1/20 transition-all duration-300">
               <CardContent className="h-full pt-6">
                 <blockquote className="grid h-full grid-rows-[auto_1fr_auto] gap-6">
                   <div className="text-[#2B4F8C]">
@@ -149,6 +167,24 @@ const Index = () => {
                     Vivi uma experiência transformadora no Casulo: força, magia e acolhimento que trouxeram calma, confiança e a sensação de que algo muito especial está (re)nascendo.
                   </p>
                   <cite className="text-sm font-medium not-italic text-[#2B4F8C]">— Thais Mesquita</cite>
+                </blockquote>
+              </CardContent>
+            </Card>
+
+            {/* Angel Ferreira — col-span-4, linha 4 (largura total) */}
+            <Card className="md:col-span-4 bg-white border-terra-1/20 transition-all duration-300">
+              <CardContent className="pt-6">
+                <blockquote className="grid grid-rows-[auto_1fr_auto] gap-6 max-w-4xl mx-auto">
+                  <div className="text-[#2B4F8C]">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V20c0 1 0 1 1 1z"></path>
+                      <path d="M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 4v3c0 1 0 1 1 1z"></path>
+                    </svg>
+                  </div>
+                  <p className="font-lato italic text-dark text-lg leading-relaxed">
+                    É um espaço seguro que eu nunca tinha encontrado antes e que me alegra profundamente descobrir e viver. Eu posso, dentro de uma rede de meditadores comprometidos com a expansão do amor e da auto-observação, mergulhar também na minha própria investigação. O resultado disso na minha vida prática é, simplesmente, mais paciência, mais presença e um eu que contribui mais para todo mundo que está ao meu redor.
+                  </p>
+                  <cite className="text-sm font-medium not-italic text-[#2B4F8C]">— Angel Ferreira</cite>
                 </blockquote>
               </CardContent>
             </Card>

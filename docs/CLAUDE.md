@@ -1,14 +1,15 @@
+
 # Casa da Alquimia - Development Guide
 
 ## 📋 Project Overview
 
-**Casa da Alquimia** is a modern web application for spiritual rituals, crystals, herbal tea, and aromatherapy products. It features a beautiful landing page with an integrated media library and gallery.
+**Casa da Alquimia** is a modern web application for a spiritual/holistic space. It is a single-page landing site with sections for rituals, photo/video memories, social media feeds, testimonials, donation, and contact.
 
 - **Primary Branch**: `main` (stable)
-- **Development Branch**: `build-plesk` (current active)
+- **Development Branch**: `feature/redesign-visual-sagrado` (current active)
 - **Repository**: https://github.com/akillez01/casa-da-alquimia.git
 - **Live URL**: (deployment pending)
-- **Status**: Feature-complete, ready for production
+- **Status**: Active development — visual redesign in progress
 
 ---
 
@@ -26,13 +27,10 @@ src/
 │   ├── About.tsx           # About section
 │   ├── Navbar.tsx          # Navigation bar with menu links
 │   ├── Rituals.tsx         # Rituals section
-│   ├── Library.tsx         # Media library/gallery
-│   ├── LibraryGallery.tsx  # Gallery grid component
-│   ├── MediaGallery.tsx    # Media modal viewer
-│   ├── AdminPanel.tsx      # Content management interface
+│   ├── MemoriasGallery.tsx # Photo/video gallery (Memórias section)
+│   ├── MediaGallery.tsx    # Fullscreen media modal viewer
 │   ├── SocialMedia.tsx     # Social feeds aggregator
-│   ├── SpotifyPlayer.tsx   # Spotify embed player
-│   ├── Testimonials.tsx    # Customer testimonials section
+│   ├── SpotifyPlayer.tsx   # Spotify embed player (fixed position)
 │   ├── Donate.tsx          # Donation section
 │   ├── DonationModal.tsx   # Donation dialog
 │   ├── ContactForm.tsx     # Contact form
@@ -40,7 +38,7 @@ src/
 ├── integrations/
 │   └── supabase/
 │       ├── client.ts       # Supabase client initialization
-│       ├── services.ts     # API services (library)
+│       ├── services.ts     # API services
 │       └── types.ts        # TypeScript types from Supabase schema
 ├── hooks/
 │   ├── use-toast.ts        # Toast notification hook
@@ -60,13 +58,14 @@ Order of sections rendered on the main page:
 1. Navbar (persistent)
 2. Hero (landing banner)
 3. About (company info)
-4. Rituals (product showcase)
-5. Library (media gallery)
-6. SocialMedia (Instagram/YouTube feeds)
-7. Testimonials (reviews & feedback)
-8. Donate (donation CTA)
-9. ContactForm (email contact)
+4. Rituals (showcase)
+5. MemoriasGallery (photo/video gallery — `#memorias`)
+6. SocialMedia (Instagram/YouTube feeds — `#instagram`)
+7. Testimonials (reviews — inline bento grid in Index.tsx — `#testimonials`)
+8. Donate (donation CTA — `#donate`)
+9. ContactForm (email contact — `#contact`)
 10. Footer
+11. SpotifyPlayer (fixed overlay)
 
 ---
 
@@ -89,7 +88,7 @@ Order of sections rendered on the main page:
 - **Radix UI** - Unstyled accessible components (foundation for shadcn/ui)
 - **Lucide React** - Icon library (~460 icons)
 - **Embla Carousel** - Image carousel/slider
-- **Sonner** - Toast notifications (alternative to default)
+- **Sonner** - Toast notifications
 
 ### Backend & Database
 - **Supabase** - PostgreSQL database + Auth + Storage
@@ -114,34 +113,25 @@ Order of sections rendered on the main page:
 
 ### 1. **Navbar** (`Navbar.tsx`)
 - Sticky navigation with logo
-- Links to all page sections: Início → Sobre → Rituais → Biblioteca → Depoimentos → Galeria → Contato
-- Mobile responsive (hamburger menu on small screens)
-- Dark mode toggle
-- Links use hash routing (#about, #library, etc.)
+- Links to all page sections: Início → Sobre → Rituais → Memórias → Depoimentos → Conecte-se → Contato
+- Mobile responsive (slide-out menu on small screens)
+- "Apoiar" (donate) button and WhatsApp CTA button
+- Links use hash routing (#about, #memorias, #testimonials, etc.)
 
-### 2. **Library** (`Library.tsx` + `LibraryGallery.tsx`)
-- Organize media in themed albums (Eventos, Trabalhos, Passeios, Meditações)
-- Grid layout (1 column mobile → 4 columns desktop)
-- Click image to open fullscreen modal
-- Video player support
-- Add media button per album (requires AdminPanel)
-- User upload CTA for sharing photos
-- Fully responsive & dark mode compatible
+### 2. **MemoriasGallery** (`MemoriasGallery.tsx` + `MediaGallery.tsx`)
+- Photo/video gallery for the "Memórias" section (`id="memorias"`)
+- Grid layout responsive (mobile → desktop)
+- Click image/video to open fullscreen modal via MediaGallery
+- Fully responsive
 
-### 3. **AdminPanel** (`AdminPanel.tsx`)
-- Create new library albums (name, description, cover image)
-- Upload images via base64 or URL
-- Form validation with error handling
-- **Security Note**: Currently no auth protection (TODO)
-
-### 4. **SocialMedia** (`SocialMedia.tsx`)
+### 3. **SocialMedia** (`SocialMedia.tsx`)
 - Instagram feed integration (`InstagramSection.tsx`)
 - YouTube channel integration (`YouTubeSection.tsx`)
 - Requires API keys for real data (or mock data in dev)
 
-### 5. **Additional Features**
-- Spotify player embed
-- Customer testimonials carousel
+### 4. **Additional Features**
+- Spotify player embed (fixed position, bottom of screen)
+- Customer testimonials (inline bento-grid in Index.tsx)
 - Donation section with modal
 - Contact form with email submission
 - Comprehensive footer
@@ -177,20 +167,16 @@ Order of sections rendered on the main page:
 - updated_at (timestamp)
 ```
 
-
 ### Storage Buckets
 
 - **library-media/** (public)
   - Structure: `{album-id}/{media-file}`
   - Supports: images, videos
 
-
 ### Row Level Security (RLS)
 
-- **Public read**: Everyone can view albums, media, products
+- **Public read**: Everyone can view albums and media
 - **Authenticated write**: Only logged-in users can create/edit (TODO: add auth checks)
-- **Private orders**: Users see only their own orders
-- **Public reviews**: Anyone can add reviews to products
 
 ---
 
@@ -206,7 +192,6 @@ Order of sections rendered on the main page:
 - uploadMedia(file, albumId, type) → Promise<Media>
 - deleteMedia(mediaId, filePath) → Promise<void>
 ```
-
 
 ### Client Setup (`client.ts`)
 
@@ -257,24 +242,22 @@ export default MyComponent;
 ```
 
 #### Naming Conventions
-- **Components**: PascalCase (`Hero.tsx`, `Shop.tsx`)
-- **Hooks**: camelCase with `use` prefix (`useMediaLibrary()`)
-- **Utilities**: camelCase (`formatPrice()`, `cn()`)
+- **Components**: PascalCase (`Hero.tsx`, `MemoriasGallery.tsx`)
+- **Hooks**: camelCase with `use` prefix (`useScrollProgress()`)
+- **Utilities**: camelCase (`cn()`)
 - **Constants**: UPPER_SNAKE_CASE (`MAX_FILE_SIZE`)
-- **Types**: PascalCase (`Album`, `Product`, `Order`)
+- **Types**: PascalCase (`Album`, `Media`)
 
 #### Styling
 - Use **Tailwind CSS classes** for styling
 - Use **`cn()`** utility (from `src/lib/utils.ts`) to merge class strings
 - Prefer composition over custom CSS when possible
-- Dark mode: use `dark:` prefix for dark-specific styles
 - Breakpoints: `sm:` (640px), `md:` (768px), `lg:` (1024px), `xl:` (1280px)
 
 Example:
 ```typescript
 <div className={cn(
   "p-4 bg-white rounded-lg",
-  "dark:bg-slate-950 dark:text-white",
   "md:p-6 lg:p-8"
 )}>
   Content
@@ -289,7 +272,6 @@ Example:
 
 #### Comments
 - Add comments only for non-obvious logic
-- Use JSDoc for exported functions/components
 - Prefer clear naming over comments
 
 ### Component Guidelines
@@ -301,9 +283,6 @@ All UI components are pre-built in `src/components/ui/`. Import and use directly
 import { Button } from '@/components/ui/button';
 import { Card, CardHeader, CardTitle } from '@/components/ui/card';
 import { Dialog, DialogContent, DialogTrigger } from '@/components/ui/dialog';
-
-// Use with Tailwind for customization
-<Button className="bg-purple-600 hover:bg-purple-700">Submit</Button>
 ```
 
 #### Creating New Components
@@ -327,43 +306,27 @@ import { Dialog, DialogContent, DialogTrigger } from '@/components/ui/dialog';
 ### Tailwind CSS Configuration
 - Custom theme colors in `tailwind.config.ts`
 - CSS variables for colors in `src/index.css`
-- Dark mode uses `class` strategy (toggle with `next-themes`)
-
-### Dark Mode Implementation
-```typescript
-import { useTheme } from 'next-themes';
-
-const MyComponent = () => {
-  const { theme, setTheme } = useTheme();
-
-  return (
-    <button onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}>
-      Toggle Theme
-    </button>
-  );
-};
-```
 
 ### Color Palette
 
 **Primárias & Secundárias**
-- Azul Cobalto `#2B4F8C` — Primário
-- Azul Profundo `#1A3A6B` — Primário Dark
+- Azul Cobalto `#2B4F8C` — Primário (`text-primary`, `bg-primary`)
+- Azul Profundo `#1A3A6B` — Primário Dark (`bg-primary-dark`)
 - Verde Musgo `#5A7A3A` — Secundário
 - Verde Oliva `#8FA85C` — Secundário Light
-- Verde-Água `#D4E8D8` — Background
-- Branco Esverdeado `#F0F5EC` — Background Light
+- Verde-Água `#D4E8D8` — Background (`bg-bg-agua`)
+- Branco Esverdeado `#F0F5EC` — Background Light (`bg-bg-light`)
 - Dourado Âmbar `#C9A84C` — Acento
-- Preto Orgânico `#2C2C1E` — Dark
+- Preto Orgânico `#2C2C1E` — Dark (`text-dark`)
 
 **Tons Terrosos**
-- Terracota `#934211` — Terroso 1 (usado em labels/eyebrows)
-- Âmbar Escuro `#7A4900` — Terroso 2
+- Terracota `#934211` — Terroso 1 (`text-terra-1`, used in labels/eyebrows)
+- Âmbar Escuro `#7A4900` — Terroso 2 (`text-terra-2`)
 - Ocre Dourado `#B5771C` — Terroso 3
 
 **Typography**
-- **Cinzel** (Google Fonts) — títulos, headings, display (H1 38px/700, H2 24px/600, H3 18px/400)
-- **Lato** (Google Fonts) — corpo, parágrafos e UI (body 16px/400, small 13px/300, label 11px/700 uppercase)
+- **Cinzel** (Google Fonts) — títulos, headings, display (`font-display`)
+- **Lato** (Google Fonts) — corpo, parágrafos e UI (`font-lato`)
 
 ---
 
@@ -384,30 +347,7 @@ npm run build
 npm run preview
 
 # Run linter
-npm lint
-```
-
-
-### Adding Media to Library
-```typescript
-import { mediaLibraryService } from '@/integrations/supabase/services';
-
-const file = new File([...], 'photo.jpg', { type: 'image/jpeg' });
-await mediaLibraryService.uploadMedia(file, albumId, 'image');
-```
-
-### Creating New Database Records
-Use the AdminPanel component or call services directly:
-
-```typescript
-// In any component
-const handleCreateAlbum = async () => {
-  const album = await mediaLibraryService.createAlbum({
-    name: 'New Album',
-    description: 'Description',
-    coverImage: 'https://...'
-  });
-};
+npm run lint
 ```
 
 ### Adding Forms
@@ -460,48 +400,27 @@ const handleAction = () => {
 
 ### Security Considerations
 
-1. **AdminPanel Protection** (TODO)
-   - Add authentication before allowing edits
-   - Implement role-based access control (admin vs. user)
-   - Validate all uploads
-
-2. **File Uploads**
-   - Validate file types before upload
-   - Implement virus scanning (ClamAV)
-   - Set size limits (MAX_FILE_SIZE)
-   - Sanitize filenames
-
-3. **Environment Variables**
+1. **Environment Variables**
    - Never commit `.env.local`
    - Use `VITE_` prefix for client-side variables
    - Keep Supabase keys private
 
-4. **API Requests**
+2. **API Requests**
    - Always validate incoming data with Zod
    - Use Supabase RLS policies
-   - Implement rate limiting for public endpoints
 
 ### Performance Optimization
 
 1. **Lazy Loading**
-   - Pages use `React.lazy()` for code splitting
    - Images use native lazy loading: `loading="lazy"`
-   - Media gallery uses modal for fullscreen (no all images loaded at once)
+   - Media gallery uses modal for fullscreen
 
 2. **Caching**
    - React Query handles server state caching
-   - Configure cache time based on data freshness
-   - Use staleTime/cacheTime appropriately
 
 3. **Bundle Size**
    - Tree-shake unused components
    - Monitor with `npm run build` output
-   - Keep dependencies minimal
-
-4. **Database**
-   - Use indexes on frequently queried columns
-   - Paginate results for large datasets
-   - Optimize RLS policies
 
 ---
 
@@ -516,10 +435,10 @@ const handleAction = () => {
 For scrolling to sections, use hash links:
 ```typescript
 // In Navbar
-<a href="#shop">Loja Virtual</a>
+<a href="#memorias">Memórias</a>
 
 // In component
-<section id="shop">Shop content</section>
+<section id="memorias">Gallery content</section>
 ```
 
 ### Adding New Pages
@@ -539,18 +458,13 @@ For scrolling to sections, use hash links:
 ```bash
 # Check for linting issues
 npm run lint
-
-# (TODO: Add prettier for formatting)
-npm run lint -- --fix
 ```
 
 ### Manual Testing Checklist
 - [ ] All sections render correctly
 - [ ] Responsive design on mobile/tablet/desktop
-- [ ] Dark mode toggle works
 - [ ] Forms validate correctly
 - [ ] Navigation links scroll to sections
-- [ ] Supabase services connect properly
 - [ ] Images load without errors
 
 ---
@@ -559,13 +473,13 @@ npm run lint -- --fix
 
 ### Branch Strategy
 - **`main`**: Stable production-ready code
-- **`build-plesk`**: Current development branch
+- **`feature/redesign-visual-sagrado`**: Current active development
 - Feature branches: `feature/feature-name`
 - Bug fixes: `fix/bug-name`
 
 ### Commit Messages
 - Use conventional commits: `feat:`, `fix:`, `docs:`, `style:`, `refactor:`
-- Example: `feat: add product filters to shop`
+- Example: `feat: add new gallery section`
 - Keep messages descriptive and concise
 
 ### Before Committing
@@ -595,20 +509,16 @@ VITE_YOUTUBE_API_KEY=optional
 
 ## 📚 Documentation Files
 
-- **IMPLEMENTATION_SUMMARY.md** - High-level feature overview
-- **LIBRARY_SHOP_SETUP.md** - Technical setup guide
-- **LIBRARY_SHOP_QUICK_START.md** - Quick start for non-technical users
 - **CLAUDE.md** - This file (development guidelines)
+- **VISUAL_GUIDE.md** - Visual design system reference
+- **DEPLOY.md** - Deployment instructions
+- **PLESK-DEPLOY.md** - Plesk-specific deployment
 
 ---
 
-## 🚢 Deployment (build-plesk branch)
+## 🚢 Deployment
 
-This branch is prepared for Plesk hosting deployment:
-- Build output: `dist/` folder
-- Entry point: `dist/index.html`
-- Environment variables handled via Plesk dashboard
-- Static file serving configured
+Build output goes to `dist/` folder. Entry point: `dist/index.html`.
 
 ### Build & Deploy
 ```bash
@@ -624,8 +534,6 @@ npm run build
 - **Layout**: `src/pages/Index.tsx` (main page structure)
 - **Navigation**: `src/components/Navbar.tsx` (menu items)
 - **Styling**: `src/index.css` + `tailwind.config.ts`
-- **API**: `src/integrations/supabase/services.ts`
-- **Types**: `src/integrations/supabase/types.ts`
 - **Routing**: `src/App.tsx`
 
 ### Common Imports
@@ -637,13 +545,10 @@ import { Dialog, DialogContent, DialogTrigger } from '@/components/ui/dialog';
 
 // Utilities
 import { cn } from '@/lib/utils';
-import { Toaster, useToast } from '@/hooks/use-toast';
-
-// Services
-import { mediaLibraryService } from '@/integrations/supabase/services';
+import { useToast } from '@/hooks/use-toast';
 
 // Icons
-import { Heart, ShoppingCart, Search } from 'lucide-react';
+import { Heart, Image, Play } from 'lucide-react';
 
 // Forms
 import { useForm } from 'react-hook-form';
@@ -660,10 +565,7 @@ npm run dev
 npm run build
 
 # Run linter
-npm lint
-
-# Check directory structure
-tree src -I 'node_modules' -L 2
+npm run lint
 ```
 
 ---
@@ -674,7 +576,6 @@ tree src -I 'node_modules' -L 2
 |-------|----------|
 | Port already in use | Vite will auto-select next available port |
 | Supabase connection fails | Check env vars in `.env.local` |
-| Dark mode not working | Clear browser cache, check theme provider in App.tsx |
 | Images not loading | Use public URLs from Supabase Storage |
 | TypeScript errors | Run `npm install` to sync types |
 | Build fails | Check for console errors, ensure all imports are correct |
@@ -688,13 +589,10 @@ tree src -I 'node_modules' -L 2
 - [ ] TypeScript has no errors
 - [ ] `npm run lint` passes
 - [ ] Responsive design tested on multiple screen sizes
-- [ ] Dark mode tested
 - [ ] No breaking changes to existing features
-- [ ] Component props documented if complex
 - [ ] Git commit messages are descriptive
 
 ---
 
-**Last Updated**: 2026-03-11
-**Project Status**: Feature-complete, production-ready
-**Next Priority**: Continued feature enhancement and optimization
+**Last Updated**: 2026-03-21
+**Project Status**: Active development — visual redesign branch

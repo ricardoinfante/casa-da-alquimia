@@ -1,6 +1,6 @@
 import { useToast } from '@/hooks/use-toast';
-import { Check, Mail, MessageCircle, Phone, User } from 'lucide-react';
-import React, { useState } from 'react';
+import { Mail, MailCheck, MessageCircle, Phone, User } from 'lucide-react';
+import { useEffect, useState, type ChangeEvent, type FormEvent } from 'react';
 
 const ContactForm = () => {
   const { toast } = useToast();
@@ -10,68 +10,81 @@ const ContactForm = () => {
     phone: '',
     message: '',
   });
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [isSuccess, setIsSuccess] = useState(false);
+  const [status, setStatus] = useState<'idle' | 'submitting' | 'success'>('idle');
+  const [successVisible, setSuccessVisible] = useState(false);
+
+  useEffect(() => {
+    if (status === 'success') {
+      // Delay de 50ms para permitir que o nó seja pintado em opacity-0 antes da transição
+      const timer = setTimeout(() => setSuccessVisible(true), 50);
+      return () => clearTimeout(timer);
+    } else {
+      setSuccessVisible(false);
+    }
+  }, [status]);
+
+  const handleReset = () => {
+    setFormData({ name: '', email: '', phone: '', message: '' });
+    setStatus('idle');
+  };
+
   const [focused, setFocused] = useState<string | null>(null);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
-    setIsSubmitting(true);
+    setStatus('submitting');
+
+    const url = import.meta.env.VITE_CONTACT_SHEET_URL;
+    if (!url) {
+      toast({
+        title: 'Erro de configuração',
+        description: 'Formulário não configurado. Entre em contato pelo email ou WhatsApp.',
+        variant: 'destructive',
+      });
+      setStatus('idle');
+      return;
+    }
+
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 10000);
 
     try {
-      const whatsappMessage = `
-*Nova mensagem do site Casa da Alquimia*
-
-*Nome:* ${formData.name}
-*Email:* ${formData.email}
-${formData.phone ? `*Telefone:* ${formData.phone}` : ''}
-
-*Mensagem:*
-${formData.message}
-      `.trim();
-
-      const emailSubject = encodeURIComponent(`Contato de ${formData.name} - Casa da Alquimia`);
-      const emailBody = encodeURIComponent(`
-Nome: ${formData.name}
-Email: ${formData.email}
-${formData.phone ? `Telefone: ${formData.phone}` : ''}
-
-Mensagem:
-${formData.message}
-      `.trim());
-
-      const mailtoURL = `mailto:contato@acasadaalquimia.com.br?subject=${emailSubject}&body=${emailBody}`;
-      const encodedMessage = encodeURIComponent(whatsappMessage);
-      const whatsappURL = `https://wa.me/5562996538902?text=${encodedMessage}`;
-
-      await new Promise(resolve => setTimeout(resolve, 500));
-
-      window.location.href = mailtoURL;
-      setTimeout(() => {
-        window.open(whatsappURL, '_blank', 'noopener,noreferrer');
-      }, 1000);
-
-      setIsSuccess(true);
-      toast({
-        title: "Abrindo Email e WhatsApp!",
-        description: "Sua mensagem pode ser enviada por email e/ou WhatsApp.",
+      const response = await fetch(url, {
+        method: 'POST',
+        // Google Apps Script não trata preflight OPTIONS — text/plain evita o preflight CORS
+        headers: { 'Content-Type': 'text/plain' },
+        body: JSON.stringify(formData),
+        signal: controller.signal,
       });
 
-      setFormData({ name: '', email: '', phone: '', message: '' });
-      setTimeout(() => setIsSuccess(false), 3000);
-    } catch {
+      if (!response.ok) {
+        throw new Error(`Servidor respondeu com ${response.status}`);
+      }
+
+      const result = await response.json();
+
+      if (result.status !== 'ok') {
+        throw new Error(result.message || 'Erro ao enviar mensagem');
+      }
+
+      setStatus('success');
+    } catch (err) {
+      const isTimeout = err instanceof Error && err.name === 'AbortError';
       toast({
-        title: "Erro ao processar",
-        description: "Por favor, tente novamente mais tarde.",
-        variant: "destructive",
+        title: 'Erro ao enviar',
+        description: isTimeout
+          ? 'A conexão demorou demais. Tente novamente.'
+          : 'Não foi possível enviar sua mensagem. Tente novamente.',
+        variant: 'destructive',
       });
+      setStatus('idle');
     } finally {
-      setIsSubmitting(false);
+      clearTimeout(timeoutId);
     }
   };
 
@@ -151,140 +164,171 @@ ${formData.message}
 
             {/* Right — form */}
             <div className="lg:col-span-3">
-              <form
-                onSubmit={handleSubmit}
-                className="bg-white/70 backdrop-blur-sm border border-[#2C2C1E]/8 rounded-sm p-8 md:p-10 shadow-[0_2px_40px_rgba(44,44,30,0.06)]"
-              >
-                {/* Name + Email row */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 mb-8">
-                  <div className="relative pt-5">
-                    <label htmlFor="name" className={labelClass('name', !!formData.name)}>
-                      <span className="flex items-center gap-1.5">
-                        <User className="h-3 w-3" />
-                        Nome completo *
-                      </span>
-                    </label>
-                    <input
-                      id="name"
-                      name="name"
-                      type="text"
-                      required
-                      value={formData.name}
-                      onChange={handleChange}
-                      onFocus={() => setFocused('name')}
-                      onBlur={() => setFocused(null)}
-                      className={fieldClass('name')}
-                      placeholder="Seu nome"
-                      aria-required="true"
-                    />
+              {status === 'success' ? (
+                <div
+                  role="status"
+                  aria-live="polite"
+                  className={`
+                    bg-white/70 backdrop-blur-sm border border-[#2C2C1E]/8 rounded-sm p-8 md:p-10
+                    shadow-[0_2px_40px_rgba(44,44,30,0.06)]
+                    flex flex-col items-center justify-center text-center min-h-[360px]
+                    transition-opacity duration-500
+                    ${successVisible ? 'opacity-100' : 'opacity-0'}
+                  `}
+                >
+                  <div className="w-16 h-16 rounded-sm border border-[#2B4F8C]/20 flex items-center justify-center mb-6">
+                    <MailCheck className="h-10 w-10 text-[#2B4F8C]" />
                   </div>
 
-                  <div className="relative pt-5">
-                    <label htmlFor="email" className={labelClass('email', !!formData.email)}>
-                      <span className="flex items-center gap-1.5">
-                        <Mail className="h-3 w-3" />
-                        E-mail *
-                      </span>
-                    </label>
-                    <input
-                      id="email"
-                      name="email"
-                      type="email"
-                      required
-                      value={formData.email}
-                      onChange={handleChange}
-                      onFocus={() => setFocused('email')}
-                      onBlur={() => setFocused(null)}
-                      className={fieldClass('email')}
-                      placeholder="seu@email.com"
-                      aria-required="true"
-                    />
-                  </div>
-                </div>
+                  <h3 className="font-['Cinzel'] text-2xl font-bold text-[#1A3A6B] mb-4">
+                    Mensagem recebida
+                  </h3>
 
-                {/* Phone */}
-                <div className="relative pt-5 mb-8">
-                  <label htmlFor="phone" className={labelClass('phone', !!formData.phone)}>
-                    <span className="flex items-center gap-1.5">
-                      <Phone className="h-3 w-3" />
-                      Telefone (opcional)
-                    </span>
-                  </label>
-                  <input
-                    id="phone"
-                    name="phone"
-                    type="tel"
-                    value={formData.phone}
-                    onChange={handleChange}
-                    onFocus={() => setFocused('phone')}
-                    onBlur={() => setFocused(null)}
-                    className={fieldClass('phone')}
-                    placeholder="(00) 00000-0000"
-                  />
-                </div>
-
-                {/* Message */}
-                <div className="relative pt-5 mb-10">
-                  <label htmlFor="message" className={labelClass('message', !!formData.message)}>
-                    Mensagem *
-                  </label>
-                  <textarea
-                    id="message"
-                    name="message"
-                    required
-                    value={formData.message}
-                    onChange={handleChange}
-                    onFocus={() => setFocused('message')}
-                    onBlur={() => setFocused(null)}
-                    rows={5}
-                    className={`${fieldClass('message')} resize-none`}
-                    placeholder="Sua mensagem..."
-                    aria-required="true"
-                  />
-                </div>
-
-                {/* Footer row */}
-                <div className="flex items-center justify-between gap-4">
-                  <p className="text-[11px] text-[#2C2C1E]/40 font-['Lato'] tracking-wide">
-                    * Campos obrigatórios
+                  <p className="font-['Lato'] text-base text-[#2C2C1E]/70 leading-relaxed max-w-sm mb-8">
+                    Obrigado pelo contato. Retornaremos em breve pelo email ou telefone que você nos deixou.
                   </p>
 
                   <button
-                    type="submit"
-                    disabled={isSubmitting || isSuccess}
-                    className={`
-                      relative inline-flex items-center gap-2.5 px-7 py-3.5 text-sm font-['Lato'] font-semibold tracking-wider uppercase transition-all duration-300
-                      ${isSuccess
-                        ? 'bg-[#5A7A3A] text-white cursor-default'
-                        : isSubmitting
-                          ? 'bg-[#2B4F8C]/60 text-white cursor-not-allowed'
-                          : 'bg-[#2B4F8C] text-white hover:bg-[#1A3A6B] hover:-translate-y-px'
-                      }
-                    `}
-                    aria-label={isSubmitting ? "Processando mensagem" : "Enviar mensagem"}
+                    type="button"
+                    onClick={handleReset}
+                    className="text-sm font-['Lato'] text-[#7A4900]/60 hover:text-[#7A4900] underline underline-offset-4 transition-colors"
                   >
-                    {isSubmitting ? (
-                      <>
-                        <svg className="animate-spin h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                          <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
-                          <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
-                        </svg>
-                        Processando…
-                      </>
-                    ) : isSuccess ? (
-                      <>
-                        <Check className="h-4 w-4" />
-                        Pronto!
-                      </>
-                    ) : (
-                      <>
-                        <Mail className="h-4 w-4" />
-                        Enviar
-                      </>
-                    )}
+                    Enviar outra mensagem
                   </button>
                 </div>
-              </form>
+              ) : (
+                <form
+                  onSubmit={handleSubmit}
+                  className="bg-white/70 backdrop-blur-sm border border-[#2C2C1E]/8 rounded-sm p-8 md:p-10 shadow-[0_2px_40px_rgba(44,44,30,0.06)]"
+                >
+                  {/* Name + Email row */}
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 mb-8">
+                    <div className="relative pt-5">
+                      <label htmlFor="name" className={labelClass('name', !!formData.name)}>
+                        <span className="flex items-center gap-1.5">
+                          <User className="h-3 w-3" />
+                          Nome completo *
+                        </span>
+                      </label>
+                      <input
+                        id="name"
+                        name="name"
+                        type="text"
+                        required
+                        value={formData.name}
+                        onChange={handleChange}
+                        onFocus={() => setFocused('name')}
+                        onBlur={() => setFocused(null)}
+                        disabled={status === 'submitting'}
+                        className={`${fieldClass('name')} disabled:opacity-50`}
+                        placeholder="Seu nome"
+                        aria-required="true"
+                      />
+                    </div>
+
+                    <div className="relative pt-5">
+                      <label htmlFor="email" className={labelClass('email', !!formData.email)}>
+                        <span className="flex items-center gap-1.5">
+                          <Mail className="h-3 w-3" />
+                          E-mail *
+                        </span>
+                      </label>
+                      <input
+                        id="email"
+                        name="email"
+                        type="email"
+                        required
+                        value={formData.email}
+                        onChange={handleChange}
+                        onFocus={() => setFocused('email')}
+                        onBlur={() => setFocused(null)}
+                        disabled={status === 'submitting'}
+                        className={`${fieldClass('email')} disabled:opacity-50`}
+                        placeholder="seu@email.com"
+                        aria-required="true"
+                      />
+                    </div>
+                  </div>
+
+                  {/* Phone */}
+                  <div className="relative pt-5 mb-8">
+                    <label htmlFor="phone" className={labelClass('phone', !!formData.phone)}>
+                      <span className="flex items-center gap-1.5">
+                        <Phone className="h-3 w-3" />
+                        Telefone (opcional)
+                      </span>
+                    </label>
+                    <input
+                      id="phone"
+                      name="phone"
+                      type="tel"
+                      value={formData.phone}
+                      onChange={handleChange}
+                      onFocus={() => setFocused('phone')}
+                      onBlur={() => setFocused(null)}
+                      disabled={status === 'submitting'}
+                      className={`${fieldClass('phone')} disabled:opacity-50`}
+                      placeholder="(00) 00000-0000"
+                    />
+                  </div>
+
+                  {/* Message */}
+                  <div className="relative pt-5 mb-10">
+                    <label htmlFor="message" className={labelClass('message', !!formData.message)}>
+                      Mensagem *
+                    </label>
+                    <textarea
+                      id="message"
+                      name="message"
+                      required
+                      value={formData.message}
+                      onChange={handleChange}
+                      onFocus={() => setFocused('message')}
+                      onBlur={() => setFocused(null)}
+                      rows={5}
+                      disabled={status === 'submitting'}
+                      className={`${fieldClass('message')} resize-none disabled:opacity-50`}
+                      placeholder="Sua mensagem..."
+                      aria-required="true"
+                    />
+                  </div>
+
+                  {/* Footer row */}
+                  <div className="flex items-center justify-between gap-4">
+                    <p className="text-[11px] text-[#2C2C1E]/40 font-['Lato'] tracking-wide">
+                      * Campos obrigatórios
+                    </p>
+
+                    <button
+                      type="submit"
+                      disabled={status !== 'idle'}
+                      className={`
+                        relative inline-flex items-center gap-2.5 px-7 py-3.5 text-sm font-['Lato'] font-semibold tracking-wider uppercase transition-all duration-300
+                        ${status === 'submitting'
+                          ? 'bg-[#2B4F8C]/60 text-white cursor-not-allowed'
+                          : 'bg-[#2B4F8C] text-white hover:bg-[#1A3A6B] hover:-translate-y-px'
+                        }
+                      `}
+                      aria-label={status === 'submitting' ? "Enviando mensagem" : "Enviar mensagem"}
+                    >
+                      {status === 'submitting' ? (
+                        <>
+                          <svg className="animate-spin h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                            <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+                            <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
+                          </svg>
+                          Enviando…
+                        </>
+                      ) : (
+                        <>
+                          <Mail className="h-4 w-4" />
+                          Enviar
+                        </>
+                      )}
+                    </button>
+                  </div>
+                </form>
+              )}
             </div>
 
           </div>

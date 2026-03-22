@@ -1,52 +1,40 @@
-# 🎨 Guia de Customização - Biblioteca e Loja
+# 🎨 Guia de Customização - Casa da Alquimia v2
 
 ## 🎯 Personalize Tudo!
 
-Este guia mostra como customizar cores, layout, textos e mais.
+Este guia mostra como customizar cores, textos, layout e conteúdo do site.
 
 ---
 
 ## 🌈 Alterar Cores
 
-### Método 1: Tailwind Config
+A paleta de cores está definida em `tailwind.config.ts` e `src/index.css`.
+
+### Tokens Tailwind disponíveis
 
 ```typescript
-// tailwind.config.ts
-
-export default {
-  theme: {
-    extend: {
-      colors: {
-        // Cores customizadas
-        primary: {
-          50: "#f0f9ff",
-          500: "#0284c7", // Altere aqui
-          900: "#0c2d6b",
-        },
-        secondary: {
-          500: "#8b5cf6", // Roxo
-          // etc...
-        },
-      },
-    },
-  },
-};
+// tailwind.config.ts — cores customizadas do projeto
+colors: {
+  primary: '#2B4F8C',       // Azul Cobalto
+  'primary-dark': '#1A3A6B', // Azul Profundo
+  secondary: '#5A7A3A',      // Verde Musgo
+  'bg-agua': '#D4E8D8',      // Verde-Água (background)
+  'bg-light': '#F0F5EC',     // Branco Esverdeado (background)
+  accent: '#C9A84C',         // Dourado Âmbar
+  dark: '#2C2C1E',           // Preto Orgânico
+  'terra-1': '#934211',      // Terracota
+  'terra-2': '#7A4900',      // Âmbar Escuro
+}
 ```
 
-### Método 2: CSS Variables
+### Alterar via CSS Variables
 
 ```css
-/* Em index.css */
+/* src/index.css */
 :root {
-  --primary: #3b82f6; /* Azul */
-  --secondary: #8b5cf6; /* Roxo */
-  --success: #10b981; /* Verde */
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --primary: #60a5fa; /* Azul claro */
-  }
+  --primary: #2B4F8C;
+  --primary-dark: #1A3A6B;
+  /* etc. */
 }
 ```
 
@@ -54,528 +42,143 @@ export default {
 
 ## ✏️ Alterar Textos
 
-### Na Biblioteca
+### Navbar — nome do site e links
 
 ```typescript
-// Library.tsx, linha ~90
-
-const albums: Album[] = [
-  {
-    id: "eventos-2025",
-    name: "Seus Eventos", // ← ALTERE AQUI
-    description: "Sua descrição", // ← E AQUI
-    coverImage: "https://...",
-    // ...
-  },
-];
-```
-
-### Na Loja
-
-```typescript
-// Shop.tsx, linha ~70
-
-const categories = [
-  { id: "todos", name: "Todos os Produtos" }, // ← ALTERE
-  { id: "rituais", name: "Kits de Rituais" }, // ← ALTERE
-  { id: "cristais", name: "Cristais" }, // ← ALTERE
-  // ...
-];
-```
-
----
-
-## 🏷️ Alterar Títulos
-
-### No Navbar
-
-```typescript
-// Navbar.tsx, linha ~40
-
+// src/components/Navbar.tsx, linha ~39
 const menuItems = [
-  { name: "Biblioteca", href: "#library", id: "library" },
-  { name: "Loja Virtual", href: "#shop", id: "shop" },
-  // Altere os nomes aqui
+  { name: 'Início', href: '#hero', id: 'hero' },
+  { name: 'Sobre', href: '#about', id: 'about' },
+  { name: 'Rituais', href: '#rituals', id: 'rituals' },
+  { name: 'Memórias', href: '#memorias', id: 'memorias' },
+  // ...
 ];
 ```
 
-### Na Página
+### Textos das seções
 
-```typescript
-// Library.tsx, linha ~160
-
-<h2 className="text-4xl md:text-5xl font-bold mb-6">
-  Biblioteca de Mídia {/* ← ALTERE AQUI */}
-</h2>
-```
-
----
-
-## 📐 Layout e Grid
-
-### Mudar Número de Colunas
-
-```typescript
-// Padrão: grid-cols-1 md:grid-cols-2 lg:grid-cols-3
-
-// Para 4 colunas em desktop:
-<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-  {/* ... */}
-</div>
-
-// Para 2 colunas em desktop:
-<div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-  {/* ... */}
-</div>
-
-// Para 1 coluna sempre:
-<div className="grid grid-cols-1 gap-6">
-  {/* ... */}
-</div>
-```
-
-### Ajustar Espaçamento
-
-```typescript
-// Padrão: gap-6
-
-// Maior espaço:
-gap - 8; // Mais afastado
-gap - 10; // Ainda mais
-
-// Menor espaço:
-gap - 4; // Mais próximo
-gap - 2; // Bem próximo
-```
+Cada seção tem seu próprio componente. Para alterar:
+- **Hero**: edite `src/components/Hero.tsx`
+- **Sobre**: edite `src/components/About.tsx`
+- **Rituais**: edite `src/components/Rituals.tsx`
+- **Depoimentos**: edite `src/pages/Index.tsx` (seção testimonials inline)
+- **Footer**: edite `src/components/Footer.tsx`
 
 ---
 
-## 🖼️ Alterar Imagens
+## 📸 Alterar Galeria de Memórias
 
-### URL de Placeholder
-
-```typescript
-// Antes:
-coverImage: "https://via.placeholder.com/400x300?text=Eventos";
-
-// Depois (sua imagem):
-coverImage: "https://storage.supabase.co/sua-imagem.jpg";
-```
-
-### Tamanho de Imagem
+Edite `src/components/MemoriasGallery.tsx` para adicionar/remover fotos e vídeos:
 
 ```typescript
-// Em Library.tsx
-<div className="relative overflow-hidden aspect-video bg-foreground/5">
-  {/* aspect-video = 16:9 */}
-  {/* aspect-square = 1:1 */}
-  {/* aspect-auto = natural */}
-</div>
-```
-
----
-
-## 🎭 Dark Mode
-
-### Forçar Light Mode
-
-```typescript
-// No componente
-<div className="light">{/* Sempre claro */}</div>
-```
-
-### Forçar Dark Mode
-
-```typescript
-// No componente
-<div className="dark">{/* Sempre escuro */}</div>
-```
-
----
-
-## 🔤 Fontes
-
-### Alterar Fonte Padrão
-
-```typescript
-// tailwind.config.ts
-export default {
-  theme: {
-    extend: {
-      fontFamily: {
-        sans: ["Inter", "sans-serif"], // Padrão
-        serif: ["Playfair Display", "serif"],
-        mono: ["Fira Code", "monospace"],
-      },
-    },
-  },
-};
-```
-
-### No Componente
-
-```typescript
-// Padrão: font-sans
-// Serif: font-serif
-// Mono: font-mono
-// Bold: font-bold (700)
-// Light: font-light (300)
-```
-
----
-
-## 📏 Tamanhos
-
-### Botões
-
-```typescript
-// Padrão: size="md"
-// Pequeno: size="sm"
-// Grande: size="lg"
-// Extra grande: size="xl"
-
-<Button size="lg">Clique aqui</Button>
-```
-
-### Texto
-
-```typescript
-// Titulos
-text-xl    // Pequeno
-text-3xl   // Médio
-text-5xl   // Grande
-
-// Exemplo:
-<h2 className="text-4xl font-bold">Título</h2>
-```
-
----
-
-## 🎯 CTA (Calls-to-Action)
-
-### Alterar Botão
-
-```typescript
-// Em Library.tsx
-<a href="https://wa.me/5562996538902" className="px-6 py-2.5 bg-primary ...">
-  Enviar Fotos {/* ← ALTERE */}
-</a>
-```
-
-### Alterar Link WhatsApp
-
-```typescript
-// Altere o número:
-https://wa.me/5562996538902
-
-// Para seu número:
-https://wa.me/SEU_NUMERO
-
-// Exemplo:
-https://wa.me/5511999999999?text=Olá!%20Gostaria%20de%20...
-```
-
----
-
-## 💰 Preços
-
-### Alterar Preço de Produto
-
-```typescript
-// Shop.tsx, linha ~50
-
+// Adicionar imagem
 {
-  id: 'ritual-1',
-  name: 'Kit Ritual',
-  price: 89.90,  // ← ALTERE AQUI
-  // ...
-}
-```
-
-### Formato de Moeda
-
-```typescript
-// Padrão: R$ 89,90
-// Para: $89.90
-
-// No componente:
-<span className="text-2xl font-bold">${product.price.toFixed(2)}</span>
-```
-
----
-
-## 📱 Responsividade
-
-### Mostrar/Esconder em Telas
-
-```typescript
-// Esconder em mobile, mostrar em desktop:
-<div className="hidden lg:block">
-  Desktop only
-</div>
-
-// Mostrar em mobile, esconder em desktop:
-<div className="lg:hidden">
-  Mobile only
-</div>
-
-// Mostrar em tablet e acima:
-<div className="hidden md:block">
-  Tablet+
-</div>
-```
-
----
-
-## 🎬 Animações
-
-### Adicionar Animação
-
-```typescript
-// Hover effect:
-className = "hover:scale-110 transition-transform duration-300";
-
-// Fade in:
-className = "animate-in";
-
-// Pulse:
-className = "animate-pulse";
-
-// Spinner:
-className = "animate-spin";
-```
-
-### Ajustar Velocidade
-
-```typescript
-// Padrão: duration-300 (300ms)
-// Rápido: duration-150
-// Lento: duration-500
-// Muito lento: duration-1000
-```
-
----
-
-## 🗺️ Estrutura da Página
-
-### Ordem dos Componentes
-
-```typescript
-// Em pages/Index.tsx
-
-<main>
-  <Hero />
-  <About />
-  <Rituals />
-  <Library /> {/* ← Sua posição */}
-  <Shop /> {/* ← Sua posição */}
-  <SocialMedia />
-  <Testimonials />
-  <Donate />
-  <ContactForm />
-</main>
-```
-
-### Mover Ordem
-
-```typescript
-// Para mostrar Loja antes de Biblioteca:
-<Library />
-<Shop />    // ← Troque a ordem
-
-// Para:
-<Shop />    // ← Aqui
-<Library />
-```
-
----
-
-## 🔍 Busca e Filtros
-
-### Adicionar Filtro por Data
-
-```typescript
-// Em Library.tsx, após álbuns:
-const filteredAlbums = albums.filter((album) => {
-  return new Date(album.createdAt) > new Date("2024-01-01");
-});
-```
-
-### Adicionar Busca por Nome
-
-```typescript
-const [searchTerm, setSearchTerm] = useState("");
-
-const filteredProducts = products.filter((p) =>
-  p.name.toLowerCase().includes(searchTerm.toLowerCase())
-);
-```
-
----
-
-## 📊 Dados Fictícios → Reais
-
-### De Placeholder para Real
-
-```typescript
-// Antes:
-image: "https://via.placeholder.com/400x400?text=Produto";
-
-// Depois (Supabase):
-image: "https://storage.supabase.co/projeto/produtos/produto-1.jpg";
-
-// Ou (URL pública):
-image: "https://sua-dominio.com/imagens/produto.jpg";
-```
-
----
-
-## 🔐 Segurança
-
-### Validar Entrada
-
-```typescript
-// Antes de enviar para Supabase:
-if (!product.name || product.name.trim() === "") {
-  alert("Nome é obrigatório");
-  return;
+  id: 'foto-01',
+  title: 'Título da Foto',
+  thumbnail: '/img/seu-arquivo.jpeg',
+  type: 'image',
+  url: '/img/seu-arquivo.jpeg',
+  date: '2026-03-21',
 }
 
-if (product.price <= 0) {
-  alert("Preço deve ser maior que 0");
-  return;
+// Adicionar vídeo
+{
+  id: 'video-01',
+  title: 'Título do Vídeo',
+  thumbnail: '/img/capa.jpeg',
+  type: 'video',
+  url: '/img/video.mp4',
+  date: '2026-03-21',
 }
 ```
 
 ---
 
-## ⚙️ Configurações Avançadas
+## 🏷️ Alterar Seção de Depoimentos
 
-### Integração de Pagamento
+Os depoimentos estão inline em `src/pages/Index.tsx` (buscar pela seção `id="testimonials"`):
 
-```typescript
-// Quando integrar Stripe:
-import { loadStripe } from "@stripe/js";
-
-const stripe = await loadStripe("pk_test_...");
-```
-
-### Notificações
-
-```typescript
-// Usar toast para feedback:
-import { useToast } from "@/hooks/use-toast";
-
-const { toast } = useToast();
-
-toast({
-  title: "Sucesso!",
-  description: "Produto adicionado ao carrinho",
-});
+```tsx
+<p className="font-lato italic text-dark text-xl">
+  Seu depoimento aqui...
+</p>
+<cite className="text-sm font-medium not-italic text-[#2B4F8C]">— Nome da Pessoa</cite>
 ```
 
 ---
 
-## 🎓 Exemplos Práticos
+## 🎵 Alterar Playlist Spotify
 
-### Exemplo 1: Alterar Cor de Botão
+Em `src/pages/Index.tsx`:
 
-```typescript
-// Antes:
-<Button className="gap-2">Adicionar</Button>
-
-// Depois (vermelho):
-<Button className="gap-2 bg-red-500 hover:bg-red-600">
-  Adicionar
-</Button>
+```tsx
+<SpotifyPlayer playlistId="SEU_PLAYLIST_ID_AQUI" />
 ```
 
-### Exemplo 2: Aumentar Tamanho de Fonte
-
-```typescript
-// Antes:
-<h2 className="text-4xl font-bold">Título</h2>
-
-// Depois:
-<h2 className="text-6xl font-bold">Título</h2>
-```
-
-### Exemplo 3: Mais Espaço entre Itens
-
-```typescript
-// Antes:
-<div className="grid gap-6">
-
-// Depois:
-<div className="grid gap-12">
-```
+Para obter o `playlistId`: no Spotify, clique com botão direito na playlist → Compartilhar → Copiar link. O ID é a parte final da URL.
 
 ---
 
-## 🚀 Dicas de Customização
+## 📐 Alterar Layout
 
-### Testando Mudanças
+O layout usa Tailwind CSS. Classes principais:
 
-1. Fazer alteração
-2. Salvar arquivo (Ctrl+S)
-3. Navegador atualiza automaticamente (HMR)
-4. Ver resultado em tempo real
+- `bg-bg-agua` / `bg-bg-light` — fundos alternados por seção
+- `section-container` — container com padding padrão
+- `font-display` — fonte Cinzel (títulos)
+- `font-lato` — fonte Lato (corpo)
+- `text-terra-1` — cor terracota (labels/eyebrows)
 
-### Voltando Atrás
+### Ordem das seções
 
-- Ctrl+Z para desfazer
-- Git para versionar mudanças
-- Backup dos originais
+Altere a ordem em `src/pages/Index.tsx`:
 
-### Cores Úteis
-
-```
-Azul:     #3B82F6
-Roxo:     #8B5CF6
-Verde:    #10B981
-Laranja:  #F59E0B
-Vermelho: #EF4444
-Rosa:     #EC4899
+```tsx
+<Hero />
+<div className="bg-bg-agua"><About /></div>
+<div className="bg-bg-light"><Rituals /></div>
+<div className="bg-bg-agua"><MemoriasGallery /></div>
+<div className="bg-bg-light"><SocialMedia /></div>
+{/* testimonials inline */}
+<div className="bg-bg-light"><Donate /></div>
+<div className="bg-bg-agua"><ContactForm /></div>
 ```
 
 ---
 
-## 📝 Checklist de Customização
+## 🔗 Alterar Links
 
-- [ ] Cores ajustadas
-- [ ] Textos personalizados
-- [ ] Layout otimizado
-- [ ] Imagens reais adicionadas
-- [ ] Preços atualizados
-- [ ] Responsividade testada
-- [ ] Dark mode testado
-- [ ] Mobile testado
-- [ ] Build sem erros
-- [ ] Tudo pronto!
+### WhatsApp
 
----
+Em `src/components/Navbar.tsx`, alterar o número:
 
-## 🆘 Problemas Comuns
+```tsx
+href="https://wa.me/5562996538902?text=..."
+```
 
-| Problema            | Solução                           |
-| ------------------- | --------------------------------- |
-| Mudança não aparece | Limpar cache (Ctrl+Shift+Delete)  |
-| Cor estranha        | Verificar nome da classe Tailwind |
-| Layout quebrado     | Verificar closing tags            |
-| Erro no console     | F12 para ver mensagem             |
+### Redes Sociais
+
+Edite `src/components/Footer.tsx` e `src/components/social/InstagramSection.tsx`.
 
 ---
 
-## 🎉 Próximas Personalizações
+## 🖼️ Alterar Logo / Favicon
 
-1. ✨ Adicionar seu logo
-2. 🎨 Mudar palheta de cores
-3. 📱 Otimizar para mobile
-4. 🔤 Personalizar textos
-5. 🖼️ Adicionar suas imagens
-6. 💰 Atualizar preços
-7. 🚀 Deploy em produção
+Substitua `/public/favicon.png` pela nova imagem.
+
+No `Navbar.tsx`, a imagem é referenciada como:
+```tsx
+<img src="/favicon.png" alt="A Casa da Alquimia Logo" />
+```
 
 ---
 
-**Divirta-se personalizando! 🎨**
+## 📚 Mais Informações
+
+- [VISUAL_GUIDE.md](VISUAL_GUIDE.md) — paleta completa e tipografia
+- [IMAGENS_VIDEOS_INTEGRADAS.md](IMAGENS_VIDEOS_INTEGRADAS.md) — como adicionar mídias
+- [CLAUDE.md](CLAUDE.md) — arquitetura completa
+
+---
+
+**Última atualização**: 2026-03-21

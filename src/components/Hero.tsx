@@ -61,7 +61,7 @@ const Hero = () => {
             A Casa da Alquimia
           </h1>
 
-          <h2 className="text-xl md:text-2xl mb-12 font-semibold text-white/70">Um Lugar Para Quem Quer Meditar</h2>
+          <h2 className="text-xl md:text-2xl mb-12 font-semibold text-white/70">Um Lugar Para Quem Quer Se Conhecer</h2>
           
           {/* CTAs modernos */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">

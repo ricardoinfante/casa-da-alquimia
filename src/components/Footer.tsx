@@ -1,4 +1,5 @@
 import { ExternalLink, Facebook, Heart, Instagram, Mail, MapPin, Phone, Sparkles, Youtube } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -76,12 +77,10 @@ const Footer = () => {
                 { name: "Sobre Nós", href: "#about" },
                 { name: "Nossas alquimias em movimento", href: "#rituals" },
                 { name: "Depoimentos", href: "#testimonials" },
-                { name: "FAQ", href: "#about" },
-                { name: "Política de Privacidade", href: "#" }
               ].map((item, index) => (
                 <li key={index}>
-                  <a 
-                    href={item.href} 
+                  <a
+                    href={item.href}
                     className="text-white/70 hover:text-terra-3 transition-all duration-300 flex items-center gap-2 group"
                   >
                     <div className="w-1 h-1 bg-terra-3/50 rounded-full group-hover:w-2 group-hover:h-2 transition-all" />
@@ -89,6 +88,15 @@ const Footer = () => {
                   </a>
                 </li>
               ))}
+              <li>
+                <Link
+                  to="/politica_de_privacidade"
+                  className="text-white/70 hover:text-terra-3 transition-all duration-300 flex items-center gap-2 group"
+                >
+                  <div className="w-1 h-1 bg-terra-3/50 rounded-full group-hover:w-2 group-hover:h-2 transition-all" />
+                  <span>Política de Privacidade</span>
+                </Link>
+              </li>
             </ul>
           </div>
           
@@ -98,14 +106,29 @@ const Footer = () => {
               <MapPin className="h-5 w-5 text-terra-3" />
               Contato
             </h3>
-            <ul className="space-y-5">
+            <ul className="space-y-3">
               <li className="group">
-                <div className="flex items-start gap-3 p-3 bg-white/10 border border-white/20 rounded-sm transition-colors duration-200 hover:bg-white/15">
-                  <MapPin className="h-5 w-5 text-terra-3 mt-0.5 flex-shrink-0" />
-                  <span className="text-white/70 text-sm leading-relaxed">
-                    Estrada da Usina, Fazenda Miraflores<br />
-                    Cavalcante, Goiás
-                  </span>
+                <div className="flex items-start gap-3 p-2.5 bg-white/10 border border-white/20 rounded-sm transition-colors duration-200 hover:bg-white/15">
+                  <MapPin className="h-4 w-4 text-terra-3 mt-0.5 flex-shrink-0" />
+                  <div>
+                    <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-terra-1 mb-0.5">Casa da Alquimia</p>
+                    <span className="text-white/70 text-xs leading-relaxed">
+                      Estrada da Usina, Fazenda Miraflores<br />
+                      Cavalcante, Goiás
+                    </span>
+                  </div>
+                </div>
+              </li>
+              <li className="group">
+                <div className="flex items-start gap-3 p-2.5 bg-white/10 border border-white/20 rounded-sm transition-colors duration-200 hover:bg-white/15">
+                  <MapPin className="h-4 w-4 text-terra-3 mt-0.5 flex-shrink-0" />
+                  <div>
+                    <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-terra-1 mb-0.5">Espaço Coração de Luz</p>
+                    <span className="text-white/70 text-xs leading-relaxed">
+                      Rua Cel José Paulino da Silva — Centro<br />
+                      Cavalcante, Goiás
+                    </span>
+                  </div>
                 </div>
               </li>
               <li className="group">
@@ -153,18 +176,24 @@ const Footer = () => {
             <div className="flex flex-wrap justify-center gap-6 text-sm">
               {[
                 { name: "Termos de Uso", href: "#" },
-                { name: "Privacidade", href: "#" },
                 { name: "Cookies", href: "#" }
               ].map((item, index) => (
-                <a 
+                <a
                   key={index}
-                  href={item.href} 
+                  href={item.href}
                   className="text-white/60 hover:text-terra-3 transition-colors inline-flex items-center gap-1 group"
                 >
                   <span>{item.name}</span>
                   <ExternalLink className="h-3 w-3 opacity-0 group-hover:opacity-100 transition-opacity" />
                 </a>
               ))}
+              <Link
+                to="/politica_de_privacidade"
+                className="text-white/60 hover:text-terra-3 transition-colors inline-flex items-center gap-1 group"
+              >
+                <span>Privacidade</span>
+                <ExternalLink className="h-3 w-3 opacity-0 group-hover:opacity-100 transition-opacity" />
+              </Link>
             </div>
           </div>
           

@@ -1,119 +1,48 @@
-# 📸 Integração de Imagens e Vídeos - Concluído!
+# 📸 Integração de Imagens e Vídeos - Casa da Alquimia
 
-## ✅ O Que Foi Feito
+## ✅ Status Atual
 
-### 📚 Biblioteca Atualizada
-
-- ✅ **Álbum "Eventos 2025"** - 5 itens com imagens reais
-
-  - turmanatrilha.jpeg
-  - turmanatrilha1.jpeg
-  - velamesa.jpeg
-  - serviidodaime.jpeg
-  - Vídeo: img20.mp4 🎬
-
-- ✅ **Álbum "Trabalhos Realizados"** - 4 itens
-
-  - brunapanela.jpeg
-  - olhonapanela.jpeg
-  - jagubepanela.jpeg
-  - jalauabracando.jpeg
-
-- ✅ **Álbum "Passeios e Retiros"** - 4 itens
-
-  - meditação.jpeg
-  - jalausentado.jpeg
-  - ferdanirai.jpeg
-  - alquimia.jpeg
-
-- ✅ **Álbum "Galeria Complementar"** - 4 itens
-  - img01.jpeg até img04.jpeg
-
-### 🛍️ Loja Virtual Atualizada
-
-- ✅ **Kit Ritual** - serviidodaime.jpeg + velamesa.jpeg
-- ✅ **Cristal Sagrado** - alquimia.jpeg + meditação.jpeg
-- ✅ **Livro: Sabedoria** - logo.png + logog.jpeg
-- ✅ **Óleo Essencial** - convite.jpeg + turmanatrilha.jpeg
-
-### 🎬 Suporte a Vídeos
-
-- ✅ Vídeo adicionado ao álbum "Eventos 2025"
-- ✅ Estrutura pronta para adicionar mais vídeos
-- ✅ Player de vídeo funcional no modal
+A galeria de fotos e vídeos do site é gerida pelo componente `MemoriasGallery.tsx`.
 
 ---
 
-## 🎯 Resultado Visual
+## 📂 Arquivos de Mídia Disponíveis
 
-### Biblioteca
-
-Todos os 4 álbuns agora têm:
-
-- Imagens reais como cover
-- Múltiplas imagens por álbum
-- Suporte a vídeos com player integrado
-- Navegação fluida
-
-### Loja Virtual
-
-Todos os 4 produtos agora têm:
-
-- Imagens reais como destaque
-- Múltiplas views do produto
-- Carregamento rápido
-- Aparência profissional
-
----
-
-## 📂 Arquivos de Imagem Usados
-
-### Biblioteca (16 imagens + 1 vídeo)
+As imagens ficam na pasta `/public/img/`:
 
 ```
-/img/convite.jpeg           - Capa Eventos
-/img/turmanatrilha.jpeg     - Imagem Eventos
-/img/turmanatrilha1.jpeg    - Imagem Eventos
-/img/velamesa.jpeg          - Imagem Eventos
-/img/serviidodaime.jpeg     - Imagem Eventos
-/img/img20.mp4              - Vídeo Eventos ✨
-
-/img/fotofinal.jpeg         - Capa Trabalhos
-/img/brunapanela.jpeg       - Trabalhos
-/img/olhonapanela.jpeg      - Trabalhos
-/img/jagubepanela.jpeg      - Trabalhos
-/img/jalauabracando.jpeg    - Trabalhos
-
-/img/meditação.jpeg         - Capa Passeios
-/img/jalausentado.jpeg      - Passeios
-/img/ferdanirai.jpeg        - Passeios
-/img/alquimia.jpeg          - Passeios
-
-/img/img01.jpeg até img04.jpeg - Galeria
-```
-
-### Loja Virtual (8 imagens)
-
-```
-/img/serviidodaime.jpeg     - Kit Ritual
-/img/velamesa.jpeg          - Kit Ritual
-/img/alquimia.jpeg          - Cristal
-/img/meditação.jpeg         - Cristal
-/img/logo.png               - Livro
-/img/logog.jpeg             - Livro
-/img/convite.jpeg           - Óleo
-/img/turmanatrilha.jpeg     - Óleo
+/public/img/
+├── convite.jpeg
+├── turmanatrilha.jpeg
+├── turmanatrilha1.jpeg
+├── velamesa.jpeg
+├── serviidodaime.jpeg
+├── img20.mp4            ← vídeo
+├── fotofinal.jpeg
+├── brunapanela.jpeg
+├── olhonapanela.jpeg
+├── jagubepanela.jpeg
+├── jalauabracando.jpeg
+├── meditação.jpeg
+├── jalausentado.jpeg
+├── ferdanirai.jpeg
+├── alquimia.jpeg
+├── img01.jpeg ... img19.jpeg
+├── 01.jpeg, 02.png, 03.png, 04.png
+├── 06.jpeg ... 09.jpeg
+├── brunananapanela.jpeg
+├── web1-img1.jpeg
+├── logo.png
+└── logog.jpeg
 ```
 
 ---
 
-## 🚀 Como Adicionar Mais Imagens
+## 🚀 Como Adicionar Mais Imagens à Galeria
 
-### Para Adicionar Mais Imagens à Biblioteca
+Edite o componente `src/components/MemoriasGallery.tsx` e adicione itens ao array de mídia:
 
-1. Abra `src/components/Library.tsx`
-2. Procure pelo álbum desejado
-3. Adicione nova imagem ao array `items`:
+### Adicionar Imagem
 
 ```typescript
 {
@@ -122,122 +51,58 @@ Todos os 4 produtos agora têm:
   thumbnail: '/img/seu-arquivo.jpeg',
   type: 'image',
   url: '/img/seu-arquivo.jpeg',
-  date: '2025-01-05',
+  date: '2026-03-21',
 }
 ```
 
-### Para Adicionar Vídeos
+### Adicionar Vídeo
 
 ```typescript
 {
   id: 'video-id',
   title: 'Título do Vídeo',
-  thumbnail: '/img/imagem-capa.jpeg',  // Capa do vídeo
+  thumbnail: '/img/imagem-capa.jpeg',  // imagem de capa
   type: 'video',
   url: '/img/seu-video.mp4',
-  date: '2025-01-05',
-}
-```
-
-### Para Adicionar Imagens à Loja
-
-1. Abra `src/components/Shop.tsx`
-2. Procure pelo produto
-3. Altere as URLs:
-
-```typescript
-{
-  id: 'product-id',
-  name: 'Novo Produto',
-  image: '/img/nova-imagem.jpeg',      // Imagem principal
-  images: [
-    '/img/view1.jpeg',
-    '/img/view2.jpeg',                 // Múltiplas views
-  ],
-  // ...
+  date: '2026-03-21',
 }
 ```
 
 ---
 
-## 🎬 Próximas Etapas
+## 🎬 Formatos Suportados
 
-### Para Adicionar Mais Vídeos
-
-1. Copie o vídeo para `/public/img/` (ou crie `/public/videos/`)
-2. Adicione ao álbum seguindo o formato acima
-3. Use `.mp4`, `.webm` ou `.mov`
-
-### Nomes de Arquivos Disponíveis
-
-Você ainda tem muitas imagens não utilizadas:
-
-- img05.jpeg até img19.jpeg
-- 01.jpeg, 02.png, 03.png, 04.png, 06.jpeg, 07.jpeg, 08.jpeg, 09.jpeg
-- brunananapanela.jpeg, web1-img1.jpeg
-- E mais!
-
----
-
-## ✅ Testes Realizados
-
-- ✅ Build compilou sem erros (5.44s)
-- ✅ Todas as imagens carregam corretamente
-- ✅ Vídeo funciona no modal
-- ✅ Responsividade mantida
-- ✅ Dark mode funcionando
-- ✅ Modal de visualização fullscreen
-
----
-
-## 📊 Estatísticas
-
-| Item                  | Quantidade |
-| --------------------- | ---------- |
-| Imagens na Biblioteca | 16         |
-| Vídeos na Biblioteca  | 1          |
-| Imagens na Loja       | 8          |
-| Álbuns                | 4          |
-| Produtos              | 4          |
-| Total de Itens        | 29         |
+- **Imagens**: `.jpeg`, `.jpg`, `.png`, `.webp`
+- **Vídeos**: `.mp4`, `.webm`, `.mov`
 
 ---
 
 ## 🔄 Próximas Melhorias Sugeridas
 
-1. **Organizar Vídeos**
-
-   - Criar pasta `/public/videos/`
-   - Mover vídeos para lá
-   - Usar URLs `/videos/`
-
-2. **Adicionar Mais Itens**
-
-   - Usar as 15+ imagens não utilizadas
-   - Adicionar mais vídeos se houver
-
-3. **Otimizar Imagens**
-
-   - Converter para WebP (mais leve)
-   - Gerar thumbnails automáticos
-   - Lazy loading
-
-4. **Integração Supabase**
-   - Salvar dados reais no banco
-   - Gerenciar via AdminPanel
-   - Upload dinâmico
+1. **Organizar vídeos** — criar pasta `/public/videos/` para manter separado
+2. **Usar mais imagens disponíveis** — ainda há 15+ imagens não utilizadas em `/public/img/`
+3. **Otimizar imagens** — converter para WebP (mais leve) e gerar thumbnails
+4. **Galeria dinâmica** — conectar ao Supabase via `mediaLibraryService` para gerenciar sem editar código
 
 ---
 
-## 🎉 Resultado Final
+## 💡 Integração Supabase (Galeria Dinâmica)
 
-✨ **Biblioteca totalmente populada com imagens reais!**  
-✨ **Loja virtual com produtos com fotos reais!**  
-✨ **Suporte a vídeos implementado!**  
-✨ **Pronto para mais conteúdo!**
+Para gerenciar a galeria sem editar código, é possível conectar ao Supabase:
 
-Build Status: **✅ Sucesso (5.44s)**
+```typescript
+import { mediaLibraryService } from '@/integrations/supabase/services';
+
+// Buscar mídia
+const albums = await mediaLibraryService.getAlbums();
+
+// Fazer upload
+const file = new File([...], 'foto.jpg', { type: 'image/jpeg' });
+await mediaLibraryService.uploadMedia(file, albumId, 'image');
+```
+
+Requer configuração do Supabase (ver `.env.local`).
 
 ---
 
-**Tudo pronto para uso! 🚀**
+**Última atualização**: 2026-03-21

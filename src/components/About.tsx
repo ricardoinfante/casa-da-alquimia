@@ -78,9 +78,9 @@ const About = () => {
               </span>
               
               {/* Título limpo e legível */}
-              <h2 className="text-4xl md:text-5xl lg:text-6xl font-display font-bold mb-6 leading-tight text-dark">
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-display font-bold mb-6 leading-tight text-primary-dark">
                 Um Lugar Para Quem Quer{' '}
-                <span className="text-terra-2">
+                <span className="text-primary">
                   Meditar
                 </span>
               </h2>
