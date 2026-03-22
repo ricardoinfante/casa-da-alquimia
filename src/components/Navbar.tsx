@@ -83,13 +83,13 @@ const Navbar = () => {
         </Link>
 
         {/* Desktop Navigation */}
-        <nav className="hidden lg:flex items-center gap-2">
+        <nav className="hidden lg:flex items-center gap-1">
           {menuItems.map((item) => (
             <a
               key={item.name}
               href={item.href}
               className={cn(
-                "relative px-4 py-2 text-sm font-medium rounded-full transition-all duration-300",
+                "relative px-2 py-2 text-sm font-medium rounded-full transition-all duration-300 whitespace-nowrap",
                 activeSection === item.id
                   ? "text-[#7A4900]/50 bg-[#7A4900]/5"
                   : "text-[#7A4900] hover:text-[#7A4900]/50 hover:bg-[#7A4900]/5"
@@ -107,7 +107,7 @@ const Navbar = () => {
           {/* Apoiar Button */}
           <a
             href="#donate"
-            className="ml-2 bg-primary-dark text-white rounded-sm px-5 py-2.5 transition-colors duration-200 hover:bg-primary font-semibold text-sm inline-flex items-center gap-2"
+            className="ml-1 bg-primary-dark text-white rounded-sm px-4 py-2.5 transition-colors duration-200 hover:bg-primary font-semibold text-sm inline-flex items-center gap-2 whitespace-nowrap"
           >
             <span>{t('nav.support')}</span>
           </a>
@@ -117,7 +117,7 @@ const Navbar = () => {
             href="https://wa.me/5562996538902?text=Ol%C3%A1!%20Gostaria%20de%20conhecer%20e%20saber%20mais%20informa%C3%A7%C3%B5es%20sobre%20os%20trabalhos%20da%20Casa%20da%20Alquimia."
             target="_blank"
             rel="noopener noreferrer"
-            className="ml-2 border border-terra-1 text-terra-1 rounded-sm px-5 py-2.5 transition-colors duration-200 hover:bg-terra-1 hover:text-white font-semibold text-sm inline-flex items-center gap-2"
+            className="ml-1 border border-terra-1 text-terra-1 rounded-sm px-4 py-2.5 transition-colors duration-200 hover:bg-terra-1 hover:text-white font-semibold text-sm inline-flex items-center gap-2 whitespace-nowrap"
           >
             <WhatsAppIcon className="h-4 w-4" />
             <span>{t('nav.moreInfo')}</span>
