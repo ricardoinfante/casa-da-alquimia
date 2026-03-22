@@ -2,6 +2,7 @@ import { useToast } from '@/hooks/use-toast';
 import { cn } from '@/lib/utils';
 import { Building2, Check, Copy, CreditCard, Heart, X } from 'lucide-react';
 import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { saveDonation } from '@/integrations/supabase/services';
 
 // Component for the modal container
@@ -50,6 +51,7 @@ const DonationStepOne: React.FC<{
   setCustomAmount,
   onContinue,
 }) => {
+  const { t } = useTranslation();
   const finalAmount = amount || (customAmount ? parseFloat(customAmount) : 0);
 
   return (
@@ -58,9 +60,9 @@ const DonationStepOne: React.FC<{
         <div className="mx-auto w-12 h-12 flex items-center justify-center rounded-full bg-primary/10 mb-4">
           <Heart className="h-6 w-6 text-primary" />
         </div>
-        <h3 className="text-2xl font-display font-bold mb-2">Apoie nossa missão</h3>
+        <h3 className="text-2xl font-display font-bold mb-2">{t('donate.modal.step1Title')}</h3>
         <p className="text-foreground/70">
-          Sua contribuição mantém viva a tradição e possibilita que mais pessoas tenham acesso aos rituais
+          {t('donate.modal.step1Body')}
         </p>
       </div>
 
@@ -71,7 +73,7 @@ const DonationStepOne: React.FC<{
           </span>
           <input
             type="text"
-            placeholder="Digite o valor"
+            placeholder={t('donate.modal.amountPlaceholder')}
             value={customAmount}
             onChange={(e) => {
               const value = e.target.value.replace(/[^0-9.,]/g, '');
@@ -94,7 +96,7 @@ const DonationStepOne: React.FC<{
             : "bg-muted/50 text-foreground/40 cursor-not-allowed"
         )}
       >
-        Continuar
+        {t('donate.modal.continue')}
       </button>
     </div>
   );
@@ -122,22 +124,23 @@ const DonationStepTwo: React.FC<{
   isSubmitting,
   onSubmit,
 }) => {
+  const { t } = useTranslation();
   const { toast } = useToast();
 
   const copyToClipboard = (text: string, label: string) => {
     navigator.clipboard.writeText(text);
     toast({
-      title: "Copiado!",
-      description: `${label} copiado para a área de transferência.`,
+      title: t('donate.modal.copied'),
+      description: t('donate.modal.copiedDesc', { label }),
     });
   };
 
   return (
     <div className="p-6 md:p-8">
       <div className="text-center mb-6">
-        <h3 className="text-2xl font-display font-bold mb-2">Complete sua doação</h3>
+        <h3 className="text-2xl font-display font-bold mb-2">{t('donate.modal.step2Title')}</h3>
         <p className="text-foreground/70">
-          Você está fazendo uma doação de{' '}
+          {t('donate.modal.step2Body')}{' '}
           <span className="font-medium text-primary">R$ {finalAmount.toFixed(2)}</span>
         </p>
       </div>
@@ -145,7 +148,7 @@ const DonationStepTwo: React.FC<{
       <form onSubmit={onSubmit} className="space-y-4">
         <div>
           <label htmlFor="name" className="block text-sm font-medium text-foreground/80 mb-1">
-            Nome completo
+            {t('donate.modal.fullName')}
           </label>
           <input
             id="name"
@@ -159,7 +162,7 @@ const DonationStepTwo: React.FC<{
 
         <div>
           <label htmlFor="email" className="block text-sm font-medium text-foreground/80 mb-1">
-            E-mail
+            {t('donate.modal.email')}
           </label>
           <input
             id="email"
@@ -173,7 +176,7 @@ const DonationStepTwo: React.FC<{
 
         <div>
           <span className="block text-sm font-medium text-foreground/80 mb-2">
-            Método de pagamento
+            {t('donate.modal.paymentMethod')}
           </span>
           <div className="flex rounded-lg overflow-hidden border border-muted mb-4">
             <button
@@ -187,7 +190,7 @@ const DonationStepTwo: React.FC<{
               )}
             >
               <CreditCard className="h-4 w-4" />
-              PIX
+              {t('donate.modal.pix')}
             </button>
             <button
               type="button"
@@ -200,14 +203,14 @@ const DonationStepTwo: React.FC<{
               )}
             >
               <Building2 className="h-4 w-4" />
-              Depósito
+              {t('donate.modal.bankTransfer')}
             </button>
           </div>
 
           {paymentMethod === 'pix' && (
             <div className="bg-muted/50 rounded-lg p-4 space-y-3 border border-muted">
               <div className="text-center">
-                <p className="text-sm font-medium text-foreground/80 mb-2">Chave PIX</p>
+                <p className="text-sm font-medium text-foreground/80 mb-2">{t('donate.modal.pixKey')}</p>
                 <div className="flex items-center gap-2 bg-white dark:bg-gray-800 p-3 rounded-lg">
                   <code className="flex-1 text-sm font-mono text-foreground break-all">
                     30.226.247/0001-91
@@ -222,7 +225,7 @@ const DonationStepTwo: React.FC<{
                   </button>
                 </div>
                 <p className="text-xs text-foreground/60 mt-2">
-                  Tipo: CNPJ • Favorecido: Casa da Alquimia
+                  {t('donate.modal.pixInfo')}
                 </p>
               </div>
             </div>
@@ -231,14 +234,14 @@ const DonationStepTwo: React.FC<{
           {paymentMethod === 'bank-transfer' && (
             <div className="bg-muted/50 rounded-lg p-4 space-y-3 border border-muted">
               <div>
-                <p className="text-sm font-medium text-foreground/80 mb-3 text-center">Dados bancários</p>
+                <p className="text-sm font-medium text-foreground/80 mb-3 text-center">{t('donate.modal.bankDetails')}</p>
                 <div className="space-y-2 text-sm">
                   <div className="flex justify-between items-center bg-white dark:bg-gray-800 p-2 rounded">
-                    <span className="text-foreground/70">Banco:</span>
+                    <span className="text-foreground/70">{t('donate.modal.bank')}</span>
                     <span className="font-medium">Cora SCFI - 403</span>
                   </div>
                   <div className="flex justify-between items-center bg-white dark:bg-gray-800 p-2 rounded">
-                    <span className="text-foreground/70">Agência:</span>
+                    <span className="text-foreground/70">{t('donate.modal.branch')}</span>
                     <div className="flex items-center gap-2">
                       <span className="font-medium font-mono">0001</span>
                       <button
@@ -251,7 +254,7 @@ const DonationStepTwo: React.FC<{
                     </div>
                   </div>
                   <div className="flex justify-between items-center bg-white dark:bg-gray-800 p-2 rounded">
-                    <span className="text-foreground/70">Conta:</span>
+                    <span className="text-foreground/70">{t('donate.modal.account')}</span>
                     <div className="flex items-center gap-2">
                       <span className="font-medium font-mono">2123998-5</span>
                       <button
@@ -264,7 +267,7 @@ const DonationStepTwo: React.FC<{
                     </div>
                   </div>
                   <div className="flex justify-between items-center bg-white dark:bg-gray-800 p-2 rounded">
-                    <span className="text-foreground/70">CNPJ:</span>
+                    <span className="text-foreground/70">{t('donate.modal.cnpj')}</span>
                     <div className="flex items-center gap-2">
                       <span className="font-medium font-mono">30.226.247/0001-91</span>
                       <button
@@ -277,7 +280,7 @@ const DonationStepTwo: React.FC<{
                     </div>
                   </div>
                   <div className="flex justify-between items-center bg-white dark:bg-gray-800 p-2 rounded">
-                    <span className="text-foreground/70">Favorecido:</span>
+                    <span className="text-foreground/70">{t('donate.modal.payee')}</span>
                     <span className="font-medium">Casa da Alquimia</span>
                   </div>
                 </div>
@@ -302,16 +305,16 @@ const DonationStepTwo: React.FC<{
                 <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
                 <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
               </svg>
-              Processando...
+              {t('donate.modal.processing')}
             </>
           ) : (
-            'Concluir doação'
+            t('donate.modal.complete')
           )}
         </button>
 
         <div className="flex items-center gap-2 text-xs text-foreground/60 justify-center">
           <Heart className="h-3 w-3" />
-          <span>Sua contribuição faz toda a diferença</span>
+          <span>{t('donate.modal.difference')}</span>
         </div>
       </form>
     </div>
@@ -324,24 +327,26 @@ const DonationStepThree: React.FC<{
   name: string;
   onClose: () => void;
 }> = ({ finalAmount, name, onClose }) => {
+  const { t } = useTranslation();
+
   return (
     <div className="p-6 md:p-8 text-center">
       <div className="mx-auto w-16 h-16 flex items-center justify-center rounded-full bg-green-500/20 mb-6">
         <Check className="h-8 w-8 text-green-600" />
       </div>
 
-      <h3 className="text-2xl font-display font-bold mb-2">Gratidão, {name}!</h3>
+      <h3 className="text-2xl font-display font-bold mb-2">{t('donate.modal.step3Title', { name })}</h3>
       <p className="text-foreground/70 mb-6">
-        Sua doação de <span className="font-medium text-primary">R$ {finalAmount.toFixed(2)}</span> faz toda a diferença.
+        {t('donate.modal.step3Body', { amount: finalAmount.toFixed(2) })}
       </p>
 
       <div className="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4 mb-6 border border-blue-200 dark:border-blue-800">
         <p className="text-sm text-foreground/70 mb-2">
-          <strong>Próximos passos:</strong>
+          <strong>{t('donate.modal.nextSteps')}</strong>
         </p>
         <ol className="text-sm text-left text-foreground/70 space-y-2 ml-4">
-          <li>1. Realize a transferência utilizando os dados fornecidos no passo anterior.</li>
-          <li>2. Sua doação será processada em breve. Obrigado por apoiar a Casa da Alquimia.</li>
+          <li>1. {t('donate.modal.nextStep1')}</li>
+          <li>2. {t('donate.modal.nextStep2')}</li>
         </ol>
       </div>
 
@@ -350,7 +355,7 @@ const DonationStepThree: React.FC<{
         onClick={onClose}
         className="w-full py-3 bg-primary text-primary-foreground rounded-lg font-medium hover:bg-primary/90 transition-colors"
       >
-        Fechar
+        {t('donate.modal.close')}
       </button>
     </div>
   );
