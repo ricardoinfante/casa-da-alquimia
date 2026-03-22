@@ -9,16 +9,21 @@ const WhatsAppIcon = ({ className }: { className?: string }) => (
 );
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
+import LanguageDropdown from './LanguageDropdown';
+import { useLocalizedPath } from '@/hooks/useLocalizedPath';
 
 const Navbar = () => {
+  const { t } = useTranslation();
+  const lp = useLocalizedPath();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('hero');
-  
+
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
-      
+
       // Detectar seção ativa
       const sections = ['hero', 'about', 'rituals', 'memorias', 'testimonials', 'instagram', 'contact'];
       const current = sections.find(section => {
@@ -31,23 +36,23 @@ const Navbar = () => {
       });
       if (current) setActiveSection(current);
     };
-    
+
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   const menuItems = [
-    { name: 'Início', href: '#hero', id: 'hero' },
-    { name: 'Sobre', href: '#about', id: 'about' },
-    { name: 'Rituais', href: '#rituals', id: 'rituals' },
-    { name: 'Memórias', href: '#memorias', id: 'memorias' },
-    { name: 'Depoimentos', href: '#testimonials', id: 'testimonials' },
-    { name: 'Conecte-se', href: '#instagram', id: 'instagram' },
-    { name: 'Contato', href: '#contact', id: 'contact' },
+    { name: t('nav.home'),         href: '#hero',         id: 'hero' },
+    { name: t('nav.about'),        href: '#about',        id: 'about' },
+    { name: t('nav.rituals'),      href: '#rituals',      id: 'rituals' },
+    { name: t('nav.memories'),     href: '#memorias',     id: 'memorias' },
+    { name: t('nav.testimonials'), href: '#testimonials', id: 'testimonials' },
+    { name: t('nav.connect'),      href: '#instagram',    id: 'instagram' },
+    { name: t('nav.contact'),      href: '#contact',      id: 'contact' },
   ];
 
   return (
-    <header 
+    <header
       className={cn(
         "fixed top-0 left-0 right-0 z-50 transition-all duration-500 bg-bg-light border-b border-terra-1/20",
         isScrolled
@@ -57,8 +62,8 @@ const Navbar = () => {
     >
       <div className="container mx-auto px-6 md:px-8 flex items-center justify-between">
         {/* Logo com animação */}
-        <Link 
-          to="/" 
+        <Link
+          to={lp('/')}
           className="flex items-center gap-3 font-display text-lg md:text-xl group relative"
         >
           <div className="relative">
@@ -70,13 +75,13 @@ const Navbar = () => {
                 isScrolled ? "h-10" : "h-12"
               )}
             />
-  
+
           </div>
           <span className="text-balance font-semibold text-terra-2">
             A Casa da Alquimia
           </span>
         </Link>
-        
+
         {/* Desktop Navigation */}
         <nav className="hidden lg:flex items-center gap-2">
           {menuItems.map((item) => (
@@ -96,13 +101,15 @@ const Navbar = () => {
               )}
             </a>
           ))}
-          
+
+          <LanguageDropdown />
+
           {/* Apoiar Button */}
           <a
             href="#donate"
             className="ml-2 bg-primary-dark text-white rounded-sm px-5 py-2.5 transition-colors duration-200 hover:bg-primary font-semibold text-sm inline-flex items-center gap-2"
           >
-            <span>Apoiar</span>
+            <span>{t('nav.support')}</span>
           </a>
 
           {/* CTA Button */}
@@ -113,18 +120,18 @@ const Navbar = () => {
             className="ml-2 border border-terra-1 text-terra-1 rounded-sm px-5 py-2.5 transition-colors duration-200 hover:bg-terra-1 hover:text-white font-semibold text-sm inline-flex items-center gap-2"
           >
             <WhatsAppIcon className="h-4 w-4" />
-            <span>Mais informações</span>
+            <span>{t('nav.moreInfo')}</span>
           </a>
         </nav>
-        
+
         {/* Mobile Menu Button - Melhorado */}
         <button
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           className={cn(
             "lg:hidden p-3 rounded-xl transition-all duration-300",
             "hover:bg-primary/10 active:scale-90",
-            isMobileMenuOpen 
-              ? "bg-primary text-primary-foreground rotate-90" 
+            isMobileMenuOpen
+              ? "bg-primary text-primary-foreground rotate-90"
               : "bg-white/80 text-foreground"
           )}
           aria-label="Toggle menu"
@@ -136,7 +143,7 @@ const Navbar = () => {
           )}
         </button>
       </div>
-      
+
       {/* Mobile Menu - Fullscreen overlay melhorado */}
       <div className={cn(
         "fixed inset-0 lg:hidden transition-all duration-500 ease-in-out",
@@ -147,7 +154,7 @@ const Navbar = () => {
           className="absolute inset-0 bg-bg-light transition-opacity duration-300"
           onClick={() => setIsMobileMenuOpen(false)}
         />
-        
+
         {/* Menu Content - Slide from right */}
         <div className={cn(
           "absolute right-0 top-0 bottom-0 h-full flex flex-col",
@@ -158,19 +165,19 @@ const Navbar = () => {
         )}>
           {/* Header do menu */}
           <div className="flex items-center justify-between p-6 border-b border-foreground/10 bg-bg-light">
-            <Link 
-              to="/" 
+            <Link
+              to={lp('/')}
               className="flex items-center gap-2 font-display text-lg"
               onClick={() => setIsMobileMenuOpen(false)}
             >
-              <img 
-                src="/favicon.png" 
-                alt="A Casa da Alquimia Logo" 
+              <img
+                src="/favicon.png"
+                alt="A Casa da Alquimia Logo"
                 className="h-8 w-auto"
               />
-              <span className="font-semibold text-foreground dark:text-white">Menu</span>
+              <span className="font-semibold text-foreground dark:text-white">{t('nav.menu')}</span>
             </Link>
-            
+
             <button
               onClick={() => setIsMobileMenuOpen(false)}
               className="p-2 hover:bg-primary/10 rounded-full transition-all duration-300 hover:rotate-90"
@@ -179,9 +186,13 @@ const Navbar = () => {
               <X className="h-6 w-6 text-foreground dark:text-white" />
             </button>
           </div>
-          
+
           {/* Navigation Links - Scrollable */}
           <nav className="flex flex-col space-y-1 flex-1 overflow-y-auto p-4">
+            <div className="p-4 pb-2">
+              <LanguageDropdown />
+            </div>
+
             {menuItems.map((item) => (
               <a
                 key={item.name}
@@ -203,13 +214,13 @@ const Navbar = () => {
                   )}>
                     {item.name}
                   </span>
-                  
+
                   {/* Indicador de seção ativa */}
                   {activeSection === item.id && (
                     <div className="w-2 h-2 bg-[#7A4900]/50 rounded-full" />
                   )}
                 </div>
-                
+
               </a>
             ))}
 
@@ -223,7 +234,7 @@ const Navbar = () => {
               )}
               onClick={() => setIsMobileMenuOpen(false)}
             >
-              <span className="text-xl font-semibold">Apoiar</span>
+              <span className="text-xl font-semibold">{t('nav.support')}</span>
             </a>
           </nav>
 
@@ -242,12 +253,12 @@ const Navbar = () => {
               onClick={() => setIsMobileMenuOpen(false)}
             >
               <WhatsAppIcon className="h-5 w-5" />
-              <span>Quero saber mais</span>
+              <span>{t('nav.moreInfoMobile')}</span>
             </a>
-            
+
             {/* Informação adicional */}
             <p className="text-center text-xs text-foreground/60 dark:text-gray-300 mt-3">
-              Estamos aqui para te ajudar ✨
+              {t('nav.helpText')} ✨
             </p>
           </div>
         </div>
