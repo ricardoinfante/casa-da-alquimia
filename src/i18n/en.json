@@ -1,1 +1,293 @@
-{}
+{
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "rituals": "Rituals",
+    "memories": "Memories",
+    "testimonials": "Testimonials",
+    "connect": "Connect",
+    "contact": "Contact",
+    "support": "Support",
+    "moreInfo": "More info",
+    "moreInfoMobile": "I want to know more",
+    "helpText": "We're here to help",
+    "menu": "Menu",
+    "portuguese": "Português",
+    "english": "English",
+    "language": "Language"
+  },
+  "loader": {
+    "loading": "Loading..."
+  },
+  "hero": {
+    "badge": "Chapada dos Veadeiros, Goiás, Brazil",
+    "title": "A Casa da Alquimia",
+    "subtitle": "A Place For Those Who Want To Know Themselves",
+    "ctaPrimary": "Explore our rituals",
+    "ctaSecondary": "I want to know more",
+    "scrollLabel": "Scroll down"
+  },
+  "about": {
+    "badge": "About Us",
+    "sacredSpace": "Sacred Space",
+    "titleLine1": "A Place For Those Who Want To",
+    "titleHighlight": "Meditate",
+    "lead": "We were born from a deep desire to create a space of silence and inner stillness — so that self-knowledge becomes possible as a way of life.",
+    "body": "Founded by spiritual seekers with decades of experience working with plant medicines, our community is dedicated to providing a safe space for individual transformations to unfold in their full potential. We do this through tools like meditation, introspective therapies, nature connection practices, and through ayahuasca ceremonies.",
+    "pillar1": "Self-Knowledge",
+    "pillar2": "Transformation",
+    "pillar3": "Community",
+    "imgAlt": "Art representing spiritual alchemy"
+  },
+  "rituals": {
+    "badge": "What we do",
+    "title": "Our alchemies in motion",
+    "subtitle": "Transformative experiences guided by experienced facilitators",
+    "ctaBody": "All rituals are led by experienced facilitators, in a suitable environment, with all the preparation needed for a safe and transformative experience.",
+    "ctaButton": "Schedule a preparatory conversation",
+    "items": [
+      {
+        "title": "Forest medicine ceremonies",
+        "description": "Rituals that seek introspection through meditation and the expansion of consciousness. They can take place at the fire circle or in the hall. They also include calls and uplifting songs.",
+        "details": ["Duration: about 6 hours", "Frequency: contact us to check our calendar"]
+      },
+      {
+        "title": "Medicine preparation (feitio)",
+        "description": "A sacred moment in which participants experience the entire traditional process of preparing and purifying the medicine: from harvesting to bottling.",
+        "details": ["Duration: 3–7 days", "Includes: harvesting, preparation, and ceremonies", "Frequency: twice a year"]
+      },
+      {
+        "title": "Guided meditations",
+        "description": "A daily moment of introspection and silence as a way of internalizing the day-to-day routine and opening the inner channel for self-knowledge and meditation.",
+        "details": ["Duration: 1 hour", "Frequency: daily"]
+      },
+      {
+        "title": "Casulo Therapy",
+        "description": "A ritual of reconnection and self-replenishment in the form of a cocoon made of cooked herbs, where the participant enters a meditative state.",
+        "details": ["Duration: at least 3 days", "Includes: harvesting and preparing the herbs, cooking, and moments of silence and deepening in the cocoon"]
+      },
+      {
+        "title": "Temazcal (sweat lodge)",
+        "description": "A sweat lodge ritual originating from the traditional peoples of Central America, aimed at purifying body and spirit through contact with the elements of nature (earth, air, fire, and water).",
+        "details": ["Duration: 4 hours", "Includes: sweat lodge, meditation, and herbal bath"]
+      },
+      {
+        "title": "Permaculture and natural building experience",
+        "description": "Those who actively participate in A Casa da Alquimia have the opportunity to experience permaculture and natural building in collective knowledge-sharing processes.",
+        "details": []
+      }
+    ]
+  },
+  "memorias": {
+    "title": "Memories",
+    "close": "Close",
+    "counter": "{{current}} of {{total}}",
+    "prevLabel": "Previous photo",
+    "nextLabel": "Next photo",
+    "thumbLabel": "Go to photo {{n}}",
+    "photos": [
+      "Sacred cross",
+      "A Casa da Alquimia memory",
+      "Journey record",
+      "Collective ritual",
+      "Alchemy family",
+      "Spiritual gathering",
+      "Special memory",
+      "Alchemy and nature",
+      "Sacred moment",
+      "Forest medicine",
+      "Community celebration",
+      "Closing ritual",
+      "Forest connection",
+      "Healing circle",
+      "Sacred path",
+      "Afternoon at A Casa da Alquimia",
+      "Presence and silence",
+      "Integration moment",
+      "Collective experience",
+      "Sacred sunset"
+    ]
+  },
+  "social": {
+    "badge": "Instagram",
+    "titleLine1": "Follow Our",
+    "titleHighlight": "Journey",
+    "subtitle": "Follow us on Instagram and stay connected to our ceremonies, retreats, and moments along the path"
+  },
+  "testimonials": {
+    "badge": "Testimonials",
+    "title": "What the travellers say",
+    "subtitle": "Words from those living the transformation",
+    "items": [
+      {
+        "quote": "Being here is the feeling of completeness from a journey of seeking I've already lived. It's the understanding that the search is within, and that in silence I find myself again. Here, we live in practice the entire journey — outward and inward: from planting, composting the earth, natural building, cultivation techniques and preparing plant medicines over the fire of the pots and the personal inner fire of each one. And all of this is only possible here with meditation and the activation of presence in daily activities, which lead to the understanding and fulfillment of the path inward — and an inner alchemy that forges and opens space for this being to flourish.",
+        "author": "Paulo Rios"
+      },
+      {
+        "quote": "A Casa da Alquimia is the reminder that I am this space of personal self-transformation. It is with this inner fire that each person lives this in individual practice and among friends on the path, in this inner and outer union. And it is through our friends on the path that we find the heart of light — our own and each other's.",
+        "author": "Ananda"
+      },
+      {
+        "quote": "For me, A Casa da Alquimia has a unique purpose of inner investigation and meeting oneself. Living this through the exchange and sharing of everyday life. Here I experience meditation, silence, and connection.",
+        "author": "Sadgati"
+      },
+      {
+        "quote": "When I arrived at A Casa da Alquimia, I felt how much I had missed myself. Only when I became deeply quiet did I remember the size of my being and of my love. This place brings about deep reunions and moments of consciousness expansion I had never experienced before. These are rare and precious moments in a lifetime of spiritual seeking.",
+        "author": "Bárbara Rocha"
+      },
+      {
+        "quote": "A Casa da Alquimia allowed me — like nowhere else in recent years — to take a firm step back into my spiritual path. I never imagined how significant that step would be, or how important this House would become to me. A great reference, fertile ground, a family of the heart — a place where I know, even as I sail other waters, this will always be my safe harbor.",
+        "author": "Mari Sarmento"
+      },
+      {
+        "quote": "I lived a transformative experience at the Casulo retreat: strength, magic, and warmth that brought calm, trust, and the feeling that something very special is (re)born.",
+        "author": "Thais Mesquita"
+      },
+      {
+        "quote": "This is a safe space I had never found before, and I'm deeply glad to have discovered it. Within a network of meditators committed to the expansion of love and self-observation, I can also dive into my own investigation. The result in my practical life is simply more patience, more presence, and a version of me that contributes more to everyone around me.",
+        "author": "Angel Ferreira"
+      }
+    ]
+  },
+  "donate": {
+    "badge": "Support",
+    "title": "Support A Casa da Alquimia",
+    "body": "Your contribution keeps the rituals, teachings, and healing space of A Casa da Alquimia alive.",
+    "cta": "I want to support",
+    "modal": {
+      "step1Title": "Support our mission",
+      "step1Body": "Your contribution keeps the tradition alive and makes the rituals accessible to more people",
+      "amountPlaceholder": "Enter the amount",
+      "continue": "Continue",
+      "step2Title": "Complete your donation",
+      "step2Body": "You're making a donation of",
+      "fullName": "Full name",
+      "email": "Email",
+      "paymentMethod": "Payment method",
+      "pix": "PIX",
+      "bankTransfer": "Bank transfer",
+      "pixKey": "PIX Key",
+      "pixInfo": "Type: CNPJ • Payee: Casa da Alquimia",
+      "bankDetails": "Bank details",
+      "bank": "Bank:",
+      "branch": "Branch:",
+      "account": "Account:",
+      "cnpj": "CNPJ:",
+      "payee": "Payee:",
+      "processing": "Processing...",
+      "complete": "Complete donation",
+      "difference": "Your contribution makes all the difference",
+      "copied": "Copied!",
+      "copiedDesc": "{{label}} copied to clipboard.",
+      "step3Title": "Thank you, {{name}}!",
+      "step3Body": "Your donation of R$ {{amount}} makes all the difference.",
+      "nextSteps": "Next steps:",
+      "nextStep1": "Complete the transfer using the payment details provided in the previous step.",
+      "nextStep2": "Your donation will be processed shortly. Thank you for supporting A Casa da Alquimia.",
+      "close": "Close"
+    }
+  },
+  "contact": {
+    "badge": "Get in touch",
+    "title": "Have a",
+    "titleHighlight": "question?",
+    "body": "Fill out the form and we'll get back to you as soon as possible about our rituals and activities.",
+    "name": "Full name *",
+    "email": "Email *",
+    "phone": "Phone (optional)",
+    "message": "Message *",
+    "required": "* Required fields",
+    "send": "Send",
+    "sending": "Sending…",
+    "sendLabel": "Send message",
+    "sendingLabel": "Sending message",
+    "successTitle": "Message received",
+    "successBody": "Thank you for reaching out. We'll get back to you soon by email or phone.",
+    "sendAnother": "Send another message",
+    "errorTitle": "Error sending",
+    "errorConfig": "Form not configured. Please reach out by email or WhatsApp.",
+    "errorTimeout": "The connection took too long. Please try again.",
+    "errorGeneric": "Could not send your message. Please try again."
+  },
+  "footer": {
+    "description": "A sanctuary dedicated to the expansion of consciousness and self-knowledge through ancestral rituals and meditation practices.",
+    "quickLinks": "Quick Links",
+    "contactTitle": "Contact",
+    "link1": "About Us",
+    "link2": "Our alchemies in motion",
+    "link3": "Testimonials",
+    "privacy": "Privacy Policy",
+    "privacyShort": "Privacy",
+    "terms": "Terms of Use",
+    "cookies": "Cookies",
+    "allRights": "All rights reserved.",
+    "madeWith": "Made with",
+    "forConsciousness": "for the expansion of consciousness",
+    "clickWhatsApp": "Click for WhatsApp",
+    "location1Label": "Casa da Alquimia",
+    "location1Address": "Estrada da Usina, Fazenda Miraflores\nCavalcante, Goiás",
+    "location2Label": "Espaço Coração de Luz",
+    "location2Address": "Rua Cel José Paulino da Silva — Centro\nCavalcante, Goiás"
+  },
+  "notFound": {
+    "title": "404",
+    "message": "Oops! Page not found",
+    "back": "Back to Home"
+  },
+  "privacy": {
+    "back": "Back to site",
+    "legalDoc": "Legal Document",
+    "title": "Privacy Policy",
+    "lastUpdated": "Last updated: March 2026",
+    "sections": [
+      {
+        "title": "1. Who We Are",
+        "content": "A Casa da Alquimia is a sacred space dedicated to the expansion of consciousness, self-knowledge, and ancestral healing practices. We operate at two physical locations in Cavalcante, Goiás, Brazil, and communicate with our community through our website and social media.\n\nFor the purposes of this policy, the data controller is A Casa da Alquimia, which can be reached at casadaalquimia@gmail.com."
+      },
+      {
+        "title": "2. Data We Collect",
+        "content": "We collect only the data strictly necessary to maintain our relationship with the community:\n\n**Data you provide voluntarily:**\n- Name and email address when filling out contact forms or registering for retreats and activities;\n- Phone number / WhatsApp when you start a conversation with us;\n- Messages and content sent through forms or communication channels.\n\n**Automatically collected data:**\n- Technical access information (IP address, browser type, pages visited, and browsing time), collected by traffic analysis tools for statistical purposes."
+      },
+      {
+        "title": "3. How We Use Your Data",
+        "content": "We use the information collected exclusively to:\n\n- Respond to your questions, requests, and messages;\n- Share information about retreats, workshops, events, and practices at A Casa da Alquimia;\n- Send communications about wellness, meditation, and ancestral practices when you choose to receive them;\n- Improve the browsing experience on our website;\n- Comply with legal obligations when necessary.\n\nYour data will never be sold, rented, or shared with third parties for commercial purposes."
+      },
+      {
+        "title": "4. Legal Basis for Processing",
+        "content": "The processing of personal data by A Casa da Alquimia is based on the following legal grounds under Brazil's General Data Protection Law (LGPD — Law No. 13,709/2018):\n\n- **Consent:** when you fill out our forms or subscribe to our communications;\n- **Legitimate interest:** for statistical analysis of website usage and continuous improvement of services;\n- **Contract performance or pre-contractual procedures:** when processing registrations for retreats and activities."
+      },
+      {
+        "title": "5. Data Sharing",
+        "content": "We may share your data only in the following situations:\n\n- **Service providers:** email platforms, analytics tools, and payment systems, solely to operate our services — all bound by confidentiality obligations;\n- **Legal obligation:** when required by competent authorities or court order;\n- **Rights protection:** when necessary to enforce our legal rights.\n\nYour data is **not shared** with marketing companies, advertisers, or any third parties without a direct relationship to our services."
+      },
+      {
+        "title": "6. Cookies and Tracking Technologies",
+        "content": "Our website may use cookies and similar technologies to:\n\n- Ensure correct page functionality (essential cookies);\n- Analyze browsing behavior in an aggregated and anonymous way (analytics cookies);\n- Display content from external platforms such as YouTube, Spotify, and Instagram embedded in the site.\n\nYou can configure your browser to refuse cookies or be notified when cookies are being sent. Disabling essential cookies may prevent some site features from working correctly."
+      },
+      {
+        "title": "7. Third-Party Services",
+        "content": "This site embeds or contains links to third-party services, including:\n\n- **Instagram, Facebook, and YouTube** — social networks governed by their own terms and privacy policies;\n- **WhatsApp (Meta)** — used as a support channel;\n- **Spotify** — audio player embedded for music and meditation content.\n\nWe recommend reading the privacy policies of each of these platforms, as A Casa da Alquimia has no control over the data they collect."
+      },
+      {
+        "title": "8. Data Retention",
+        "content": "We keep your data for as long as necessary to fulfill the purposes described in this policy or as required by law. Registration data for activities and events is retained while the relationship is active and for up to 5 years after its end, for legal compliance. Contact data and communication lists are retained until you request deletion."
+      },
+      {
+        "title": "9. Your Rights (LGPD)",
+        "content": "Under the LGPD, you have the right to:\n\n- **Confirm** the existence of processing of your personal data;\n- **Access** the data we hold about you;\n- **Correct** incomplete, inaccurate, or outdated data;\n- **Request anonymization, blocking, or deletion** of unnecessary or improperly processed data;\n- **Portability** of your data to another service provider;\n- **Revoke consent** at any time, without affecting the lawfulness of prior processing;\n- **Object** to processing based on other legal grounds in case of non-compliance.\n\nTo exercise any of these rights, contact us at casadaalquimia@gmail.com. We will respond within 15 business days."
+      },
+      {
+        "title": "10. Data Security",
+        "content": "We adopt appropriate technical and organizational measures to protect your data against unauthorized access, loss, alteration, or improper disclosure. However, no internet data transmission is completely secure. If you identify any vulnerability or incident related to your data, please contact us immediately."
+      },
+      {
+        "title": "11. Changes to This Policy",
+        "content": "This policy may be updated periodically to reflect changes in our practices or legal requirements. The most recent version will always be available on this page, with the date of the last update shown in the footer. We recommend reviewing this document periodically."
+      },
+      {
+        "title": "12. Contact and Data Officer",
+        "content": "For questions, requests, or exercise of your rights under this policy, contact us:\n\n**Casa da Alquimia**\nEmail: casadaalquimia@gmail.com\nWhatsApp: +55 (62) 99653-8902\n\nEspaço Coração de Luz — Rua Cel José Paulino da Silva, Centro, Cavalcante, Goiás\nCasa da Alquimia — Estrada da Usina, Fazenda Miraflores, Cavalcante, Goiás"
+      }
+    ]
+  }
+}
