@@ -1,70 +1,52 @@
 import { ArrowRight, Brain, Flame, FlaskConical, Leaf, Moon, Sparkles, Sprout } from 'lucide-react';
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
+
+const RITUAL_META = [
+  { icon: <Moon className="h-8 w-8 text-primary" />,           image: '/img/rituais_card.jpg',     imagePosition: 'center 70%' as string | undefined },
+  { icon: <FlaskConical className="h-8 w-8 text-secondary" />, image: '/img/feitio-card2.jpg',     imagePosition: undefined },
+  { icon: <Brain className="h-8 w-8 text-primary" />,          image: '/img/meditacao-guiada.jpg', imagePosition: 'center 70%' as string | undefined },
+  { icon: <Leaf className="h-8 w-8 text-secondary" />,         image: '/img/casuloflores.jpg',     imagePosition: undefined },
+  { icon: <Flame className="h-8 w-8 text-primary" />,          image: '/img/temazcal.png',         imagePosition: undefined },
+  { icon: <Sprout className="h-8 w-8 text-secondary" />,       image: '/img/bio-construcao.jpg',   imagePosition: 'center 20%' as string | undefined },
+];
 
 const Rituals = () => {
+  const { t } = useTranslation();
   const [hoveredCard, setHoveredCard] = useState<number | null>(null);
-  
+
+  interface RitualItem {
+    title: string;
+    description: string;
+    details: string[];
+  }
+
+  const ritualItems = t('rituals.items', { returnObjects: true }) as RitualItem[];
+
   return <section id="rituals" className="py-12 md:py-16 bg-bg-light overflow-hidden relative">
       
       <div className="section-container relative z-10">
         <div className="text-center max-w-3xl mx-auto mb-16">
           <span className="inline-flex items-center gap-2 px-5 py-2.5 rounded-sm bg-secondary/10 border border-terra-1/20 mb-6">
             <Sparkles className="h-4 w-4 text-primary animate-pulse" />
-            <span className="text-sm font-semibold text-foreground">O que fazemos</span>
+            <span className="text-sm font-semibold text-foreground">{t('rituals.badge')}</span>
           </span>
           
           <h2 className="text-4xl md:text-5xl font-display font-bold mb-4">
             <span className="bg-gradient-to-r from-dark via-terra-2 to-secondary bg-clip-text text-transparent">
-              Nossas alquimias em movimento
+              {t('rituals.title')}
             </span>
           </h2>
           
           <p className="text-lg text-foreground/70">
-            Experiências transformadoras guiadas por facilitadores experientes
+            {t('rituals.subtitle')}
           </p>
         </div>
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-          {[{
-          icon: <Moon className="h-8 w-8 text-primary" />,
-          title: "Cerimônias com medicina da floresta",
-          description: "Rituais que buscam a introspecção por meio da meditação e da expansão da consciência. Podem acontecer no círculo de fogo ou no salão. Também contam com chamadas e algumas músicas de elevação.",
-          details: ["Duração: cerca de 6 horas", "Periodicidade: entre em contato para consultar nossa agenda"],
-          image: "/img/rituais_card.jpg",
-          imagePosition: "center 70%"
-        }, {
-          icon: <FlaskConical className="h-8 w-8 text-secondary" />,
-          title: "Preparo das medicinas (feitio)",
-          description: "Momento sagrado no qual os participantes vivenciam todo o processo tradicional de preparação e apuração da medicina: da colheita ao engarrafamento.",
-          details: ["Duração: 3-7 dias", "Inclui: Colheita, preparo e cerimônias", "Periodicidade: Semestral"],
-          image: "/img/feitio-card2.jpg"
-        }, {
-          icon: <Brain className="h-8 w-8 text-primary" />,
-          title: "Meditações guiadas",
-          description: "Momento diário de introspecção e silêncio como forma de interiorização da rotina do dia a dia e abertura do canal interno para o autoconhecimento e a meditação.",
-          details: ["Duração: 1h", "Periodicidade: diariamente"],
-          image: "/img/meditacao-guiada.jpg",
-          imagePosition: "center 70%"
-        }, {
-          icon: <Leaf className="h-8 w-8 text-secondary" />,
-          title: "Terapia do Casulo",
-          description: "Ritual de reencontro e reabastecimento de si em forma de um casulo com ervas cozidas em que o participante entra em estado meditativo",
-          details: ["Duração: pelo menos 3 dias", "Inclui: colheita e preparo das ervas, cozimento e momentos de silêncio e aprofundamento no casulo"],
-          image: "/img/casuloflores.jpg"
-        }, {
-          icon: <Flame className="h-8 w-8 text-primary" />,
-          title: "Temazcal (tenda do suor)",
-          description: "Ritual de tenda do suor com origem dos povos tradicionais da América Central, que visa purificar corpo e espírito através do contato com os elementos da natureza (terra, ar, fogo e água)",
-          details: ["Duração: 4 horas", "Inclui: tenda do suor, meditação e banho de ervas"],
-          image: "/img/temazcal.png"
-        }, {
-          icon: <Sprout className="h-8 w-8 text-secondary" />,
-          title: "Vivência de permacultura e bioconstrução",
-          description: "Quem participa ativamente da Casa da Alquimia, tem a oportunidade de vivenciar a prática da permacultura e da bioconstrução em processos coletivos de compartilhamento de saberes",
-          details: [],
-          image: "/img/bio-construcao.jpg",
-          imagePosition: "center 20%"
-        }].map((ritual, index) => (
+          {ritualItems.map((ritual, index) => {
+          const meta = RITUAL_META[index];
+          return (
             <div 
               key={index} 
               className="group relative h-full"
@@ -76,17 +58,17 @@ const Rituals = () => {
                 hoveredCard === index ? '' : ''
               }`}>
                 {/* Imagem com overlay gradiente */}
-                {ritual.image && (
+                {meta.image && (
                   <div className="relative h-64 overflow-hidden">
                     <div className="absolute inset-0 bg-terra-3/10 z-10" />
                     <img
-                      src={ritual.image}
+                      src={meta.image}
                       alt={ritual.title}
                       className="w-full h-full object-cover transition-transform duration-700 scale-100"
-                      style={ritual.imagePosition ? { objectPosition: ritual.imagePosition } : undefined}
+                      style={meta.imagePosition ? { objectPosition: meta.imagePosition } : undefined}
                       loading="lazy"
                     />
-                    
+
                   </div>
                 )}
                 
@@ -117,21 +99,21 @@ const Rituals = () => {
               </div>
               
             </div>
-          ))}
+          ); })}
         </div>
         
         {/* CTA final modernizado */}
         <div className="mt-20 text-center">
           <div className="max-w-3xl mx-auto bg-white border border-terra-1/20 rounded-sm p-8 md:p-12">
             <p className="text-lg md:text-xl text-foreground/80 mb-8 leading-relaxed">
-              Todos os rituais são conduzidos por <span className="font-semibold text-primary">facilitadores experientes</span>, em ambiente apropriado e com toda a preparação necessária para uma experiência <span className="font-semibold text-secondary">segura e transformadora</span>.
+              {t('rituals.ctaBody')}
             </p>
-            
-            <a 
-              href="#contact" 
+
+            <a
+              href="#contact"
               className="inline-flex items-center gap-3 px-6 py-3 bg-primary text-white rounded-sm transition-colors duration-200 hover:bg-primary-dark group"
             >
-              <span>Agende uma conversa preparatória</span>
+              <span>{t('rituals.ctaButton')}</span>
               <ArrowRight className="h-5 w-5 group-hover:translate-x-1 transition-transform" />
             </a>
           </div>

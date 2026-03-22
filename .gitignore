@@ -25,3 +25,8 @@ dist-ssr
 
 # Recursos locais (imagens e PDFs não rastreados)
 /recursos/
+
+# Documentação e arquivos de planejamento (apenas para desenvolvimento local)
+*.md
+.claude/
+.superpowers/

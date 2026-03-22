@@ -1,5 +1,6 @@
 import { createPortal } from 'react-dom';
 import { useEffect, useRef, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 type Photo = {
   id: number;
@@ -7,27 +8,27 @@ type Photo = {
   alt: string;
 };
 
-const PHOTOS: Photo[] = [
-  { id: 1,  src: '/img/memorias/cruzeiro.jpeg',                            alt: 'Cruzeiro sagrado' },
-  { id: 2,  src: '/img/memorias/14-IMG_2803.jpg',                          alt: 'Memória da Casa da Alquimia' },
-  { id: 3,  src: '/img/memorias/IMG_1833.JPG',                             alt: 'Registro da jornada' },
-  { id: 4,  src: '/img/memorias/64-IMG_2675.jpg',                          alt: 'Ritual coletivo' },
-  { id: 5,  src: '/img/memorias/familia.jpg',                              alt: 'Família da Alquimia' },
-  { id: 6,  src: '/img/memorias/101-IMG_2594.jpg',                         alt: 'Encontro espiritual' },
-  { id: 7,  src: '/img/memorias/B31D10A1-E9C7-4071-87D0-F7D51DE7290D.jpg', alt: 'Memória especial' },
-  { id: 8,  src: '/img/memorias/131-IMG_2548.jpg',                         alt: 'Alquimia e natureza' },
-  { id: 9,  src: '/img/memorias/26-IMG_2788.jpg',                          alt: 'Momento sagrado' },
-  { id: 10, src: '/img/memorias/174-IMG_2435.jpg',                         alt: 'Medicina da floresta' },
-  { id: 11, src: '/img/memorias/105-IMG_2590.jpg',                         alt: 'Celebração comunitária' },
-  { id: 12, src: '/img/memorias/247-IMG_2171.jpg',                         alt: 'Ritual de encerramento' },
-  { id: 13, src: '/img/memorias/113-IMG_2578.jpg',                         alt: 'Conexão com a floresta' },
-  { id: 14, src: '/img/memorias/201-IMG_2357.jpg',                         alt: 'Círculo de cura' },
-  { id: 15, src: '/img/memorias/124-IMG_2560.jpg',                         alt: 'Caminho sagrado' },
-  { id: 16, src: '/img/memorias/298-IMG_2061.jpg',                         alt: 'Tarde na Casa da Alquimia' },
-  { id: 17, src: '/img/memorias/153-IMG_2500.jpg',                         alt: 'Presença e silêncio' },
-  { id: 18, src: '/img/memorias/223-IMG_2330.jpg',                         alt: 'Momento de integração' },
-  { id: 19, src: '/img/memorias/230-IMG_2298.jpg',                         alt: 'Vivência coletiva' },
-  { id: 20, src: '/img/memorias/310-IMG_2018.jpg',                         alt: 'Entardecer sagrado' },
+const PHOTO_SRCS: string[] = [
+  '/img/memorias/cruzeiro.jpeg',
+  '/img/memorias/14-IMG_2803.jpg',
+  '/img/memorias/IMG_1833.JPG',
+  '/img/memorias/64-IMG_2675.jpg',
+  '/img/memorias/familia.jpg',
+  '/img/memorias/101-IMG_2594.jpg',
+  '/img/memorias/B31D10A1-E9C7-4071-87D0-F7D51DE7290D.jpg',
+  '/img/memorias/131-IMG_2548.jpg',
+  '/img/memorias/26-IMG_2788.jpg',
+  '/img/memorias/174-IMG_2435.jpg',
+  '/img/memorias/105-IMG_2590.jpg',
+  '/img/memorias/247-IMG_2171.jpg',
+  '/img/memorias/113-IMG_2578.jpg',
+  '/img/memorias/201-IMG_2357.jpg',
+  '/img/memorias/124-IMG_2560.jpg',
+  '/img/memorias/298-IMG_2061.jpg',
+  '/img/memorias/153-IMG_2500.jpg',
+  '/img/memorias/223-IMG_2330.jpg',
+  '/img/memorias/230-IMG_2298.jpg',
+  '/img/memorias/310-IMG_2018.jpg',
 ];
 
 type TheaterModalProps = {
@@ -37,6 +38,7 @@ type TheaterModalProps = {
 };
 
 const TheaterModal = ({ photos, initialIndex, onClose }: TheaterModalProps) => {
+  const { t } = useTranslation();
   const [current, setCurrent] = useState(initialIndex);
   const thumbRefs = useRef<(HTMLButtonElement | null)[]>([]);
   const touchStartX = useRef<number | null>(null);
@@ -99,14 +101,14 @@ const TheaterModal = ({ photos, initialIndex, onClose }: TheaterModalProps) => {
       <button
         onClick={onClose}
         className="absolute top-5 right-6 text-white/70 hover:text-white text-3xl leading-none bg-transparent border-none cursor-pointer z-10"
-        aria-label="Fechar"
+        aria-label={t('memorias.close')}
       >
         ✕
       </button>
 
       {/* Counter */}
       <div className="absolute top-5 left-1/2 -translate-x-1/2 text-white/50 text-sm tracking-widest select-none">
-        {current + 1} de {total}
+        {t('memorias.counter', { current: current + 1, total })}
       </div>
 
       {/* Main image area */}
@@ -116,7 +118,7 @@ const TheaterModal = ({ photos, initialIndex, onClose }: TheaterModalProps) => {
           onClick={prev}
           className="absolute left-5 top-1/2 -translate-y-1/2 w-12 h-12 rounded-sm flex items-center justify-center text-white text-xl cursor-pointer transition-colors duration-200 border border-white/15 hover:bg-white/[0.18]"
           style={{ background: 'rgba(255,255,255,0.08)' }}
-          aria-label="Foto anterior"
+          aria-label={t('memorias.prevLabel')}
         >
           ‹
         </button>
@@ -137,7 +139,7 @@ const TheaterModal = ({ photos, initialIndex, onClose }: TheaterModalProps) => {
           onClick={next}
           className="absolute right-5 top-1/2 -translate-y-1/2 w-12 h-12 rounded-sm flex items-center justify-center text-white text-xl cursor-pointer transition-colors duration-200 border border-white/15 hover:bg-white/[0.18]"
           style={{ background: 'rgba(255,255,255,0.08)' }}
-          aria-label="Próxima foto"
+          aria-label={t('memorias.nextLabel')}
         >
           ›
         </button>
@@ -157,7 +159,7 @@ const TheaterModal = ({ photos, initialIndex, onClose }: TheaterModalProps) => {
               outline: i === current ? '2px solid #C9A84C' : '2px solid transparent',
               outlineOffset: '1px',
             }}
-            aria-label={`Ir para foto ${i + 1}`}
+            aria-label={t('memorias.thumbLabel', { n: i + 1 })}
           >
             <img src={photo.src} alt={photo.alt} className="w-full h-full object-cover" />
           </button>
@@ -168,13 +170,16 @@ const TheaterModal = ({ photos, initialIndex, onClose }: TheaterModalProps) => {
 };
 
 const MemoriasGallery = () => {
+  const { t } = useTranslation();
+  const photoAlts = t('memorias.photos', { returnObjects: true }) as string[];
+  const PHOTOS = PHOTO_SRCS.map((src, i) => ({ id: i + 1, src, alt: photoAlts[i] }));
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
 
   return (
     <section id="memorias" className="bg-[#F0F5EC] py-10 md:py-14">
       <div className="text-center mb-10 px-6">
         <h2 className="text-3xl md:text-4xl font-display font-semibold tracking-[0.14em] uppercase text-[#2C2C1E]">
-          Memórias
+          {t('memorias.title')}
         </h2>
         <div className="w-16 h-0.5 bg-[#C9A84C] mx-auto mt-4" />
       </div>

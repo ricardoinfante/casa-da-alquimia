@@ -1,8 +1,10 @@
 import { useToast } from '@/hooks/use-toast';
 import { Mail, MailCheck, MessageCircle, Phone, User } from 'lucide-react';
 import { useEffect, useState, type ChangeEvent, type FormEvent } from 'react';
+import { useTranslation } from 'react-i18next';
 
 const ContactForm = () => {
+  const { t } = useTranslation();
   const { toast } = useToast();
   const [formData, setFormData] = useState({
     name: '',
@@ -42,8 +44,8 @@ const ContactForm = () => {
     const url = import.meta.env.VITE_CONTACT_SHEET_URL;
     if (!url) {
       toast({
-        title: 'Erro de configuração',
-        description: 'Formulário não configurado. Entre em contato pelo email ou WhatsApp.',
+        title: t('contact.errorTitle'),
+        description: t('contact.errorConfig'),
         variant: 'destructive',
       });
       setStatus('idle');
@@ -76,10 +78,10 @@ const ContactForm = () => {
     } catch (err) {
       const isTimeout = err instanceof Error && err.name === 'AbortError';
       toast({
-        title: 'Erro ao enviar',
+        title: t('contact.errorTitle'),
         description: isTimeout
-          ? 'A conexão demorou demais. Tente novamente.'
-          : 'Não foi possível enviar sua mensagem. Tente novamente.',
+          ? t('contact.errorTimeout')
+          : t('contact.errorGeneric'),
         variant: 'destructive',
       });
       setStatus('idle');
@@ -122,14 +124,14 @@ const ContactForm = () => {
             {/* Left — editorial copy */}
             <div className="lg:col-span-2 pt-2">
               <p className="text-[11px] font-bold tracking-[0.22em] uppercase text-[#934211] font-['Lato'] mb-4">
-                Entre em contato
+                {t('contact.badge')}
               </p>
               <h2 className="font-['Cinzel'] text-3xl md:text-4xl font-bold text-[#1A3A6B] leading-[1.2] mb-6">
-                Tem alguma<br />dúvida?
+                {t('contact.title')}<br />{t('contact.titleHighlight')}
               </h2>
               <div className="w-10 h-px bg-[#7A4900] mb-8" />
               <p className="text-[#2C2C1E]/70 font-['Lato'] text-base leading-relaxed mb-10">
-                Preencha o formulário e entraremos em contato o mais breve possível sobre nossos rituais e atividades.
+                {t('contact.body')}
               </p>
 
               {/* Contact channels */}
@@ -181,11 +183,11 @@ const ContactForm = () => {
                   </div>
 
                   <h3 className="font-['Cinzel'] text-2xl font-bold text-[#1A3A6B] mb-4">
-                    Mensagem recebida
+                    {t('contact.successTitle')}
                   </h3>
 
                   <p className="font-['Lato'] text-base text-[#2C2C1E]/70 leading-relaxed max-w-sm mb-8">
-                    Obrigado pelo contato. Retornaremos em breve pelo email ou telefone que você nos deixou.
+                    {t('contact.successBody')}
                   </p>
 
                   <button
@@ -193,7 +195,7 @@ const ContactForm = () => {
                     onClick={handleReset}
                     className="text-sm font-['Lato'] text-[#7A4900]/60 hover:text-[#7A4900] underline underline-offset-4 transition-colors"
                   >
-                    Enviar outra mensagem
+                    {t('contact.sendAnother')}
                   </button>
                 </div>
               ) : (
@@ -207,7 +209,7 @@ const ContactForm = () => {
                       <label htmlFor="name" className={labelClass('name', !!formData.name)}>
                         <span className="flex items-center gap-1.5">
                           <User className="h-3 w-3" />
-                          Nome completo *
+                          {t('contact.name')}
                         </span>
                       </label>
                       <input
@@ -230,7 +232,7 @@ const ContactForm = () => {
                       <label htmlFor="email" className={labelClass('email', !!formData.email)}>
                         <span className="flex items-center gap-1.5">
                           <Mail className="h-3 w-3" />
-                          E-mail *
+                          {t('contact.email')}
                         </span>
                       </label>
                       <input
@@ -255,7 +257,7 @@ const ContactForm = () => {
                     <label htmlFor="phone" className={labelClass('phone', !!formData.phone)}>
                       <span className="flex items-center gap-1.5">
                         <Phone className="h-3 w-3" />
-                        Telefone (opcional)
+                        {t('contact.phone')}
                       </span>
                     </label>
                     <input
@@ -275,7 +277,7 @@ const ContactForm = () => {
                   {/* Message */}
                   <div className="relative pt-5 mb-10">
                     <label htmlFor="message" className={labelClass('message', !!formData.message)}>
-                      Mensagem *
+                      {t('contact.message')}
                     </label>
                     <textarea
                       id="message"
@@ -296,7 +298,7 @@ const ContactForm = () => {
                   {/* Footer row */}
                   <div className="flex items-center justify-between gap-4">
                     <p className="text-[11px] text-[#2C2C1E]/40 font-['Lato'] tracking-wide">
-                      * Campos obrigatórios
+                      {t('contact.required')}
                     </p>
 
                     <button
@@ -309,7 +311,7 @@ const ContactForm = () => {
                           : 'bg-[#2B4F8C] text-white hover:bg-[#1A3A6B] hover:-translate-y-px'
                         }
                       `}
-                      aria-label={status === 'submitting' ? "Enviando mensagem" : "Enviar mensagem"}
+                      aria-label={status === 'submitting' ? t('contact.sendingLabel') : t('contact.sendLabel')}
                     >
                       {status === 'submitting' ? (
                         <>
@@ -317,12 +319,12 @@ const ContactForm = () => {
                             <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
                             <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
                           </svg>
-                          Enviando…
+                          {t('contact.sending')}
                         </>
                       ) : (
                         <>
                           <Mail className="h-4 w-4" />
-                          Enviar
+                          {t('contact.send')}
                         </>
                       )}
                     </button>

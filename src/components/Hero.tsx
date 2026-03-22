@@ -1,7 +1,10 @@
 import { ArrowDown, Calendar, Heart, Sparkles } from 'lucide-react';
 import { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 const Hero = () => {
+  const { t } = useTranslation();
+
   const [isLoaded, setIsLoaded] = useState(false);
   const [imageLoaded, setImageLoaded] = useState(false);
   useEffect(() => {
@@ -53,15 +56,15 @@ const Hero = () => {
           <div className="flex justify-center mb-8">
             <span className="inline-flex items-center gap-2 px-3 py-1 rounded-sm bg-white/10 border border-white/20">
               <Sparkles className="h-4 w-4 text-terra-3" />
-              <span className="text-sm font-semibold text-white">Chapada dos Veadeiros, Goiás, Brasil</span>
+              <span className="text-sm font-semibold text-white">{t('hero.badge')}</span>
             </span>
           </div>
 
           <h1 className="font-display text-5xl md:text-7xl lg:text-8xl font-bold mb-6 tracking-tight text-terra-3">
-            A Casa da Alquimia
+            {t('hero.title')}
           </h1>
 
-          <h2 className="text-xl md:text-2xl mb-12 font-semibold text-white/70">Um Lugar Para Quem Quer Se Conhecer</h2>
+          <h2 className="text-xl md:text-2xl mb-12 font-semibold text-white/70">{t('hero.subtitle')}</h2>
           
           {/* CTAs modernos */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
@@ -70,7 +73,7 @@ const Hero = () => {
               className="group px-8 py-4 bg-bg-light text-dark rounded-sm font-semibold transition-colors duration-200 hover:bg-secondary hover:text-white inline-flex items-center gap-2"
             >
               <Calendar className="h-5 w-5" />
-              <span>Conhecer nossos rituais</span>
+              <span>{t('hero.ctaPrimary')}</span>
               <ArrowDown className="h-4 w-4 group-hover:translate-y-1 transition-transform" />
             </a>
             
@@ -81,7 +84,7 @@ const Hero = () => {
               className="group px-8 py-4 bg-terra-3 border border-terra-2 text-terra-2 rounded-sm font-semibold transition-colors duration-200 hover:bg-terra-2 hover:text-white inline-flex items-center gap-2"
             >
               <Heart className="h-5 w-5 text-terra-2 group-hover:text-white transition-colors" />
-              <span>Quero saber mais</span>
+              <span>{t('hero.ctaSecondary')}</span>
             </a>
           </div>
         </div>
@@ -89,7 +92,7 @@ const Hero = () => {
       
       {/* Scroll indicator */}
       <div className="absolute bottom-10 left-1/2 -translate-x-1/2 z-20">
-        <a href="#about" aria-label="Rolar para baixo">
+        <a href="#about" aria-label={t('hero.scrollLabel')}>
           <ArrowDown className="h-6 w-6 text-white/50 hover:text-white/80 transition-colors duration-300 animate-bounce" style={{ animationDuration: '2.5s' }} />
         </a>
       </div>

@@ -1,0 +1,293 @@
+{
+  "nav": {
+    "home": "Início",
+    "about": "Sobre",
+    "rituals": "Rituais",
+    "memories": "Memórias",
+    "testimonials": "Depoimentos",
+    "connect": "Conecte-se",
+    "contact": "Contato",
+    "support": "Apoiar",
+    "moreInfo": "Mais informações",
+    "moreInfoMobile": "Quero saber mais",
+    "helpText": "Estamos aqui para te ajudar",
+    "menu": "Menu",
+    "portuguese": "Português",
+    "english": "English",
+    "language": "Idioma"
+  },
+  "loader": {
+    "loading": "Carregando..."
+  },
+  "hero": {
+    "badge": "Chapada dos Veadeiros, Goiás, Brasil",
+    "title": "A Casa da Alquimia",
+    "subtitle": "Um Lugar Para Quem Quer Se Conhecer",
+    "ctaPrimary": "Conhecer nossos rituais",
+    "ctaSecondary": "Quero saber mais",
+    "scrollLabel": "Rolar para baixo"
+  },
+  "about": {
+    "badge": "Sobre Nós",
+    "sacredSpace": "Espaço Sagrado",
+    "titleLine1": "Um Lugar Para Quem Quer",
+    "titleHighlight": "Meditar",
+    "lead": "Nascemos do profundo desejo de criar um espaço de silêncio e interiorização para que o autoconhecimento se faça possível como prática de vida.",
+    "body": "Fundada por buscadores espirituais com décadas de experiência em trabalhos com plantas de poder, nossa comunidade dedica-se a proporcionar um espaço seguro para as transformações individuais acontecerem em toda a sua potencialidade. Fazemos isso por meio de ferramentas, como meditação, terapias de introspecção e de contato com a natureza e, também, por meio de rituais com ayahuasca.",
+    "pillar1": "Autoconhecimento",
+    "pillar2": "Transformação",
+    "pillar3": "Comunidade",
+    "imgAlt": "Arte representando a alquimia espiritual"
+  },
+  "rituals": {
+    "badge": "O que fazemos",
+    "title": "Nossas alquimias em movimento",
+    "subtitle": "Experiências transformadoras guiadas por facilitadores experientes",
+    "ctaBody": "Todos os rituais são conduzidos por facilitadores experientes, em ambiente apropriado e com toda a preparação necessária para uma experiência segura e transformadora.",
+    "ctaButton": "Agende uma conversa preparatória",
+    "items": [
+      {
+        "title": "Cerimônias com medicina da floresta",
+        "description": "Rituais que buscam a introspecção por meio da meditação e da expansão da consciência. Podem acontecer no círculo de fogo ou no salão. Também contam com chamadas e algumas músicas de elevação.",
+        "details": ["Duração: cerca de 6 horas", "Periodicidade: entre em contato para consultar nossa agenda"]
+      },
+      {
+        "title": "Preparo das medicinas (feitio)",
+        "description": "Momento sagrado no qual os participantes vivenciam todo o processo tradicional de preparação e apuração da medicina: da colheita ao engarrafamento.",
+        "details": ["Duração: 3-7 dias", "Inclui: Colheita, preparo e cerimônias", "Periodicidade: Semestral"]
+      },
+      {
+        "title": "Meditações guiadas",
+        "description": "Momento diário de introspecção e silêncio como forma de interiorização da rotina do dia a dia e abertura do canal interno para o autoconhecimento e a meditação.",
+        "details": ["Duração: 1h", "Periodicidade: diariamente"]
+      },
+      {
+        "title": "Terapia do Casulo",
+        "description": "Ritual de reencontro e reabastecimento de si em forma de um casulo com ervas cozidas em que o participante entra em estado meditativo",
+        "details": ["Duração: pelo menos 3 dias", "Inclui: colheita e preparo das ervas, cozimento e momentos de silêncio e aprofundamento no casulo"]
+      },
+      {
+        "title": "Temazcal (tenda do suor)",
+        "description": "Ritual de tenda do suor com origem dos povos tradicionais da América Central, que visa purificar corpo e espírito através do contato com os elementos da natureza (terra, ar, fogo e água)",
+        "details": ["Duração: 4 horas", "Inclui: tenda do suor, meditação e banho de ervas"]
+      },
+      {
+        "title": "Vivência de permacultura e bioconstrução",
+        "description": "Quem participa ativamente da Casa da Alquimia, tem a oportunidade de vivenciar a prática da permacultura e da bioconstrução em processos coletivos de compartilhamento de saberes",
+        "details": []
+      }
+    ]
+  },
+  "memorias": {
+    "title": "Memórias",
+    "close": "Fechar",
+    "counter": "{{current}} de {{total}}",
+    "prevLabel": "Foto anterior",
+    "nextLabel": "Próxima foto",
+    "thumbLabel": "Ir para foto {{n}}",
+    "photos": [
+      "Cruzeiro sagrado",
+      "Memória da Casa da Alquimia",
+      "Registro da jornada",
+      "Ritual coletivo",
+      "Família da Alquimia",
+      "Encontro espiritual",
+      "Memória especial",
+      "Alquimia e natureza",
+      "Momento sagrado",
+      "Medicina da floresta",
+      "Celebração comunitária",
+      "Ritual de encerramento",
+      "Conexão com a floresta",
+      "Círculo de cura",
+      "Caminho sagrado",
+      "Tarde na Casa da Alquimia",
+      "Presença e silêncio",
+      "Momento de integração",
+      "Vivência coletiva",
+      "Entardecer sagrado"
+    ]
+  },
+  "social": {
+    "badge": "Instagram",
+    "titleLine1": "Acompanhe Nossa",
+    "titleHighlight": "Jornada",
+    "subtitle": "Siga-nos no Instagram e fique por dentro das nossas cerimônias, retiros e momentos do caminho"
+  },
+  "testimonials": {
+    "badge": "Depoimentos",
+    "title": "O que dizem os caminhantes",
+    "subtitle": "Palavras de quem vive a transformação",
+    "items": [
+      {
+        "quote": "Estar aqui é a sensação de completude de uma jornada de buscas que já vivi. É a compreensão de que a busca está dentro e que no silencio é que me reencontro. Aqui, vivemos na prática toda a jornada fora e dentro: do plantio, adubo da terra, bioconstrução, técnicas de cultivo e preparo da medicinas no fogo das panelas e fogo interno pessoal de cada um. E isso tudo só é possível aqui com a meditação e a ativação da presença nas atividades diárias, que levam à compreensão e completude do caminho para dentro e a uma alquimia interna para forjar e abrir espaço para este ser florescer.",
+        "author": "Paulo Rios"
+      },
+      {
+        "quote": "A Casa da Alquimia é a lembrança de que eu sou esse espaço de autotransformação pessoal. É com esse fogo interno que cada um vive isso na prática individual e entre os amigos do caminho, nessa união interior e exterior. E através dos amigos do caminho que nós encontramos o coração de luz - nosso e do outro.",
+        "author": "Ananda"
+      },
+      {
+        "quote": "Para mim, a Casa da Alquimia tem um objetivo único de investigação interior e de encontro consigo mesmo. Vivendo isso por meio da troca e da convivência no dia a dia, do compartilhamento da vida. Aqui vivencio a meditação, o silêncio e a conexão.",
+        "author": "Sadgati"
+      },
+      {
+        "quote": "Percebi ao chegar na Casa da Alquimia a saudade que eu estava de mim mesma. Foi só quando silenciei profundamente que relembrei o tamanho do meu ser e do meu amor. Essa casa promove reencontros profundos e momentos de expansão de consciência como eu não tinha experenciado antes. São momentos raríssimos e muito preciosos ao longo da vida e da busca espiritual.",
+        "author": "Bárbara Rocha"
+      },
+      {
+        "quote": "A Casa da Alquimia me permitiu, como em nenhum outro lugar nos últimos anos, a retomar com um passo de firmeza a minha caminhada na espiritualidade. Eu jamais imaginava a dimensão que esse passo dado teria e o quão importante essa Casa se tornaria para mim. Uma grande referência, um solo fértil, uma família de coração, pra onde eu tenho a certeza que, ainda que eu navegue em outras águas, esse é e sempre será, o meu porto seguro.",
+        "author": "Mari Sarmento"
+      },
+      {
+        "quote": "Vivi uma experiência transformadora no Casulo: força, magia e acolhimento que trouxeram calma, confiança e a sensação de que algo muito especial está (re)nascendo.",
+        "author": "Thais Mesquita"
+      },
+      {
+        "quote": "É um espaço seguro que eu nunca tinha encontrado antes e que me alegra profundamente descobrir e viver. Eu posso, dentro de uma rede de meditadores comprometidos com a expansão do amor e da auto-observação, mergulhar também na minha própria investigação. O resultado disso na minha vida prática é, simplesmente, mais paciência, mais presença e um eu que contribui mais para todo mundo que está ao meu redor.",
+        "author": "Angel Ferreira"
+      }
+    ]
+  },
+  "donate": {
+    "badge": "Apoio",
+    "title": "Apoie a Casa da Alquimia",
+    "body": "Sua contribuição mantém vivos os rituais, os ensinamentos e o espaço de cura da Casa da Alquimia.",
+    "cta": "Quero apoiar",
+    "modal": {
+      "step1Title": "Apoie nossa missão",
+      "step1Body": "Sua contribuição mantém viva a tradição e possibilita que mais pessoas tenham acesso aos rituais",
+      "amountPlaceholder": "Digite o valor",
+      "continue": "Continuar",
+      "step2Title": "Complete sua doação",
+      "step2Body": "Você está fazendo uma doação de",
+      "fullName": "Nome completo",
+      "email": "E-mail",
+      "paymentMethod": "Método de pagamento",
+      "pix": "PIX",
+      "bankTransfer": "Depósito",
+      "pixKey": "Chave PIX",
+      "pixInfo": "Tipo: CNPJ • Favorecido: Casa da Alquimia",
+      "bankDetails": "Dados bancários",
+      "bank": "Banco:",
+      "branch": "Agência:",
+      "account": "Conta:",
+      "cnpj": "CNPJ:",
+      "payee": "Favorecido:",
+      "processing": "Processando...",
+      "complete": "Concluir doação",
+      "difference": "Sua contribuição faz toda a diferença",
+      "copied": "Copiado!",
+      "copiedDesc": "{{label}} copiado para a área de transferência.",
+      "step3Title": "Gratidão, {{name}}!",
+      "step3Body": "Sua doação de R$ {{amount}} faz toda a diferença.",
+      "nextSteps": "Próximos passos:",
+      "nextStep1": "Realize a transferência utilizando os dados fornecidos no passo anterior.",
+      "nextStep2": "Sua doação será processada em breve. Obrigado por apoiar a Casa da Alquimia.",
+      "close": "Fechar"
+    }
+  },
+  "contact": {
+    "badge": "Entre em contato",
+    "title": "Tem alguma",
+    "titleHighlight": "dúvida?",
+    "body": "Preencha o formulário e entraremos em contato o mais breve possível sobre nossos rituais e atividades.",
+    "name": "Nome completo *",
+    "email": "E-mail *",
+    "phone": "Telefone (opcional)",
+    "message": "Mensagem *",
+    "required": "* Campos obrigatórios",
+    "send": "Enviar",
+    "sending": "Enviando…",
+    "sendLabel": "Enviar mensagem",
+    "sendingLabel": "Enviando mensagem",
+    "successTitle": "Mensagem recebida",
+    "successBody": "Obrigado pelo contato. Retornaremos em breve pelo email ou telefone que você nos deixou.",
+    "sendAnother": "Enviar outra mensagem",
+    "errorTitle": "Erro ao enviar",
+    "errorConfig": "Formulário não configurado. Entre em contato pelo email ou WhatsApp.",
+    "errorTimeout": "A conexão demorou demais. Tente novamente.",
+    "errorGeneric": "Não foi possível enviar sua mensagem. Tente novamente."
+  },
+  "footer": {
+    "description": "Um santuário dedicado à expansão da consciência e ao autoconhecimento através de rituais ancestrais e práticas de meditação.",
+    "quickLinks": "Links Rápidos",
+    "contactTitle": "Contato",
+    "link1": "Sobre Nós",
+    "link2": "Nossas alquimias em movimento",
+    "link3": "Depoimentos",
+    "privacy": "Política de Privacidade",
+    "privacyShort": "Privacidade",
+    "terms": "Termos de Uso",
+    "cookies": "Cookies",
+    "allRights": "Todos os direitos reservados.",
+    "madeWith": "Desenvolvido com",
+    "forConsciousness": "para a expansão da consciência",
+    "clickWhatsApp": "Clique para WhatsApp",
+    "location1Label": "Casa da Alquimia",
+    "location1Address": "Estrada da Usina, Fazenda Miraflores\nCavalcante, Goiás",
+    "location2Label": "Espaço Coração de Luz",
+    "location2Address": "Rua Cel José Paulino da Silva — Centro\nCavalcante, Goiás"
+  },
+  "notFound": {
+    "title": "404",
+    "message": "Oops! Página não encontrada",
+    "back": "Voltar para o início"
+  },
+  "privacy": {
+    "back": "Voltar ao site",
+    "legalDoc": "Documento Legal",
+    "title": "Política de Privacidade",
+    "lastUpdated": "Última atualização: março de 2026",
+    "sections": [
+      {
+        "title": "1. Quem Somos",
+        "content": "A Casa da Alquimia é um espaço sagrado dedicado à expansão da consciência, ao autoconhecimento e às práticas ancestrais de cura. Atuamos em dois espaços físicos localizados em Cavalcante, Goiás, Brasil, e nos comunicamos com nossa comunidade por meio do site e das redes sociais.\n\nPara fins desta política, o responsável pelo tratamento de dados é a Casa da Alquimia, podendo ser contactada pelo e-mail casadaalquimia@gmail.com."
+      },
+      {
+        "title": "2. Dados que Coletamos",
+        "content": "Coletamos apenas os dados estritamente necessários para manter nossa relação com a comunidade:\n\n**Dados fornecidos voluntariamente por você:**\n- Nome e endereço de e-mail ao preencher formulários de contato ou inscrições em retiros e atividades;\n- Número de telefone / WhatsApp quando você inicia uma conversa conosco;\n- Mensagens e conteúdos enviados por meio de formulários ou canais de comunicação.\n\n**Dados coletados automaticamente:**\n- Informações técnicas de acesso (endereço IP, tipo de navegador, páginas visitadas e tempo de navegação), coletadas por ferramentas de análise de tráfego para fins estatísticos."
+      },
+      {
+        "title": "3. Como Usamos Seus Dados",
+        "content": "Utilizamos as informações coletadas exclusivamente para:\n\n- Responder às suas dúvidas, solicitações e mensagens;\n- Informar sobre retiros, workshops, eventos e práticas realizados pela Casa da Alquimia;\n- Enviar comunicações sobre conteúdos relacionados ao bem-estar, meditação e práticas ancestrais, quando você optar por recebê-las;\n- Melhorar a experiência de navegação em nosso site;\n- Cumprir obrigações legais quando necessário.\n\nSeus dados nunca serão vendidos, alugados ou compartilhados com terceiros para fins comerciais."
+      },
+      {
+        "title": "4. Base Legal para o Tratamento",
+        "content": "O tratamento de dados pessoais pela Casa da Alquimia está fundamentado nas seguintes bases legais previstas na Lei Geral de Proteção de Dados (Lei nº 13.709/2018 — LGPD):\n\n- **Consentimento:** quando você preenche nossos formulários ou assina nossa lista de comunicações;\n- **Legítimo interesse:** para análise estatística de uso do site e melhoria contínua dos serviços;\n- **Execução de contrato ou procedimentos preliminares:** ao processar inscrições em retiros e atividades."
+      },
+      {
+        "title": "5. Compartilhamento de Dados",
+        "content": "Podemos compartilhar seus dados apenas nas seguintes situações:\n\n- **Prestadores de serviço:** plataformas de envio de e-mail, ferramentas de análise e sistemas de pagamento, exclusivamente para operar nossos serviços — todos sujeitos a obrigações de confidencialidade;\n- **Obrigação legal:** quando exigido por autoridades competentes ou por determinação judicial;\n- **Proteção de direitos:** quando necessário para fazer valer nossos direitos legais.\n\nSeus dados **não são compartilhados** com empresas de marketing, anunciantes ou quaisquer outros terceiros sem relação direta com a prestação de nossos serviços."
+      },
+      {
+        "title": "6. Cookies e Tecnologias de Rastreamento",
+        "content": "Nosso site pode utilizar cookies e tecnologias similares para:\n\n- Garantir o funcionamento correto das páginas (cookies essenciais);\n- Analisar o comportamento de navegação de forma agregada e anônima (cookies analíticos);\n- Exibir conteúdo de plataformas externas como YouTube, Spotify e Instagram incorporadas ao site.\n\nVocê pode configurar seu navegador para recusar cookies ou ser alertado quando cookies estiverem sendo enviados. Ao desativar cookies essenciais, algumas funcionalidades do site podem não operar corretamente."
+      },
+      {
+        "title": "7. Serviços de Terceiros",
+        "content": "Este site incorpora ou contém links para serviços de terceiros, incluindo:\n\n- **Instagram, Facebook e YouTube** — redes sociais gerenciadas por seus próprios termos e políticas de privacidade;\n- **WhatsApp (Meta)** — utilizado como canal de atendimento;\n- **Spotify** — player de áudio incorporado para difusão de conteúdo musical e meditativo.\n\nRecomendamos a leitura das políticas de privacidade de cada uma dessas plataformas, pois a Casa da Alquimia não tem controle sobre a coleta de dados realizada por elas."
+      },
+      {
+        "title": "8. Retenção de Dados",
+        "content": "Mantemos seus dados pelo tempo necessário para cumprir as finalidades descritas nesta política ou por prazo exigido por lei. Dados de inscrições em atividades e eventos são mantidos enquanto houver relação ativa e por até 5 anos após o encerramento, para fins de obrigações legais. Dados de contato e listas de comunicação são mantidos até que você solicite a exclusão."
+      },
+      {
+        "title": "9. Seus Direitos (LGPD)",
+        "content": "Nos termos da LGPD, você tem o direito de:\n\n- **Confirmar** a existência de tratamento dos seus dados pessoais;\n- **Acessar** os dados que temos sobre você;\n- **Corrigir** dados incompletos, inexatos ou desatualizados;\n- **Solicitar a anonimização, bloqueio ou eliminação** de dados desnecessários ou tratados em desconformidade;\n- **Portabilidade** dos seus dados a outro fornecedor de serviço;\n- **Revogar o consentimento** a qualquer momento, sem prejuízo da licitude do tratamento realizado anteriormente;\n- **Opor-se** ao tratamento realizado com fundamento em outras bases legais, em caso de descumprimento.\n\nPara exercer qualquer desses direitos, entre em contato pelo e-mail: casadaalquimia@gmail.com. Responderemos no prazo de até 15 dias úteis."
+      },
+      {
+        "title": "10. Segurança dos Dados",
+        "content": "Adotamos medidas técnicas e organizacionais adequadas para proteger seus dados contra acesso não autorizado, perda, alteração ou divulgação indevida. No entanto, nenhuma transmissão de dados pela internet é completamente segura. Caso identifique qualquer vulnerabilidade ou incidente relacionado aos seus dados, entre em contato imediatamente."
+      },
+      {
+        "title": "11. Alterações nesta Política",
+        "content": "Esta política pode ser atualizada periodicamente para refletir mudanças em nossas práticas ou em exigências legais. A versão mais recente estará sempre disponível nesta página, com a data da última atualização indicada no rodapé. Recomendamos a revisão periódica deste documento."
+      },
+      {
+        "title": "12. Contato e Encarregado de Dados",
+        "content": "Para dúvidas, solicitações ou exercício dos seus direitos relacionados a esta política, entre em contato:\n\n**Casa da Alquimia**\nE-mail: casadaalquimia@gmail.com\nWhatsApp: +55 (62) 99653-8902\n\nEspaço Coração de Luz — Rua Cel José Paulino da Silva, Centro, Cavalcante, Goiás\nCasa da Alquimia — Estrada da Usina, Fazenda Miraflores, Cavalcante, Goiás"
+      }
+    ]
+  }
+}
