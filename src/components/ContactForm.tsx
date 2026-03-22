@@ -22,21 +22,32 @@ const ContactForm = () => {
     e.preventDefault();
     setStatus('submitting');
 
+    const url = import.meta.env.VITE_CONTACT_SHEET_URL;
+    if (!url) {
+      toast({
+        title: 'Erro de configuração',
+        description: 'Formulário não configurado. Entre em contato pelo email ou WhatsApp.',
+        variant: 'destructive',
+      });
+      setStatus('idle');
+      return;
+    }
+
     const controller = new AbortController();
     const timeoutId = setTimeout(() => controller.abort(), 10000);
 
     try {
-      const url = import.meta.env.VITE_CONTACT_SHEET_URL;
-      if (!url) {
-        throw new Error('VITE_CONTACT_SHEET_URL não configurada');
-      }
-
       const response = await fetch(url, {
         method: 'POST',
+        // Google Apps Script não trata preflight OPTIONS — text/plain evita o preflight CORS
         headers: { 'Content-Type': 'text/plain' },
         body: JSON.stringify(formData),
         signal: controller.signal,
       });
+
+      if (!response.ok) {
+        throw new Error(`Servidor respondeu com ${response.status}`);
+      }
 
       const result = await response.json();
 
