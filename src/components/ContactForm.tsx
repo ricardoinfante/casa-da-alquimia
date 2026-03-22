@@ -15,6 +15,7 @@ const ContactForm = () => {
 
   useEffect(() => {
     if (status === 'success') {
+      // Delay de 50ms para permitir que o nó seja pintado em opacity-0 antes da transição
       const timer = setTimeout(() => setSuccessVisible(true), 50);
       return () => clearTimeout(timer);
     } else {
@@ -165,6 +166,8 @@ const ContactForm = () => {
             <div className="lg:col-span-3">
               {status === 'success' ? (
                 <div
+                  role="status"
+                  aria-live="polite"
                   className={`
                     bg-white/70 backdrop-blur-sm border border-[#2C2C1E]/8 rounded-sm p-8 md:p-10
                     shadow-[0_2px_40px_rgba(44,44,30,0.06)]
