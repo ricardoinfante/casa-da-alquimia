@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import DonationModal from './DonationModal';
 
 const Donate = () => {
+  const { t } = useTranslation();
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   return (
@@ -11,19 +13,19 @@ const Donate = () => {
       <div className="section-container relative z-10 flex justify-center">
         <div className="p-6 md:p-8 bg-white border border-terra-1/20 rounded-sm max-w-lg w-full text-center">
           <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#934211] mb-3">
-            Apoio
+            {t('donate.badge')}
           </p>
           <h2 className="font-display font-bold text-terra-2 text-2xl md:text-3xl mb-4">
-            Apoie a Casa da Alquimia
+            {t('donate.title')}
           </h2>
           <p className="text-foreground/70 mb-8">
-            Sua contribuição mantém vivos os rituais, os ensinamentos e o espaço de cura da Casa da Alquimia.
+            {t('donate.body')}
           </p>
           <button
             onClick={() => setIsModalOpen(true)}
             className="w-full bg-primary text-white rounded-sm px-6 py-3 transition-colors duration-200 hover:bg-primary-dark font-medium"
           >
-            Quero apoiar
+            {t('donate.cta')}
           </button>
         </div>
       </div>

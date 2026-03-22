@@ -1,9 +1,11 @@
 
 import { useIntersectionObserver } from '@/utils/animations';
 import { Instagram } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 import InstagramSection from './social/InstagramSection';
 
 const SocialMedia = () => {
+  const { t } = useTranslation();
   const [ref, isVisible] = useIntersectionObserver();
 
   return (
@@ -18,11 +20,11 @@ const SocialMedia = () => {
           <div className={`transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
             <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-terra-1/10 border border-terra-1/25 mb-6">
               <Instagram className="h-4 w-4 text-terra-1" />
-              <span className="text-sm font-bold uppercase tracking-[0.15em] text-terra-1 font-body">Instagram</span>
+              <span className="text-sm font-bold uppercase tracking-[0.15em] text-terra-1 font-body">{t('social.badge')}</span>
             </span>
 
             <h2 className="text-4xl md:text-5xl font-display font-bold mb-4 text-dark">
-              Acompanhe Nossa <span className="text-secondary">Jornada</span>
+              {t('social.titleLine1')} <span className="text-secondary">{t('social.titleHighlight')}</span>
             </h2>
 
             <a
@@ -36,7 +38,7 @@ const SocialMedia = () => {
             </a>
 
             <p className="text-lg md:text-xl text-foreground/70 leading-relaxed">
-              Siga-nos no Instagram e fique por dentro das nossas cerimônias, retiros e momentos do caminho
+              {t('social.subtitle')}
             </p>
           </div>
         </div>

@@ -11,9 +11,24 @@ import SocialMedia from '@/components/SocialMedia';
 import SpotifyPlayer from '@/components/SpotifyPlayer';
 import { Card, CardContent } from '@/components/ui/card';
 import { useScrollProgress } from '@/utils/animations';
+import { useTranslation } from 'react-i18next';
 
 const Index = () => {
+  const { t } = useTranslation();
   const scrollProgress = useScrollProgress();
+
+  interface TestimonialItem { quote: string; author: string; }
+  const testimonialItems = t('testimonials.items', { returnObjects: true }) as TestimonialItem[];
+
+  const COL_SPANS = [
+    'md:col-span-2 md:row-span-2', // Paulo Rios — featured 2×2
+    'md:col-span-2',               // Ananda
+    '',                            // Sadgati
+    '',                            // Bárbara
+    'md:col-span-2',               // Mari
+    'md:col-span-2',               // Thais
+    'md:col-span-4',               // Angel — full width
+  ];
   
   return (
     <div className="relative">
@@ -51,143 +66,36 @@ const Index = () => {
         <div className="section-container relative z-10">
           <div className="text-center max-w-3xl mx-auto mb-10">
             <span className="chip inline-flex items-center gap-1 mb-4">
-              <span>Depoimentos</span>
+              <span>{t('testimonials.badge')}</span>
             </span>
             <h2 className="text-3xl md:text-4xl font-display font-bold mb-4">
-              O que dizem os caminhantes
+              {t('testimonials.title')}
             </h2>
             <p className="text-foreground/70 text-lg">
-              Palavras de quem vive a transformação
+              {t('testimonials.subtitle')}
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
 
-            {/* Paulo Rios — card de destaque: 2 colunas × 2 linhas */}
-            <Card className="md:col-span-2 md:row-span-2 sm:p-6 bg-white border-terra-1/20 transition-all duration-300">
-              <CardContent className="h-full pt-6">
-                <blockquote className="grid h-full grid-rows-[auto_1fr_auto] gap-6">
-                  <div className="text-[#2B4F8C]">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round">
-                      <path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V20c0 1 0 1 1 1z"></path>
-                      <path d="M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 4v3c0 1 0 1 1 1z"></path>
-                    </svg>
-                  </div>
-                  <p className="font-lato italic text-dark text-xl">
-                    Estar aqui é a sensação de completude de uma jornada de buscas que já vivi. É a compreensão de que a busca está dentro e que no silencio é que me reencontro. Aqui, vivemos na prática toda a jornada fora e dentro: do plantio, adubo da terra, bioconstrução, técnicas de cultivo e preparo da medicinas no fogo das panelas e fogo interno pessoal de cada um. E isso tudo só é possível aqui com a meditação e a ativação da presença nas atividades diárias, que levam à compreensão e completude do caminho para dentro e a uma alquimia interna para forjar e abrir espaço para este ser florescer.
-                  </p>
-                  <cite className="text-sm font-medium not-italic text-[#2B4F8C]">— Paulo Rios</cite>
-                </blockquote>
-              </CardContent>
-            </Card>
-
-            {/* Ananda — 2 colunas, linha 1 direita */}
-            <Card className="md:col-span-2 bg-white border-terra-1/20 transition-all duration-300">
-              <CardContent className="h-full pt-6">
-                <blockquote className="grid h-full grid-rows-[auto_1fr_auto] gap-6">
-                  <div className="text-[#2B4F8C]">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round">
-                      <path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V20c0 1 0 1 1 1z"></path>
-                      <path d="M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 4v3c0 1 0 1 1 1z"></path>
-                    </svg>
-                  </div>
-                  <p className="font-lato italic text-dark text-base">
-                    A Casa da Alquimia é a lembrança de que eu sou esse espaço de autotransformação pessoal. É com esse fogo interno que cada um vive isso na prática individual e entre os amigos do caminho, nessa união interior e exterior. E através dos amigos do caminho que nós encontramos o coração de luz - nosso e do outro.
-                  </p>
-                  <cite className="text-sm font-medium not-italic text-[#2B4F8C]">— Ananda</cite>
-                </blockquote>
-              </CardContent>
-            </Card>
-
-            {/* Sadgati — card normal, linha 2 col 3 */}
-            <Card className="bg-white border-terra-1/20 transition-all duration-300">
-              <CardContent className="h-full pt-6">
-                <blockquote className="grid h-full grid-rows-[auto_1fr_auto] gap-6">
-                  <div className="text-[#2B4F8C]">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round">
-                      <path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V20c0 1 0 1 1 1z"></path>
-                      <path d="M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 4v3c0 1 0 1 1 1z"></path>
-                    </svg>
-                  </div>
-                  <p className="font-lato italic text-dark text-base">
-                    Para mim, a Casa da Alquimia tem um objetivo único de investigação interior e de encontro consigo mesmo. Vivendo isso por meio da troca e da convivência no dia a dia, do compartilhamento da vida. Aqui vivencio a meditação, o silêncio e a conexão.
-                  </p>
-                  <cite className="text-sm font-medium not-italic text-[#2B4F8C]">— Sadgati</cite>
-                </blockquote>
-              </CardContent>
-            </Card>
-
-            {/* Bárbara Rocha — card normal, linha 2 col 4 */}
-            <Card className="bg-white border-terra-1/20 transition-all duration-300">
-              <CardContent className="h-full pt-6">
-                <blockquote className="grid h-full grid-rows-[auto_1fr_auto] gap-6">
-                  <div className="text-[#2B4F8C]">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round">
-                      <path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V20c0 1 0 1 1 1z"></path>
-                      <path d="M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 4v3c0 1 0 1 1 1z"></path>
-                    </svg>
-                  </div>
-                  <p className="font-lato italic text-dark text-base">
-                    Percebi ao chegar na Casa da Alquimia a saudade que eu estava de mim mesma. Foi só quando silenciei profundamente que relembrei o tamanho do meu ser e do meu amor. Essa casa promove reencontros profundos e momentos de expansão de consciência como eu não tinha experenciado antes. São momentos raríssimos e muito preciosos ao longo da vida e da busca espiritual.
-                  </p>
-                  <cite className="text-sm font-medium not-italic text-[#2B4F8C]">— Bárbara Rocha</cite>
-                </blockquote>
-              </CardContent>
-            </Card>
-
-            {/* Mari Sarmento — col-span-2, linha 3 esquerda */}
-            <Card className="md:col-span-2 bg-white border-terra-1/20 transition-all duration-300">
-              <CardContent className="h-full pt-6">
-                <blockquote className="grid h-full grid-rows-[auto_1fr_auto] gap-6">
-                  <div className="text-[#2B4F8C]">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round">
-                      <path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V20c0 1 0 1 1 1z"></path>
-                      <path d="M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 4v3c0 1 0 1 1 1z"></path>
-                    </svg>
-                  </div>
-                  <p className="font-lato italic text-dark text-base">
-                    A Casa da Alquimia me permitiu, como em nenhum outro lugar nos últimos anos, a retomar com um passo de firmeza a minha caminhada na espiritualidade. Eu jamais imaginava a dimensão que esse passo dado teria e o quão importante essa Casa se tornaria para mim. Uma grande referência, um solo fértil, uma família de coração, pra onde eu tenho a certeza que, ainda que eu navegue em outras águas, esse é e sempre será, o meu porto seguro.
-                  </p>
-                  <cite className="text-sm font-medium not-italic text-[#2B4F8C]">— Mari Sarmento</cite>
-                </blockquote>
-              </CardContent>
-            </Card>
-
-            {/* Thais Mesquita — col-span-2, linha 3 direita */}
-            <Card className="md:col-span-2 bg-white border-terra-1/20 transition-all duration-300">
-              <CardContent className="h-full pt-6">
-                <blockquote className="grid h-full grid-rows-[auto_1fr_auto] gap-6">
-                  <div className="text-[#2B4F8C]">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round">
-                      <path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V20c0 1 0 1 1 1z"></path>
-                      <path d="M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 4v3c0 1 0 1 1 1z"></path>
-                    </svg>
-                  </div>
-                  <p className="font-lato italic text-dark text-base">
-                    Vivi uma experiência transformadora no Casulo: força, magia e acolhimento que trouxeram calma, confiança e a sensação de que algo muito especial está (re)nascendo.
-                  </p>
-                  <cite className="text-sm font-medium not-italic text-[#2B4F8C]">— Thais Mesquita</cite>
-                </blockquote>
-              </CardContent>
-            </Card>
-
-            {/* Angel Ferreira — col-span-4, linha 4 (largura total) */}
-            <Card className="md:col-span-4 bg-white border-terra-1/20 transition-all duration-300">
-              <CardContent className="pt-6">
-                <blockquote className="grid grid-rows-[auto_1fr_auto] gap-6 max-w-4xl mx-auto">
-                  <div className="text-[#2B4F8C]">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round">
-                      <path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V20c0 1 0 1 1 1z"></path>
-                      <path d="M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 4v3c0 1 0 1 1 1z"></path>
-                    </svg>
-                  </div>
-                  <p className="font-lato italic text-dark text-lg leading-relaxed">
-                    É um espaço seguro que eu nunca tinha encontrado antes e que me alegra profundamente descobrir e viver. Eu posso, dentro de uma rede de meditadores comprometidos com a expansão do amor e da auto-observação, mergulhar também na minha própria investigação. O resultado disso na minha vida prática é, simplesmente, mais paciência, mais presença e um eu que contribui mais para todo mundo que está ao meu redor.
-                  </p>
-                  <cite className="text-sm font-medium not-italic text-[#2B4F8C]">— Angel Ferreira</cite>
-                </blockquote>
-              </CardContent>
-            </Card>
+            {testimonialItems.map((item, i) => (
+              <Card key={i} className={`${COL_SPANS[i]} bg-white border-terra-1/20 transition-all duration-300`}>
+                <CardContent className="h-full pt-6">
+                  <blockquote className="grid h-full grid-rows-[auto_1fr_auto] gap-6">
+                    <div className="text-[#2B4F8C]">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round">
+                        <path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V20c0 1 0 1 1 1z"></path>
+                        <path d="M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 4v3c0 1 0 1 1 1z"></path>
+                      </svg>
+                    </div>
+                    <p className={`font-lato italic text-dark ${i === 0 || i === 6 ? 'text-xl' : 'text-base'}`}>
+                      {item.quote}
+                    </p>
+                    <cite className="text-sm font-medium not-italic text-[#2B4F8C]">— {item.author}</cite>
+                  </blockquote>
+                </CardContent>
+              </Card>
+            ))}
 
           </div>
         </div>
