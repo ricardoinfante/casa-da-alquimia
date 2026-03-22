@@ -1,6 +1,6 @@
 import { useToast } from '@/hooks/use-toast';
-import { Mail, MailCheck, MessageCircle, Phone, User } from 'lucide-react';
-import { useEffect, useState, type ChangeEvent, type FormEvent } from 'react';
+import { Mail, MessageCircle, Phone, User } from 'lucide-react';
+import { useState, type ChangeEvent, type FormEvent } from 'react';
 
 const ContactForm = () => {
   const { toast } = useToast();
@@ -258,7 +258,9 @@ ${formData.message}
                       relative inline-flex items-center gap-2.5 px-7 py-3.5 text-sm font-['Lato'] font-semibold tracking-wider uppercase transition-all duration-300
                       ${status === 'submitting'
                         ? 'bg-[#2B4F8C]/60 text-white cursor-not-allowed'
-                        : 'bg-[#2B4F8C] text-white hover:bg-[#1A3A6B] hover:-translate-y-px'
+                        : status === 'success'
+                          ? 'bg-[#5A7A3A] text-white cursor-default'
+                          : 'bg-[#2B4F8C] text-white hover:bg-[#1A3A6B] hover:-translate-y-px'
                       }
                     `}
                     aria-label={status === 'submitting' ? "Enviando mensagem" : "Enviar mensagem"}
