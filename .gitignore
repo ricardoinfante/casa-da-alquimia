@@ -28,6 +28,7 @@ dist-ssr
 
 # Documentação e arquivos de planejamento (apenas para desenvolvimento local)
 *.md
+!README.md
 .claude/
 .superpowers/
 .cursorrules
