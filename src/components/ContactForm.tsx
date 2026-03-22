@@ -22,54 +22,41 @@ const ContactForm = () => {
     e.preventDefault();
     setStatus('submitting');
 
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 10000);
+
     try {
-      const whatsappMessage = `
-*Nova mensagem do site Casa da Alquimia*
+      const url = import.meta.env.VITE_CONTACT_SHEET_URL;
+      if (!url) {
+        throw new Error('VITE_CONTACT_SHEET_URL não configurada');
+      }
 
-*Nome:* ${formData.name}
-*Email:* ${formData.email}
-${formData.phone ? `*Telefone:* ${formData.phone}` : ''}
+      const response = await fetch(url, {
+        method: 'POST',
+        headers: { 'Content-Type': 'text/plain' },
+        body: JSON.stringify(formData),
+        signal: controller.signal,
+      });
 
-*Mensagem:*
-${formData.message}
-      `.trim();
+      const result = await response.json();
 
-      const emailSubject = encodeURIComponent(`Contato de ${formData.name} - Casa da Alquimia`);
-      const emailBody = encodeURIComponent(`
-Nome: ${formData.name}
-Email: ${formData.email}
-${formData.phone ? `Telefone: ${formData.phone}` : ''}
-
-Mensagem:
-${formData.message}
-      `.trim());
-
-      const mailtoURL = `mailto:contato@acasadaalquimia.com.br?subject=${emailSubject}&body=${emailBody}`;
-      const encodedMessage = encodeURIComponent(whatsappMessage);
-      const whatsappURL = `https://wa.me/5562996538902?text=${encodedMessage}`;
-
-      await new Promise(resolve => setTimeout(resolve, 500));
-
-      window.location.href = mailtoURL;
-      setTimeout(() => {
-        window.open(whatsappURL, '_blank', 'noopener,noreferrer');
-      }, 1000);
+      if (result.status !== 'ok') {
+        throw new Error(result.message || 'Erro ao enviar mensagem');
+      }
 
       setStatus('success');
+    } catch (err) {
+      const isTimeout = err instanceof Error && err.name === 'AbortError';
       toast({
-        title: "Abrindo Email e WhatsApp!",
-        description: "Sua mensagem pode ser enviada por email e/ou WhatsApp.",
-      });
-
-      setFormData({ name: '', email: '', phone: '', message: '' });
-      setTimeout(() => setStatus('idle'), 3000);
-    } catch {
-      toast({
-        title: "Erro ao processar",
-        description: "Por favor, tente novamente mais tarde.",
-        variant: "destructive",
+        title: 'Erro ao enviar',
+        description: isTimeout
+          ? 'A conexão demorou demais. Tente novamente.'
+          : 'Não foi possível enviar sua mensagem. Tente novamente.',
+        variant: 'destructive',
       });
       setStatus('idle');
+    } finally {
+      clearTimeout(timeoutId);
     }
   };
 
