@@ -24,14 +24,14 @@ O formulário de contato atual (`src/components/ContactForm.tsx`) abre um `mailt
 ## Arquitetura
 
 ```
-[ContactForm]  →  fetch POST (JSON)  →  [Google Apps Script Web App]
-                                                ↓
-                                         [Google Sheets]   ← nova linha
-                                                ↓
-                                         [Gmail]           ← email de aviso
-                                                ↓
-                                         retorna { status: "ok" }
-                                                ↓
+[ContactForm]  →  fetch POST (text/plain com JSON no body)  →  [Google Apps Script Web App]
+                                                                        ↓
+                                                                 [Google Sheets]   ← nova linha (appendRow)
+                                                                        ↓
+                                                                 [Gmail]           ← email de aviso
+                                                                        ↓
+                                                                 retorna { status: "ok" }
+                                                                        ↓
 [ContactForm]  ←  exibe tela de agradecimento (substitui o formulário)
 ```
 
@@ -42,7 +42,7 @@ O formulário de contato atual (`src/components/ContactForm.tsx`) abre um `mailt
 | `ContactForm.tsx` | UI do formulário, submissão via `fetch`, exibição de estados |
 | `VITE_CONTACT_SHEET_URL` | Variável de ambiente com a URL do Apps Script |
 | Google Apps Script | Recebe POST, grava planilha, envia email |
-| Google Sheets | Armazena os registros de contato |
+| Google Sheets | Armazena os registros de contato (cabeçalho pré-criado manualmente) |
 | Gmail (conta Google) | Envia email de notificação |
 
 ---
@@ -52,31 +52,84 @@ O formulário de contato atual (`src/components/ContactForm.tsx`) abre um `mailt
 ### Comportamento
 
 - `doPost(e)` — função principal:
-  1. Faz parse do JSON recebido
-  2. Abre a planilha ativa e adiciona uma nova linha ao final
+  1. Faz `JSON.parse(e.postData.contents)` para obter os dados (o body chega como `text/plain`)
+  2. Abre a planilha ativa e usa `sheet.appendRow(...)` para adicionar linha ao final (assume cabeçalho pré-existente na linha 1)
   3. Envia email de notificação para `EMAIL_DESTINO`
   4. Retorna `{ status: "ok" }` com headers CORS
 
-- `doOptions(e)` — responde ao preflight CORS do browser com os headers corretos
+- `doOptions(e)` — responde ao preflight CORS com os headers corretos
 
-### Configuração no script
+> **Nota CORS:** o Google Apps Script é servido por URL de redirect, o que impede `Content-Type: application/json` no fetch (causaria falha CORS). A solução é enviar com `Content-Type: text/plain` — isso evita o preflight e o JSON chega intacto em `e.postData.contents`, de onde é feito o parse manualmente.
+
+### Código completo do Apps Script
+
+O script abaixo deve ser colado no editor do Google Apps Script (Extensões → Apps Script) dentro da planilha:
 
 ```javascript
 const EMAIL_DESTINO = "contato@acasadaalquimia.com.br";
-```
 
-### Formato dos dados recebidos (JSON)
+function doPost(e) {
+  try {
+    var data = JSON.parse(e.postData.contents);
+    var sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
 
-```json
-{
-  "name": "Maria Silva",
-  "email": "maria@email.com",
-  "phone": "(62) 99999-0000",
-  "message": "Tenho interesse nos rituais..."
+    var timestamp = Utilities.formatDate(new Date(), "America/Sao_Paulo", "dd/MM/yyyy HH:mm");
+    sheet.appendRow([
+      timestamp,
+      data.name || "",
+      data.email || "",
+      data.phone || "",
+      data.message || ""
+    ]);
+
+    var subject = "[Casa da Alquimia] Nova mensagem de " + (data.name || "desconhecido");
+    var body = [
+      "Nova mensagem recebida pelo site:",
+      "",
+      "Nome: " + (data.name || ""),
+      "Email: " + (data.email || ""),
+      "Telefone: " + (data.phone || ""),
+      "",
+      "Mensagem:",
+      data.message || ""
+    ].join("\n");
+
+    GmailApp.sendEmail(EMAIL_DESTINO, subject, body);
+
+    return buildResponse({ status: "ok" });
+  } catch (err) {
+    return buildResponse({ status: "error", message: err.message });
+  }
+}
+
+function doOptions(e) {
+  return buildResponse({});
+}
+
+function buildResponse(data) {
+  var output = ContentService.createTextOutput(JSON.stringify(data));
+  output.setMimeType(ContentService.MimeType.JSON);
+  return output;
 }
 ```
 
+### Formato de resposta
+
+**Sucesso:**
+```json
+{ "status": "ok" }
+```
+
+**Erro:**
+```json
+{ "status": "error", "message": "Descrição do erro" }
+```
+
+Ambos são retornados com HTTP 200. O frontend deve verificar `responseBody.status === "ok"`, não apenas `response.ok`.
+
 ### Linha gravada na planilha
+
+O script assume que o cabeçalho já existe na linha 1 (criado manualmente no setup). Usa `sheet.appendRow()` para adicionar dados a partir da linha 2 em diante.
 
 | Data/Hora | Nome | Email | Telefone | Mensagem |
 |-----------|------|-------|----------|----------|
@@ -96,52 +149,68 @@ const EMAIL_DESTINO = "contato@acasadaalquimia.com.br";
 
 ## Frontend — ContactForm.tsx
 
+### Model de estado
+
+O componente atual usa dois booleans separados (`isSubmitting`, `isSuccess`). Eles devem ser substituídos por um único estado discriminado com três valores:
+
+```typescript
+const [status, setStatus] = useState<'idle' | 'submitting' | 'success'>('idle');
+```
+
+O estado `error` não existe como valor persistente: em caso de erro, o toast é exibido e o estado retorna imediatamente para `'idle'`, mantendo os dados do formulário intactos para que o usuário possa tentar novamente. Não é necessário um quarto estado `error` na union type.
+
 ### Mudanças no handleSubmit
 
 - Remove lógica de `mailto:` e WhatsApp
-- Faz `fetch` POST para `import.meta.env.VITE_CONTACT_SHEET_URL`
+- Faz `fetch` POST para `import.meta.env.VITE_CONTACT_SHEET_URL` com:
+  - `method: 'POST'`
+  - `headers: { 'Content-Type': 'text/plain' }` (necessário para evitar CORS com o Apps Script)
+  - `body: JSON.stringify(formData)`
 - Timeout de 10 segundos via `AbortController`
-- Trata erros de rede e erros retornados pelo script
+- Verifica `responseBody.status === "ok"` (não apenas `response.ok`) para determinar sucesso
+- Em caso de erro (catch ou `status !== "ok"`): exibe toast e chama `setStatus('idle')` — dados do formulário são preservados
 
 ### Estados do formulário
 
 | Estado | Comportamento |
 |--------|--------------|
-| idle | Formulário normal |
-| submitting | Botão com spinner, campos desabilitados |
-| success | Formulário substituído pela tela de agradecimento |
-| error | Toast de erro, dados preservados, botão reativado |
+| `idle` | Formulário normal e interativo |
+| `submitting` | Botão com spinner, campos desabilitados |
+| `success` | Card substituído pela tela de agradecimento (fade-in `transition-opacity duration-500`) |
 
-### Tela de agradecimento (estado success)
+Em caso de erro: toast de aviso, dados preservados, estado retorna para `idle`.
 
-Substitui o conteúdo do card com fade-in suave:
+### Tela de agradecimento (estado `success`)
 
-- Ícone (envelope ou similar, da paleta Cinzel/Lato)
+Substitui o conteúdo do card com fade-in suave via Tailwind (`transition-opacity duration-500`):
+
+- Ícone `<MailCheck />` de `lucide-react` (tamanho `h-10 w-10`, cor `#2B4F8C`)
 - Título: *"Mensagem recebida"* (fonte Cinzel, cor `#1A3A6B`)
 - Texto: *"Obrigado pelo contato. Retornaremos em breve pelo email ou telefone que você nos deixou."* (Lato, cor `#2C2C1E`)
-- Link discreto: *"Enviar outra mensagem"* — reseta o estado para `idle` com formulário vazio
+- Link discreto: *"Enviar outra mensagem"* — chama `setStatus('idle')` e reseta `formData` para valores vazios
 
 ### Variável de ambiente
 
-Arquivo `.env` na raiz do projeto:
+**Desenvolvimento local** — arquivo `.env.local` na raiz do projeto (ignorado pelo git por padrão no Vite):
 
 ```
 VITE_CONTACT_SHEET_URL=https://script.google.com/macros/s/SEU_ID/exec
 ```
 
-O `.env` já deve estar no `.gitignore` — a URL não deve ir para o repositório.
+**Produção (Plesk / servidor de build)** — a variável `VITE_CONTACT_SHEET_URL` deve ser configurada nas variáveis de ambiente do servidor antes de executar `npm run build`. Como o Vite injeta variáveis `VITE_*` em tempo de build (não em runtime), a variável precisa estar disponível no ambiente onde o comando de build é executado. Se não estiver definida, `import.meta.env.VITE_CONTACT_SHEET_URL` será `undefined` silenciosamente.
 
 ---
 
 ## Passos de setup manual (Google) — uma única vez
 
-1. Criar uma planilha no Google Sheets com cabeçalho na linha 1: `Data/Hora | Nome | Email | Telefone | Mensagem`
-2. No menu da planilha: **Extensões → Apps Script**
-3. Colar o script gerado na implementação
-4. Ajustar `EMAIL_DESTINO` no script
-5. Clicar em **Implantar → Nova implantação** → Tipo: Web App → Executar como: Eu → Acesso: Qualquer pessoa
-6. Autorizar as permissões solicitadas (acesso à planilha e ao Gmail)
-7. Copiar a URL gerada e colocar no `.env` do projeto
+1. Criar uma planilha no Google Sheets
+2. Na linha 1, criar o cabeçalho manualmente: `Data/Hora | Nome | Email | Telefone | Mensagem`
+3. No menu da planilha: **Extensões → Apps Script**
+4. Colar o código da seção "Código completo do Apps Script" acima
+5. Ajustar `EMAIL_DESTINO` no script para o email correto
+6. Clicar em **Implantar → Nova implantação** → Tipo: Web App → Executar como: Eu → Acesso: Qualquer pessoa
+7. Autorizar as permissões solicitadas (acesso à planilha e ao Gmail)
+8. Copiar a URL gerada e colocar no `.env.local` do projeto (e nas variáveis de ambiente de produção)
 
 ---
 
