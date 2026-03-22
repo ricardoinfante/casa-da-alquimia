@@ -1,6 +1,6 @@
 import { useToast } from '@/hooks/use-toast';
-import { Check, Mail, MessageCircle, Phone, User } from 'lucide-react';
-import React, { useState } from 'react';
+import { Mail, MailCheck, MessageCircle, Phone, User } from 'lucide-react';
+import { useEffect, useState, type ChangeEvent, type FormEvent } from 'react';
 
 const ContactForm = () => {
   const { toast } = useToast();
@@ -10,18 +10,17 @@ const ContactForm = () => {
     phone: '',
     message: '',
   });
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [isSuccess, setIsSuccess] = useState(false);
+  const [status, setStatus] = useState<'idle' | 'submitting' | 'success'>('idle');
   const [focused, setFocused] = useState<string | null>(null);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
-    setIsSubmitting(true);
+    setStatus('submitting');
 
     try {
       const whatsappMessage = `
@@ -56,22 +55,21 @@ ${formData.message}
         window.open(whatsappURL, '_blank', 'noopener,noreferrer');
       }, 1000);
 
-      setIsSuccess(true);
+      setStatus('success');
       toast({
         title: "Abrindo Email e WhatsApp!",
         description: "Sua mensagem pode ser enviada por email e/ou WhatsApp.",
       });
 
       setFormData({ name: '', email: '', phone: '', message: '' });
-      setTimeout(() => setIsSuccess(false), 3000);
+      setTimeout(() => setStatus('idle'), 3000);
     } catch {
       toast({
         title: "Erro ao processar",
         description: "Por favor, tente novamente mais tarde.",
         variant: "destructive",
       });
-    } finally {
-      setIsSubmitting(false);
+      setStatus('idle');
     }
   };
 
@@ -173,7 +171,8 @@ ${formData.message}
                       onChange={handleChange}
                       onFocus={() => setFocused('name')}
                       onBlur={() => setFocused(null)}
-                      className={fieldClass('name')}
+                      disabled={status === 'submitting'}
+                      className={`${fieldClass('name')} disabled:opacity-50`}
                       placeholder="Seu nome"
                       aria-required="true"
                     />
@@ -195,7 +194,8 @@ ${formData.message}
                       onChange={handleChange}
                       onFocus={() => setFocused('email')}
                       onBlur={() => setFocused(null)}
-                      className={fieldClass('email')}
+                      disabled={status === 'submitting'}
+                      className={`${fieldClass('email')} disabled:opacity-50`}
                       placeholder="seu@email.com"
                       aria-required="true"
                     />
@@ -218,7 +218,8 @@ ${formData.message}
                     onChange={handleChange}
                     onFocus={() => setFocused('phone')}
                     onBlur={() => setFocused(null)}
-                    className={fieldClass('phone')}
+                    disabled={status === 'submitting'}
+                    className={`${fieldClass('phone')} disabled:opacity-50`}
                     placeholder="(00) 00000-0000"
                   />
                 </div>
@@ -237,7 +238,8 @@ ${formData.message}
                     onFocus={() => setFocused('message')}
                     onBlur={() => setFocused(null)}
                     rows={5}
-                    className={`${fieldClass('message')} resize-none`}
+                    disabled={status === 'submitting'}
+                    className={`${fieldClass('message')} resize-none disabled:opacity-50`}
                     placeholder="Sua mensagem..."
                     aria-required="true"
                   />
@@ -251,30 +253,23 @@ ${formData.message}
 
                   <button
                     type="submit"
-                    disabled={isSubmitting || isSuccess}
+                    disabled={status !== 'idle'}
                     className={`
                       relative inline-flex items-center gap-2.5 px-7 py-3.5 text-sm font-['Lato'] font-semibold tracking-wider uppercase transition-all duration-300
-                      ${isSuccess
-                        ? 'bg-[#5A7A3A] text-white cursor-default'
-                        : isSubmitting
-                          ? 'bg-[#2B4F8C]/60 text-white cursor-not-allowed'
-                          : 'bg-[#2B4F8C] text-white hover:bg-[#1A3A6B] hover:-translate-y-px'
+                      ${status === 'submitting'
+                        ? 'bg-[#2B4F8C]/60 text-white cursor-not-allowed'
+                        : 'bg-[#2B4F8C] text-white hover:bg-[#1A3A6B] hover:-translate-y-px'
                       }
                     `}
-                    aria-label={isSubmitting ? "Processando mensagem" : "Enviar mensagem"}
+                    aria-label={status === 'submitting' ? "Enviando mensagem" : "Enviar mensagem"}
                   >
-                    {isSubmitting ? (
+                    {status === 'submitting' ? (
                       <>
                         <svg className="animate-spin h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                           <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
                           <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
                         </svg>
-                        Processando…
-                      </>
-                    ) : isSuccess ? (
-                      <>
-                        <Check className="h-4 w-4" />
-                        Pronto!
+                        Enviando…
                       </>
                     ) : (
                       <>
