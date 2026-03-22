@@ -1,384 +1,124 @@
-# 🎬 Passo-a-Passo: Seu Primeiro Álbum e Produto
+# 🎬 Primeiros Passos — Casa da Alquimia v2
 
-## 🎯 Objetivo Final
+## 🎯 Objetivo
 
-Ao final deste guia, você terá:
-
-- ✅ Uma Biblioteca com 1 álbum contendo imagens/vídeos
-- ✅ Uma Loja com pelo menos 1 produto disponível
-
-⏱️ **Tempo estimado: 15-20 minutos**
+Este guia ajuda qualquer desenvolvedor a rodar o projeto localmente.
 
 ---
 
 ## 📋 Pré-requisitos
 
-- ✅ Projeto rodando (`npm run dev`)
-- ✅ Conta Supabase criada
-- ✅ 2-3 imagens/vídeos salvos no seu computador
-- ✅ Acesso ao Supabase Dashboard
+- Node.js 18+ instalado
+- npm 9+ instalado
+- Git instalado
 
 ---
 
-## PARTE 1: Setup Banco de Dados (5 minutos)
+## PARTE 1: Clonar e Instalar (2 minutos)
 
-### Passo 1.1: Abrir Supabase Dashboard
+```bash
+# Clonar o repositório
+git clone https://github.com/akillez01/casa-da-alquimia.git
+cd casa-da-alquimia-v2
 
-```
-1. Ir para: https://supabase.com/dashboard
-2. Fazer login com sua conta
-3. Selecionar seu projeto
-4. Ir para "SQL Editor"
-```
-
-### Passo 1.2: Criar as Tabelas
-
-```
-1. Clicar em "New Query"
-2. Copiar TODO o conteúdo de:
-   /supabase/migrations/library_and_shop.sql
-3. Colar no editor
-4. Clicar em "RUN"
-5. Esperar a mensagem de sucesso
-```
-
-✅ **Pronto! Seu banco de dados está criado!**
-
----
-
-## PARTE 2: Acessar AdminPanel (2 minutos)
-
-Atualmente, o AdminPanel não está em uma rota especial. Você pode:
-
-**Opção A: Usar o Console do Navegador** (Recomendado para começar)
-
-```javascript
-// F12 → Console → Colar:
-
-// Importar serviços
-import {
-  mediaLibraryService,
-  shopService,
-} from "./src/integrations/supabase/services.ts";
-
-// Pronto para usar!
-```
-
-**Opção B: Criar Rota para AdminPanel** (Futuro)
-
-```typescript
-// Em App.tsx, adicionar:
-const AdminPanel = lazy(() => import("./components/AdminPanel"));
-
-// E depois:
-<Route path="/admin" element={<AdminPanel />} />;
+# Instalar dependências
+npm install
 ```
 
 ---
 
-## PARTE 3: Criar Seu Primeiro Álbum (3 minutos)
+## PARTE 2: Configurar Variáveis de Ambiente (2 minutos)
 
-### Via Console do Navegador:
+Criar um arquivo `.env.local` na raiz do projeto:
 
-```javascript
-// Abrir: F12 → Console
+```env
+# Supabase (opcional para rodar localmente)
+VITE_SUPABASE_URL=https://seu-projeto.supabase.co
+VITE_SUPABASE_ANON_KEY=sua-anon-key
 
-// 1. Criar o álbum
-const album = await mediaLibraryService.createAlbum({
-  name: "Meu Primeiro Álbum",
-  description: "Fotos e vídeos especiais",
-  coverImage: "https://via.placeholder.com/400x300?text=Meu+Album",
-});
-
-console.log("Álbum criado!", album);
-
-// Copiar o ID que apareceu no console
-// Exemplo: "12345678-1234-1234-1234-123456789012"
+# Social (opcional)
+VITE_INSTAGRAM_TOKEN=opcional
+VITE_YOUTUBE_API_KEY=opcional
 ```
 
-### ✅ Sucesso!
-
-Se viu algo como:
-
-```json
-{
-  "id": "abc123...",
-  "name": "Meu Primeiro Álbum",
-  "description": "Fotos e vídeos especiais",
-  ...
-}
-```
-
-**Parabéns! Seu álbum foi criado! 🎉**
+> **Nota**: O site funciona sem Supabase para visualização. O Supabase é usado para a galeria de memórias dinâmica.
 
 ---
 
-## PARTE 4: Adicionar Imagens ao Álbum (5 minutos)
+## PARTE 3: Rodar o Projeto (1 minuto)
 
-### 4.1: Preparar Imagens
-
-```
-1. Selecionar 2-3 imagens no seu computador
-2. Deixar prontas para upload
+```bash
+npm run dev
 ```
 
-### 4.2: Fazer Upload via Console
-
-```javascript
-// F12 → Console
-
-// 1. Preparar arquivo (usar arquivo do seu computador)
-// Para teste, vamos usar uma URL pública:
-
-const albumId = "abc123..."; // Copiar do passo anterior
-
-// 2. Criar blob da imagem (simular arquivo)
-const imageUrl = "https://via.placeholder.com/600x400?text=Foto+1";
-const response = await fetch(imageUrl);
-const blob = await response.blob();
-const file = new File([blob], "foto-1.jpg", { type: "image/jpeg" });
-
-// 3. Fazer upload
-const media = await mediaLibraryService.uploadMedia(file, albumId, "image");
-
-console.log("Imagem enviada!", media);
-```
-
-### ✅ Sucesso!
-
-Você verá algo como:
-
-```json
-{
-  "id": "xyz789...",
-  "album_id": "abc123...",
-  "title": "foto-1",
-  "type": "image",
-  "url": "https://storage.supabase.co/..."
-}
-```
-
-**Imagem adicionada! 📸**
+Acessar: `http://localhost:8086`
 
 ---
 
-## PARTE 5: Visualizar Biblioteca (2 minutos)
+## PARTE 4: Build para Produção
 
-### 5.1: Acessar o Site
-
-```
-1. Ir para: http://localhost:5173
-2. Clicar em "Biblioteca" no menu
-3. Você deve ver seu álbum!
-4. Clicar no álbum
-5. Você verá sua imagem!
-6. Clicar na imagem para visualizar em tela cheia
+```bash
+npm run build
 ```
 
-### ✅ Sucesso! Biblioteca Funcionando! 📚
+A pasta `dist/` conterá os arquivos estáticos para deploy.
 
 ---
 
-## PARTE 6: Criar Seu Primeiro Produto (3 minutos)
-
-### Via Console:
-
-```javascript
-// F12 → Console
-
-const product = await shopService.createProduct({
-  name: "Meu Primeiro Produto",
-  description: "Um produto incrível",
-  price: 99.9,
-  category: "rituais",
-  stock: 10,
-  image: "https://via.placeholder.com/400x400?text=Produto",
-  details: "Detalhes completos do seu primeiro produto!",
-});
-
-console.log("Produto criado!", product);
-```
-
-### ✅ Sucesso!
-
-Você verá:
-
-```json
-{
-  "id": "prod123...",
-  "name": "Meu Primeiro Produto",
-  "price": 99.90,
-  ...
-}
-```
-
-**Seu primeiro produto foi criado! 🛍️**
-
----
-
-## PARTE 7: Visualizar Loja (2 minutos)
-
-### 7.1: Acessar Loja Virtual
+## 📁 Estrutura de Pastas
 
 ```
-1. Ir para: http://localhost:5173
-2. Clicar em "Loja Virtual" no menu
-3. Você verá seu produto!
-4. Clicar no card do produto
-5. Ver detalhes e imagens
-6. Clicar "Adicionar ao Carrinho"
-7. Ver carrinho aparecer no canto inferior direito
-```
-
-### ✅ Sucesso! Loja Funcionando! 🛍️
-
----
-
-## 🎉 Parabéns!
-
-Você completou todos os passos! Você agora tem:
-
-✅ Biblioteca de Mídia com álbuns  
-✅ Imagens/Vídeos upload no Supabase  
-✅ Loja Virtual com produtos  
-✅ Carrinho de compras funcional
-
----
-
-## 📊 Próximos Passos
-
-### Curto Prazo (Esta semana)
-
-1. Criar mais 3-4 álbuns
-2. Adicionar 10-15 imagens
-3. Criar 8-10 produtos
-4. Testar tudo no mobile
-
-### Médio Prazo (Este mês)
-
-1. Integrar Stripe/Mercado Pago
-2. Testar processo de compra
-3. Configurar emails de confirmação
-4. Publicar site
-
-### Longo Prazo
-
-1. Coletar avaliações de clientes
-2. Adicionar mais produtos
-3. Criar campanhas de marketing
-4. Expandir biblioteca
-
----
-
-## 🐛 Troubleshooting Comum
-
-### "Erro ao criar álbum"
-
-```
-✓ Verificar se migrations foram executadas
-✓ Verificar credenciais do Supabase
-✓ Testar no Supabase Dashboard direto
-```
-
-### "Imagem não aparece"
-
-```
-✓ Usar URL completa (https://...)
-✓ Aguardar alguns segundos para carregar
-✓ Verificar no Supabase Storage se arquivo foi salvo
-```
-
-### "Produto não aparece na loja"
-
-```
-✓ Limpar cache do navegador
-✓ Atualizar página (F5)
-✓ Verificar se stock > 0
-```
-
-### "Carrinho não mostra preço"
-
-```
-✓ Verificar se produto tem preço
-✓ Isso é normal - integração de pagamento vem depois
+casa-da-alquimia-v2/
+├── src/
+│   ├── components/     — Componentes React
+│   ├── pages/          — Páginas (Index.tsx)
+│   ├── hooks/          — Custom hooks
+│   ├── utils/          — Utilitários
+│   └── integrations/   — Supabase client
+├── docs/               — Documentação
+├── public/             — Assets estáticos
+└── dist/               — Build de produção (gerado)
 ```
 
 ---
 
-## 📱 Teste no Celular
+## 🎨 Personalizações Comuns
 
-```
-1. Abrir seu projeto no VS Code
-2. Terminal: npm run dev
-3. Copiar URL (ex: http://192.168.1.100:5173)
-4. Abrir no celular na mesma rede
-5. Testar Biblioteca e Loja
-```
+### Alterar textos do site
+Editar os componentes em `src/components/`:
+- `Hero.tsx` — texto do banner
+- `About.tsx` — texto sobre o espaço
+- `Rituals.tsx` — rituais apresentados
 
----
+### Alterar cores
+Editar `tailwind.config.ts` e `src/index.css`.
+Ver [VISUAL_GUIDE.md](VISUAL_GUIDE.md) para referência da paleta.
 
-## 💡 Dicas Extras
-
-### Para Adicionar Muitas Imagens Rápido
-
-```javascript
-// Criar loop para adicionar múltiplas
-for (let i = 1; i <= 5; i++) {
-  const file = new File([...], `foto-${i}.jpg`, { type: "image/jpeg" });
-  await mediaLibraryService.uploadMedia(file, albumId, "image");
-  console.log(`Foto ${i} adicionada!`);
-}
-```
-
-### Para Adicionar Múltiplos Produtos
-
-```javascript
-const produtos = [
-  { name: "Produto 1", price: 49.90, ... },
-  { name: "Produto 2", price: 79.90, ... },
-  { name: "Produto 3", price: 99.90, ... },
-];
-
-for (const prod of produtos) {
-  await shopService.createProduct(prod);
-}
+### Alterar playlist do Spotify
+Em `src/pages/Index.tsx`, alterar o `playlistId`:
+```tsx
+<SpotifyPlayer playlistId="SEU_PLAYLIST_ID" />
 ```
 
 ---
 
-## ✅ Checklist Final
+## 🐛 Troubleshooting
 
-- ✅ Migrations executadas
-- ✅ Primeiro álbum criado
-- ✅ Imagens adicionadas
-- ✅ Biblioteca funcionando
-- ✅ Primeiro produto criado
-- ✅ Loja funcionando
-- ✅ Carrinho testado
-- ✅ Tudo visualizado no mobile
+| Problema | Solução |
+|----------|---------|
+| Porta ocupada | Vite escolhe outra porta automaticamente |
+| Erro de TypeScript | Rodar `npm install` para sincronizar tipos |
+| Supabase não conecta | Verificar `.env.local` |
+| Build falha | Verificar erros no console (`npm run lint`) |
 
 ---
 
-## 🎓 Próximo: Integração de Pagamento
+## 📚 Próximos Passos
 
-Quando estiver pronto, veja:
-
-- Documentação Stripe: https://stripe.com/docs
-- Documentação Mercado Pago: https://www.mercadopago.com.br/developers
-
----
-
-## 📞 Precisa de Ajuda?
-
-1. Verifique os README.md criados
-2. Consulte documentação do Supabase
-3. Teste direto no Supabase Dashboard (SQL Editor)
-4. Verifique console do navegador (F12)
+- Leia [CLAUDE.md](CLAUDE.md) para entender a arquitetura completa
+- Veja [VISUAL_GUIDE.md](VISUAL_GUIDE.md) para entender o design
+- Consulte [DEPLOY.md](DEPLOY.md) para publicar o site
 
 ---
 
-## 🚀 Parabéns de Novo!
-
-Seu site Casa da Alquimia está evoluindo! 🌟
-
-**Divirta-se populando a Biblioteca e Loja! 🎉**
+**Última atualização**: 2026-03-21

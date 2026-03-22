@@ -1,63 +1,42 @@
-import { Maximize2, Minimize2, Music, X } from 'lucide-react';
+import { ChevronDown, Music2, X } from 'lucide-react';
 import React, { useEffect, useState } from 'react';
-
-const MusicTooltip = () => {
-  const [visible, setVisible] = useState(false);
-  return (
-    <span
-      className="relative flex items-center"
-      onMouseEnter={() => setVisible(true)}
-      onMouseLeave={() => setVisible(false)}
-      onClick={e => e.stopPropagation()}
-    >
-      <Music className="h-4 w-4" />
-      {visible && (
-        <span className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-3 py-1.5 bg-dark text-white/50 text-xs font-light tracking-wide whitespace-nowrap rounded-sm border border-white/10 pointer-events-none z-50">
-          ouça as músicas que guiam nossas seleções.
-        </span>
-      )}
-    </span>
-  );
-};
 
 interface SpotifyPlayerProps {
   playlistId?: string;
 }
 
-const SpotifyPlayer: React.FC<SpotifyPlayerProps> = ({ 
-  playlistId = '5gK8vevkgH2nRAw1LuGdCD' 
+const SpotifyPlayer: React.FC<SpotifyPlayerProps> = ({
+  playlistId = '5gK8vevkgH2nRAw1LuGdCD',
 }) => {
-  const [isMinimized, setIsMinimized] = useState(true);
-  const [isVisible, setIsVisible] = useState(true);
-  const [isMuted, setIsMuted] = useState(false);
   const [showPlayer, setShowPlayer] = useState(false);
+  const [isMinimized, setIsMinimized] = useState(false); // nasce aberto
+  const [isVisible, setIsVisible] = useState(true);
+  const [animate, setAnimate] = useState(false);
 
-  // Mostrar o player após um pequeno delay para não impactar o carregamento inicial
+  // Restaurar preferência salva
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setShowPlayer(true);
-    }, 2000);
-
-    return () => clearTimeout(timer);
+    const savedMin = localStorage.getItem('spotifyPlayerMinimized');
+    const savedVis = localStorage.getItem('spotifyPlayerVisible');
+    if (savedMin !== null) setIsMinimized(savedMin === 'true');
+    if (savedVis !== null) setIsVisible(savedVis === 'true');
   }, []);
 
-  // Salvar preferência do usuário no localStorage
+  // Aparece na primeira rolagem
   useEffect(() => {
-    const savedMinimized = localStorage.getItem('spotifyPlayerMinimized');
-    const savedVisible = localStorage.getItem('spotifyPlayerVisible');
-    
-    if (savedMinimized !== null) {
-      setIsMinimized(savedMinimized === 'true');
-    }
-    if (savedVisible !== null) {
-      setIsVisible(savedVisible === 'true');
-    }
-  }, []);
+    const handleScroll = () => {
+      if (window.scrollY > 150 && !showPlayer) {
+        setShowPlayer(true);
+        setTimeout(() => setAnimate(true), 50);
+      }
+    };
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [showPlayer]);
 
   const toggleMinimize = () => {
-    const newState = !isMinimized;
-    setIsMinimized(newState);
-    localStorage.setItem('spotifyPlayerMinimized', String(newState));
+    const next = !isMinimized;
+    setIsMinimized(next);
+    localStorage.setItem('spotifyPlayerMinimized', String(next));
   };
 
   const handleClose = () => {
@@ -67,85 +46,95 @@ const SpotifyPlayer: React.FC<SpotifyPlayerProps> = ({
 
   const handleShow = () => {
     setIsVisible(true);
+    setIsMinimized(false);
     localStorage.setItem('spotifyPlayerVisible', 'true');
+    localStorage.setItem('spotifyPlayerMinimized', 'false');
   };
 
   if (!showPlayer) return null;
 
-  // Botão flutuante para reabrir o player
+  // Botão flutuante para reabrir
   if (!isVisible) {
     return (
       <button
         onClick={handleShow}
-        className="fixed bottom-6 right-6 z-50 p-4 bg-secondary text-white rounded-sm transition-colors duration-200 hover:bg-secondary-light group"
+        className="fixed bottom-6 right-6 z-50 flex items-center gap-2.5 px-4 py-3 bg-dark border border-terra-3/30 text-terra-3 shadow-xl hover:border-terra-3/60 hover:bg-dark/90 transition-all duration-200"
         aria-label="Abrir player de música"
       >
-        <Music className="h-6 w-6" />
-        <span className="absolute -top-2 -right-2 bg-primary text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
-          ♪
+        <Music2 className="h-4 w-4" />
+        <span className="font-body text-[10px] font-bold uppercase tracking-[0.2em]">
+          Trilha da Alquimia
         </span>
       </button>
     );
   }
 
   return (
-    <div className="fixed bottom-0 left-0 right-0 z-40">
-      {/* Player do Spotify - Controles centralizados */}
-      <div className={`relative flex items-center justify-center bg-dark transition-all duration-300 ${isMinimized ? 'h-0' : 'h-[80px]'} overflow-hidden`}>
-        {/* Botão Minimizar - Esquerda */}
-        {!isMinimized && (
+    <div
+      className={`fixed bottom-6 right-6 z-50 w-[320px] sm:w-[360px] bg-dark border border-terra-3/20 shadow-2xl transition-all duration-500 ease-out ${
+        animate ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
+      }`}
+    >
+      {/* Header */}
+      <div className="flex items-center justify-between px-4 py-3 border-b border-white/8">
+        <div className="flex items-center gap-3">
+          <div className="relative flex-shrink-0">
+            <Music2 className="h-4 w-4 text-terra-3 relative z-10" />
+            {!isMinimized && (
+              <span className="absolute inset-0 rounded-full animate-ping bg-terra-3/25 pointer-events-none" />
+            )}
+          </div>
+          <div>
+            <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-terra-1 font-body leading-none mb-0.5">
+              Trilha da Alquimia
+            </p>
+            <p className="text-[11px] text-white/40 font-body leading-none">
+              Casa da Alquimia
+            </p>
+          </div>
+        </div>
+
+        <div className="flex items-center gap-0.5">
           <button
             onClick={toggleMinimize}
-            className="absolute left-1 sm:left-2 md:left-4 top-1/2 transform -translate-y-1/2 p-1.5 sm:p-2 bg-black/70 hover:bg-black/90 rounded-sm transition-all text-white z-10 border border-white/10"
-            aria-label="Minimizar player"
-            title="Minimizar"
+            className="p-2 text-white/40 hover:text-terra-3 transition-colors hover:bg-white/5"
+            aria-label={isMinimized ? 'Expandir player' : 'Minimizar player'}
+            title={isMinimized ? 'Expandir' : 'Minimizar'}
           >
-            <Minimize2 className="h-3 w-3 sm:h-4 sm:w-4" />
+            <ChevronDown
+              className={`h-4 w-4 transition-transform duration-300 ${
+                isMinimized ? 'rotate-180' : ''
+              }`}
+            />
           </button>
-        )}
-        
-        {/* Iframe centralizado com max-width */}
-        <div className="w-full max-w-5xl mx-auto px-12 sm:px-16 md:px-20">
-          <iframe
-            title="Spotify Player - Casa da Alquimia"
-            style={{ borderRadius: 12 }}
-            src={`https://open.spotify.com/embed/playlist/${playlistId}?utm_source=generator&theme=0`}
-            width="100%"
-            height="80"
-            frameBorder="0"
-            allowFullScreen
-            allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-            loading="lazy"
-          ></iframe>
-        </div>
-        
-        {/* Botão Fechar - Direita */}
-        {!isMinimized && (
           <button
             onClick={handleClose}
-            className="absolute right-1 sm:right-2 md:right-4 top-1/2 transform -translate-y-1/2 p-1.5 sm:p-2 bg-black/70 hover:bg-black/90 rounded-sm transition-all text-white z-10 border border-white/10"
+            className="p-2 text-white/30 hover:text-white/70 transition-colors hover:bg-white/5"
             aria-label="Fechar player"
             title="Fechar"
           >
-            <X className="h-3 w-3 sm:h-4 sm:w-4" />
-          </button>
-        )}
-      </div>
-
-      {/* Barra para reabrir quando minimizado */}
-      {isMinimized && (
-        <div className="bg-dark border-t border-terra-3/20">
-          <button
-            onClick={toggleMinimize}
-            className="w-full py-2 px-4 hover:bg-white/5 transition-all flex items-center justify-center gap-2 text-terra-3 text-sm font-medium"
-            aria-label="Expandir player"
-          >
-            <MusicTooltip />
-            <span>Música — clique para expandir</span>
-            <Maximize2 className="h-4 w-4" />
+            <X className="h-4 w-4" />
           </button>
         </div>
-      )}
+      </div>
+
+      {/* Embed Spotify — playlist completa */}
+      <div
+        className="overflow-hidden transition-all duration-500 ease-in-out"
+        style={{ maxHeight: isMinimized ? 0 : 352 }}
+      >
+        <iframe
+          title="Spotify Player - Casa da Alquimia"
+          style={{ borderRadius: 0, display: 'block' }}
+          src={`https://open.spotify.com/embed/playlist/${playlistId}?utm_source=generator&theme=0`}
+          width="100%"
+          height="352"
+          frameBorder="0"
+          allowFullScreen
+          allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+          loading="lazy"
+        />
+      </div>
     </div>
   );
 };

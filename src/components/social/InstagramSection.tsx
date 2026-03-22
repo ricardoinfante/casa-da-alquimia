@@ -32,8 +32,7 @@ const InstagramSection = ({ isVisible }: InstagramSectionProps) => {
       <div className="flex flex-wrap items-center justify-center gap-3 mt-6">
           <Button
             asChild
-            variant="outline"
-            className="bg-[#934211]/10 border border-[#934211]/30 text-[#934211] hover:bg-[#B5771C]/15 hover:border-[#B5771C] hover:text-[#B5771C] transition-all duration-200"
+            className="bg-[#934211] border border-[#934211] text-white hover:bg-[#7A4900] hover:border-[#7A4900] transition-all duration-200 shadow-sm"
           >
             <a
               href="https://www.instagram.com/casadaalquimia/"
@@ -42,7 +41,7 @@ const InstagramSection = ({ isVisible }: InstagramSectionProps) => {
               className="flex items-center gap-2"
             >
               <Instagram className="h-4 w-4" />
-              Instagram
+              Seguir @casadaalquimia
             </a>
           </Button>
 
