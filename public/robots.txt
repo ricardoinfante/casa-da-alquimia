@@ -10,4 +10,4 @@ Sitemap: https://acasadaalquimia.com.br/sitemap.xml
 # Bloquear recursos desnecessários
 Disallow: /api/
 Disallow: /admin/
-Disallow: /*.json$
+Disallow: /*.json
