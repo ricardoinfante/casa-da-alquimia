@@ -46,37 +46,57 @@
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "HealthAndBeautyBusiness",
-      "name": "A Casa da Alquimia",
-      "description": "Espaço sagrado dedicado a rituais de ayahuasca, medicina da floresta, meditação e autoconhecimento em Cavalcante, Goiás.",
-      "url": "https://acasadaalquimia.com.br/",
-      "logo": "https://acasadaalquimia.com.br/favicon.png",
-      "image": "https://acasadaalquimia.com.br/og-image.png",
-      "address": {
-        "@type": "PostalAddress",
-        "streetAddress": "Estrada da Usina, Fazenda Miraflores",
-        "addressLocality": "Cavalcante",
-        "addressRegion": "GO",
-        "addressCountry": "BR"
-      },
-      "geo": {
-        "@type": "GeoCoordinates",
-        "latitude": "-13.7874",
-        "longitude": "-47.4581"
-      },
-      "telephone": "+55-62-99653-8902",
-      "email": "casadaalquimia@gmail.com",
-      "sameAs": [
-        "https://www.instagram.com/casadaalquimia/",
-        "https://www.facebook.com/"
-      ],
-      "priceRange": "$$",
-      "openingHoursSpecification": {
-        "@type": "OpeningHoursSpecification",
-        "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
-        "opens": "00:00",
-        "closes": "23:59"
-      }
+      "@graph": [
+        {
+          "@type": ["LocalBusiness", "TouristAttraction"],
+          "additionalType": "https://schema.org/PlaceOfWorship",
+          "name": "A Casa da Alquimia",
+          "alternateName": "Casa da Alquimia",
+          "description": "Espaço sagrado dedicado a rituais de ayahuasca, medicina da floresta, meditação e autoconhecimento em Cavalcante, Goiás.",
+          "url": "https://acasadaalquimia.com.br/",
+          "logo": "https://acasadaalquimia.com.br/favicon.png",
+          "image": "https://acasadaalquimia.com.br/og-image.png",
+          "inLanguage": ["pt-BR", "en"],
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "Estrada da Usina, Fazenda Miraflores",
+            "addressLocality": "Cavalcante",
+            "addressRegion": "GO",
+            "addressCountry": "BR"
+          },
+          "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": "-13.7874",
+            "longitude": "-47.4581"
+          },
+          "telephone": "+55-62-99653-8902",
+          "email": "casadaalquimia@gmail.com",
+          "sameAs": [
+            "https://www.instagram.com/casadaalquimia/"
+          ],
+          "priceRange": "$$",
+          "openingHoursSpecification": {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
+            "opens": "00:00",
+            "closes": "23:59"
+          }
+        },
+        {
+          "@type": "WebSite",
+          "url": "https://acasadaalquimia.com.br/",
+          "name": "A Casa da Alquimia",
+          "inLanguage": ["pt-BR", "en"],
+          "potentialAction": {
+            "@type": "SearchAction",
+            "target": {
+              "@type": "EntryPoint",
+              "urlTemplate": "https://acasadaalquimia.com.br/?q={search_term_string}"
+            },
+            "query-input": "required name=search_term_string"
+          }
+        }
+      ]
     }
     </script>
   </head>
